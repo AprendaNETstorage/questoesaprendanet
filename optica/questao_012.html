@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 26 — Óptica</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Óptica</a>
+    <span class="spacer"></span>
+    <a href="questao_011.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">12/42</span>
+    <a href="questao_013.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 26</h2>
+  <h3>Problema 26:</h3>
+
+<!-- ENUNCIADO -->
+<p><strong>∗∗. (ENEM 2018)</strong></p>
+<p>
+A figura representa um prisma óptico, constituído de um material transparente, cujo índice de refração é crescente com
+a frequência da luz que sobre ele incide. Um feixe luminoso, composto por luzes vermelha, azul e verde, incide na face A,
+emerge na face B e, após ser refletido por um espelho, incide num filme para fotografia colorida, revelando três pontos.
+</p>
+
+<figure>
+  <!-- ajuste o caminho/nome do arquivo conforme você salvar a figura -->
+  <img src="questao26_prisma.png"
+       alt="Espectro de cores e esquema de prisma com feixe branco incidindo na face A, saindo pela face B e refletido por um espelho até um filme.">
+  <figcaption>Figura 1 – Dispersão das luzes vermelha, verde e azul por um prisma e incidência em um filme fotográfico.</figcaption>
+</figure>
+
+<p>
+Observando os pontos luminosos revelados no filme, de cima para baixo, constatam-se as seguintes cores:
+</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Índice de refração e desvio no prisma.</strong><br>
+O enunciado diz que o índice de refração é
+<input onchange="checkWord(this,'crescente com a frequencia|maior para frequencias maiores|maior para luz azul')">
+com a frequência. Logo, entre as cores vermelha, verde e azul, a que sofre maior desvio é a
+<input onchange="checkWord(this,'azul')">.
+</p>
+
+<p><strong>2) Posição relativa das três cores ao emergirem do prisma.</strong><br>
+A luz mais desviada (maior índice) sai mais próxima da
+<input onchange="checkWord(this,'base do prisma|base|parte inferior')">
+e, portanto, atingirá a parte
+<input onchange="checkWord(this,'inferior|de baixo')">
+do filme após a reflexão. Essa cor é a
+<input onchange="checkWord(this,'azul')">. <br>
+Acima dela aparece a luz
+<input onchange="checkWord(this,'verde')">
+e, mais acima, a luz
+<input onchange="checkWord(this,'vermelha')">.
+</p>
+
+<p><strong>3) Ordem das cores de cima para baixo no filme.</strong><br>
+De cima para baixo, a sequência observada é:
+<input onchange="checkWord(this,'vermelha, verde, azul|vermelho, verde, azul')">.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  Vermelha, verde, azul.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  Verde, vermelha, azul.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  Azul, verde, vermelha.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  Verde, azul, vermelha.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  Azul, vermelha, verde.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // -------- helpers (aceita vírgula/ponto e expressões simples) --------
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function safeEval(expr){
+    const cleaned = String(expr).replace(/\s/g,'');
+    if(!/^[0-9eE+\-*/().,×^]+$/.test(cleaned)) return null;
+    const norm = cleaned.replace(/,/g,'.').replace(/×/g,'*').replace(/\^/g,'**');
+    try{
+      const v = Function('"use strict"; return ('+norm+');')();
+      return (typeof v === 'number' && Number.isFinite(v)) ? v : null;
+    }catch{ return null; }
+  }
+  function nearlyEqual(a,b,eps=1e-3){
+    return Math.abs(a-b) <= eps * Math.max(1, Math.abs(a), Math.abs(b));
+  }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+  function checkExpr(input, expectedExprs){
+    const val = safeEval(input.value.trim());
+    const targets = expectedExprs.split('|').map(e => safeEval(e));
+    const ok = (val !== null) && targets.some(t => t !== null && nearlyEqual(val, t));
+    paint(input, ok);
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'A';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

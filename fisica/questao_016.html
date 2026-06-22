@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Questão 20 — Física (Geral)</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Física (Geral)</a>
+    <span class="spacer"></span>
+    <a href="questao_015.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">16/23</span>
+    <a href="questao_017.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Questão 20</h2>
+  <h3>Problema 20:</h3>
+  <p>
+    Um produtor de café contratou uma empresa de consultoria para avaliar as produções de suas diversas fazendas. No relatório entregue consta que a variância das produtividades das fazendas foi igual a 9 216 kg²/ha². Esse produtor precisa apresentar essa informação, mas em outra unidade de produtividade: sacas/ha. Ele sabe que a saca de café tem 60 kg, mas tem dúvidas em determinar o valor da variância em sacas²/ha².
+  </p>
+  <p>
+    <strong>A variância das produtividades das fazendas de café expressa em sacas²/ha² é:</strong>
+  </p>
+
+  <h4>Solução:</h4>
+  <p>
+    Variância original: <input onchange="check(this, '9216')"> kg²/ha²
+    <br>
+    1 saca = 60 kg → 1 saca² = <input onchange="check(this, '3600')"> kg²
+    <br>
+    Para converter a variância de kg²/ha² para sacas²/ha², dividimos:
+    <br>
+    <input onchange="check(this, '9216')"> ÷ <input onchange="check(this, '3600')"> = <input onchange="check(this, '2.56')"> sacas²/ha²
+  </p>
+
+  <p><strong>Resposta correta:</strong></p>
+
+  <div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> 153,60</div>
+  <div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> 12,39</div>
+  <div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> 6,55</div>
+  <div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> 2,56</div>
+  <div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> 1,60</div>
+
+  <div id="message" class="feedback"></div>
+
+  <script>
+    function check(input, correct) {
+      const value = input.value.trim().replace(',', '.');
+      input.nextElementSibling?.remove();
+      if (parseFloat(value) === parseFloat(correct)) {
+        input.style.backgroundColor = "#c6f6c6";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+      } else {
+        input.style.backgroundColor = "#fdd";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+      }
+    }
+
+    function checkAnswer(letter) {
+      const correct = 'D';
+      const message = document.getElementById('message');
+      if (letter === correct) {
+        message.textContent = 'Correto! A variância em sacas²/ha² é 2,56.';
+        message.style.color = 'green';
+      } else {
+        message.textContent = `Errado. A alternativa ${letter} não é a correta.`;
+        message.style.color = 'red';
+      }
+    }
+  </script>
+</div>
+</body>
+</html>

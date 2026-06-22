@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 38 — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_041.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">42/71</span>
+    <a href="questao_043.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 38</h2>
+  <h3>Problema 38:</h3>
+
+<!-- ENUNCIADO IDÊNTICO -->
+<p><strong>67. (Enem 2012)</strong></p>
+<p>Em um dia de chuva muito forte, constatou-se uma goteira sobre o centro de uma piscina coberta, formando um padrão de ondas circulares. Nessa situação, observou-se que caíam duas gotas a cada segundo. A distância entre duas cristas consecutivas era de 25 cm e cada uma delas se aproximava da borda da piscina com velocidade de 1,0 m/s. Após algum tempo, a chuva diminuiu e a goteira passou a cair uma vez por segundo.</p>
+<p>Com a diminuição da chuva, a distância entre as cristas e a velocidade de propagação da onda se tornaram, respectivamente,</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Frequências:</strong>
+  f<sub>1</sub> = <input onchange="checkExpr(this,'2')"> Hz (duas gotas/s) &nbsp; | &nbsp;
+  f<sub>2</sub> = <input onchange="checkExpr(this,'1')"> Hz
+</p>
+
+<p><strong>2) Dados iniciais:</strong>
+  λ<sub>1</sub> = <input onchange="checkExpr(this,'0.25|25/100')"> m &nbsp; (25 cm) &nbsp; | &nbsp;
+  v (no meio água) = <input onchange="checkExpr(this,'1.0|1')"> m/s
+</p>
+
+<p><strong>3) No mesmo meio, v não muda. Use v = λ·f para o novo período:</strong>
+  <br>λ<sub>2</sub> = v / f<sub>2</sub> =
+  <input onchange="checkExpr(this,'1/1|1')"> m
+  &nbsp;→&nbsp; λ<sub>2</sub> é
+  <input onchange="checkWord(this,'maior que 25 cm|maior que 0.25 m|maior')"> que 25 cm.
+</p>
+
+<p><strong>4) Portanto, marque a alternativa com "λ maior que 25 cm" e "v igual a 1,0 m/s".</strong></p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  maior que 25 cm e maior que 1,0 m/s.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  maior que 25 cm e igual a 1,0 m/s.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  menor que 25 cm e menor que 1,0 m/s.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  menor que 25 cm e igual a 1,0 m/s.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  igual a 25 cm e igual a 1,0 m/s.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // ---- helpers: aceita vírgula/ponto e expressões simples ----
+  function safeEval(expr){
+    const cleaned = String(expr).replace(/\s/g,'');
+    if(!/^[0-9eE+\-*/().,×^]+$/.test(cleaned)) return null;
+    const norm = cleaned.replace(/,/g,'.').replace(/×/g,'*').replace(/\^/g,'**');
+    try{
+      const v = Function('"use strict"; return ('+norm+');')();
+      return (typeof v === 'number' && Number.isFinite(v)) ? v : null;
+    }catch{ return null; }
+  }
+  function nearlyEqual(a,b,eps=1e-3){ return Math.abs(a-b) <= eps*Math.max(1,Math.abs(a),Math.abs(b)); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkExpr(input, expectedExprs){
+    const val = safeEval(input.value.trim());
+    const targets = expectedExprs.split('|').map(e => safeEval(e));
+    const ok = (val !== null) && targets.some(t => t !== null && nearlyEqual(val, t));
+    paint(input, ok);
+  }
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'B';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 44 — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_025.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">26/81</span>
+    <a href="questao_027.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 44</h2>
+  <h3>Problema 44:</h3>
+
+<p><strong>(Espectrômetro de massa por tempo de voo)</strong></p>
+
+<p>
+O espectrômetro de massa de tempo de voo é um dispositivo utilizado para medir a massa de íons.
+Nele, um íon de carga elétrica <em>q</em> é lançado em uma região de campo magnético constante <em>B</em>, descrevendo uma trajetória helicoidal, conforme a figura. Essa trajetória é formada pela composição de um movimento circular uniforme no plano <em>yz</em> e uma translação ao longo do eixo <em>x</em>. A vantagem desse dispositivo é que a velocidade angular do movimento helicoidal do íon é independente de sua velocidade inicial. O dispositivo então mede o tempo <em>t</em> de voo para <em>N</em> voltas do íon. Logo, com base nos valores <em>q</em>, <em>B</em>, <em>N</em> e <em>t</em>, pode-se determinar a massa do íon. A massa do íon medida por esse dispositivo será
+</p>
+
+<div class="imgwrap">
+  <!-- Substitua o caminho se usar imagem -->
+  <img src="questao44_trajetoria_helicoidal.png" alt="Íon +q em trajetória helicoidal em campo B" />
+  <div><small>Esquema da trajetória helicoidal em campo magnético uniforme.</small></div>
+</div>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Força magnética = centrípeta (no plano yz):</strong>
+  \( q\,vB = \dfrac{mv^2}{R} \Rightarrow R = \)
+  <input onchange="checkWord(this,'mv/(qB)|m v/(q b)|m v /( q b )')">
+</p>
+
+<p><strong>2) Período do MCU:</strong>
+  \( T = \dfrac{2\pi R}{v} = \)
+  <input onchange="checkWord(this,'2pi m/(qB)|2π m/(qB)|2 pi m /( q b )')">
+</p>
+
+<p><strong>3) Tempo total medido:</strong>
+  \( t = N\,T \Rightarrow m = \)
+  <input onchange="checkWord(this,'qBt/(2piN)|qBt/(2πN)|q b t /( 2 pi n )')">
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  \(\displaystyle \frac{qBt}{2\pi N}\)
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  \(\displaystyle \frac{qBt}{\pi N}\)
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  \(\displaystyle \frac{2qBt}{\pi N}\)
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  \(\displaystyle \frac{qBt}{N}\)
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  \(\displaystyle \frac{2qBt}{N}\)
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // -------- utilidades --------
+  function safeEval(expr) {
+    const cleaned = String(expr).replace(/\s/g, '');
+    if (!/^[0-9eE+\-*/().,]+$/.test(cleaned)) return null;
+    const withDot = cleaned.replace(/,/g, '.');
+    try {
+      const val = Function('"use strict"; return (' + withDot + ');')();
+      return (typeof val === 'number' && Number.isFinite(val)) ? val : null;
+    } catch { return null; }
+  }
+  function nearlyEqual(a, b, eps = 1e-3) {
+    return Math.abs(a - b) <= eps * Math.max(1, Math.abs(a), Math.abs(b));
+  }
+  function paint(input, ok) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+  // palavras-chave (com tolerância a acentos)
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function checkWord(input, patterns) {
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    paint(input, ok);
+  }
+  // número ~ exato
+  function checkNum(input, expected) {
+    const raw = input.value.trim();
+    if (raw === '') return paint(input, false);
+    const val = safeEval(raw);
+    const ok = (val !== null) && nearlyEqual(val, Number(expected));
+    paint(input, ok);
+  }
+  // número dentro de intervalo [a,b]
+  function checkRange(input, rangeStr) {
+    const raw = input.value.trim();
+    if (raw === '') return paint(input, false);
+    const val = safeEval(raw);
+    const parts = rangeStr.split(',').map(Number);
+    const lo = Math.min(parts[0], parts[1]);
+    const hi = Math.max(parts[0], parts[1]);
+    const ok = (val !== null) && val >= lo && val <= hi;
+    paint(input, ok);
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'A';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 20 (ENEM) — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_011.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">12/81</span>
+    <a href="questao_013.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 20 (ENEM)</h2>
+  <h3>Problema 20:</h3>
+
+<p><strong>120. (Enem 2010)</strong></p>
+
+<p>
+A energia elétrica consumida nas residências é medida, em quilowatt-hora, por meio de um relógio medidor de consumo.
+Nesse relógio, da direita para a esquerda, tem-se o ponteiro da unidade, da dezena, da centena e do milhar.
+Se um ponteiro estiver entre dois números, considera-se o último número ultrapassado pelo ponteiro.
+Suponha que as medidas indicadas nos esquemas seguintes tenham sido feitas em uma cidade em que
+o preço do quilowatt-hora fosse de R$ 0,20.
+</p>
+
+<figure>
+  <img src="extra_30.png" alt="Relógio medidor — leitura atual">
+  <figcaption>leitura atual</figcaption>
+</figure>
+
+<figure>
+  <img src="extra_31.png" alt="Relógio medidor — leitura do mês passado">
+  <figcaption>leitura do mês passado</figcaption>
+</figure>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Leitura atual (kWh):</strong>
+  <input onchange="checkWord(this,'2783|2.783')">
+</p>
+
+<p><strong>2) Leitura anterior (kWh):</strong>
+  <input onchange="checkWord(this,'2563|2.563')">
+</p>
+
+<p><strong>3) Consumo no período (diferença das leituras):</strong>
+  <input onchange="checkWord(this,'220 kwh|220')">
+</p>
+
+<p><strong>4) Valor a pagar (220 × R$ 0,20):</strong>
+  <input onchange="checkWord(this,'44,00|44.00|r$ 44,00|r$44')">
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  R$ 41,80
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  R$ 42,00
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  R$ 43,00
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  R$ 43,80
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  R$ 44,00
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para tolerar acentos/maiúsculas
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito
+  function checkAnswer(letter){
+    const correct = 'E';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

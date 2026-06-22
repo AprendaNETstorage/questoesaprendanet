@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problema 40 - Sistemas Numéricos — Física (Geral)</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Física (Geral)</a>
+    <span class="spacer"></span>
+    <a href="questao_021.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">22/23</span>
+    <a href="questao_023.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Problema 40 - Sistemas Numéricos</h2>
+  <h3>Problema 40:</h3>
+  <p>
+    Para identificar visualmente sua loja de pet shop, um empresário criou uma logomarca que se assemelha à pegada de um gato; o maior círculo tem raio 6 cm. Ele pretende reproduzir o desenho em uma parede retangular, ampliando-o na escala 1 : 25. A área mínima, em metros quadrados, que a parede deve ter para comportar a logomarca é:
+  </p>
+
+  <h4>Resolução passo a passo:</h4>
+  <ul>
+    <li>Raio original: \( r = \)<input onchange="check(this, '6')"> cm</li>
+    <li>Raio ampliado: \( R = 25 \times 6 = \)<input onchange="check(this, '150')"> cm</li>
+    <li>Área do círculo ampliado: \( A = \pi \cdot (150)^2 \approx \)<input onchange="check(this, '70650')"> cm²</li>
+    <li>Área em m²: \( A = \)<input onchange="check(this, '7,065')"> m²</li>
+    <li>Como é necessário um quadrado com lado igual ao diâmetro (2 × 150 = 300 cm = 3 m), então área da parede:<br>
+        \( A = 3 \times 3 = \)<input onchange="check(this, '9')"> m²
+    </li>
+  </ul>
+
+  <h4>Alternativas:</h4>
+  <div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> \( 2{,}25 \)</div>
+  <div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> \( 6{,}00 \)</div>
+  <div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> \( 7{,}06 \)</div>
+  <div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> \( 9{,}00 \)</div>
+  <div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> \( 36{,}00 \)</div>
+
+  <div id="message" class="feedback"></div>
+
+  <script>
+    function normalize(str) {
+      return str.trim().replace(',', '.').replace(/\s/g, '');
+    }
+
+    function check(input, correct) {
+      const value = normalize(input.value);
+      const expected = normalize(correct);
+      input.nextElementSibling?.remove();
+      if (value === expected) {
+        input.style.backgroundColor = "#c6f6c6";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+      } else {
+        input.style.backgroundColor = "#fdd";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+      }
+    }
+
+    function checkAnswer(letter) {
+      const correct = 'D';
+      const message = document.getElementById('message');
+      if (letter === correct) {
+        message.textContent = 'Correto! A área mínima da parede é 9 m².';
+        message.style.color = 'green';
+      } else {
+        message.textContent = `Errado. A alternativa ${letter} não é a correta.`;
+        message.style.color = 'red';
+      }
+    }
+  </script>
+</div>
+</body>
+</html>

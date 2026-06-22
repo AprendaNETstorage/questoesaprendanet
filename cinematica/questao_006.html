@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 17 — Cinemática</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Cinemática</a>
+    <span class="spacer"></span>
+    <a href="questao_005.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">6/35</span>
+    <a href="questao_007.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 17</h2>
+  <h3>Problema 17:</h3>
+
+<p><strong>109. (ENEM 2009)</strong></p>
+
+<p>
+Na madrugada de 11 de março de 1978, partes de um foguete soviético reentraram na atmosfera acima da cidade do Rio de Janeiro e caíram no Oceano Atlântico. Foi um belo espetáculo, os inúmeros fragmentos entrando em ignição devido ao atrito com a atmosfera brilharam intensamente, enquanto "cortavam o céu". Mas se a reentrada tivesse acontecido alguns minutos depois, teríamos uma tragédia, pois a queda seria na área urbana do Rio de Janeiro e não no oceano.
+</p>
+
+<p>
+LAS CASAS, R. <em>Livro espacial</em>. Observatório Astronômico Frei Rosário, ICEx, UFMG. Disponível em: www.observatorio.ufmg.br. Acesso em: 27 set. 2011 (adaptado).
+</p>
+
+<div class="imgwrap">
+  <!-- Substitua o src pelo caminho do seu arquivo de figura -->
+  <img src="questao17_enem2009_reentrada.png" alt="Esquema: rotação da Terra e posição do Rio de Janeiro" />
+  <div><small>Figura do enunciado (sentido de rotação da Terra indicado).</small></div>
+</div>
+
+<p>
+De acordo com os fatos relatados, a velocidade angular do foguete em relação à Terra tinha módulo e sentido:
+</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Sentido de rotação da Terra:</strong>
+  A Terra gira de <input onchange="checkWord(this,'oeste para leste|oeste→leste|oeste-leste|west to east')">,
+  então o movimento orbital típico acompanha esse <input onchange="checkWord(this,'mesmo sentido|sentido da rotacao|rotação')">.
+</p>
+
+<p><strong>2) Ponto de impacto "adiantado":</strong>
+  Se os destroços passaram sobre o Rio e <em>caíram adiante</em>, no oceano, isso indica que o foguete tinha
+  <input onchange="checkWord(this,'velocidade angular maior|maior velocidade angular|omega maior|ω maior')">
+  que a rotação da Terra.
+</p>
+
+<p><strong>3) Conclusão:</strong>
+  Módulo: <input onchange="checkWord(this,'superior|maior')">;
+  Sentido: <input onchange="checkWord(this,'mesmo sentido|oeste para leste|prograde|prógrado')">.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  igual à da Terra e no mesmo sentido.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  superior à da Terra e no mesmo sentido.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  superior à da Terra e no sentido oposto.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  inferior à da Terra e no mesmo sentido.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  inferior à da Terra e no sentido oposto.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // -------- utilidades --------
+  function safeEval(expr) {
+    const cleaned = String(expr).replace(/\s/g, '');
+    if (!/^[0-9eE+\-*/().,]+$/.test(cleaned)) return null;
+    const withDot = cleaned.replace(/,/g, '.');
+    try {
+      const val = Function('"use strict"; return (' + withDot + ');')();
+      return (typeof val === 'number' && Number.isFinite(val)) ? val : null;
+    } catch { return null; }
+  }
+  function nearlyEqual(a, b, eps = 1e-3) {
+    return Math.abs(a - b) <= eps * Math.max(1, Math.abs(a), Math.abs(b));
+  }
+  function paint(input, ok) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+  // palavras-chave (com tolerância a acentos)
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function checkWord(input, patterns) {
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    paint(input, ok);
+  }
+  // número ~ exato
+  function checkNum(input, expected) {
+    const raw = input.value.trim();
+    if (raw === '') return paint(input, false);
+    const val = safeEval(raw);
+    const ok = (val !== null) && nearlyEqual(val, Number(expected));
+    paint(input, ok);
+  }
+  // número dentro de intervalo [a,b]
+  function checkRange(input, rangeStr) {
+    const raw = input.value.trim();
+    if (raw === '') return paint(input, false);
+    const val = safeEval(raw);
+    const parts = rangeStr.split(',').map(Number);
+    const lo = Math.min(parts[0], parts[1]);
+    const hi = Math.max(parts[0], parts[1]);
+    const ok = (val !== null) && val >= lo && val <= hi;
+    paint(input, ok);
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'B';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

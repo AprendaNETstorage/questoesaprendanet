@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista — Problema 18 — Termologia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Termologia</a>
+    <span class="spacer"></span>
+    <a href="questao_050.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">51/58</span>
+    <a href="questao_052.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista — Problema 18</h2>
+  <h3>Problema 18:</h3>
+
+<p><strong>6 – ENEM 2024</strong></p>
+
+<p>
+  Aquecedores solares são equipamentos para aquecer água pelo calor do Sol. São compostos por coletores solares, nos quais ocorre o aquecimento, e por um reservatório térmico, em que a água quente é armazenada. A figura ilustra o funcionamento.
+</p>
+
+<!-- Imagem do enunciado (deixar comentada mesmo sem o arquivo) -->
+<!-- <div class="imgwrap"><img src="aquecedor_solar_termosifao.png" alt="Coletor solar conectado a reservatório térmico"></div> -->
+
+<p><strong>O processo pelo qual ocorre transferência de calor dos coletores solares para o reservatório térmico é</strong></p>
+
+<!-- SOLUÇÃO (INTERATIVA) ANTES DAS ALTERNATIVAS -->
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) O que acontece com a densidade da água quando ela é aquecida no coletor?</strong><br>
+  <input onchange="checkWord(this,'diminui|fica menos densa|menor densidade')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Compare a densidade da água quente com a da água fria.</span>
+  </span>
+</p>
+
+<p><strong>2) Se a água aquecida fica menos densa, qual movimento natural ela tende a fazer dentro das tubulações?</strong><br>
+  <input onchange="checkWord(this,'subir|ascender|mover-se para cima|sobe para o reservatorio')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Pense em correntes de fluido geradas por diferenças de densidade.</span>
+  </span>
+</p>
+
+<p><strong>3) Esse movimento de água quente subindo e água mais fria descendo estabelece que tipo de mecanismo de transferência de calor?</strong><br>
+  <input onchange="checkWord(this,'conveccao|convecção|corrente de conveccao|termosifao|termo-sifao')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Não é por contato fixo entre sólidos nem por ondas eletromagnéticas.</span>
+  </span>
+</p>
+
+<!-- ALTERNATIVAS -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')"><span class="circulo">A</span> difusão</div>
+<div class="opcao" onclick="checkAnswer('B')"><span class="circulo">B</span> absorção</div>
+<div class="opcao" onclick="checkAnswer('C')"><span class="circulo">C</span> condução</div>
+<div class="opcao" onclick="checkAnswer('D')"><span class="circulo">D</span> irradiação</div>
+<div class="opcao" onclick="checkAnswer('E')"><span class="circulo">E</span> convecção</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para ignorar acentos
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+  // verificação por palavras-chave
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = span.style.display === 'inline' ? 'none' : 'inline';
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'E';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

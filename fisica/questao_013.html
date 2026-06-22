@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Questão 16 — Física (Geral)</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Física (Geral)</a>
+    <span class="spacer"></span>
+    <a href="questao_012.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">13/23</span>
+    <a href="questao_014.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Questão 16</h2>
+  <h3>Problema 16:</h3>
+  <p>
+    Uma fábrica utiliza sua frota particular de caminhões para distribuir as <strong>90 toneladas</strong> de sua produção semanal.<br>
+    Todos os caminhões são do mesmo modelo. Para aumentar a vida útil da frota, a fábrica adotou a política de <strong>reduzir a capacidade máxima de carga de cada caminhão em meia tonelada</strong>.<br>
+    Com isso, o número de caminhões necessários aumentou <strong>em 6 unidades</strong>.<br><br>
+    <strong>Qual é o número atual de caminhões</strong> que essa fábrica usa para transportar a produção semanal?
+  </p>
+
+  <h4>Solução:</h4>
+  <p>
+    Seja \( x \) a carga original por caminhão. O número de caminhões inicialmente era:
+    <br> \( n = \frac{90}{x} \)
+    <br> Após a redução para \( x - 0{,}5 \), o número passou a ser:
+    <br> \( \frac{90}{x - 0{,}5} = \frac{90}{x} + 6 \)
+  </p>
+
+  <p>
+    Multiplicando ambos os lados por \( x(x - 0{,}5) \), obtemos:
+    <br> <input onchange="check(this, '90x')"> = <input onchange="check(this, '45x')"> + <input onchange="check(this, '6x^2')"> - <input onchange="check(this, '3x')">
+  </p>
+
+  <p>
+    Reorganizando a equação:
+    <br> <input onchange="check(this, '6x^2')"> - <input onchange="check(this, '48x')"> + <input onchange="check(this, '-90x')"> = 0
+  </p>
+
+  <p>
+    Resolvendo a equação quadrática, temos uma raiz válida:
+    <br> \( x = \) <input onchange="check(this, '2.5')"> toneladas
+  </p>
+
+  <p>
+    Assim, número de caminhões atual: \( \frac{90}{2{,}5} = \) <input onchange="check(this, '36')"> caminhões
+  </p>
+
+  <p><strong>Resposta correta:</strong></p>
+
+  <div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> 36</div>
+  <div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> 30</div>
+  <div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> 19</div>
+  <div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> 16</div>
+  <div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> 10</div>
+
+  <div id="message" class="feedback"></div>
+
+  <script>
+    function check(input, correct) {
+      const value = input.value.trim().replace(',', '.');
+      input.nextElementSibling?.remove();
+      if (parseFloat(value) === parseFloat(correct)) {
+        input.style.backgroundColor = "#c6f6c6";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+      } else {
+        input.style.backgroundColor = "#fdd";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+      }
+    }
+
+    function checkAnswer(letter) {
+      const correct = 'A';
+      const message = document.getElementById('message');
+      if (letter === correct) {
+        message.textContent = 'Correto! O número atual de caminhões é 36.';
+        message.style.color = 'green';
+      } else {
+        message.textContent = `Errado. A alternativa ${letter} não é a correta.`;
+        message.style.color = 'red';
+      }
+    }
+  </script>
+</div>
+</body>
+</html>

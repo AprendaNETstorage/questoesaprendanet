@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Problema 64 (ENEM PPL 2014) — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_078.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">79/81</span>
+    <a href="questao_080.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Problema 64 (ENEM PPL 2014)</h2>
+  <h3>98. (ENEM PPL 2014)</h3>
+
+<p>
+Em museus de ciências, é comum encontrarem-se máquinas que eletrizam materiais e geram intensas descargas elétricas. O gerador de Van de Graaff (Figura 1) é um exemplo, como atestam as faíscas (Figura 2) que ele produz. O experimento fica mais interessante quando se aproxima do gerador em funcionamento, com a mão, uma lâmpada fluorescente (Figura 3). Quando a descarga atinge a lâmpada, mesmo desconectada da rede elétrica, ela brilha por breves instantes. Muitas pessoas pensam que é o fato de a descarga atingir a lâmpada que a faz brilhar. Contudo, se a lâmpada for aproximada dos corpos da situação (Figura 2), no momento em que a descarga ocorrer entre eles, a lâmpada também brilhará, apesar de não receber nenhuma descarga elétrica.
+</p>
+<figure>
+  <img src="imagens/questao_102.png" alt="Enunciado/ilustração da questão 138">
+</figure>
+<figure>
+  <img src="imagens/questao_103.png" alt="Enunciado/ilustração da questão 138">
+</figure>
+<figure>
+  <img src="imagens/questao_104.png" alt="Enunciado/ilustração da questão 138">
+</figure>
+<p>
+Disponível em: http://naveastro.com. Acesso em 15 ago 2012<br>
+<strong>A grandeza física associada ao brilho instantâneo da lâmpada fluorescente, por estar próxima a uma descarga elétrica, é o(a)</strong>
+</p>
+
+<div class="opcao" onclick="checkAnswer('A', this)">
+  <span class="circulo">A</span> carga elétrica.
+</div>
+<div class="opcao" onclick="checkAnswer('B', this)">
+  <span class="circulo">B</span> campo elétrico.
+</div>
+<div class="opcao" onclick="checkAnswer('C', this)">
+  <span class="circulo">C</span> corrente elétrica.
+</div>
+<div class="opcao" onclick="checkAnswer('D', this)">
+  <span class="circulo">D</span> capacitância elétrica.
+</div>
+<div class="opcao" onclick="checkAnswer('E', this)">
+  <span class="circulo">E</span> condutividade elétrica.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<div class="hint">
+  <button onclick="toggleHint()">🔎 Dica</button>
+  <span id="hint" style="display:none;">
+    Perto da descarga forma-se um campo intenso no ar; pense no que pode acelerar elétrons no gás da lâmpada mesmo sem ela estar ligada.
+  </span>
+</div>
+
+<div class="hint" style="margin-top:10px;">
+  <button onclick="resetAll()">↺ Limpar seleção</button>
+  <button onclick="toggleExplain()">💡 Mostrar explicação</button>
+  <div id="explain" style="display:none; margin-top:8px;">
+    A descarga cria um <strong>campo elétrico</strong> forte nas proximidades, que acelera cargas dentro da lâmpada fluorescente,
+    causando excitações/ionizações e emissão de luz por instantes.
+  </div>
+</div>
+
+<script>
+  const CORRETA = 'B'; // gabarito só aqui no JS
+
+  function clearMarks(){
+    document.querySelectorAll('.option').forEach(op=>{
+      op.style.background = '';
+      op.style.borderRadius = '';
+    });
+  }
+
+  function checkAnswer(letra, el){
+    clearMarks();
+    if(el){ el.style.background = '#eef6f8'; el.style.borderRadius = '8px'; }
+    const msg = document.getElementById('message');
+    if(letra === CORRETA){
+      msg.textContent = 'Correto! ✔';
+      msg.style.color = 'green';
+    }else{
+      msg.textContent = 'Não é essa. Tente novamente.';
+      msg.style.color = 'red';
+    }
+  }
+
+  function toggleHint(){
+    const h = document.getElementById('hint');
+    h.style.display = (h.style.display === 'none') ? 'inline' : 'none';
+  }
+
+  function toggleExplain(){
+    const e = document.getElementById('explain');
+    e.style.display = (e.style.display === 'none') ? 'block' : 'none';
+  }
+
+  function resetAll(){
+    clearMarks();
+    document.getElementById('message').textContent = '';
+    document.getElementById('hint').style.display = 'none';
+    document.getElementById('explain').style.display = 'none';
+  }
+</script>
+</div>
+</body>
+</html>

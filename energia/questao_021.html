@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 82 (ENEM) — Energia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Energia</a>
+    <span class="spacer"></span>
+    <a href="questao_020.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">21/33</span>
+    <a href="questao_022.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 82 (ENEM)</h2>
+  <h3>Problema 82:</h3>
+
+<p><strong>119. (ENEM 2010)</strong></p>
+
+<p>
+Observe a tabela técnica de uma torneira elétrica.  
+O modelo de maior potência foi projetado para 220 V, mas foi conectado por engano a uma rede de 127 V,  
+operando em sua potência máxima (5,5 kW em 220 V).  
+Qual será a potência aproximada dissipada pela torneira?
+</p>
+
+<p><img src="imagens/extra_29.png" alt="Tabela técnica da torneira elétrica"></p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Mantendo a resistência constante, a potência varia com:</strong>  
+  <input onchange="checkWord(this,'v^2|quadrado da tensao|lei de ohm')">  
+</p>
+
+<p><strong>2) Fórmula aplicada: </strong>  
+  <input onchange="checkWord(this,'p\'=p*(127/220)^2|5,5*(127/220)^2|1830 w|1,83 kw')">  
+</p>
+
+<p><strong>3) O valor aproximado obtido é:</strong>  
+  <input onchange="checkWord(this,'1830 w|1,83 kw|aprox 1830')">  
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  1.830 W
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  2.500 W
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  3.200 W
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  4.300 W
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  5.500 W
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para tolerar acentos/maiúsculas
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito
+  function checkAnswer(letter){
+    const correct = 'A';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

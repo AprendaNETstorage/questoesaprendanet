@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 02 — Cinemática</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Cinemática</a>
+    <span class="spacer"></span>
+    <a href="questao_008.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">9/35</span>
+    <a href="questao_010.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 02</h2>
+  <p>
+  <a href="index.html">🔹 Ir para Problema 01</a> |
+  
+</p>
+
+<h3>Problema 02:</h3>
+
+<p><strong>(Enem PPL 2014)</strong> Um pesquisador avaliou o efeito da temperatura do motor (em velocidade constante) e da velocidade média de um veículo (com temperatura do motor constante) sobre a emissão de monóxido de carbono (CO) em dois tipos de percurso, aclive e declive, com iguais distâncias percorridas em linha reta. Os resultados são apresentados nas duas figuras.</p>
+
+<img src="graficos_q2.png" alt="Gráficos de emissão de CO vs temperatura do motor e velocidade média" style="max-width:600px;">
+
+<p>A partir dos resultados, a situação em que ocorre maior emissão de poluentes é aquela na qual o percurso é feito com o motor</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Leitura dos gráficos:</strong></p>
+<ul>
+  <li>No gráfico da esquerda (temperatura do motor): a emissão de CO é <input onchange="check(this,'menor')"> quando a temperatura aumenta. Logo, motor <input onchange="check(this,'frio')"> gera mais emissão.</li>
+  <li>No gráfico da direita (velocidade média): a emissão de CO é <input onchange="check(this,'menor')"> quando a velocidade aumenta. Logo, <input onchange="check(this,'menor velocidade')"> gera mais emissão.</li>
+  <li>Comparando aclive/declive: a emissão é maior em <input onchange="check(this,'aclive')">.</li>
+</ul>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  aquecido, em menores velocidades médias e em pista em declive.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  aquecido, em maiores velocidades médias e em pista em aclive.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  frio, em menores velocidades médias e em pista em declive.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  frio, em menores velocidades médias e em pista em aclive.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  frio, em maiores velocidades médias e em pista em aclive.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  function check(input, correct) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const raw = input.value.trim().toLowerCase();
+    const expected = correct.toLowerCase();
+    let ok = false;
+
+    if (expected.includes('menor')) {
+      ok = (raw.includes('menor'));
+    } else if (expected.includes('maior')) {
+      ok = (raw.includes('maior'));
+    } else {
+      ok = (raw === expected);
+    }
+
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  function checkAnswer(letter) {
+    const correct = 'D';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = `Errado. Tente novamente.`;
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

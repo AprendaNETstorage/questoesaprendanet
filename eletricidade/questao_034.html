@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 52 — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_033.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">34/81</span>
+    <a href="questao_035.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 52</h2>
+  <h3>Problema 52:</h3>
+
+<!-- ENUNCIADO -->
+<p><strong>97. (ENEM 2018)</strong></p>
+<p>A tecnologia de comunicação da etiqueta RFID (chamada de etiqueta inteligente) é usada há anos para rastrear gado, vagões de trem, bagagem aérea e carros nos pedágios. Um modelo mais barato dessas etiquetas pode funcionar sem baterias e é constituído por três componentes: um microprocessador de silício; uma bobina de metal, feita de cobre ou de alumínio, que é enrolada em um padrão circular; e um encapsulador, que é um material de vidro ou polímero envolvendo o microprocessador e a bobina. Na presença de um campo de radiofrequência gerado pelo leitor, a etiqueta transmite sinais. A distância de leitura é determinada pelo tamanho da bobina e pela potência da onda de rádio emitida pelo leitor.</p>
+<p><em>Disponível em: http://eletronicos.hsw.uol.com.br. Acesso em: 27 fev. 2012 (adaptado).</em></p>
+
+<p>A etiqueta funciona sem pilhas porque o campo</p>
+
+    
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Qual parte da onda de rádio interage com a bobina para gerar corrente?</strong><br>
+É o <input onchange="checkWord(this,'campo magnetico|parte magnetica|componente magnetica')">
+da onda de rádio.
+</p>
+
+<p><strong>2) Qual o princípio físico envolvido?</strong><br>
+Quando o fluxo magnético através de uma espira varia, surge uma
+<input onchange="checkWord(this,'forca eletromotriz|fem|tensao induzida')">
+e aparece uma <input onchange="checkWord(this,'corrente induzida|corrente eletrica')">.<br>
+Esse fenômeno é descrito pela
+<input onchange="checkWord(this,'lei de faraday|faraday-lenz|lei de faraday-lenz')">.
+</p>
+
+<p><strong>3) Por que a etiqueta pode funcionar sem pilhas?</strong><br>
+Porque a energia necessária para alimentar o circuito vem da própria
+<input onchange="checkWord(this,'onda de radio|onda eletromagnetica|radiofrequencia')">
+do leitor, que induz corrente na bobina e fornece energia ao microprocessador.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  elétrico da onda de rádio agita elétrons da bobina.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  elétrico da onda de rádio cria uma tensão na bobina.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  magnético da onda de rádio induz corrente na bobina.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  magnético da onda de rádio aquece os fios da bobina.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  magnético da onda de rádio diminui a ressonância no interior da bobina.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // -------- helpers (aceita vírgula/ponto e expressões simples) --------
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function safeEval(expr){
+    const cleaned = String(expr).replace(/\s/g,'');
+    if(!/^[0-9eE+\-*/().,×^]+$/.test(cleaned)) return null;
+    const norm = cleaned.replace(/,/g,'.').replace(/×/g,'*').replace(/\^/g,'**');
+    try{
+      const v = Function('"use strict"; return ('+norm+');')();
+      return (typeof v === 'number' && Number.isFinite(v)) ? v : null;
+    }catch{ return null; }
+  }
+  function nearlyEqual(a,b,eps=1e-3){ return Math.abs(a-b) <= eps*Math.max(1,Math.abs(a),Math.abs(b)); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+  function checkExpr(input, expectedExprs){
+    const val = safeEval(input.value.trim());
+    const targets = expectedExprs.split('|').map(e => safeEval(e));
+    const ok = (val !== null) && targets.some(t => t !== null && nearlyEqual(val, t));
+    paint(input, ok);
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'C';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

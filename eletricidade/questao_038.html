@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 56 — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_037.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">38/81</span>
+    <a href="questao_039.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 56</h2>
+  <h3>Problema 56:</h3>
+
+<p><strong>(ENEM – Fusível em circuito resistivo)</strong></p>
+
+<p>
+Fusível é um dispositivo de proteção contra sobrecorrente em circuitos. Quando a corrente que passa por esse
+componente é maior que sua corrente nominal, o fusível queima, interrompendo o circuito e protegendo os aparelhos.
+Suponha que o circuito elétrico mostrado a seguir seja alimentado por uma fonte de tensão U e que o fusível suporte
+uma corrente nominal de 500 mA (0,50 A).
+</p>
+
+<figure>
+  <!-- imagem do circuito -->
+  <img src="questao56_circuito.png"
+       alt="Ponte de resistores com 60, 60, 80 e 40 ohms, um resistor de 120 ohms e um fusível no ramo inferior.">
+  <figcaption>Figura – Circuito com fusível no ramo de 120 Ω.</figcaption>
+</figure>
+
+<p>
+Qual é o máximo valor da tensão U para que o fusível não queime?
+</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Ramo inferior e associação em paralelo.</strong><br>
+O fusível está em série com o resistor de 120 Ω, no ramo inferior do circuito. Nesse ramo há:
+um paralelo entre 120 Ω e 60 Ω, seguido de um resistor de 40 Ω em série.
+<br>
+A resistência equivalente do paralelo 120 Ω // 60 Ω é:
+<br>
+R<sub>paralelo</sub> =
+<input onchange="checkExpr(this,'40|120*60/(120+60)')"> Ω.
+</p>
+
+<p><strong>2) Resistência equivalente do ramo inferior.</strong><br>
+Somando o resistor em série de 40 Ω, a resistência do ramo inferior é:
+<br>
+R<sub>inferior</sub> =
+<input onchange="checkExpr(this,'80|40+40')"> Ω.
+</p>
+
+<p><strong>3) Correntes no paralelo de 120 Ω e 60 Ω.</strong><br>
+A tensão nos dois resistores em paralelo é a mesma. Assim:
+<br>
+I<sub>60</sub> = V / 60 e I<sub>120</sub> = V / 120.
+<br>
+Logo, a relação entre as correntes é
+<input onchange="checkWord(this,'i60 = 2 i120|i60 = 2*i120|i60 é o dobro de i120|i60 = 2 vezes i120')">
+(ou seja, I<sub>60</sub> é o dobro de I<sub>120</sub>).
+</p>
+
+<p><strong>4) Corrente limite no resistor de 120 Ω.</strong><br>
+O fusível suporta no máximo 0,50 A e está no ramo do resistor de 120 Ω, então:
+<br>
+I<sub>120</sub> =
+<input onchange="checkExpr(this,'0.5|0,5')"> A.
+<br>
+Assim, a corrente no resistor de 60 Ω será:
+<br>
+I<sub>60</sub> =
+<input onchange="checkExpr(this,'1|2*0.5')"> A.
+<br>
+A corrente total no paralelo (ramo inferior antes do resistor de 40 Ω) é:
+<br>
+I<sub>paralelo</sub> = I<sub>120</sub> + I<sub>60</sub> =
+<input onchange="checkExpr(this,'1.5|0.5+1')"> A.
+</p>
+
+<p><strong>5) Tensão máxima da fonte.</strong><br>
+Como o ramo inferior tem resistência R<sub>inferior</sub> =
+<input onchange="checkExpr(this,'80')"> Ω e corrente
+I<sub>inferior</sub> =
+<input onchange="checkExpr(this,'1.5')"> A, pela Lei de Ohm:
+<br>
+U = R<sub>inferior</sub> · I<sub>inferior</sub> =
+<input onchange="checkExpr(this,'120|80*1.5')"> V.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  20 V
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  40 V
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  60 V
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  120 V
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  185 V
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // -------- helpers (aceita vírgula/ponto e expressões simples) --------
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function safeEval(expr){
+    const cleaned = String(expr).replace(/\s/g,'');
+    if(!/^[0-9eE+\-*/().,×^]+$/.test(cleaned)) return null;
+    const norm = cleaned.replace(/,/g,'.').replace(/×/g,'*').replace(/\^/g,'**');
+    try{
+      const v = Function('"use strict"; return ('+norm+');')();
+      return (typeof v === 'number' && Number.isFinite(v)) ? v : null;
+    }catch{ return null; }
+  }
+  function nearlyEqual(a,b,eps=1e-3){
+    return Math.abs(a-b) <= eps * Math.max(1, Math.abs(a), Math.abs(b));
+  }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+  function checkExpr(input, expectedExprs){
+    const val = safeEval(input.value.trim());
+    const targets = expectedExprs.split('|').map(e => safeEval(e));
+    const ok = (val !== null) && targets.some(t => t !== null && nearlyEqual(val, t));
+    paint(input, ok);
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'D';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

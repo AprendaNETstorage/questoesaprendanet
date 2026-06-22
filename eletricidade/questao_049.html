@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 68 (ENEM PPL 2014) — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_048.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">49/81</span>
+    <a href="questao_050.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 68 (ENEM PPL 2014)</h2>
+  <h3>Problema 68:</h3>
+
+<p><strong>103. (ENEM PPL 2014)</strong></p>
+
+<p>
+Fusíveis são dispositivos de proteção de um circuito elétrico, sensíveis ao excesso de corrente elétrica. Os modelos mais simples consistem em um filamento metálico de baixo ponto de fusão, que se funde quando a corrente ultrapassa determinado valor, evitando que as demais partes do circuito sejam danificadas. 
+</p>
+
+<p>
+A figura mostra um diagrama de um circuito em que o fusível <strong>F</strong> protege um resistor <strong>R</strong> de 12 Ω, uma lâmpada <strong>L</strong> de 6 W e um alto-falante que conduz 1 A.
+</p>
+<figure>
+  <img src="imagens/questao_111.png" alt="Enunciado/ilustração da questão 138">
+</figure>
+<p>
+Sabendo que esse fusível foi projetado para trabalhar com uma corrente até 20% maior que a corrente nominal que atravessa esse circuito, qual é o valor, em ampères, da corrente máxima que o fusível <strong>F</strong> permite passar?
+</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Corrente no resistor (R = 12 Ω):</strong>
+  <input onchange="checkWord(this,'1|1,0|1.0')"> A
+</p>
+
+<p><strong>2) Corrente na lâmpada (P = 6 W e U = 12 V):</strong>
+  <input onchange="checkWord(this,'0,5|0.5')"> A
+</p>
+
+<p><strong>3) Corrente no alto-falante:</strong>
+  <input onchange="checkWord(this,'1|1,0|1.0')"> A
+</p>
+
+<p><strong>4) Corrente total nominal do circuito:</strong>
+  <input onchange="checkWord(this,'2,5|2.5')"> A
+</p>
+
+<p><strong>5) Corrente máxima suportada pelo fusível (20% maior):</strong>
+  <input onchange="checkWord(this,'3|3,0|3.0')"> A
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  1,0 A
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  1,5 A
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  2,0 A
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  2,5 A
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  3,0 A
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para tolerar acentos/maiúsculas
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito
+  function checkAnswer(letter){
+    const correct = 'E';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

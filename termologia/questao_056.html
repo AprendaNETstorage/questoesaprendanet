@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problema 33 - Sistemas Numéricos — Termologia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Termologia</a>
+    <span class="spacer"></span>
+    <a href="questao_055.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">56/58</span>
+    <a href="questao_057.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Problema 33 - Sistemas Numéricos</h2>
+  <h3>Problema 33:</h3>
+  <p>
+    Um professor de matemática desenvolveu uma atividade educacional relacionada aos Jogos Olímpicos e confeccionou uma maquete que representa uma piscina nas dimensões olímpicas. Admitiu que a piscina olímpica deve ter capacidade mínima de 2.500.000 litros e construiu sua maquete, referente a esse valor mínimo, na forma de paralelepípedo retângulo com dimensões internas 2 cm, 25 cm e 50 cm, cujo volume é de 2.500 cm³. <br><br>
+    Considere que 1 L = 10³ cm³.
+  </p>
+
+  <p>
+    A maquete confeccionada pelo professor foi elaborada na escala:
+  </p>
+
+  <h4>Resolução passo a passo:</h4>
+  <ul>
+    <li>Volume real: <input onchange="check(this, '2.5e9')"> cm³</li>
+    <li>Volume da maquete: <input onchange="check(this, '2500')"> cm³</li>
+    <li>Razão dos volumes: <input onchange="check(this, '1e6')"></li>
+    <li>Escala linear: <input onchange="check(this, '100')"></li>
+  </ul>
+
+  <h4>Alternativas:</h4>
+  <div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> 1:100</div>
+  <div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> 1:1.000</div>
+  <div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> 1:2.000</div>
+  <div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> 1:50.000</div>
+  <div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> 1:1.000.000</div>
+
+  <div id="message" class="feedback"></div>
+
+  <script>
+    function check(input, correct) {
+      const value = input.value.trim().replace(',', '.');
+      const expected = correct.toString().replace(',', '.');
+      input.nextElementSibling?.remove();
+      if (value === expected) {
+        input.style.backgroundColor = "#c6f6c6";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+      } else {
+        input.style.backgroundColor = "#fdd";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+      }
+    }
+
+    function checkAnswer(letter) {
+      const correct = 'A';
+      const message = document.getElementById('message');
+      if (letter === correct) {
+        message.textContent = 'Correto! A escala da maquete é 1:100.';
+        message.style.color = 'green';
+      } else {
+        message.textContent = `Errado. A alternativa ${letter} não é a correta.`;
+        message.style.color = 'red';
+      }
+    }
+  </script>
+</div>
+</body>
+</html>

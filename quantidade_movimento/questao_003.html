@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 4 — Quantidade de Movimento</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Quantidade de Movimento</a>
+    <span class="spacer"></span>
+    <a href="questao_002.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">3/4</span>
+    <a href="questao_004.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 4</h2>
+  <h3>Problema 4:</h3>
+
+<p><strong>77. (Enem 2016)</strong></p>
+
+<p>
+O trilho de ar é um dispositivo utilizado em laboratórios de física para analisar
+movimentos em que corpos de prova (carrinhos) podem se mover com atrito desprezível.
+A figura ilustra um trilho horizontal com dois carrinhos (1 e 2) em que se realiza
+um experimento para obter a massa do carrinho 2.
+</p>
+
+<p>
+No instante em que o carrinho 1, de massa 150,0 g, passa a se mover com velocidade
+escalar constante, o carrinho 2 está em repouso. No momento em que o carrinho 1 se
+choca com o carrinho 2, ambos passam a se movimentar juntos com velocidade escalar
+constante. Os sensores eletrônicos distribuídos ao longo do trilho determinam as
+posições e registram os instantes associados à passagem de cada carrinho, gerando
+os dados do quadro:
+</p>
+
+<table>
+  <tr>
+    <th colspan="2">Carrinho 1</th>
+    <th colspan="2">Carrinho 2</th>
+  </tr>
+  <tr>
+    <th>Posição (cm)</th><th>Instante (s)</th>
+    <th>Posição (cm)</th><th>Instante (s)</th>
+  </tr>
+  <tr><td>15,0</td><td>0,0</td><td>0,0</td><td>0,0</td></tr>
+  <tr><td>30,0</td><td>1,0</td><td>45,0</td><td>8,0</td></tr>
+  <tr><td>45,0</td><td>2,0</td><td>60,0</td><td>9,0</td></tr>
+  <tr><td>60,0</td><td>3,0</td><td>75,0</td><td>10,0</td></tr>
+  <tr><td>75,0</td><td>4,0</td><td>90,0</td><td>11,0</td></tr>
+  <tr><td>90,0</td><td>5,0</td><td></td><td></td></tr>
+</table>
+
+<p>
+Com base nos dados experimentais, o valor da massa do carrinho 2 é igual a
+</p>
+
+<ol type="A">
+  <li>50,0 g.</li>
+  <li>250,0 g.</li>
+  <li>300,0 g.</li>
+  <li>450,0 g.</li>
+  <li>600,0 g.</li>
+</ol>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Velocidade do carrinho 1 antes da colisão.</strong><br>
+Entre 0 s e 1 s, o carrinho 1 anda de 15 cm para 30 cm, isto é,
+<span style="white-space:nowrap;">15 cm</span> em 1 s.
+Converta e calcule:
+<br>
+v<sub>1</sub> =
+<input onchange="checkExpr(this,'0.15|15/100')"> m/s.
+</p>
+
+<p><strong>2) Velocidade comum depois da colisão.</strong><br>
+Depois do choque, os carrinhos se movem juntos. Entre 8 s e 11 s, o sistema anda
+15 cm. Logo, a velocidade comum é
+<br>
+v<sub>f</sub> =
+<input onchange="checkExpr(this,'0.05|15/100/3')"> m/s.
+</p>
+
+<p><strong>3) Use conservação da quantidade de movimento.</strong><br>
+Antes do choque, só o carrinho 1 se move; depois, os dois seguem juntos:
+<br>
+m<sub>1</sub> v<sub>1</sub> = (m<sub>1</sub> + m<sub>2</sub>) v<sub>f</sub>.
+</p>
+
+<p>
+Converta a massa do carrinho 1 para quilograma:
+<br>
+m<sub>1</sub> = 150 g =
+<input onchange="checkExpr(this,'0.15|150/1000')"> kg.
+</p>
+
+<p>
+Isolando m<sub>2</sub>, temos:
+<br>
+m<sub>2</sub> = m<sub>1</sub> &times; (v<sub>1</sub>/v<sub>f</sub> − 1) =
+<input onchange="checkExpr(this,'0.30|0.15*(0.15/0.05-1)')"> kg
+(=
+<input onchange="checkExpr(this,'300')"> g).
+</p>
+
+<p>
+Logo, a massa do carrinho 2 é aproximadamente 300 g.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  50,0 g
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  250,0 g
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  300,0 g
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  450,0 g
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  600,0 g
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // -------- helpers (aceita vírgula/ponto e expressões simples) --------
+  function normalize(s){
+    return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  }
+  function safeEval(expr){
+    const cleaned = String(expr).replace(/\s/g,'');
+    if(!/^[0-9eE+\-*/().,×^]+$/.test(cleaned)) return null;
+    const norm = cleaned
+      .replace(/,/g,'.')
+      .replace(/×/g,'*')
+      .replace(/\^/g,'**');
+    try{
+      const v = Function('"use strict"; return ('+norm+');')();
+      return (typeof v === 'number' && Number.isFinite(v)) ? v : null;
+    }catch{
+      return null;
+    }
+  }
+  function nearlyEqual(a,b,eps=1e-3){
+    return Math.abs(a-b) <= eps * Math.max(1, Math.abs(a), Math.abs(b));
+  }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML(
+      "afterend",
+      `<span class="feedback">${ok ? '✅' : '❌'}</span>`
+    );
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(
+      s => normalize(s.trim().toLowerCase())
+    );
+    paint(input, opts.some(p => text.includes(p)));
+  }
+  function checkExpr(input, expectedExprs){
+    const val = safeEval(input.value.trim());
+    const targets = expectedExprs.split('|').map(e => safeEval(e));
+    const ok = (val !== null) && targets.some(
+      t => t !== null && nearlyEqual(val, t)
+    );
+    paint(input, ok);
+  }
+
+  // gabarito
+  function checkAnswer(letter){
+    const correct = 'C';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto! A massa do carrinho 2 é 300 g.';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Refaça a conservação de quantidade de movimento: m1 v1 = (m1 + m2) vf.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

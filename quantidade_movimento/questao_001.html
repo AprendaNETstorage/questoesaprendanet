@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 2 — Quantidade de Movimento</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Quantidade de Movimento</a>
+    <span class="spacer"></span>
+    <span style="opacity:.4">&laquo; Anterior</span>
+    <span style="font-size:13px;color:#666">1/4</span>
+    <a href="questao_002.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 2</h2>
+  <p>
+  <a href="index.html">🔹 Ir para Problema 1</a> |
+  
+</p>
+
+<h3>Problema 2:</h3>
+
+<!-- ENUNCIADO IDÊNTICO -->
+<p>O pêndulo de Newton pode ser constituído por cinco pêndulos idênticos suspensos em um mesmo suporte. Em um dado instante, as esferas de três pêndulos são deslocadas para a esquerda e liberadas, deslocando-se para a direita e colidindo elasticamente com as outras duas esferas, que inicialmente estavam paradas.</p>
+
+<div class="imgwrap">
+  <!-- (opcional) coloque a figura do enunciado na mesma pasta e altere o src) -->
+  <img src="q22_fig_inicial.png" alt="Pêndulo de Newton com 3 esferas em movimento e 2 paradas">
+</div>
+
+<p>O movimento dos pêndulos após a primeira colisão está representado em:</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Tipo de colisão:</strong> esferas idênticas e choque
+  <input onchange="checkWord(this,'elastico|elástica|elastico')"> ⇒ conservam
+  <input onchange="checkWord(this,'momento linear|quantidade de movimento')"> e
+  <input onchange="checkWord(this,'energia cinetica|energia cinética')">.
+</p>
+
+<p><strong>2) Impulso "atravessa" o conjunto:</strong> em choques unidimensionais com esferas idênticas, o "pulsar" mecânico tende a
+  <input onchange="checkWord(this,'sair pelo outro lado|emergir do outro lado|transferir velocidade')">.
+</p>
+
+<p><strong>3) Contas rápidas com módulos:</strong></p>
+<p>
+  Momento inicial: <input onchange="checkExpr(this,'3*m*v|3mv')">.
+  Se k esferas saem à direita com velocidade v, então momento final =
+  <input onchange="checkExpr(this,'k*m*v|kmv')">.
+  Pela conservação: k = <input onchange="checkNum(this,'3')"> esferas.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<!-- Use seus recortes das alternativas; troque os src pelos arquivos das figuras -->
+<div class="opcao" onclick="checkAnswer('A')">
+  <div class="label"><span class="circulo">A</span> a)</div>
+  <img class="optimg" src="q22_a.png" alt="Alternativa a">
+</div>
+
+<div class="opcao" onclick="checkAnswer('B')">
+  <div class="label"><span class="circulo">B</span> b)</div>
+  <img class="optimg" src="q22_b.png" alt="Alternativa b">
+</div>
+
+<div class="opcao" onclick="checkAnswer('C')">
+  <div class="label"><span class="circulo">C</span> c)</div>
+  <img class="optimg" src="q22_c.png" alt="Alternativa c">
+</div>
+
+<div class="opcao" onclick="checkAnswer('D')">
+  <div class="label"><span class="circulo">D</span> d)</div>
+  <img class="optimg" src="q22_d.png" alt="Alternativa d">
+</div>
+
+<div class="opcao" onclick="checkAnswer('E')">
+  <div class="label"><span class="circulo">E</span> e)</div>
+  <img class="optimg" src="q22_e.png" alt="Alternativa e">
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // -------- helpers (sem LaTeX) --------
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function checkWord(input, patterns){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    paint(input, ok);
+  }
+  function safeEval(expr){
+    const cleaned = String(expr).replace(/\s/g,'');
+    if (!/^[0-9a-zA-Z+\-*/().,×^]+$/.test(cleaned)) return null;
+    const norm = cleaned.replace(/,/g,'.').replace(/×/g,'*').replace(/\^/g,'**').replace(/m/g,'').replace(/v/g,''); // trata "mv" como fator simbólico
+    try { const val = Function('"use strict"; return ('+norm+');')(); return Number.isFinite(val) ? val : null; }
+    catch { return null; }
+  }
+  function nearlyEqual(a,b,eps=1e-3){ return Math.abs(a-b) <= eps*Math.max(1,Math.abs(a),Math.abs(b)); }
+  function paint(input, ok){
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkExpr(input, expectedExprs){
+    const val = safeEval(input.value.trim());
+    const targets = expectedExprs.split('|').map(e => safeEval(e));
+    const ok = val !== null && targets.some(t => t !== null && nearlyEqual(val, t));
+    paint(input, ok);
+  }
+  function checkNum(input, expected){
+    const val = safeEval(input.value.trim());
+    paint(input, val !== null && nearlyEqual(val, Number(expected)));
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'C';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

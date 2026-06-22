@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 26 (ENEM 2020 — Q121) — Termologia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Termologia</a>
+    <span class="spacer"></span>
+    <a href="questao_012.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">13/58</span>
+    <a href="questao_014.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 26 (ENEM 2020 — Q121)</h2>
+  <h3>Problema 26:</h3>
+<p><strong>Enem 2020</strong></p>
+
+<p><strong>Questão 121 – Ciências da Natureza e suas Tecnologias</strong></p>
+
+<p>
+Para assegurar a boa qualidade de seu produto, uma indústria de vidro analisou um lote de dióxido de silício (SiO<sub>2</sub>), principal componente do vidro. Para isso, submeteu uma amostra desse óxido ao aquecimento até sua completa fusão e ebulição, obtendo ao final um gráfico de temperatura T (°C) versus tempo t (min). Após a obtenção do gráfico, o analista concluiu que a amostra encontrava-se pura. Dados do SiO<sub>2</sub>: <em>T</em><sub>fusão</sub> = 1 600 °C; <em>T</em><sub>ebulição</sub> = 2 230 °C. Qual foi o gráfico obtido pelo analista?
+</p>
+
+<!-- Ilustração opcional do enunciado (troque o src, se quiser exibir algo aqui) -->
+<figure class="illustration" aria-labelledby="figcap">
+  <img src="IMAGENS/siO2_enunciado.png" alt="Eixos T(°C) por t(min) para a amostra de SiO2">
+  <figcaption id="figcap">Figura — Esquema ilustrativo (opcional).</figcaption>
+</figure>
+
+<!-- Resolução apenas posicionada antes das alternativas (sem bloqueio) -->
+<h4>Resolução (interativa):</h4>
+
+<p><strong>1) Em substâncias puras, durante fusão/ebulição a temperatura:</strong>
+  <input onchange="checkWord(this,'permanece constante|fica constante|forma patamar|plateau|nao varia|não varia')">
+</p>
+
+<p><strong>2) Para o SiO<sub>2</sub>, os patamares devem ocorrer em:</strong>
+  <input onchange="checkWord(this,'1600 e 2230|1.600 e 2.230|1600°c e 2230°c|1600 2230')">
+</p>
+
+<p><strong>3) Após cada patamar, a curva volta a:</strong>
+  <input onchange="checkWord(this,'crescer|subir|aumentar')">
+</p>
+
+<!-- ALTERNATIVAS COM IMAGENS -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('A')" onkeydown="if(event.key==='Enter')checkAnswer('A')">
+  <span class="circulo">A</span> 
+  <img class="altimg" src="questao121a.png" alt="Gráfico A — sem dois patamares definidos">
+</div>
+
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('B')" onkeydown="if(event.key==='Enter')checkAnswer('B')">
+  <span class="circulo">B</span>
+  <img class="altimg" src="questao121b.png" alt="Gráfico B — patamar em 2230 °C apenas">
+</div>
+
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('C')" onkeydown="if(event.key==='Enter')checkAnswer('C')">
+  <span class="circulo">C</span>
+  <img class="altimg" src="questao121c.png" alt="Gráfico C — patamar em 1600 °C e rampa até 2230 °C">
+</div>
+
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('D')" onkeydown="if(event.key==='Enter')checkAnswer('D')">
+  <span class="circulo">D</span>
+  <img class="altimg" src="questao121d.png" alt="Gráfico D — patamares em locais distintos">
+</div>
+
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('E')" onkeydown="if(event.key==='Enter')checkAnswer('E')">
+  <span class="circulo">E</span>
+  <img class="altimg" src="questao121e.png" alt="Gráfico E — dois patamares: 1600 °C e 2230 °C">
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização e marcação ✅/❌ nos inputs
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito simples (sem dica ao errar)
+  const CORRECT = 'E';
+  function checkAnswer(letter){
+    const message = document.getElementById('message');
+    if (letter === CORRECT){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

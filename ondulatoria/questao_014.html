@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 22 — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_013.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">14/71</span>
+    <a href="questao_015.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 22</h2>
+  <h3>Problema 22:</h3>
+
+<p><strong>5 – Enem 2023</strong></p>
+<p><strong>Questão 111</strong></p>
+
+<p>
+  Na tirinha de Mauricio de Sousa, os personagens Cebolinha e Cascão fazem uma brincadeira utilizando duas latas e um barbante. Ao perceberem que o som pode ser transmitido através do barbante, resolvem alterar o comprimento do barbante para ficar cada vez mais extenso. As demais condições permaneceram inalteradas durante a brincadeira.
+</p>
+
+<!-- Imagem do enunciado (deixar comentado mesmo sem o arquivo) -->
+<!-- <div class="imgwrap"><img src="telefone_barbante.png" alt="Tirinha: telefone com barbante entre duas latas"></div> -->
+
+<p>
+  Na prática, à medida que se aumenta o comprimento do barbante, ocorre a redução de qual característica da onda sonora?
+</p>
+
+<!-- SOLUÇÃO (INTERATIVA) ANTES DAS ALTERNATIVAS -->
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Que tipo de onda se propaga no barbante?</strong><br>
+  <input onchange="checkWord(this,'onda mecanica|onda mecânica|mecanica|mecânica')">
+  <span class="hint">
+    <button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Não é onda eletromagnética; depende do material.</span>
+  </span>
+</p>
+
+<p><strong>2) Ao aumentar o comprimento do barbante, o que acontece com a energia que chega à outra lata?</strong><br>
+  <input onchange="checkWord(this,'diminui|menor|atenua|atenuacao|atenuação|perde energia|mais perdas')">
+  <span class="hint">
+    <button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Pense em perdas por amortecimento no material ao longo do caminho.</span>
+  </span>
+</p>
+
+<p><strong>3) Qual característica da onda sonora diminui quando a energia transmitida é menor?</strong><br>
+  <input onchange="checkWord(this,'amplitude|menor amplitude|reduz a amplitude')">
+  <span class="hint">
+    <button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Relacione "intensidade sonora" com a variável que mede o quão "forte" é a vibração.</span>
+  </span>
+</p>
+
+<!-- ALTERNATIVAS -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')"><span class="circulo">A</span> Altura.</div>
+<div class="opcao" onclick="checkAnswer('B')"><span class="circulo">B</span> Período.</div>
+<div class="opcao" onclick="checkAnswer('C')"><span class="circulo">C</span> Amplitude.</div>
+<div class="opcao" onclick="checkAnswer('D')"><span class="circulo">D</span> Velocidade.</div>
+<div class="opcao" onclick="checkAnswer('E')"><span class="circulo">E</span> Comprimento de onda.</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normaliza/remover acentos
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+  // checagem de palavras-chave (tolerante a variações)
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  // botão Mostrar dica
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = span.style.display === 'inline' ? 'none' : 'inline';
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'C';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

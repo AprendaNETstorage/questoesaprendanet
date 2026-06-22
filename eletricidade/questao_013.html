@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 21 (ENEM) — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_012.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">13/81</span>
+    <a href="questao_014.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 21 (ENEM)</h2>
+  <h3>Problema 21:</h3>
+
+<p><strong>121. (Enem 2009)</strong></p>
+
+<p>
+O manual de instruções de um aparelho de ar-condicionado apresenta a seguinte tabela, com dados técnicos para diversos modelos.  
+Considere que um auditório possua capacidade para 40 pessoas, cada uma produzindo uma quantidade média de calor, e que praticamente todo o calor que flui para fora do auditório o faz por meio dos aparelhos de ar-condicionado.  
+Nessa situação, entre as informações listadas, aquelas essenciais para determinar quantos (e quais) aparelhos de ar-condicionado são precisos para manter, com lotação máxima, a temperatura interna do auditório agradável e constante, bem como determinar a espessura da fiação do circuito elétrico para a ligação desses aparelhos, são
+</p>
+
+<img src="extra_33.png" alt="Trecho do manual e diagrama associados à questão 121">
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Para dimensionar <u>quantos</u> aparelhos serão necessários, é indispensável conhecer a:</strong>
+  <input onchange="checkWord(this,'capacidade de refrigeracao|capacidade de refrigeração')">
+</p>
+
+<p><strong>2) Para dimensionar a <u>fiação</u> (bitola), é indispensável conhecer a:</strong>
+  <input onchange="checkWord(this,'corrente eletrica|corrente elétrica')">
+</p>
+
+<p><strong>3) No contexto do problema, considera-se o:</strong>
+  <input onchange="checkWord(this,'ciclo frio|modo frio')">
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  vazão de ar e potência.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  vazão de ar e corrente elétrica – ciclo frio.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  eficiência energética e potência.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  capacidade de refrigeração e frequência.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  capacidade de refrigeração e corrente elétrica – ciclo frio.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para tolerar acentos/maiúsculas
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito
+  function checkAnswer(letter){
+    const correct = 'E';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

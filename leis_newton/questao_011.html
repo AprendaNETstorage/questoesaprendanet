@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 7 — Leis de Newton</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Leis de Newton</a>
+    <span class="spacer"></span>
+    <a href="questao_010.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">11/25</span>
+    <a href="questao_012.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 7</h2>
+  <h3>Problema 7:</h3>
+
+<p><strong>8 – Enem 2023</strong></p>
+<p><strong>Questão 114</strong></p>
+
+<p>
+  Uma equipe de segurança do transporte de uma empresa avalia o comportamento das tensões que aparecem em duas cordas, 1 e 2, usadas para prender uma carga de massa <em>M</em> = 200 kg na carroceria, conforme a ilustração. Quando o caminhão parte do repouso, sua aceleração <em>a</em> é constante e igual a 3 m/s², e quando ele é freado bruscamente, sua desaceleração é constante e igual a 5 m/s². Em ambas as situações, a carga encontra-se na iminência de movimento, e o sentido do movimento do caminhão está indicado na figura. O coeficiente de atrito estático entre a caixa e o assoalho da carroceria é igual a 0,2. Considere a aceleração da gravidade igual a 10 m/s², as tensões iniciais nas cordas iguais a zero e as duas cordas ideais.
+</p>
+
+<!-- Imagem do enunciado (deixar comentada mesmo sem o arquivo) -->
+<!-- <div class="imgwrap"><img src="caminhao_carga_cordas.png" alt="Caminhão com caixa presa por duas cordas (1 dianteira e 2 traseira)"></div> -->
+
+<p>
+  Nas situações de aceleração e frenagem do caminhão, as tensões nas cordas 1 e 2, em newton, serão
+</p>
+
+<!-- SOLUÇÃO (INTERATIVA) ANTES DAS ALTERNATIVAS -->
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Calcule o atrito estático máximo entre a caixa e o assoalho.</strong><br>
+  <input onchange="checkWord(this,'400 n|400n|0,4 kn|0.4 kn')">
+  <span class="hint">
+    <button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Use <em>F<sub>at máx</sub> = μ<sub>s</sub>·N</em> com <em>N = Mg</em> (μ<sub>s</sub>=0,2; M=200 kg; g=10 m/s²).</span>
+  </span>
+</p>
+
+<p><strong>2) Durante a <u>aceleração</u> (3 m/s²), qual é a força inercial equivalente sobre a carga e qual corda ajuda o atrito?</strong><br>
+  <input onchange="checkWord(this,'600 n|600n|ma=600 n|forca inercial 600|força inercial 600')">
+  <span class="hint">
+    <button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Considere <em>F = ma</em> no sentido oposto ao avanço do caminhão.</span>
+  </span>
+</p>
+
+<p><strong>3) Ainda na aceleração, quanto <u>falta</u> de força para segurar a caixa além do atrito máximo? (isso será a tração da corda traseira)</strong><br>
+  <input onchange="checkWord(this,'200 n|200n')">
+  <span class="hint">
+    <button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Compare a força inercial (600 N) com o atrito máximo (400 N).</span>
+  </span>
+</p>
+
+<p><strong>4) Na <u>frenagem</u> (5 m/s²), qual é a força inercial equivalente e qual corda atua?</strong><br>
+  <input onchange="checkWord(this,'1000 n|1000n|1 kn|1,0 kn|1.0 kn|corda dianteira')">
+  <span class="hint">
+    <button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>O "empuxão" interno vai no sentido da marcha; quem segura é a corda dianteira.</span>
+  </span>
+</p>
+
+<p><strong>5) Considerando o atrito máximo no sentido oposto, qual fica sendo a tração na corda dianteira?</strong><br>
+  <input onchange="checkWord(this,'600 n|600n')">
+  <span class="hint">
+    <button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Força inercial (1000 N) menos atrito (400 N).</span>
+  </span>
+</p>
+
+<!-- ALTERNATIVAS -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  Aceleração: T<sub>1</sub> = 0 e T<sub>2</sub> = 200; frenagem: T<sub>1</sub> = 600 e T<sub>2</sub> = 0.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  Aceleração: T<sub>1</sub> = 0 e T<sub>2</sub> = 0; frenagem: T<sub>1</sub> = 1400 e T<sub>2</sub> = 0.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  Aceleração: T<sub>1</sub> = 0 e T<sub>2</sub> = 0; frenagem: T<sub>1</sub> = 0 e T<sub>2</sub> = 0.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  Aceleração: T<sub>1</sub> = 560 e T<sub>2</sub> = 0; frenagem: T<sub>1</sub> = 0 e T<sub>2</sub> = 960.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  Aceleração: T<sub>1</sub> = 640 e T<sub>2</sub> = 0; frenagem: T<sub>1</sub> = 0 e T<sub>2</sub> = 1040.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normaliza/remover acentos
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+  // checagem de palavras-chave (tolerante a variações)
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  // botão Mostrar dica
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = span.style.display === 'inline' ? 'none' : 'inline';
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'A';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

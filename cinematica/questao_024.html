@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 21 — Cinemática</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Cinemática</a>
+    <span class="spacer"></span>
+    <a href="questao_023.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">24/35</span>
+    <a href="questao_025.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 21</h2>
+  <h3>Problema 21:</h3>
+
+<!-- ENUNCIADO IDÊNTICO -->
+<p><strong>38. (Enem PPL 2014)</strong></p>
+<p>Durante um reparo na Estação Espacial Internacional, um cosmonauta, de massa 90 kg, substitui uma bomba do sistema de refrigeração, de massa 360 kg, que estava danificada. Inicialmente, o cosmonauta e a bomba estão em repouso em relação à estação. Quando ele empurra a bomba para o espaço, ele é empurrado no sentido oposto. Nesse processo, a bomba adquire uma velocidade de 0,2 m/s em relação à estação.</p>
+<p>Qual é o valor da velocidade escalar adquirida pelo cosmonauta, em relação à estação, após o empurrão?</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Modelo físico:</strong> o sistema "cosmonauta + bomba" está praticamente
+  <input onchange="checkWord(this,'isolado|sem forcas externas|sem forças externas')">, portanto vale a
+  <input onchange="checkWord(this,'conservacao da quantidade de movimento|conservação da quantidade de movimento|conservacao do momento linear')">.
+</p>
+
+<p><strong>2) Relação de módulos dos momentos após o empurrão:</strong>
+  m<sub>c</sub> · v<sub>c</sub> = m<sub>b</sub> · v<sub>b</sub> (em sentidos opostos, mas aqui pedimos só o valor escalar).</p>
+
+<p><strong>3) Substitua os dados e calcule:</strong></p>
+<p>
+  m<sub>c</sub> = <input onchange="checkNum(this,'90')"> kg,
+  m<sub>b</sub> = <input onchange="checkNum(this,'360')"> kg,
+  v<sub>b</sub> = <input onchange="checkNum(this,'0.2')"> m/s
+</p>
+
+<p>
+  Fator de massa m<sub>b</sub>/m<sub>c</sub> =
+  <input onchange="checkExpr(this,'360/90|4')"> →
+  v<sub>c</sub> = (m<sub>b</sub>/m<sub>c</sub>) · v<sub>b</sub> =
+  <input onchange="checkExpr(this,'4*0.2|0.8')"> m/s
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  0,05 m/s
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  0,20 m/s
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  0,40 m/s
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  0,50 m/s
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  0,80 m/s
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // ---- helpers: aceita vírgula/ponto e expressões ----
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function safeEval(expr) {
+    const cleaned = String(expr).replace(/\s/g,'');
+    if (!/^[0-9eE+\-*/().,×^]+$/.test(cleaned)) return null;
+    const normalized = cleaned.replace(/,/g,'.').replace(/×/g,'*').replace(/\^/g,'**');
+    try {
+      const val = Function('"use strict"; return ('+normalized+');')();
+      return (typeof val === 'number' && Number.isFinite(val)) ? val : null;
+    } catch { return null; }
+  }
+  function nearlyEqual(a,b,eps=1e-3){ return Math.abs(a-b) <= eps*Math.max(1,Math.abs(a),Math.abs(b)); }
+
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  function checkNum(input, expected){
+    const val = safeEval(input.value.trim());
+    paint(input, val !== null && nearlyEqual(val, Number(expected)));
+  }
+
+  function checkExpr(input, expectedExprs){
+    const val = safeEval(input.value.trim());
+    const targets = expectedExprs.split('|').map(e => safeEval(e));
+    const ok = val !== null && targets.some(t => t !== null && nearlyEqual(val, t));
+    paint(input, ok);
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'E';
+    const msg = document.getElementById('message');
+    if (letter === correct){
+      msg.textContent = 'Correto!';
+      msg.style.color = 'green';
+    } else {
+      msg.textContent = 'Errado. Tente novamente.';
+      msg.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

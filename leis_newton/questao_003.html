@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 13 — Leis de Newton</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Leis de Newton</a>
+    <span class="spacer"></span>
+    <a href="questao_002.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">3/25</span>
+    <a href="questao_004.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 13</h2>
+  <h3>Problema 13:</h3>
+
+<!-- ENUNCIADO (adaptado) -->
+<p><strong>(ENEM)</strong></p>
+<p>
+Em desenhos animados é comum vermos o personagem tentando impulsionar um barco soprando ao
+vento contra a vela para compensar a falta de vento. Algumas vezes usam o próprio fôlego, fôles
+ou ventiladores. Estudantes de um laboratório didático resolveram investigar essa possibilidade.
+Para isso, usaram dois pequenos carros de plástico, A e B, instalaram sobre estes pequenas
+ventoinhas e fixaram verticalmente uma cartolina em forma de vela.
+</p>
+<p>
+No carro A, a ventoinha foi montada de forma que o ar é soprado diretamente contra a vela.
+No carro B, o sentido da ventoinha foi invertido, soprando o ar para trás do carro, mantendo-se
+a vela voltada para a frente. As figuras representam os carros produzidos.
+</p>
+
+<figure>
+  <!-- ajuste o caminho da imagem quando salvar o arquivo -->
+  <img src="questao13_carros.png"
+       alt="Desenho dos carros A e B com ventoinha e vela montadas de formas diferentes.">
+  <figcaption>Figura – Carro A (ventoinha soprando na vela) e Carro B (ventoinha soprando para trás).</figcaption>
+</figure>
+
+<p>
+Com os carros orientados de acordo com as figuras, os estudantes ligaram as ventoinhas,
+aguardaram o fluxo de ar ficar permanente e determinaram os módulos das velocidades médias
+dos carros A (\(V_A\)) e B (\(V_B\)) para o mesmo intervalo de tempo.
+</p>
+<p>
+A respeito das intensidades das velocidades médias e do sentido de movimento do carro A,
+os estudantes observaram que:
+</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Forças internas e externas no carro A.</strong><br>
+No carro A, a ventoinha sopra o ar diretamente na
+<input onchange="checkWord(this,'vela|cartolina')">,
+que está presa ao próprio carro. As forças entre ventoinha, ar e vela são
+<input onchange="checkWord(this,'internas ao sistema|internas|dentro do sistema')">,
+de modo que não há empurrão líquido sobre o
+<input onchange="checkWord(this,'chao|solo')">.
+Logo, sua velocidade média é
+<input onchange="checkWord(this,'zero|nula|va = 0')">.
+</p>
+
+<p><strong>2) Efeito da ventoinha no carro B.</strong><br>
+No carro B, a ventoinha lança ar
+<input onchange="checkWord(this,'para tras|para trás')">
+em relação ao carro; por reação, o carro é empurrado
+<input onchange="checkWord(this,'para frente|para a direita')">,
+portanto \(V_B\)
+<input onchange="checkWord(this,'e maior que zero|> 0|positivo')">.
+</p>
+
+<p><strong>3) Conclusão sobre os movimentos.</strong><br>
+Assim, o carro A
+<input onchange="checkWord(this,'nao se move|fica parado|permanece em repouso')">
+e o carro B
+<input onchange="checkWord(this,'anda para frente|move-se para a direita|tem movimento para frente')">.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  \(V_A = 0\) e \(V_B = 0\); nenhum dos carros se move.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  \(0 &lt; V_A &lt; V_B\); o carro A se move para a direita.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  \(0 &lt; V_A &lt; V_B\); o carro A se move para a esquerda.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  \(0 &lt; V_B &lt; V_A\); o carro A se move para a direita.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  \(V_A = 0\) e \(V_B &gt; 0\); o carro A não se move e o carro B se movimenta para a frente.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // -------- helpers (aceita vírgula/ponto e expressões simples) --------
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function safeEval(expr){
+    const cleaned = String(expr).replace(/\s/g,'');
+    if(!/^[0-9eE+\-*/().,×^]+$/.test(cleaned)) return null;
+    const norm = cleaned.replace(/,/g,'.').replace(/×/g,'*').replace(/\^/g,'**');
+    try{
+      const v = Function('"use strict"; return ('+norm+');')();
+      return (typeof v === 'number' && Number.isFinite(v)) ? v : null;
+    }catch{ return null; }
+  }
+  function nearlyEqual(a,b,eps=1e-3){
+    return Math.abs(a-b) <= eps * Math.max(1, Math.abs(a), Math.abs(b));
+  }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+  function checkExpr(input, expectedExprs){
+    const val = safeEval(input.value.trim());
+    const targets = expectedExprs.split('|').map(e => safeEval(e));
+    const ok = (val !== null) && targets.some(t => t !== null && nearlyEqual(val, t));
+    paint(input, ok);
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'E';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

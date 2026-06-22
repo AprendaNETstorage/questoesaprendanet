@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 11 — Leis de Newton</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Leis de Newton</a>
+    <span class="spacer"></span>
+    <a href="questao_011.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">12/25</span>
+    <a href="questao_013.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 11</h2>
+  <h3>Problema 11:</h3>
+
+<!-- ENUNCIADO IDÊNTICO -->
+<p><strong>(ENEM 2011)</strong> Para medir o tempo de reação de uma pessoa, pode-se realizar a seguinte experiência:</p>
+<p>I. Mantenha uma régua (com cerca de 30 cm) suspensa verticalmente, segurando-a pela extremidade superior, de modo que o zero da régua esteja situado na extremidade inferior.</p>
+<p>II. A pessoa deve colocar os dedos de sua mão, em forma de pinça, próximos do zero da régua, sem tocá-la.</p>
+<p>III. Sem aviso prévio, a pessoa que estiver segurando a régua deve soltá-la. A outra pessoa deve procurar segurá-la no mais rapidamente possível e registrar na posição onde conseguiu segurar a régua, isto é, a distância que ela percorreu durante a queda.</p>
+<p>O quadro seguinte mostra a posição em que três pessoas conseguiram segurar a régua e os respectivos tempos de reação.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Distância percorrida pela régua durante a queda (m)</th>
+      <th>Tempo de reação (s)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>0,30</td><td>0,24</td></tr>
+    <tr><td>0,15</td><td>0,17</td></tr>
+    <tr><td>0,10</td><td>0,14</td></tr>
+  </tbody>
+</table>
+
+<p>A distância percorrida pela régua aumenta mais rapidamente que o tempo de reação porque:</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Força atuante durante a queda (despreze o ar):</strong>
+  <br>Força peso: <input onchange="check(this,'constante')"> (mesmo valor para a régua durante a queda).
+</p>
+
+<p><strong>2) Consequência dinâmica:</strong>
+  <br>Aceleração da queda é <input onchange="check(this,'constante')">.
+</p>
+
+<p><strong>3) Relação entre distância e tempo na queda a partir do repouso:</strong>
+  <br>s = <input onchange="check(this,'0.5*g*t^2|1/2*g*t^2|proporcional a t^2|t^2')">  (vale: 0.5·g·t² ou "proporcional a t²").
+</p>
+
+<p><strong>4) Verifique com a tabela (opcional):</strong>
+  <br>Calcule s / t² para a primeira linha:
+  <input onchange="check(this,'0.30/(0.24^2)|5.2')">  (deve dar cerca de 5,2).
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  a energia mecânica da régua aumenta, o que a faz cair mais rápido.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  a resistência do ar aumenta, o que faz a régua cair com menor velocidade.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  a aceleração de queda da régua varia com o tempo, o que provoca um movimento acelerado.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  a força peso da régua tem valor constante, o que gera um movimento acelerado.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  a velocidade da régua é constante, o que provoca uma passagem linear de tempo.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // Aceita vírgula/ponto, ^ como potência, e alternativas separadas por "|"
+  function safeEval(expr) {
+    const cleaned = String(expr).replace(/\s/g, '');
+    if (!/^[0-9eE+\-*/().,^×]+$/.test(cleaned)) return null;
+    const normalized = cleaned.replace(/,/g, '.').replace(/×/g, '*').replace(/\^/g, '**');
+    try {
+      const val = Function('"use strict"; return (' + normalized + ');')();
+      return (typeof val === 'number' && Number.isFinite(val)) ? val : null;
+    } catch { return null; }
+  }
+  function nearlyEqual(a, b, eps = 0.02) { // 2% de tolerância
+    return Math.abs(a - b) <= eps * Math.max(1, Math.abs(a), Math.abs(b));
+  }
+
+  function check(input, expectedStr) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const raw = input.value.trim();
+    if (raw === '') { input.style.backgroundColor = ''; return; }
+
+    const userNorm = raw.replace(/\s/g, '').toLowerCase();
+    const options = expectedStr.toLowerCase().split('|').map(s => s.trim());
+
+    let ok = false;
+
+    // 1) Tente casar por palavras-chave
+    if (options.some(opt => ['constante','proporcional a t^2','t^2','t²'].includes(opt))) {
+      const isConst = options.includes('constante') && userNorm.includes('constante');
+      const isT2 = options.some(opt => opt.includes('t^2')) &&
+                   (userNorm.includes('t^2') || userNorm.includes('t²') || userNorm.includes('t2') || userNorm.includes('aoquadrado'));
+      if (isConst || isT2) ok = true;
+    }
+
+    // 2) Ou tente validação numérica (permite múltiplas alternativas)
+    if (!ok) {
+      for (const opt of options) {
+        const target = safeEval(opt);
+        const userVal = safeEval(userNorm);
+        if (target !== null && userVal !== null && nearlyEqual(userVal, target)) {
+          ok = true; break;
+        }
+      }
+    }
+
+    // 3) Fallback: igualdade literal
+    if (!ok) ok = options.some(opt => userNorm === opt);
+
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  // Gabarito apenas aqui
+  function checkAnswer(letter) {
+    const correct = 'D';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

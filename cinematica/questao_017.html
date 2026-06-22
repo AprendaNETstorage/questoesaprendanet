@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 05 — Cinemática</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Cinemática</a>
+    <span class="spacer"></span>
+    <a href="questao_016.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">17/35</span>
+    <a href="questao_018.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 05</h2>
+  <h3>Problema 05:</h3>
+
+<p><strong>(Enem PPL 2013)</strong> O trem de passageiros da Estrada de Ferro Vitória-Minas (EFVM), que circula diariamente entre a cidade de Cariacica, na Grande Vitória, e a capital mineira Belo Horizonte, está utilizando uma nova tecnologia de frenagem eletrônica. Com a tecnologia anterior, era preciso iniciar a frenagem cerca de 400 metros antes da estação. Atualmente, essa distância caiu para 250 metros, o que proporciona redução no tempo de viagem. Considerando uma velocidade de 72 km/h, qual o módulo da diferença entre as acelerações de frenagem depois e antes da adoção dessa tecnologia?</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Converter a velocidade inicial (72 km/h) para m/s:</strong></p>
+<p>
+  72 × <span class="fraction"><span><input onchange="check(this,'1000')"></span><span class="bar"></span><span><input onchange="check(this,'3600')"></span></span>
+  = <input onchange="check(this,'20')"> m/s
+</p>
+
+<p><strong>2) Fórmula de frenagem:</strong> v² = v0² + 2 · a · s.  
+Como v = 0 no final da frenagem, temos a = - (v0²) / (2·s).</p>
+
+<p><strong>3) Aceleração (módulo) antes e depois:</strong></p>
+<p>
+  Antes (s = <input onchange="check(this,'400')"> m):  
+  |a<sub>antes</sub>| = (20²) / (2 × 400) = <input onchange="check(this,'0.5')"> m/s²
+</p>
+
+<p>
+  Depois (s = <input onchange="check(this,'250')"> m):  
+  |a<sub>depois</sub>| = (20²) / (2 × 250) = <input onchange="check(this,'0.8')"> m/s²
+</p>
+
+<p><strong>4) Diferença pedida (módulos):</strong></p>
+<p>
+  |a<sub>depois</sub>| − |a<sub>antes</sub>| =
+  <input onchange="check(this,'0.8')"> − <input onchange="check(this,'0.5')"> =
+  <input onchange="check(this,'0.3')"> m/s²
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  0,08 m/s²
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  0,30 m/s²
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  1,10 m/s²
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  1,60 m/s²
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  3,90 m/s²
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  function safeEval(expr) {
+    const cleaned = String(expr).replace(/\s/g, '');
+    if (!/^[0-9+\-*/().,]+$/.test(cleaned)) return null;
+    const withDot = cleaned.replace(/,/g, '.').replace(/\^/g, '**');
+    try {
+      const val = Function('"use strict"; return (' + withDot + ');')();
+      return (typeof val === 'number' && Number.isFinite(val)) ? val : null;
+    } catch { return null; }
+  }
+  function nearlyEqual(a, b, eps = 1e-3) {
+    return Math.abs(a - b) <= eps * Math.max(1, Math.abs(a), Math.abs(b));
+  }
+  function check(input, correct) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const raw = input.value.trim();
+    if (raw === '') { input.style.backgroundColor = ''; return; }
+    const norm = raw.replace(/\s/g, '');
+    const expected = String(correct);
+
+    let target = safeEval(expected);
+    if (expected === '20') target = 20;
+    if (expected === '0.5') target = 0.5;
+    if (expected === '0.8') target = 0.8;
+    if (expected === '0.3') target = 0.3;
+
+    const parsedUser = safeEval(norm);
+    let ok = false;
+    if (parsedUser !== null && target !== null) {
+      ok = nearlyEqual(parsedUser, target);
+    } else {
+      ok = norm.toLowerCase() === expected.toLowerCase();
+    }
+
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  function checkAnswer(letter) {
+    const correct = 'B';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

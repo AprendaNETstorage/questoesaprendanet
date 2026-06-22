@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 99 (ENEM) — Termologia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Termologia</a>
+    <span class="spacer"></span>
+    <a href="questao_043.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">44/58</span>
+    <a href="questao_045.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 99 (ENEM)</h2>
+  <h3>Problema 99:</h3>
+
+<p><strong>139. (Enem PPL 2013)</strong></p>
+
+<p>
+A tirinha a seguir traz uma situação cotidiana em que os personagens discutem sobre a sensação de calor e a utilização de luvas no inverno.  
+Esse contexto permite relacionar os conceitos de propagação de calor com situações práticas do dia a dia.
+</p>
+
+<figure>
+  <img src="imagens/extra_42.png" alt="Tirinha Calvin sobre sensação de calor e propagação térmica">
+  <figcaption>Tirinha extraída da questão 139 (ENEM PPL 2013).</figcaption>
+</figure>
+
+<p>
+Quais são os processos de propagação de calor relacionados à fala de cada personagem?
+</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) O Sol aquece a Terra principalmente por...</strong>
+  <input onchange="checkWord(this,'irradiacao|radiacao')">
+</p>
+
+<p><strong>2) As luvas de lã reduzem as perdas de calor porque dificultam...</strong>
+  <input onchange="checkWord(this,'conducao de calor|transferencia por conducao')">
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  Convecção e condução.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  Convecção e irradiação.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  Condução e convecção.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  Irradiação e convecção.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  Irradiação e condução.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para tolerar acentos/maiúsculas
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito
+  function checkAnswer(letter){
+    const correct = 'E';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

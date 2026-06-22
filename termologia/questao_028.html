@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 8 (ENEM) — Termologia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Termologia</a>
+    <span class="spacer"></span>
+    <a href="questao_027.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">28/58</span>
+    <a href="questao_029.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 8 (ENEM)</h2>
+  <h3>Problema 8:</h3>
+
+<p><strong>140. (Enem PPL 2012)</strong></p>
+
+<p>
+Em um centro de pesquisa de alimentos, um técnico efetuou a determinação do valor calórico de determinados alimentos da seguinte forma:  
+colocou uma massa conhecida de água em um recipiente termicamente isolado.  
+Em seguida, dentro desse recipiente, foi queimada uma determinada massa do alimento.  
+Como o calor liberado por essa queima é fornecido para a água, o técnico calculou a quantidade de calor que cada grama do alimento libera.  
+Para a realização desse teste, qual aparelho de medida é essencial?
+</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Fórmula usada no cálculo do calor:</strong>
+  <input onchange="checkWord(this,'q=m.c.dt|q=mcΔt|calor sensivel')">
+</p>
+
+<p><strong>2) Qual grandeza deve ser medida no experimento?</strong>
+  <input onchange="checkWord(this,'temperatura|variação de temperatura')">
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  Cronômetro.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  Dinamômetro.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  Termômetro.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  Radiómetro.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  Potenciômetro.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para tolerar acentos/maiúsculas
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito
+  function checkAnswer(letter){
+    const correct = 'C';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

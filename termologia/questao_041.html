@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 96 (ENEM) — Termologia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Termologia</a>
+    <span class="spacer"></span>
+    <a href="questao_040.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">41/58</span>
+    <a href="questao_042.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 96 (ENEM)</h2>
+  <h3>Problema 96:</h3>
+
+<p><strong>136. (Enem 2013)</strong></p>
+
+<p>
+Aquecedores solares usados em residências têm o objetivo de elevar a temperatura da água até 70 °C.  
+No entanto, a temperatura ideal da água para um banho é de 30 °C.  
+Por isso, deve-se misturar a água aquecida com a água à temperatura ambiente de um outro reservatório, que se encontra a 25 °C.  
+Qual a razão entre a massa de água quente e a massa de água fria na mistura para um banho à temperatura ideal?
+</p>
+
+
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Condição de equilíbrio térmico (Qcedido = Qrecebido):</strong>
+  <input onchange="checkWord(this,'mquente.(70-30)=mfria.(30-25)|q cedido = q recebido')">
+</p>
+
+<p><strong>2) Razão entre as massas:</strong>
+  <input onchange="checkWord(this,'0,125|1/8|mquente/mfria=0,125')">
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  0,111
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  0,125
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  0,357
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  0,428
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  0,833
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para tolerar acentos/maiúsculas
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito
+  function checkAnswer(letter){
+    const correct = 'B';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 33 — Termologia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Termologia</a>
+    <span class="spacer"></span>
+    <a href="questao_020.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">21/58</span>
+    <a href="questao_022.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 33</h2>
+  <h3>Problema 33:</h3>
+
+<p><strong>52. (ENEM – Feromônios e estereoisomeria)</strong></p>
+
+<p>
+Os feromônios são substâncias utilizadas na comunicação entre indivíduos de uma espécie.
+O primeiro feromônio isolado de um inseto foi o bomibicol, substância produzida pela mariposa do bicho-da-seda.
+</p>
+
+<figure>
+  <!-- use este arquivo com o enunciado/quadro de substâncias -->
+  <img src="questao33_seda.png"
+    alt="Estrutura química do bomibicol, com destaque para suas duplas ligações e grupos funcionais." />
+</figure>
+<p>
+O uso de feromônios em ações de controle de insetos-praga está de acordo com o modelo preconizado
+para a agricultura do futuro. São agentes altamente específicos, e seus compostos químicos podem ser empregados
+em determinados cultivos, conforme ilustrado no quadro.
+</p>
+
+<figure>
+  <!-- use este arquivo com o enunciado/quadro de substâncias -->
+  <img src="questao33_enunciado.png"
+       alt="E" />
+  <figcaption>Figura – Estruturas de feromônios usados no controle de insetos.</figcaption>
+</figure>
+
+<p>
+Considerando essas estruturas químicas, o tipo de estereoisomeria apresentada pelo bomibicol é
+também apresentada pelo feromônio utilizado no controle de qual inseto?
+</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Que tipo de estereoisomeria o bomibicol apresenta?</strong><br>
+Ele possui duplas ligações C=C com grupos diferentes em cada carbono, o que leva a
+<input onchange="checkWord(this,'isomeria geometrica|geométrica|cis-trans|cis trans|e/z|e z')">
+(em torno das duplas ligações).
+</p>
+
+<p><strong>2) Qual característica estrutural permite essa estereoisomeria?</strong><br>
+A condição é ter
+<input onchange="checkWord(this,'dupla ligacao c=c|dupla ligaçao c=c|dupla ligacao carbono carbono|duplas ligacoes c=c')">
+em que cada carbono da dupla está ligado a
+<input onchange="checkWord(this,'grupos diferentes|substituintes diferentes|radicais diferentes')">
+.</p>
+
+<p><strong>3) Observando a tabela, qual feromônio também apresenta esse mesmo tipo de isomeria?</strong><br>
+Na linha em que aparece o inseto correto, a molécula mostra
+<input onchange="checkWord(this,'cadeia insaturada|duplas ligacoes conjugadas|duas duplas ligacoes')">
+sem centros quirais marcados, indicando o mesmo tipo de isomeria geométrica.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  Sitophilus spp.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  Migdolus fryanus.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  Anthonomus rubi.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  Grapholita molesta.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  Scrobipalpulioides absoluta.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // -------- helpers (aceita vírgula/ponto e expressões simples) --------
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function safeEval(expr){
+    const cleaned = String(expr).replace(/\s/g,'');
+    if(!/^[0-9eE+\-*/().,×^]+$/.test(cleaned)) return null;
+    const norm = cleaned.replace(/,/g,'.').replace(/×/g,'*').replace(/\^/g,'**');
+    try{
+      const v = Function('"use strict"; return ('+norm+');')();
+      return (typeof v === 'number' && Number.isFinite(v)) ? v : null;
+    }catch{ return null; }
+  }
+  function nearlyEqual(a,b,eps=1e-3){
+    return Math.abs(a-b) <= eps * Math.max(1, Math.abs(a), Math.abs(b));
+  }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+  function checkExpr(input, expectedExprs){
+    const val = safeEval(input.value.trim());
+    const targets = expectedExprs.split('|').map(e => safeEval(e));
+    const ok = (val !== null) && targets.some(t => t !== null && nearlyEqual(val, t));
+    paint(input, ok);
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'E';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto! O mesmo tipo de isomeria geométrica aparece no feromônio usado para Scrobipalpulioides absoluta.';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Observe quais moléculas têm duplas C=C com possibilidade de isomeria geométrica.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

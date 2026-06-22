@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problema 16 — Cinemática</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Cinemática</a>
+    <span class="spacer"></span>
+    <a href="questao_031.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">32/35</span>
+    <a href="questao_033.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Problema 16</h2>
+  <div class="container">
+    <nav class="topnav" aria-label="Navegação entre problemas">
+      
+      
+    </nav>
+
+    <header>
+      <h1>Problema 16</h1>
+      <div class="meta">Fonte/rotulagem: ENEM 2021 — condução de calor (panelas)</div>
+    </header>
+
+    <section class="enunciado">
+      <strong>Enunciado (texto integral):</strong>
+      <p>
+        Na montagem de uma cozinha para restaurante, deseja-se escolher o material mais econômico para as panelas,
+        isto é, o que conduz mais calor e cozinha mais rápido. A taxa de condução de calor depende da condutividade
+        térmica <code>k</code> do material, da área <code>A</code>, da diferença de temperatura <code>ΔT</code> e da
+        espessura <code>d</code> do material, segundo a relação em monoespaço:
+        <code>ΔQ/Δt = k A ΔT / d</code>.
+      </p>
+      <p>
+        Em panelas com duas camadas (materiais em série), a taxa de condução é
+        <code>ΔQ/Δt = A ΔT / ( d1/k1 + d2/k2 )</code>.
+      </p>
+      <p>
+        Considere três opções: uma panela de ferro; uma de alumínio; e uma panela composta por cobre + aço (camadas em série).
+        Em ordem crescente de custo de gás (ou seja, da menos para a mais econômica), assinale a opção correta.
+      </p>
+      <!-- Figuras do enunciado (opcional): -->
+      <div class="imgwrap">
+        <img src="q16_fig1.png" alt="Esquema de condução de calor em uma chapa única e em duas camadas em série">
+      </div>
+      <div class="small">Use apenas as relações acima (sem LaTeX renderizado) e o fato de que <code>k_alumínio &gt; k_ferro</code> e que, em série, a condutância é menor do que a de qualquer material individual.</div>
+    </section>
+
+    <div class="solucao">Solução (interativa)</div>
+
+    <!-- PASSO 1 -->
+    <div class="step">
+      <div class="q">1) Para mesma área, espessura e <code>ΔT</code>, como a taxa de condução depende de <code>k</code>?</div>
+      <div class="controls">
+        <input type="text" aria-label="Passo 1" placeholder="Ex.: proporcional a k"
+               onchange="checkWord(this,'proporcional a k|aumenta com k|quanto maior k maior a taxa')" />
+        <div class="status" aria-live="polite"></div>
+        <button type="button" onclick="toggleHint(this)">Mostrar dica</button>
+        <div class="hint">Veja <code>ΔQ/Δt = k A ΔT / d</code>: mantendo <code>A, ΔT, d</code> fixos, a taxa cresce com <code>k</code>.</div>
+      </div>
+    </div>
+
+    <!-- PASSO 2 -->
+    <div class="step">
+      <div class="q">2) Entre alumínio e ferro, qual conduz mais calor (maior <code>k</code>)?</div>
+      <div class="controls">
+        <input type="text" aria-label="Passo 2" placeholder="Digite o material"
+               onchange="checkWord(this,'aluminio|alumínio')" />
+        <div class="status" aria-live="polite"></div>
+        <button type="button" onclick="toggleHint(this)">Mostrar dica</button>
+        <div class="hint">Em tabelas usuais, <code>k_alumínio</code> é várias vezes maior que <code>k_ferro</code>.</div>
+      </div>
+    </div>
+
+    <!-- PASSO 3 -->
+    <div class="step">
+      <div class="q">3) Para a panela composta (cobre + aço) em série, a expressão efetiva mostra uma condutância
+        <em>menor</em> que a do cobre puro. Assim, ordene, da maior para a menor taxa de condução: </div>
+      <div class="controls">
+        <input type="text" aria-label="Passo 3" placeholder="Ex.: aluminio > composta > ferro"
+               onchange="checkWord(this,'aluminio > composta > ferro|aluminio&gt;composta&gt;ferro|alumínio > composta > ferro')" />
+        <div class="status" aria-live="polite"></div>
+        <button type="button" onclick="toggleHint(this)">Mostrar dica</button>
+        <div class="hint">Use <code>ΔQ/Δt = A ΔT / ( d1/k1 + d2/k2 )</code>: termos em série aumentam a resistência térmica total.</div>
+      </div>
+    </div>
+
+    <!-- ALTERNATIVAS -->
+    <section aria-label="Alternativas de resposta">
+      <h2 style="font-size:20px; margin-top:26px;">Alternativas</h2>
+      <div class="options">
+        <div class="opcao" onclick="checkAnswer('A')">
+          <div class="optline">
+            <span class="circulo">A</span>
+            <div>cobre, alumínio e ferro.</div>
+          </div>
+        </div>
+
+        <div class="opcao" onclick="checkAnswer('B')">
+          <div class="optline">
+            <span class="circulo">B</span>
+            <div>alumínio, cobre (com aço) e ferro.</div>
+          </div>
+        </div>
+
+        <div class="opcao" onclick="checkAnswer('C')">
+          <div class="optline">
+            <span class="circulo">C</span>
+            <div>aço, alumínio e ferro.</div>
+          </div>
+        </div>
+
+        <div class="opcao" onclick="checkAnswer('D')">
+          <div class="optline">
+            <span class="circulo">D</span>
+            <div>alumínio, ferro e cobre (com aço).</div>
+          </div>
+        </div>
+
+        <div class="opcao" onclick="checkAnswer('E')">
+          <div class="optline">
+            <span class="circulo">E</span>
+            <div>ferro, alumínio e cobre.</div>
+          </div>
+        </div>
+
+        <!-- EXEMPLO DE BLOCO DE OPÇÃO COM IMAGEM (para copiar)
+        <div class="opcao" onclick="checkAnswer('B')">
+          <div class="optline">
+            <span class="circulo">B</span>
+            <!-- <img class="altimg" src="q16_altB.png" alt="Esquema destacando que alumínio conduz mais, depois cobre+ aço, depois ferro"> -->
+          </div>
+        </div>
+        -->
+      </div>
+
+      <div class="footer-actions">
+        <button type="button" onclick="checkAnswer('_force')">Confirmar escolha</button>
+        <div id="message" aria-live="polite"></div>
+      </div>
+      <div class="small" style="margin-top:6px;">Toda a solução (interativa) aparece antes das alternativas, e fórmulas estão em monoespaço simples.</div>
+    </section>
+  </div>
+
+  <script>
+    // ===== Funções exigidas =====
+    function normalize(str) {
+      if (typeof str !== 'string') return '';
+      return str
+        .toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')  // remove acentos
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
+    function checkWord(inputEl, patterns) {
+      const norm = normalize(inputEl.value);
+      const accepted = String(patterns || '')
+        .split('|')
+        .map(s => normalize(s))
+        .filter(Boolean);
+
+      const ok = accepted.some(acc => acc === norm);
+      const statusEl = inputEl.parentElement.querySelector('.status');
+
+      if (ok) {
+        inputEl.classList.remove('bad'); inputEl.classList.add('ok');
+        statusEl.textContent = '✅ Correto'; statusEl.className = 'status ok';
+      } else {
+        inputEl.classList.remove('ok'); inputEl.classList.add('bad');
+        statusEl.textContent = '❌ Verifique sua resposta'; statusEl.className = 'status bad';
+      }
+    }
+
+    function toggleHint(btn) {
+      const wrap = btn.closest('.controls');
+      const hint = wrap.querySelector('.hint');
+      const showing = hint.style.display === 'block';
+      hint.style.display = showing ? 'none' : 'block';
+      btn.textContent = showing ? 'Mostrar dica' : 'Ocultar dica';
+    }
+
+    // ===== Checagem de alternativas =====
+    const correct = 'B'; // letra correta
+
+    let lastChoice = null;
+    Array.from(document.querySelectorAll('.option')).forEach(opt => {
+      opt.addEventListener('click', () => {
+        document.querySelectorAll('.option').forEach(o => o.style.borderColor = '#e5e7eb');
+        opt.style.borderColor = '#94a3b8';
+        const circle = opt.querySelector('.circle');
+        lastChoice = circle ? circle.textContent.trim() : null;
+      });
+    });
+
+    function checkAnswer(trigger) {
+      const msg = document.getElementById('message');
+      const chosen = (trigger && trigger !== '_force') ? trigger : lastChoice;
+
+      if (!chosen) {
+        msg.textContent = 'Selecione uma alternativa.';
+        msg.className = '';
+        return;
+      }
+      if (chosen === correct) {
+        msg.textContent = 'Correto!';
+        msg.className = 'ok';
+      } else {
+        msg.textContent = 'Errado. Tente novamente.';
+        msg.className = 'bad';
+      }
+    }
+  </script>
+</div>
+</body>
+</html>

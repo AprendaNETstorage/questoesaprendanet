@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista — Problema 19 — Termologia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Termologia</a>
+    <span class="spacer"></span>
+    <a href="questao_051.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">52/58</span>
+    <a href="questao_053.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista — Problema 19</h2>
+  <h3>Problema 19:</h3>
+
+<p><strong>9 – ENEM 2024</strong></p>
+
+<p>
+  A tirinha mostra esquimós dentro de um iglu (hemisfério feito com neve/blocos de gelo). O iglu é uma construção <em>isolante</em>, usada nas regiões muito frias por ajudar a manter a temperatura interna acima de 0&nbsp;°C.
+</p>
+
+<!-- Imagem/tirinha (deixar comentada mesmo sem o arquivo) -->
+<!-- <div class="imgwrap"><img src="tirinha_iglu_geladeira.png" alt="Tirinha: iglu e geladeira para fazer gelo"></div> -->
+
+<p><strong>Na tirinha, a geladeira é necessária para fazer gelo porque</strong></p>
+
+<!-- SOLUÇÃO (INTERATIVA) ANTES DAS ALTERNATIVAS -->
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) O iglu, feito de neve/gelo, se comporta como isolante térmico. O interior tende a ficar</strong><br>
+  <input onchange="checkWord(this,'acima de 0 c|mais quente que o exterior|temperatura interna maior|acima do ponto de congelamento')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>O isolamento retém o calor dos ocupantes.</span>
+  </span>
+</p>
+
+<p><strong>2) Para que a água vire gelo, a temperatura precisa ficar</strong><br>
+  <input onchange="checkWord(this,'abaixo de 0 c|menor que 0 c|abaixo do ponto de congelamento|menor que a de solidificacao')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Considere o ponto de solidificação da água.</span>
+  </span>
+</p>
+
+<p><strong>3) Então, por que é preciso <u>geladeira</u> para fazer gelo dentro do iglu?</strong><br>
+  <input onchange="checkWord(this,'porque o interior do iglu e mais quente que 0 c e a geladeira resfria abaixo de 0 c|porque a temperatura interna e maior que a de solidificacao|precisa baixar a temperatura abaixo de 0 c')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>A geladeira força temperatura menor que 0&nbsp;°C.</span>
+  </span>
+</p>
+
+<!-- ALTERNATIVAS -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  Porque a temperatura interna do iglu é maior do que a de solidificação da água.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  Porque a umidade dentro do iglu dificulta a mudança de fase da água.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  Porque o ar dentro do iglu é isolante térmico, dificultando a perda de calor pela água.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  Porque a temperatura uniforme no interior impede as correntes de convecção.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  Porque a pressão do ar no interior é baixa, dificultando a solidificação.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para ignorar acentos
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+  // verificação por palavras-chave
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = span.style.display === 'inline' ? 'none' : 'inline';
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'A';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problema 37 - Sistemas Numéricos — Termologia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Termologia</a>
+    <span class="spacer"></span>
+    <a href="questao_056.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">57/58</span>
+    <a href="questao_058.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Problema 37 - Sistemas Numéricos</h2>
+  <h3>Problema 37:</h3>
+  <p>
+    O chocolate é um dos alimentos mais apreciados do mundo. Uma loja especializada oferece uma promoção: os bombons custam R$ 2,00 cada, e cada cliente recebe <em>x%</em> de desconto na compra de <em>x</em> bombons. A promoção vale para até 40 bombons (<em>x</em> ≤ 40).<br>
+    Qual expressão fornece o valor <em>V</em>, em reais, na compra de <em>x</em> bombons?
+  </p>
+
+  <h4>Resolução passo a passo:</h4>
+  <ul>
+    <li>Valor sem desconto: <input onchange="check(this, '2x')"> reais</li>
+    <li>Desconto percentual: <input onchange="check(this, 'x/100')"></li>
+    <li>Desconto em reais: <input onchange="check(this, '2x*x/100')"> ou <input onchange="check(this, '2x^2/100')"> reais</li>
+    <li>Valor final: <input onchange="check(this, '2x - 2x^2/100')"> ou <input onchange="check(this, '2x - x^2/50')"> reais</li>
+  </ul>
+
+  <h4>Alternativas:</h4>
+  <div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> \( V = \dfrac{x^2}{50} \)</div>
+  <div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> \( V = 2 - \dfrac{x}{50} \)</div>
+  <div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> \( V = 2x - \dfrac{x^2}{50} \)</div>
+  <div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> \( V = x - \dfrac{x^2}{100} \)</div>
+  <div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> \( V = 2x - \dfrac{x}{100} \)</div>
+
+  <div id="message" class="feedback"></div>
+
+  <script>
+    function check(input, correct) {
+      let value = input.value.trim().replace(',', '.').replace(' ', '');
+      let expected = correct.replace(',', '.').replace(' ', '');
+      value = value.replace(/x²/g, 'x^2');
+      input.nextElementSibling?.remove();
+      if (value === expected) {
+        input.style.backgroundColor = "#c6f6c6";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+      } else {
+        input.style.backgroundColor = "#fdd";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+      }
+    }
+
+    function checkAnswer(letter) {
+      const correct = 'C';
+      const message = document.getElementById('message');
+      if (letter === correct) {
+        message.textContent = 'Correto! A expressão correta é V = 2x - x²/50.';
+        message.style.color = 'green';
+      } else {
+        message.textContent = `Errado. A alternativa ${letter} não é a correta.`;
+        message.style.color = 'red';
+      }
+    }
+  </script>
+</div>
+</body>
+</html>

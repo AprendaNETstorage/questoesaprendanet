@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 25 — Termologia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Termologia</a>
+    <span class="spacer"></span>
+    <a href="questao_035.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">36/58</span>
+    <a href="questao_037.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 25</h2>
+  <h3>Problema 25:</h3>
+
+<!-- ENUNCIADO IDÊNTICO -->
+<p><strong>52. (Enem 2011)</strong></p>
+<p>Um tipo de vaso sanitário que vem substituindo as válvulas de descarga está esquematizado na figura. Ao acionar a alavanca, toda a água do tanque é escoada e aumenta o nível no vaso, até cobrir o sifão. De acordo com o Teorema de Stevin, quanto maior a profundidade, maior a pressão. Assim, a água desce levando os rejeitos até o sistema de esgoto. A válvula da caixa de descarga se fecha e ocorre o seu enchimento. Em relação às válvulas de descarga, esse tipo de sistema proporciona maior economia de água.</p>
+
+<div class="imgwrap">
+  <!-- (opcional) coloque o esquema do enunciado na mesma pasta e ajuste o src) -->
+  <img src="q25_tanque.png" alt="Esquema do vaso sanitário com tanque e sifão">
+</div>
+
+<p>A característica de funcionamento que garante essa economia é devida</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) O que define a pressão na saída (Teorema de Stevin)?</strong>
+  <br>Depende de <input onchange="checkWord(this,'densidade|rho|ρ')">, de <input onchange="checkWord(this,'gravidade|g')">
+  e principalmente da <input onchange="checkWord(this,'altura da coluna de agua|altura h|profundidade h')"> acima do ponto de saída.
+</p>
+
+<p><strong>2) Qual grandeza <u>não</u> entra na expressão da pressão hidrostática?</strong>
+  <br><input onchange="checkWord(this,'volume total de agua|volume do tanque|quantidade total no reservatorio')">.
+</p>
+
+<p><strong>3) Logo, como o sistema economiza água em relação às válvulas antigas?</strong>
+  <br>Produz a mesma pressão de descarga usando <input onchange="checkWord(this,'menor volume no tanque|menos agua armazenada')">, pois basta manter a altura d'água necessária.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  à altura do sifão de água.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  ao volume do tanque de água.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  à altura do nível de água no vaso.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  ao diâmetro do distribuidor de água.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  à eficiência da válvula de enchimento do tanque.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // Validação por palavras-chave (tolerante a variações e acentos)
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function checkWord(input, patterns){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'B';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

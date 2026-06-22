@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 2 — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_010.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">11/71</span>
+    <a href="questao_012.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 2</h2>
+  <p>
+  <a href="index.html">🔹 Ir para Problema 1</a> |
+  
+</p>
+
+<h3>Problema 2:</h3>
+
+<!-- ENUNCIADO IDÊNTICO -->
+<p><strong>60. (ENEM 2014)</strong></p>
+<p>Alguns sistemas de segurança incluem detectores de movimento. Nesses sensores, existe uma substância que se polariza na presença de radiação eletromagnética de certa região de frequência, gerando uma tensão que pode ser amplificada e empregada para efeito de controle. Quando uma pessoa se aproxima do sistema, a radiação emitida por seu corpo é detectada por esse tipo de sensor.</p>
+<p><em>WENDLING, M. Sensores.</em> Disponível em: www2.feg.unesp.br. Acesso em: 7 maio 2014 (adaptado).</p>
+<p>A radiação captada por esse detector encontra-se na região de frequência</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Qual é a natureza da radiação emitida pelo corpo humano (~300 K)?</strong>
+  <br>É <input onchange="checkWord(this,'termica|térmica|corpo negro')"> e seu pico está no
+  <input onchange="checkWord(this,'infravermelho|ir')">.
+</p>
+
+<p><strong>2) Estimativa com a lei de Wien:</strong> <small>(λ<sub>máx</sub> ≈ 2,9×10<sup>−3</sup> m·K / T)</small></p>
+<p>
+  T ≈ <input onchange="checkExpr(this,'300')"> K →
+  λ<sub>máx</sub> ≈ <input onchange="checkExpr(this,'2.9e-3/300|9.67e-6|9.7e-6')"> m
+  (= <input onchange="checkExpr(this,'9.7e-6*1e6|9.7')"> µm).
+</p>
+
+<p><strong>3) Em que faixa do espectro fica ~10 µm?</strong>
+  <br><input onchange="checkWord(this,'infravermelho|infra-vermelho|ir')">.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  da luz visível.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  do ultravioleta.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  do infravermelho.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  das micro-ondas.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  das ondas longas de rádio.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // -------- helpers (aceita vírgula/ponto e expressões simples) --------
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function safeEval(expr){
+    const cleaned = String(expr).replace(/\s/g,'');
+    if(!/^[0-9eE+\-*/().,×^]+$/.test(cleaned)) return null;
+    const norm = cleaned.replace(/,/g,'.').replace(/×/g,'*').replace(/\^/g,'**');
+    try{
+      const v = Function('"use strict"; return ('+norm+');')();
+      return (typeof v === 'number' && Number.isFinite(v)) ? v : null;
+    }catch{ return null; }
+  }
+  function nearlyEqual(a,b,eps=1e-3){ return Math.abs(a-b) <= eps*Math.max(1,Math.abs(a),Math.abs(b)); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+  function checkExpr(input, expectedExprs){
+    const val = safeEval(input.value.trim());
+    const targets = expectedExprs.split('|').map(e => safeEval(e));
+    const ok = (val !== null) && targets.some(t => t !== null && nearlyEqual(val, t));
+    paint(input, ok);
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'C';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

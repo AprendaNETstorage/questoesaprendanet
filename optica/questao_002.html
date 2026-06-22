@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ondas — Lista 03 — Problema 11 — Óptica</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Óptica</a>
+    <span class="spacer"></span>
+    <a href="questao_001.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">2/42</span>
+    <a href="questao_003.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Ondas — Lista 03 — Problema 11</h2>
+  <h3>Problema 11 — ENEM 2010</h3>
+
+<p><strong>Enunciado.</strong> Júpiter, conhecido como o gigante gasoso, perdeu uma das suas faixas mais proeminentes, deixando o seu hemisfério sul estranhamente "vazio". A imagem captada por telescópios (no espaço) mostra a região antes e depois do desaparecimento da faixa.</p>
+
+<p>A aparência de Júpiter é marcada por faixas escuras em sua atmosfera. Como o gás está constantemente em movimento, o desaparecimento da faixa no planeta relaciona-se com o movimento das <em>nuvens</em> em sua atmosfera. A luz do Sol, refletida nessas nuvens, gera a imagem que é captada pelos telescópios.</p>
+<figure>
+  <img src="questao_94.png" alt="Enunciado/ilustração da questão 132">
+</figure>
+
+<p><strong>Pergunta.</strong> O desaparecimento da faixa pode ser determinado por uma alteração</p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  na temperatura da superfície do planeta.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  no formato da camada gasosa do planeta.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  no campo gravitacional gerado pelo planeta.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  na composição química das nuvens que compõem o planeta.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  na densidade das nuvens que compõem o planeta.
+</div>
+
+<div id="message" aria-live="polite"></div>
+
+<details>
+  <summary>💡 Dica (opcional)</summary>
+  <small>Pense no que controla a <em>quantidade de luz refletida</em> pelas nuvens (refletância) e em como uma mudança nisso faria uma faixa "sumir" na imagem.</small>
+</details>
+
+<script>
+  function checkAnswer(letter){
+    const correct = 'E'; // gabarito (não aparece até clicar)
+    const msg = document.getElementById('message');
+    if (letter === correct){
+      msg.textContent = 'Correto! Uma mudança na densidade das nuvens altera a luz refletida e a faixa "desaparece".';
+      msg.style.color = 'green';
+    } else {
+      msg.textContent = 'Não é essa. Qual opção muda a refletância das nuvens vistas pelo telescópio?';
+      msg.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

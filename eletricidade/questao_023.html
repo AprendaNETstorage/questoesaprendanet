@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 30 — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_022.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">23/81</span>
+    <a href="questao_024.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 30</h2>
+  <h3>Problema 30:</h3>
+
+<p><strong>3 – Enem 2023</strong></p>
+<p><strong>Questão 108</strong></p>
+
+<p>
+  O fogão por indução funciona a partir do surgimento de uma corrente elétrica induzida no fundo da panela, com consequente transformação de energia elétrica em calor por efeito Joule. A principal vantagem desses fogões é a eficiência energética, que é substancialmente maior que a dos fogões convencionais. A corrente elétrica mencionada é induzida por
+</p>
+
+<!-- SOLUÇÃO (INTERATIVA) ANTES DAS ALTERNATIVAS -->
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Qual grandeza física variável "corta" o fundo metálico e induz corrente?</strong><br>
+  <input onchange="checkWord(this,'campo magnetico variavel|campo magnético variável|variacao de fluxo magnetico|variação do fluxo magnético')">
+  <span class="hint">
+    <button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Lembre da Lei de Faraday-Lenz sobre variação de fluxo.</span>
+  </span>
+</p>
+
+<p><strong>2) Como são chamadas as correntes geradas no metal?</strong><br>
+  <input onchange="checkWord(this,'correntes de foucault|correntes parasitas|eddy currents')">
+  <span class="hint">
+    <button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Elas circulam em "redemoinhos" no fundo da panela.</span>
+  </span>
+</p>
+
+<p><strong>3) Qual fenômeno converte essa corrente em aquecimento?</strong><br>
+  <input onchange="checkWord(this,'efeito joule|aquecimento resistivo|joule')">
+  <span class="hint">
+    <button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Pense em <em>P = I²R</em> no material condutor.</span>
+  </span>
+</p>
+
+<!-- ALTERNATIVAS -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  A radiação.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  Condução.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  Campo elétrico variável.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  Campo magnético variável.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  Ressonância eletromagnética.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização p/ ignorar acentos
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = span.style.display === 'inline' ? 'none' : 'inline';
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'D';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

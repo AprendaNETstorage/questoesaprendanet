@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 35 — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_038.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">39/71</span>
+    <a href="questao_040.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 35</h2>
+  <h3>Problema 35:</h3>
+
+<!-- ENUNCIADO IDÊNTICO -->
+<p>Nossa pele possui células que reagem à incidência de luz ultravioleta e produzem uma substância chamada melanina, responsável pela pigmentação da pele. Pensando em se bronzear, uma garota vestiu um biquíni, acendeu a luz de seu quarto e deitou-se exatamente abaixo da lâmpada incandescente. Após várias horas ela percebeu que não conseguiu resultado algum.</p>
+<p>O bronzeamento não ocorreu porque a luz emitida pela lâmpada incandescente é de</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Que radiação provoca o bronzeamento?</strong>
+  <br><input onchange="checkWord(this,'ultravioleta|uv')"> (alta energia por fóton).
+</p>
+
+<p><strong>2) Energia do fóton e frequência:</strong>
+  <br>A energia cresce quando a <input onchange="checkWord(this,'frequencia|frequência')"> aumenta.
+</p>
+
+<p><strong>3) O que emite uma lâmpada incandescente comum?</strong>
+  <br>Predominantemente <input onchange="checkWord(this,'visivel|visível')"> e
+  <input onchange="checkWord(this,'infravermelho|infra-vermelho|ir')"> —
+  <input onchange="checkWord(this,'frequencias menores que uv|frequencias inferiores|baixa frequencia')">.
+</p>
+
+<p><strong>4) Então, por que não houve bronzeamento?</strong>
+  <br>Porque a luz emitida tem <input onchange="checkWord(this,'baixa frequencia|frequencia baixa')"> para excitar a produção de melanina.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  baixa intensidade.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  baixa frequência.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  um espectro contínuo.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  amplitude inadequada.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  curto comprimento de onda.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // validação por palavras-chave (tolerante a acentos/variações)
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function checkWord(input, patterns){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'B';
+    const message = document.getElementById('message');
+    if(letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    }else{
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

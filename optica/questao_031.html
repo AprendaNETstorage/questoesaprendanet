@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 04 — Óptica</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Óptica</a>
+    <span class="spacer"></span>
+    <a href="questao_030.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">31/42</span>
+    <a href="questao_032.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 04</h2>
+  <h3>Problema 47:</h3>
+
+  <p>
+    O boliche é um esporte cujo objetivo é derrubar, com uma bola, uma série de pinos alinhados em uma pista. A professora de matemática organizou um jogo de boliche em que os pinos são garrafas que possuem rótulos com números, conforme mostra o esquema.
+  </p>
+
+  <p><em>[Inserir imagem com os pinos e rótulos: 3/4, 0,75, 75%, etc.]</em></p>
+
+  <p>
+    O aluno marca pontos de acordo com a soma das quantidades expressas nos rótulos das garrafas que são derrubadas. Se dois ou mais rótulos representam a mesma quantidade, apenas um deles entra na contagem dos pontos. Um aluno marcou 7,55 pontos em uma jogada. Uma das garrafas que ele derrubou tinha o rótulo 6,8.
+  </p>
+
+  <p>
+    A quantidade máxima de garrafas que ele derrubou para obter essa pontuação é igual a:
+  </p>
+
+  <h4>Solução 47:</h4>
+
+  <p><strong>Passo 1:</strong> Identificar valores dos rótulos diferentes em decimal:</p>
+  <ul>
+    <li>6,8</li>
+    <li>0,75 (3/4, 75%, 0,75, etc. — todos equivalentes)</li>
+    <li>0,34</li>
+    <li>0,68</li>
+    <li>1,33</li>
+    <li>3,4</li>
+    <li>4,3</li>
+    <li>1,05</li>
+  </ul>
+
+  <p><strong>Passo 2:</strong> Como a garrafa de 6,8 foi usada, a soma restante deve ser:</p>
+  <p>
+    <input onchange="check(this, '7.55')"> - 
+    <input onchange="check(this, '6.8')"> = 
+    <input onchange="check(this, '0.75')">
+  </p>
+
+  <p>Ou seja, devemos somar outras garrafas que totalizem exatamente 0,75.</p>
+
+  <p><strong>Passo 3:</strong> Procurar combinações de rótulos distintos que somem 0,75:</p>
+
+  <p>Exemplo de combinação possível:</p>
+  <ul>
+    <li>0,34 + 0,68 = 1,02 (passa do limite)</li>
+    <li>0,34 + 0,75 = 1,09 (passa também)</li>
+    <li><strong>0,34 + 0,68 + 0,75 + 1,33 + 3,4 + 1,05</strong> = 
+      <input onchange="check(this, '7.55')">
+    </li>
+  </ul>
+
+  <p>
+    Verificamos que é possível atingir os 7,55 pontos derrubando 6 garrafas com valores <strong>todos diferentes</strong>, respeitando a condição do enunciado.
+  </p>
+
+  <p><strong>Resposta:</strong> A maior quantidade possível é:
+    <input onchange="check(this, '6')"> garrafas
+  </p>
+
+  <h4>Alternativas:</h4>
+
+  <div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> 2</div>
+  <div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> 3</div>
+  <div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> 4</div>
+  <div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> 5</div>
+  <div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> 6</div>
+
+  <div id="message" class="feedback"></div>
+
+  <script>
+    function check(input, correct) {
+      const value = input.value.trim().replace(',', '.');
+      const expected = correct.toString().replace(',', '.');
+      input.nextElementSibling?.remove();
+      if (value === expected) {
+        input.style.backgroundColor = "#c6f6c6";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+      } else {
+        input.style.backgroundColor = "#fdd";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+      }
+    }
+
+    function checkAnswer(letter) {
+      const correct = 'E';
+      const message = document.getElementById('message');
+      if (letter === correct) {
+        message.textContent = 'Correto! A maior quantidade possível de garrafas distintas é 6.';
+        message.style.color = 'green';
+      } else {
+        message.textContent = `Errado. A alternativa ${letter} não é a correta.`;
+        message.style.color = 'red';
+      }
+    }
+  </script>
+</div>
+</body>
+</html>

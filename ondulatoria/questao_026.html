@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 4 — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_025.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">26/71</span>
+    <a href="questao_027.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 4</h2>
+  <h3>Problema 4:</h3>
+
+<!-- ENUNCIADO IDÊNTICO -->
+<p>Uma manifestação comum das torcidas em estádios de futebol é a <em>ola</em> mexicana. Os espectadores de uma linha, sem sair do lugar e sem se deslocarem lateralmente, ficam de pé e se sentam, sincronizados com os da linha adjacente. O efeito coletivo se propaga pelos espectadores do estádio, formando uma onda progressiva, conforme ilustração.</p>
+
+<p>Calcula-se que a velocidade de propagação dessa "onda humana" é de 45 km/h, e que cada período de oscilação contém 16 pessoas, que se levantam e sentam organizadamente e distanciadas entre si por 80 cm.</p>
+
+<p>Nessa ola mexicana, a frequência da onda, em hertz, é um valor mais próximo de</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Converter a velocidade:</strong>
+  45 km/h = <input onchange="checkExpr(this,'45*1000/3600|12.5')"> m/s
+</p>
+
+<p><strong>2) Comprimento de onda (λ):</strong>
+  Cada período espacial tem 16 pessoas ⇒ <em>15</em> intervalos.
+  Distância por intervalo = 0,80 m.
+  Então, λ = <input onchange="checkExpr(this,'15*0.8|12')"> m
+</p>
+
+<p><strong>3) Frequência (f = v/λ):</strong>
+  f = <input onchange="checkExpr(this,'12.5/12|1.0416|1.04|1.0')"> Hz
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  0,3
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  0,5
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  1,0
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  1,9
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  3,7
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // Aceita vírgula/ponto e expressões simples
+  function safeEval(expr){
+    const cleaned = String(expr).replace(/\s/g,'');
+    if(!/^[0-9eE+\-*/().,×^]+$/.test(cleaned)) return null;
+    const norm = cleaned.replace(/,/g,'.').replace(/×/g,'*').replace(/\^/g,'**');
+    try{
+      const v = Function('"use strict"; return ('+norm+');')();
+      return (typeof v === 'number' && Number.isFinite(v)) ? v : null;
+    }catch{ return null; }
+  }
+  function nearlyEqual(a,b,eps=1e-3){ return Math.abs(a-b) <= eps*Math.max(1,Math.abs(a),Math.abs(b)); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkExpr(input, expectedExprs){
+    const val = safeEval(input.value.trim());
+    const targets = expectedExprs.split('|').map(e => safeEval(e));
+    const ok = (val !== null) && targets.some(t => t !== null && nearlyEqual(val, t));
+    paint(input, ok);
+  }
+
+  // Gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'C';
+    const message = document.getElementById('message');
+    if(letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    }else{
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

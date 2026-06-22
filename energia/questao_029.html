@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista — Problema 10 (ENEM 2022) — Energia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Energia</a>
+    <span class="spacer"></span>
+    <a href="questao_028.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">29/33</span>
+    <a href="questao_030.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista — Problema 10 (ENEM 2022)</h2>
+  <h3>Problema 10:</h3>
+
+<p><strong>10 – Enem 2022</strong></p>
+
+<p>
+  Em um autódromo, os carros podem derrapar em uma curva e bater na parede de proteção.
+  Para diminuir o impacto de uma batida, pode-se colocar na parede uma barreira de pneus,
+  isso faz com que a colisão seja mais demorada e o carro retorne com velocidade reduzida.
+  Outra opção é colocar uma barreira de blocos de um material que se deforma, tendo a
+  colisão tão demorada quanto a colisão com os pneus, mas que não permite a volta do carro
+  após a colisão. Comparando as duas situações, como ficam a força média exercida sobre o carro
+  e a energia mecânica dissipada?
+</p>
+
+<!-- (Opcional) ilustração: deixe comentado se não houver arquivo -->
+<!-- <div class="imgwrap"><img src="barreiras_autodromo.png" alt="Colisão com barreira de pneus e com barreira de blocos"></div> -->
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Se o tempo de contato é o mesmo nas duas barreiras, a força média depende de qual grandeza?</strong><br>
+  <input onchange="checkWord(this,'impulso|variacao de quantidade de movimento|delta p|Δp|fmedia=Δp/Δt')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Com Δt igual, quem tiver maior |Δp| terá maior força média (F̄ = Δp/Δt).</span>
+  </span>
+</p>
+
+<p><strong>2) Na barreira de pneus o carro <em>rebate</em> (volta) com velocidade menor; na de blocos ele para. Qual caso tem |Δp| maior?</strong><br>
+  <input onchange="checkWord(this,'pneus|rebate aumenta delta p|(1+k)p > p|reversao do sentido aumenta a variacao')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Ir de +p para −k·p (k&lt;1) muda o sentido → |Δp| = (1+k)p, maior que apenas ir a zero (p).</span>
+  </span>
+</p>
+
+<p><strong>3) Qual barreira dissipa mais energia mecânica do carro?</strong><br>
+  <input onchange="checkWord(this,'blocos|nao ha retorno|mais dissipacao|pneus devolvem parte da energia')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Se o carro não volta, sua energia cinética final é ~0 → maior dissipação (blocos).</span>
+  </span>
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  A força é maior na colisão com a barreira de pneus, e a energia dissipada é maior na colisão com a barreira de blocos.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  A força é maior na colisão com a barreira de blocos, e a energia dissipada é maior na colisão com a barreira de pneus.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  A força é maior na colisão com a barreira de blocos, e a energia dissipada é a mesma nas duas situações.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  A força é maior nas colisões com a barreira de pneus, e a energia dissipada é maior na colisão com a barreira de pneus.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  A força é maior na colisão com a barreira de blocos, e a energia dissipada é maior na colisão com a barreira de blocos.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para ignorar acentos
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+  // verificação por palavras-chave (tolerante, sem entregar tudo)
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = (span.style.display === 'inline') ? 'none' : 'inline';
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'A';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 28 — Termologia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Termologia</a>
+    <span class="spacer"></span>
+    <a href="questao_014.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">15/58</span>
+    <a href="questao_016.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 28</h2>
+  <h3>Problema 28:</h3>
+
+<!-- ENUNCIADO (texto equivalente ao original) -->
+<p><strong>95. (ENEM)</strong></p>
+<p>Usando um densímetro cuja menor divisão da escala, isto é, a diferença entre duas marcações consecutivas, é de 5,0 × 10<sup>−2</sup> g/cm³, um estudante realizou um teste de densidade: colocou esse instrumento na água pura e observou que ele atingiu o repouso na posição mostrada. Em dois outros recipientes A e B, contendo 2 litros de água pura cada um, ele adicionou 100 g e 200 g de NaCl, respectivamente.</p>
+<p>Quando o cloreto de sódio é adicionado à água pura ocorre sua dissociação, formando os íons Na<sup>+</sup> e Cl<sup>−</sup>. Considere que esses íons ocupam os espaços intermoleculares na solução. Nestes recipientes, a posição de equilíbrio do densímetro está representada em:</p>
+<figure>
+  <img src="questao28_potencial.png"
+       alt="Densimetro">
+</figure>
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Concentração de sal em cada recipiente.</strong><br>
+No recipiente A: C<sub>A</sub> =
+<input onchange="checkExpr(this,'100/2|50')"> g/L. <br>
+No recipiente B: C<sub>B</sub> =
+<input onchange="checkExpr(this,'200/2|100')"> g/L.
+</p>
+
+<p><strong>2) Relação entre concentração e densidade.</strong><br>
+Adicionar NaCl à água faz a densidade
+<input onchange="checkWord(this,'aumenta|ficar maior|cresce')">
+porque há mais massa ocupando o mesmo volume. <br>
+Logo, o recipiente de maior densidade é o
+<input onchange="checkWord(this,'b')">.
+</p>
+
+<p><strong>3) Comportamento do densímetro.</strong><br>
+Em um líquido mais denso, o densímetro
+<input onchange="checkWord(this,'flutua mais|fica mais alto|afunda menos|sobe')">
+na superfície (fica com menor parte imersa). <br>
+Portanto, a haste do densímetro ficará
+<input onchange="checkWord(this,'mais alta em b|mais alta no b|mais alta no recipiente b')">
+do que em A.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  A e B apresentam a mesma altura do densímetro na superfície.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  O densímetro fica mais alto em A do que em B.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  O densímetro fica mais afundado em B do que em A.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  O densímetro fica mais alto em B do que em A.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  O densímetro fica igualmente afundado em ambos os recipientes.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // -------- helpers (aceita vírgula/ponto e expressões simples) --------
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function safeEval(expr){
+    const cleaned = String(expr).replace(/\s/g,'');
+    if(!/^[0-9eE+\-*/().,×^]+$/.test(cleaned)) return null;
+    const norm = cleaned.replace(/,/g,'.').replace(/×/g,'*').replace(/\^/g,'**');
+    try{
+      const v = Function('"use strict"; return ('+norm+');')();
+      return (typeof v === 'number' && Number.isFinite(v)) ? v : null;
+    }catch{ return null; }
+  }
+  function nearlyEqual(a,b,eps=1e-3){ return Math.abs(a-b) <= eps*Math.max(1,Math.abs(a),Math.abs(b)); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+  function checkExpr(input, expectedExprs){
+    const val = safeEval(input.value.trim());
+    const targets = expectedExprs.split('|').map(e => safeEval(e));
+    const ok = (val !== null) && targets.some(t => t !== null && nearlyEqual(val, t));
+    paint(input, ok);
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'D';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

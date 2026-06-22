@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 16 — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_006.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">7/71</span>
+    <a href="questao_008.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 16</h2>
+  <h3>Problema 16:</h3>
+
+<!-- ENUNCIADO IDÊNTICO -->
+<p><strong>75. (Enem 2011)</strong></p>
+<p>Ao diminuir o tamanho de um orifício atravessado por um feixe de luz, passa menos luz por intervalo de tempo e, próximo da situação de completo fechamento do orifício, verifica-se que a luz apresenta um comportamento como o ilustrado nas figuras. Sabe-se que o som, dentro de suas particularidades, também pode se comportar dessa forma.</p>
+
+<p><strong>Em qual das situações a seguir está representado o fenômeno descrito no texto?</strong></p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Nome do fenômeno descrito:</strong>
+  <input onchange="checkWord(this,'difracao|difração')">
+</p>
+
+<p><strong>2) Condição típica para que ele ocorra:</strong>
+  abertura/fenda com dimensão
+  <input onchange="checkWord(this,'comparavel ao comprimento de onda|comparável ao comprimento de onda|tamanho parecido com o comprimento de onda|da ordem de lambda|da ordem do comprimento de onda')">
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  Ao se esconder atrás de um muro, um menino ouve a conversa de seus colegas.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  Ao gritar diante de um desfiladeiro, uma pessoa ouve a repetição do seu próprio grito.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  Ao encostar o ouvido no chão, um homem percebe o som de uma locomotiva antes de ouvi-lo pelo ar.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  Ao ouvir uma ambulância se aproximando, uma pessoa percebe o som mais agudo do que quando aquela se afasta.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  Ao emitir uma nota musical muito aguda, uma cantora de ópera faz com que uma taça de cristal se despedace.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // ---- helpers: validação tolerante a acentos/variações ----
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'A';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 36 — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_023.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">24/71</span>
+    <a href="questao_025.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 36</h2>
+  <h3>Problema 36:</h3>
+
+<p><strong>57. (ENEM 2016)</strong></p>
+
+<p>
+O morcego emite pulsos de curta duração de ondas ultrassônicas, os quais voltam na forma de ecos
+após atingirem objetos no ambiente, trazendo informações a respeito das suas dimensões, suas
+localizações e dos seus possíveis movimentos. Isso se dá em razão da sensibilidade do morcego em
+detectar o tempo gasto para os ecos voltarem, bem como das pequenas variações nas frequências e nas
+intensidades dos pulsos ultrassônicos. Essas características lhe permitem caçar pequenas presas mesmo
+quando estão em movimento em relação a si. Considere uma situação unidimensional em que uma
+mariposa se afasta, em movimento retilíneo e uniforme, de um morcego em repouso.
+A distância e velocidade da mariposa, na situação descrita, seriam detectadas pelo sistema de um
+morcego por quais alterações nas características dos pulsos ultrassônicos?
+</p>
+
+<ol type="A">
+  <li>Intensidade diminuída, o tempo de retorno aumentado e a frequência percebida diminuída.</li>
+  <li>Intensidade aumentada, o tempo de retorno diminuído e a frequência percebida diminuída.</li>
+  <li>Intensidade diminuída, o tempo de retorno diminuído e a frequência percebida aumentada.</li>
+  <li>Intensidade diminuída, o tempo de retorno aumentado e a frequência percebida aumentada.</li>
+  <li>Intensidade aumentada, o tempo de retorno aumentado e a frequência percebida aumentada.</li>
+</ol>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) O que acontece com o tempo de retorno do eco?</strong><br>
+Quando a mariposa se afasta, o percurso do som até ela e volta fica
+<input onchange="checkWord(this,'maior|aumentado')">
+, então o tempo de retorno é
+<input onchange="checkWord(this,'maior|aumentado')">.
+</p>
+
+<p><strong>2) O que acontece com a intensidade do eco?</strong><br>
+Como o som se propaga por uma distância maior antes de retornar,
+a intensidade que chega de volta ao morcego
+<input onchange="checkWord(this,'diminui|fica menor|é menor')">
+.</p>
+
+<p><strong>3) E a frequência percebida pelo morcego?</strong><br>
+Pelo efeito Doppler, se a fonte (a mariposa refletora) está se afastando, a frequência percebida
+pelo morcego é
+<input onchange="checkWord(this,'menor|diminuida|mais grave')">
+do que a emitida.</p>
+
+<p>
+Com isso, o morcego detecta <strong>intensidade diminuída</strong>, <strong>tempo de retorno aumentado</strong> e
+<strong>frequência percebida diminuída</strong>.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  Intensidade diminuída, o tempo de retorno aumentado e a frequência percebida diminuída.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  Intensidade aumentada, o tempo de retorno diminuído e a frequência percebida diminuída.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  Intensidade diminuída, o tempo de retorno diminuído e a frequência percebida aumentada.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  Intensidade diminuída, o tempo de retorno aumentado e a frequência percebida aumentada.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  Intensidade aumentada, o tempo de retorno aumentado e a frequência percebida aumentada.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // -------- helpers (aceita vírgula/ponto e expressões simples) --------
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function safeEval(expr){
+    const cleaned = String(expr).replace(/\s/g,'');
+    if(!/^[0-9eE+\-*/().,×^]+$/.test(cleaned)) return null;
+    const norm = cleaned.replace(/,/g,'.').replace(/×/g,'*').replace(/\^/g,'**');
+    try{
+      const v = Function('"use strict"; return ('+norm+');')();
+      return (typeof v === 'number' && Number.isFinite(v)) ? v : null;
+    }catch{ return null; }
+  }
+  function nearlyEqual(a,b,eps=1e-3){
+    return Math.abs(a-b) <= eps * Math.max(1, Math.abs(a), Math.abs(b));
+  }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+  function checkExpr(input, expectedExprs){
+    const val = safeEval(input.value.trim());
+    const targets = expectedExprs.split('|').map(e => safeEval(e));
+    const ok = (val !== null) && targets.some(t => t !== null && nearlyEqual(val, t));
+    paint(input, ok);
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'A';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto! Intensidade diminui, tempo de retorno aumenta e a frequência percebida fica menor.';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Lembre que a mariposa se afasta: eco volta mais fraco, demora mais e vem com frequência menor.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

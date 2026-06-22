@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista — Problema 25 — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_061.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">62/71</span>
+    <a href="questao_063.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista — Problema 25</h2>
+  <h3>Problema 25:</h3>
+
+<p><strong>3 – ENEM 2024</strong></p>
+
+<p>
+  Uma ambulância em alta velocidade, com sirene ligada, desloca-se em direção a um radar que emite ondas de rádio de frequência <em>f</em><sub>0</sub>. Essas ondas refletem na dianteira da ambulância e retornam com frequência <em>f</em><sub>r</sub>. Enquanto a ambulância se aproxima, o operador do radar percebe que o som da sirene se altera.
+</p>
+
+<!-- Imagem/diagrama (deixar comentado mesmo sem o arquivo) -->
+<!-- <div class="imgwrap"><img src="ambulancia_radar_doppler.png" alt="Ambulância aproximando-se do radar; reflexão do sinal de rádio"></div> -->
+
+<p><strong>Durante a aproximação</strong>, como o operador percebe o som e qual é a relação entre as frequências <em>f</em><sub>r</sub> e <em>f</em><sub>0</sub> medidas pelo radar?</p>
+
+<!-- SOLUÇÃO (INTERATIVA) ANTES DAS ALTERNATIVAS -->
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Efeito Doppler para <u>som</u>: quando a fonte se aproxima do observador, o tom fica mais…?</strong><br>
+  <input onchange="checkWord(this,'agudo|mais agudo|maior frequencia|frequencia maior')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>As frentes de onda "se comprimem" na aproximação.</span>
+  </span>
+</p>
+
+<p><strong>2) Para o <u>radar</u> (onda de rádio), o sinal vai e volta na frente do veículo que se aproxima. O eco retorna com frequência…?</strong><br>
+  <input onchange="checkWord(this,'maior que a emitida|aumenta|deslocada para mais alta|fr>f0|frequencia maior')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>É um <em>Doppler duplo</em>: aproximação na ida e na volta do sinal.</span>
+  </span>
+</p>
+
+<p><strong>3) Escreva a relação correta entre as frequências do eco e a emitida:</strong><br>
+  <input onchange="checkWord(this,'fr>f0|f r maior que f 0|fr maior que f0')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Compare o eco recebido com <em>f</em><sub>0</sub> quando o alvo vem em sua direção.</span>
+  </span>
+</p>
+
+<!-- ALTERNATIVAS -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  O som fica mais grave que o emitido e <em>f</em><sub>r</sub> &lt; <em>f</em><sub>0</sub>.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  O som fica mais agudo que o emitido e <em>f</em><sub>r</sub> &lt; <em>f</em><sub>0</sub>.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  O som fica mais agudo que o emitido e <em>f</em><sub>r</sub> = <em>f</em><sub>0</sub>.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  O som fica mais agudo que o emitido e <em>f</em><sub>r</sub> &gt; <em>f</em><sub>0</sub>.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  O som fica mais grave que o emitido e <em>f</em><sub>r</sub> &gt; <em>f</em><sub>0</sub>.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para ignorar acentos
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = span.style.display === 'inline' ? 'none' : 'inline';
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'D';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 04 — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_057.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">58/71</span>
+    <a href="questao_059.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 04</h2>
+  <h3>Problema 44:</h3>
+  <p>
+    Um laboratório realizou um teste para calcular a velocidade de reprodução de um tipo de bactéria. Para tanto, realizou um experimento para observar a reprodução de uma quantidade x dessas bactérias por um período de duas horas. Após esse período, constatava no habitáculo do experimento uma população de 189.440 da citada bactéria. Constatou-se, assim, que a população de bactérias dobrava a cada 0,25 hora.
+  </p>
+  <p>
+    A quantidade inicial de bactérias era de:
+  </p>
+
+  <h4>Solução 44:</h4>
+
+  <p><strong>Passo 1:</strong> Descobrir quantas vezes a população dobrou</p>
+  <p>
+    <input onchange="check(this, '2')"> / 
+    <input onchange="check(this, '0.25')"> = 
+    <input onchange="check(this, '8')"> vezes
+  </p>
+
+  <p><strong>Passo 2:</strong> Representar a situação com potência de 2</p>
+  <p>
+    <input onchange="check(this, '2')"><sup><input onchange="check(this, '8')"></sup> = 
+    <input onchange="check(this, '256')">
+  </p>
+
+  <p><strong>Passo 3:</strong> Montar a equação</p>
+  <p>
+    x · <input onchange="check(this, '256')"> = 
+    <input onchange="check(this, '189440')">
+  </p>
+
+  <p><strong>Passo 4:</strong> Isolar x</p>
+  <p>
+    x = <input onchange="check(this, '189440')"> / 
+    <input onchange="check(this, '256')"> = 
+    <strong><input onchange="check(this, '740')"></strong>
+  </p>
+
+  <h4>Alternativas:</h4>
+
+  <div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> 370</div>
+  <div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> 740</div>
+  <div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> 1.480</div>
+  <div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> 11.840</div>
+  <div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> 23.680</div>
+
+  <div id="message" class="feedback"></div>
+
+  <script>
+    function check(input, correct) {
+      const value = input.value.trim().replace(',', '.');
+      const expected = correct.toString().replace(',', '.');
+      input.nextElementSibling?.remove();
+      if (value === expected) {
+        input.style.backgroundColor = "#c6f6c6";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+      } else {
+        input.style.backgroundColor = "#fdd";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+      }
+    }
+
+    function checkAnswer(letter) {
+      const correct = 'B';
+      const message = document.getElementById('message');
+      if (letter === correct) {
+        message.textContent = 'Correto! A quantidade inicial era 740 bactérias.';
+        message.style.color = 'green';
+      } else {
+        message.textContent = `Errado. A alternativa ${letter} não é a correta.`;
+        message.style.color = 'red';
+      }
+    }
+  </script>
+</div>
+</body>
+</html>

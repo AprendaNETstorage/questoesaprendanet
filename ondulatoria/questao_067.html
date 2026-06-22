@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problema 31 - Sistemas Numéricos — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_066.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">67/71</span>
+    <a href="questao_068.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Problema 31 - Sistemas Numéricos</h2>
+  <h3>Problema 31:</h3>
+
+  <p>
+    Um sistema de comunicação entre navios utiliza as operações \( x \, \Delta \, y = x^2 + xy - y^2 \) e \( x * y = xy + x \). <br>
+    O valor enviado é dado pela soma das duas maiores raízes reais da equação:
+  </p>
+
+  <p style="text-align: center;">
+    \( (a \, \Delta \, b) * (b \, \Delta \, a) = 0 \)
+  </p>
+
+  <p>Sabendo que o valor de entrada é \( b = 1 \), determine o valor a ser recebido.</p>
+
+  <h4>Resolução passo a passo:</h4>
+
+  <ol>
+    <li>Aplicamos as definições:
+      <br>
+      \( a \, \Delta \, 1 = a^2 + a \cdot 1 - 1^2 = \)
+      <input onchange="check(this, 'a^2+a-1')">
+      <br>
+      \( 1 \, \Delta \, a = 1 + a - a^2 = \)
+      <input onchange="check(this, '1+a-a^2')">
+    </li><br>
+
+    <li>Multiplicamos com a operação estrela:
+      <br>
+      \( (a^2 + a - 1)(1 + a - a^2) = \) 
+      <input onchange="check(this, '-a^4+4a^2+a-2')">
+    </li><br>
+
+    <li>Resolvemos a equação:
+      <br>
+      \( -a^4 + 4a^2 + a - 2 = 0 \)
+    </li><br>
+
+    <li>As raízes reais da equação são:
+      <br>
+      \( \displaystyle a_1 = \frac{1 + \sqrt{5}}{2}, \quad a_2 = \frac{3 + \sqrt{5}}{2} \)
+    </li><br>
+
+    <li>Somamos as duas maiores raízes:
+      <br>
+      \( \displaystyle \frac{1 + \sqrt{5}}{2} + \frac{3 + \sqrt{5}}{2} = \)
+      <input onchange="check(this, '2+sqrt{5}')">
+    </li>
+  </ol>
+
+  <h4>Alternativas:</h4>
+  <div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> \( \sqrt{5} \)</div>
+  <div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> \( \sqrt{3} \)</div>
+  <div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> \( \sqrt{1} \)</div>
+  <div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> \( \frac{1 + \sqrt{5}}{2} \)</div>
+  <div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> \( 2 + \sqrt{5} \)</div>
+
+  <div id="message" class="feedback"></div>
+
+  <script>
+    function check(input, correct) {
+      const val = input.value.trim().replace(/\s/g, '').toLowerCase();
+      const expected = correct.trim().replace(/\s/g, '').toLowerCase();
+      input.nextElementSibling?.remove();
+      if (val === expected) {
+        input.style.backgroundColor = "#c6f6c6";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+      } else {
+        input.style.backgroundColor = "#fdd";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+      }
+    }
+
+    function checkAnswer(letter) {
+      const correct = 'E';
+      const msg = document.getElementById('message');
+      if (letter === correct) {
+        msg.textContent = '✅ Resposta correta!';
+        msg.style.color = 'green';
+      } else {
+        msg.textContent = `❌ Alternativa ${letter} não é a correta.`;
+        msg.style.color = 'red';
+      }
+    }
+  </script>
+</div>
+</body>
+</html>

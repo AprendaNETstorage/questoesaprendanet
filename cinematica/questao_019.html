@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 07 — Cinemática</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Cinemática</a>
+    <span class="spacer"></span>
+    <a href="questao_018.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">19/35</span>
+    <a href="questao_020.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 07</h2>
+  <h3>Problema 07:</h3>
+
+<p><strong>(Enem 2013)</strong> Para serrar ossos e carnes congeladas, um açougueiro utiliza uma serra de fita que possui três polias e um motor. O equipamento pode ser montado de duas formas diferentes, P e Q. Por questão de segurança, é necessário que a serra possua menor velocidade linear.</p>
+
+<img src="image_q7.png" alt="imagem dos motores e polias" style="max-width: 400px;">
+<p>Por qual montagem o açougueiro deve optar e qual a justificativa desta opção?</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Correia sem deslizamento:</strong> pontos em contato nas polias ligadas pela mesma correia têm <input onchange="check(this,'mesma velocidade linear|velocidade linear igual|iguais')">.</p>
+
+<p><strong>2) Relação entre grandezas:</strong> a velocidade linear na borda vale v = 2π·r·f. Para v igual na correia, a frequência f é <input onchange="check(this,'inversamente proporcional ao raio|1/r|inversamente proporcional')">.</p>
+
+<p><strong>3) Raciocínio para reduzir a velocidade da serra:</strong> escolher acoplamento na polia da serra com <input onchange="check(this,'maior raio|raio maior')"> para que sua frequência seja menor.</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  Q, pois as polias 1 e 3 giram com velocidades lineares iguais em pontos periféricos e a que tiver maior raio terá menor frequência.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  Q, pois as polias 1 e 3 giram com frequências iguais e a que tiver maior raio terá menor velocidade linear em um ponto periférico.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  P, pois as polias 2 e 3 giram com frequências diferentes e a que tiver maior raio terá menor velocidade linear em um ponto periférico.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  P, pois as polias 1 e 2 giram com diferentes velocidades lineares em pontos periféricos e a que tiver menor raio terá maior frequência.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  Q, pois as polias 2 e 3 giram com diferentes velocidades lineares em pontos periféricos e a que tiver maior raio terá menor frequência.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // validação por palavras-chave (sem LaTeX)
+  function check(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const raw = input.value.trim().toLowerCase();
+    const opts = patterns.toLowerCase().split('|'); // permite sinônimos
+    const ok = opts.some(p => raw.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  // alternativas (gabarito apenas aqui; sem "conclusão" no texto)
+  function checkAnswer(letter) {
+    const correct = 'A';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 26 (ENEM) — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_017.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">18/81</span>
+    <a href="questao_019.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 26 (ENEM)</h2>
+  <h3>Problema 26:</h3>
+
+<p><strong>129. (Enem 2013)</strong></p>
+
+<p>
+Desenvolve-se um dispositivo para abrir automaticamente uma porta no qual um botão, quando acionado, faz com que uma corrente elétrica <em>i = 6 A</em>
+percorra uma barra condutora de comprimento <em>L = 5 cm</em>, cujo ponto médio está preso a uma mola de constante elástica <em>k = 5 × 10<sup>2</sup> N/m</em>.
+O sistema mola-condutor está imerso em um campo magnético uniforme perpendicular ao plano. 
+Quando acionado o botão, a barra sairá da posição de equilíbrio a uma velocidade média de <em>5 m/s</em> e atingirá a catraca em <em>6 ms</em>, abrindo a porta.
+</p>
+
+<figure>
+  <img src="extra_37.png" alt="Enunciado/ilustração da questão 129">
+  <figcaption>Enunciado (use a imagem do seu PDF, se desejar)</figcaption>
+</figure>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Força magnética na barra (F = B·i·L):</strong>
+  <input onchange="checkWord(this,'f = b.i.l|b.i.l|forca magnetica')">
+</p>
+
+<p><strong>2) Força elástica (F = k·x):</strong>
+  <input onchange="checkWord(this,'f = kx|k.x|forca elastica')">
+</p>
+
+<p><strong>3) Condição de funcionamento:</strong>
+  <input onchange="checkWord(this,'forca magnetica = forca elastica|equilibrio de forcas')">
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  5 × 10<sup>−2</sup> T
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  5 × 10<sup>−2</sup> T
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  5 × 10<sup>1</sup> T
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  2 × 10<sup>−2</sup> T
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  2 × 10<sup>0</sup> T
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para tolerar acentos/maiúsculas
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito
+  function checkAnswer(letter){
+    const correct = 'A';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

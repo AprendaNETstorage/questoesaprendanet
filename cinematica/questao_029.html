@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 09 — Cinemática</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Cinemática</a>
+    <span class="spacer"></span>
+    <a href="questao_028.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">29/35</span>
+    <a href="questao_030.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 09</h2>
+  <h3>Problema 09:</h3>
+
+<!-- ENUNCIADO IDÊNTICO -->
+<p><strong>(Enem PPL 2012)</strong> Em apresentações musicais realizadas em espaços onde o público fica longe do palco, é necessária a instalação de alto-falantes adicionais a grandes distâncias, além daqueles localizados no palco. Como a velocidade com que o som se propaga no ar (v<sub>som</sub> = 3,4 × 10² m/s) é muito menor do que a velocidade com que o sinal elétrico se propaga nos cabos (v<sub>sinal</sub> = 2,6 × 10⁸ m/s), é necessário atrasar o sinal elétrico de modo que este chegue pelo cabo ao alto-falante no mesmo instante em que o som vindo do palco chega pelo ar. Para tentar contornar esse problema, um técnico de som pensou em simplesmente instalar um cabo elétrico com comprimento suficiente para o sinal elétrico chegar ao mesmo tempo que o som, em um alto-falante que está a uma distância de 680 metros do palco. A solução é inviável, pois seria necessário um cabo elétrico de comprimento mais próximo de</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Tempo para o som percorrer 680 m:</strong></p>
+<p>
+  t<sub>som</sub> = distância ÷ velocidade =
+  <input onchange="check(this,'680')"> ÷ <input onchange="check(this,'340')"> =
+  <input onchange="check(this,'2')"> s
+</p>
+
+<p><strong>2) Comprimento do cabo para demorar o mesmo tempo:</strong></p>
+<p>
+  L = v<sub>sinal</sub> × t =
+  <input onchange="check(this,'2.6e8')"> × <input onchange="check(this,'2')"> =
+  <input onchange="check(this,'5.2e8')"> m
+</p>
+
+<p><strong>3) Converter para quilômetros:</strong></p>
+<p>
+  L (km) = <input onchange="check(this,'5.2e8')"> ÷ <input onchange="check(this,'1000')"> =
+  <input onchange="check(this,'5.2e5')"> km
+</p>
+
+<p><strong>Marque a opção:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  1,1×10³ km.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  8,9×10⁴ km.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  1,3×10⁵ km.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  5,2×10⁵ km.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  6,0×10¹³ km.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // Aceita vírgula/ponto, notação científica (e/E), "×" e "^"
+  function safeEval(expr) {
+    const cleaned = String(expr).replace(/\s/g, '');
+    if (!/^[0-9eE+\-*/().,×^]+$/.test(cleaned)) return null;
+    const normalized = cleaned
+      .replace(/,/g, '.')
+      .replace(/×/g, '*')
+      .replace(/\^/g, '**');
+    try {
+      const val = Function('"use strict"; return (' + normalized + ');')();
+      return (typeof val === 'number' && Number.isFinite(val)) ? val : null;
+    } catch { return null; }
+  }
+  function nearlyEqual(a, b, eps = 1e-3) {
+    return Math.abs(a - b) <= eps * Math.max(1, Math.abs(a), Math.abs(b));
+  }
+  function check(input, correct) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const raw = input.value.trim();
+    if (raw === '') { input.style.backgroundColor = ''; return; }
+
+    const norm = raw.replace(/\s/g, '');
+    const expected = String(correct);
+
+    let target = safeEval(expected);
+    // valores exatos comuns
+    if (expected === '340') target = 340;
+    if (expected === '2') target = 2;
+    if (expected === '680') target = 680;
+    if (expected === '1000') target = 1000;
+
+    const parsedUser = safeEval(norm);
+    let ok = false;
+    if (parsedUser !== null && target !== null) {
+      ok = nearlyEqual(parsedUser, target);
+    } else {
+      ok = norm.toLowerCase() === expected.toLowerCase();
+    }
+
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  function checkAnswer(letter) {
+    const correct = 'D';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

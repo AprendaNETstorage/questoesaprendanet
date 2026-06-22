@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Óptica — Lista 03 — Problema 4 — Óptica</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Óptica</a>
+    <span class="spacer"></span>
+    <a href="questao_016.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">17/42</span>
+    <a href="questao_018.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Óptica — Lista 03 — Problema 4</h2>
+  <h3>Problema 4:</h3>
+
+<p><strong>87. (Enem PPL 2013)</strong></p>
+<p>A banda larga brasileira é lenta. No Japão já existem redes de fibras ópticas, que permitem acessos à internet com velocidade de 1 gigabit por segundo (Gbps), o suficiente para baixar em um minuto, por exemplo, 80 filmes. No Brasil a maioria das conexões ainda é de 1 megabit por segundo (Mbps), ou seja, menos de um milésimo dos acessos mais rápidos do Japão. A fibra óptica é composta basicamente de um material dielétrico (sílica ou plástico), segundo uma estrutura cilíndrica, transparente e flexível. Ela é formada de uma região central envolta por uma camada, também de material dielétrico, com índice de refração diferente do do núcleo. A transmissão em uma fibra óptica acontecerá de forma correta se o índice de refração do núcleo, em relação ao revestimento, for</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Fenômeno que mantém a luz "presa" no núcleo:</strong></p>
+<p>
+  <input placeholder="digite aqui" onchange="checkWord(this,'reflexao interna total|reflexão interna total')">
+  <small>(nome do fenômeno)</small>
+</p>
+
+<p><strong>2) Relação entre os índices:</strong></p>
+<p>
+  O índice do núcleo deve ser
+  <input placeholder="digite aqui" onchange="checkWord(this,'maior|superior')">
+  ao do revestimento.
+</p>
+
+<p><strong>3) Condição física para acontecer o fenômeno do item (1):</strong></p>
+<p>
+  A luz deve ir de um meio
+  <input placeholder="digite aqui" onchange="checkWord(this,'mais refringente|maior indice|maior índice|mais denso optico|mais denso óptico')">
+  para um meio
+  <input placeholder="digite aqui" onchange="checkWord(this,'menos refringente|menor indice|menor índice|menos denso optico|menos denso óptico')">,
+  com ângulo de incidência acima do ângulo crítico.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  superior e ocorrer difração.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  superior e ocorrer reflexão interna total.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  inferior e ocorrer reflexão interna parcial.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  inferior e ocorrer interferência destrutiva.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  inferior e ocorrer interferência construtiva.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkAnswer(letter){
+    const correct = 'B';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

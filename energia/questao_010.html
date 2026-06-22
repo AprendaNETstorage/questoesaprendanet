@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 22 — Energia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Energia</a>
+    <span class="spacer"></span>
+    <a href="questao_009.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">10/33</span>
+    <a href="questao_011.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 22</h2>
+  <h3>Problema 22:</h3>
+
+<p><strong>108. (ENEM – cama elástica)</strong></p>
+
+<p>
+O brinquedo pula-pula (cama elástica) é composto por uma lona circular flexível horizontal presa por molas à sua borda.
+As crianças brincam pulando sobre ela, alternando e transformando suas formas de energia. Ao pular verticalmente,
+desprezando o atrito com o ar e os movimentos de rotação do corpo, uma criança realiza um movimento periódico vertical
+em torno da posição de equilíbrio da lona (h = 0), passando pelos pontos de máxima e mínima alturas,
+h<sub>max</sub> e h<sub>min</sub>, respectivamente.
+</p>
+
+<p>
+Esquematicamente, o esboço do gráfico da energia cinética da criança em função de sua posição vertical na situação
+descrita é:
+</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Energia mecânica total.</strong><br>
+Desprezando perdas, a energia mecânica total do sistema é
+<input onchange="checkWord(this,'constante|conservada')">
+ao longo do movimento.
+</p>
+
+<p><strong>2) Velocidade e energia cinética no ponto de equilíbrio.</strong><br>
+Quando a criança passa pelo ponto de equilíbrio da lona (h = 0), sua velocidade é
+<input onchange="checkWord(this,'maxima|máxima')">
+e, portanto, a energia cinética é
+<input onchange="checkWord(this,'maxima|máxima')">.
+</p>
+
+<p><strong>3) Situação nas alturas mínima e máxima.</strong><br>
+Nos pontos h<sub>min</sub> e h<sub>max</sub>, a criança inverte o sentido do movimento,
+logo sua velocidade é
+<input onchange="checkWord(this,'nula|zero')">
+e toda energia está na forma
+<input onchange="checkWord(this,'potencial elastica|potencial gravitacional|potencial')">.
+Assim, a energia cinética nesses pontos deve ser
+<input onchange="checkWord(this,'zero|nula')">.
+</p>
+
+<p><strong>4) Forma geral do gráfico Ec × h.</strong><br>
+O gráfico da energia cinética em função de h deve ter um
+<input onchange="checkWord(this,'maximo|pico')">
+em h = 0 e
+<input onchange="checkWord(this,'valores nulos nos extremos|zero em hmin e hmax')">
+, lembrando uma curva
+<input onchange="checkWord(this,'arqueada|concava para baixo|em forma de arco')">.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  <img src="questao22_A.png"
+       alt="Alternativa A: gráfico de energia cinética em função da altura, com reta crescente de hmin até hmax.">
+</div>
+
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  <img src="questao22_B.png"
+       alt="Alternativa B: gráfico triangular com máximo em hmin e zero em hmax.">
+</div>
+
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  <img src="questao22_C.png"
+       alt="Alternativa C: curva arqueada com energia cinética máxima em h = 0 e nula em hmin e hmax.">
+</div>
+
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  <img src="questao22_D.png"
+       alt="Alternativa D: curva com máximo em h = 0 e zero apenas em hmin.">
+</div>
+
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  <img src="questao22_E.png"
+       alt="Alternativa E: curva crescente com energia cinética pequena em hmin e máxima em hmax.">
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // -------- helpers (aceita vírgula/ponto e expressões simples) --------
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function safeEval(expr){
+    const cleaned = String(expr).replace(/\s/g,'');
+    if(!/^[0-9eE+\-*/().,×^]+$/.test(cleaned)) return null;
+    const norm = cleaned.replace(/,/g,'.').replace(/×/g,'*').replace(/\^/g,'**');
+    try{
+      const v = Function('"use strict"; return ('+norm+');')();
+      return (typeof v === 'number' && Number.isFinite(v)) ? v : null;
+    }catch{ return null; }
+  }
+  function nearlyEqual(a,b,eps=1e-3){
+    return Math.abs(a-b) <= eps * Math.max(1, Math.abs(a), Math.abs(b));
+  }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+  function checkExpr(input, expectedExprs){
+    const val = safeEval(input.value.trim());
+    const targets = expectedExprs.split('|').map(e => safeEval(e));
+    const ok = (val !== null) && targets.some(t => t !== null && nearlyEqual(val, t));
+    paint(input, ok);
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'C';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

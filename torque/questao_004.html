@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 5 — Torque e Equilíbrio</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Torque e Equilíbrio</a>
+    <span class="spacer"></span>
+    <a href="questao_003.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">4/7</span>
+    <a href="questao_005.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 5</h2>
+  <h3>Problema 5:</h3>
+
+<!-- ENUNCIADO IDÊNTICO (transcrito) -->
+<p><strong>55. (Enem 2ª aplicação 2010)</strong></p>
+<p>Um brinquedo chamado <em>ludião</em> consiste em um pequeno frasco de vidro, parcialmente preenchido com água, que é emborcado (virado com a boca para baixo) dentro de uma garrafa PET cheia de água e tampada. Nessa situação, o frasco fica na parte superior da garrafa, conforme mostra a figura 1.</p>
+
+<div class="imgwrap">
+  <img src="q28_fig1.png" alt="Ludião no topo da garrafa (Figura 1)">
+</div>
+
+<p>Quando a garrafa é pressionada, o frasco se desloca para baixo, como mostrado na figura 2.</p>
+
+<div class="imgwrap">
+  <img src="q28_fig2.png" alt="Ludião desce quando a garrafa é pressionada (Figura 2)">
+</div>
+
+<p>Ao apertar a garrafa, o movimento de descida do frasco ocorre porque</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) O que acontece com a pressão na água ao apertar a garrafa?</strong>
+  <br>Pela <input onchange="checkWord(this,'lei de pascal|pascal')">, a pressão
+  <input onchange="checkWord(this,'aumenta|se eleva|cresce')"> e é transmitida ao
+  <input onchange="checkWord(this,'ar preso no frasco|ar dentro do frasco')">.
+</p>
+
+<p><strong>2) Efeito no ar do frasco:</strong>
+  <br>O ar é <input onchange="checkWord(this,'comprimido|pressionado')"> e seu volume
+  <input onchange="checkWord(this,'diminui|reduz')">; com isso
+  <input onchange="checkWord(this,'entra mais agua no frasco|aumenta a agua dentro do frasco')">.
+</p>
+
+<p><strong>3) Consequência para o frasco:</strong>
+  <br>A massa do conjunto aumenta mais do que o seu volume externo (o vidro é rígido) ⇒ a densidade média
+  <input onchange="checkWord(this,'aumenta|fica maior')"> e o empuxo
+  <input onchange="checkWord(this,'nao compensa o peso|deixa de equilibrar o peso|fica insuficiente')"> ⇒ ele
+  <input onchange="checkWord(this,'desce|afunda')">.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  diminui a força para baixo que a água aplica no frasco.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  aumenta a pressão na parte pressionada da garrafa.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  aumenta a quantidade de água que fica dentro do frasco.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  diminui a força de resistência da água sobre o frasco.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  diminui a pressão que a água aplica na base do frasco.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // Validação por palavras-chave (tolerante a acentos/variações)
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function checkWord(input, patterns){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'B';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 14 — Energia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Energia</a>
+    <span class="spacer"></span>
+    <span style="opacity:.4">&laquo; Anterior</span>
+    <span style="font-size:13px;color:#666">1/33</span>
+    <a href="questao_002.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 14</h2>
+  <h3>Problema 14:</h3>
+
+<p><strong>121. (Disco de Maxwell — conservação de energia)</strong></p>
+
+<p>
+Numa feira de ciências, um estudante utilizará o disco de Maxwell (ioiô) para demonstrar o princípio da conservação da energia. A apresentação consistirá em duas etapas:
+</p>
+<p>
+<strong>Etapa 1</strong> — explicação de que, à medida que o disco desce, parte de sua energia potencial gravitacional é transformada em energia cinética de translação e energia cinética de rotação; o sistema é conservativo.
+</p>
+<p>
+<strong>Etapa 2</strong> — cálculo da energia cinética de rotação do disco no ponto mais baixo de sua trajetória. Considere \(g=10\ \text{m s}^{-2}\) e que a velocidade linear do centro do disco é desprezível comparada à velocidade angular. No ponto mais baixo, o topo do disco está a \( \tfrac{1}{3}h \) do solo.
+</p>
+
+<div class="imgwrap">
+  <!-- Substitua pelo caminho da sua imagem -->
+  <img src="questao14_ioio_maxwell.png" alt="Dispositivo com haste de altura h e disco descendo" />
+  <div><small>Especificações: base metálica, hastes, barra superior e disco. Tamanho (C × L × A): 300 mm × 100 mm × 410 mm. Massa do disco: 30 g.</small></div>
+</div>
+
+<p>
+O resultado do cálculo da <em>Etapa 2</em>, em joule, é:
+</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Dados do enunciado:</strong>
+  Altura total \(h\) = <input onchange="checkNum(this,'0.410')"> m (410 mm).  
+  Massa do disco \(m\) = <input onchange="checkNum(this,'0.03')"> kg (30 g).  
+  \(g\) = <input onchange="checkNum(this,'10')"> m/s².
+</p>
+
+<p><strong>2) Variação de altura do disco:</strong>
+  Ponto mais baixo: topo do disco a \( \tfrac{1}{3}h \) do solo ⇒  
+  \( \Delta h = h - \tfrac{1}{3}h = \tfrac{2}{3}h = \)
+  <input onchange="checkNum(this,'0.2733333333')"> m (≈ <input onchange="checkRange(this,'0.272,0.274')"> m).
+</p>
+
+<p><strong>3) Conversão \(E_{pot} \to E_{rot}\):</strong>
+  \( E = m\,g\,\Delta h \approx \)
+  <input onchange="checkRange(this,'0.081,0.083')"> J
+  (≈ <input onchange="checkWord(this,'8.2e-2|8,2e-2|8.2 × 10^-2|8,2 × 10^-2')"> J).
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  4,10 × 10<sup>−2</sup>
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  8,20 × 10<sup>−2</sup>
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  1,23 × 10<sup>−1</sup>
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  8,20 × 10<sup>4</sup>
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  1,23 × 10<sup>5</sup>
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // -------- utilidades --------
+  function safeEval(expr) {
+    const cleaned = String(expr).replace(/\s/g, '');
+    if (!/^[0-9eE+\-*/().,]+$/.test(cleaned)) return null;
+    const withDot = cleaned.replace(/,/g, '.');
+    try {
+      const val = Function('"use strict"; return (' + withDot + ');')();
+      return (typeof val === 'number' && Number.isFinite(val)) ? val : null;
+    } catch { return null; }
+  }
+  function nearlyEqual(a, b, eps = 1e-3) {
+    return Math.abs(a - b) <= eps * Math.max(1, Math.abs(a), Math.abs(b));
+  }
+  function paint(input, ok) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function checkWord(input, patterns) {
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    paint(input, ok);
+  }
+  function checkNum(input, expected) {
+    const raw = input.value.trim();
+    if (raw === '') return paint(input, false);
+    const val = safeEval(raw);
+    const ok = (val !== null) && nearlyEqual(val, Number(expected));
+    paint(input, ok);
+  }
+  function checkRange(input, rangeStr) {
+    const raw = input.value.trim();
+    if (raw === '') return paint(input, false);
+    const val = safeEval(raw);
+    const parts = rangeStr.split(',').map(Number);
+    const lo = Math.min(parts[0], parts[1]);
+    const hi = Math.max(parts[0], parts[1]);
+    const ok = (val !== null) && val >= lo && val <= hi;
+    paint(input, ok);
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'B';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

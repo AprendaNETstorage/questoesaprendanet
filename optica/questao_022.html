@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 46 — Óptica</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Óptica</a>
+    <span class="spacer"></span>
+    <a href="questao_021.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">22/42</span>
+    <a href="questao_023.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 46</h2>
+  <h3>Problema 46:</h3>
+
+<!-- ENUNCIADO IDÊNTICO -->
+<p><strong>76. (Enem 2ª aplicação 2010)</strong></p>
+<p>Ao contrário dos rádios comuns (AM ou FM), em que uma única antena transmissora é capaz de alcançar toda a cidade, os celulares necessitam de várias antenas para cobrir um vasto território. No caso dos rádios FM, a frequência de transmissão está na faixa dos MHz (ondas de rádio), enquanto, para os celulares, a frequência está na casa dos GHz (micro-ondas). Quando comparado aos rádios comuns, o alcance de um celular é muito menor.</p>
+<p>Considerando-se as informações do texto, o fator que possibilita essa diferença entre propagação das ondas de rádio e as de micro-ondas é que as ondas de rádio são</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Comprimento de onda</strong> (use v ≈ 3×10<sup>8</sup> m/s):</p>
+<p>
+  Para micro-ondas (≈GHz): λ<sub>micro</sub> ≈
+  <input onchange="checkWord(this,'0,3 m|0.3 m|30 cm')">
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+  Para FM (≈MHz): λ<sub>rádio</sub> ≈
+  <input onchange="checkWord(this,'300 m')">
+</p>
+
+<p><strong>2) Difração</strong> é mais pronunciada quando o tamanho do obstáculo/abertura é
+  <input onchange="checkWord(this,'comparavel a lambda|comparável a lambda|comparavel ao comprimento de onda|comparável ao comprimento de onda|da ordem do comprimento de onda')">.
+</p>
+
+<p><strong>3) Em cidades</strong>, edifícios/árvores/relevo têm dimensões muito mais próximas de
+  <input onchange="checkWord(this,'lambda do radio|lambda radio|comprimento de onda do radio|300 m')">
+  do que de
+  <input onchange="checkWord(this,'lambda da micro|lambda micro|0,3 m|0.3 m|30 cm')">,
+  logo as ondas de rádio contornam melhor os obstáculos.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  facilmente absorvidas na camada da atmosfera superior conhecida como ionosfera.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  capazes de contornar uma diversidade de obstáculos como árvores, edifícios e pequenas elevações.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  mais refratadas pela atmosfera terrestre, que apresenta maior índice de refração para as ondas de rádio.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  menos atenuadas por interferência, pois o número de aparelhos que utilizam ondas de rádio é menor.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  constituídas por pequenos comprimentos de onda que lhes conferem um alto poder de penetração em materiais de baixa densidade.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // helpers (tolerante a acentos/variações)
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito
+  function checkAnswer(letter){
+    const correct = 'B';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

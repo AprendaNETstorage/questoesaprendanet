@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 25 (ENEM 2020 — Q129) — Óptica</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Óptica</a>
+    <span class="spacer"></span>
+    <a href="questao_010.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">11/42</span>
+    <a href="questao_012.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 25 (ENEM 2020 — Q129)</h2>
+  <h3>Problema 25:</h3>
+<p><strong>Enem 2020</strong></p>
+
+<p><strong>Questão 129 – Ciências da Natureza e suas Tecnologias</strong></p>
+
+<p>
+No final do século XIX, muitos cientistas estavam interessados nos intrigantes fenômenos observados nas ampolas de raios catódicos, que são tubos sob vácuo em que se ligam duas placas a uma fonte de alta tensão. Os raios catódicos passam através de um orifício no ânodo e continuam o percurso até a outra extremidade do tubo, onde são detectados pela fluorescência produzida ao chocarem-se com um revestimento especial. Medições da razão entre a carga e a massa dos constituintes dos raios catódicos mostraram que sua identidade independe do material do cátodo ou do gás dentro das ampolas. Essa radiação invisível detectada nas ampolas é constituída por
+</p>
+
+<!-- Imagem do enunciado -->
+<figure class="illustration" aria-labelledby="figcap">
+  <img src="questao129.png" alt="Esquema de tubo de raios catódicos com cátodo, ânodo e campo elétrico">
+  <figcaption id="figcap">Figura — Ampola de raios catódicos (tubo de Crookes/Thomson).</figcaption>
+</figure>
+
+<!-- Resolução (apenas posicionada antes das alternativas) -->
+<h4>Resolução (interativa):</h4>
+
+<p><strong>1) Carga das partículas que formam os raios catódicos:</strong>
+  <input onchange="checkWord(this,'negativa|carga negativa|eletron|elétron|elétrons|eletrons')">
+</p>
+
+<p><strong>2) Direção do feixe: parte do cátodo em direção ao:</strong>
+  <input onchange="checkWord(this,'anodo|ânodo|placa positiva')">
+</p>
+
+<p><strong>3) A razão carga/massa é a mesma para diferentes materiais → identifica:</strong>
+  <input onchange="checkWord(this,'eletrons|elétrons|particula universal|partícula universal')">
+</p>
+
+<!-- ALTERNATIVAS -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('A')" onkeydown="if(event.key==='Enter')checkAnswer('A')">
+  <span class="circulo">A</span> ânions.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('B')" onkeydown="if(event.key==='Enter')checkAnswer('B')">
+  <span class="circulo">B</span> cátions.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('C')" onkeydown="if(event.key==='Enter')checkAnswer('C')">
+  <span class="circulo">C</span> prótons.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('D')" onkeydown="if(event.key==='Enter')checkAnswer('D')">
+  <span class="circulo">D</span> elétrons.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('E')" onkeydown="if(event.key==='Enter')checkAnswer('E')">
+  <span class="circulo">E</span> partículas alfa.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização e marcação ✅/❌
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito (sem dica ao errar)
+  const CORRECT = 'D';
+  function checkAnswer(letter){
+    const message = document.getElementById('message');
+    if (letter === CORRECT){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

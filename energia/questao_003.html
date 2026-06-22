@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 16 (ENEM 2020 — Q135) — Energia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Energia</a>
+    <span class="spacer"></span>
+    <a href="questao_002.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">3/33</span>
+    <a href="questao_004.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 16 (ENEM 2020 — Q135)</h2>
+  <h3>Problema 16:</h3>
+<p><strong>Enem 2020</strong></p>
+
+<p><strong>Questão 135 – Ciências da Natureza e suas Tecnologias</strong></p>
+
+<p>
+BTU é a sigla para <em>British Thermal Unit</em>, definida como a quantidade de calor necessária para elevar a temperatura de 1 libra (0,45 kg) de água de 59,5 °F a 60,5 °F sob pressão constante de 1 atm.
+A unidade BTU é frequentemente usada como potência de refrigeração de aparelhos (por exemplo, ar-condicionado).
+Como se pode representar corretamente a unidade de <strong>potência</strong> com base na definição de BTU?
+</p>
+
+<!-- Resolução (apenas posicionada antes das alternativas) -->
+<h4>Resolução (interativa):</h4>
+
+<p><strong>1) BTU mede:</strong>
+  <input onchange="checkWord(this,'energia|calor|quantidade de calor')">
+</p>
+
+<p><strong>2) Potência é:</strong>
+  <input onchange="checkWord(this,'energia por tempo|trabalho por tempo|taxa de transferencia de energia|dE/dt')">
+</p>
+
+<p><strong>3) Logo, unidade de potência baseada em BTU é:</strong>
+  <input onchange="checkWord(this,'btu por hora|btu/h|btu h^-1|btu h-1')">
+</p>
+
+<!-- ALTERNATIVAS -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('A')" onkeydown="if(event.key==='Enter')checkAnswer('A')">
+  <span class="circulo">A</span> BTU h⁻¹.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('B')" onkeydown="if(event.key==='Enter')checkAnswer('B')">
+  <span class="circulo">B</span> BTU m².
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('C')" onkeydown="if(event.key==='Enter')checkAnswer('C')">
+  <span class="circulo">C</span> BTU h⁻¹·m².
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('D')" onkeydown="if(event.key==='Enter')checkAnswer('D')">
+  <span class="circulo">D</span> BTU·h.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('E')" onkeydown="if(event.key==='Enter')checkAnswer('E')">
+  <span class="circulo">E</span> BTU m⁻².
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização e marcação ✅/❌
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito (sem dica ao errar)
+  const CORRECT = 'A';
+  function checkAnswer(letter){
+    const message = document.getElementById('message');
+    if (letter === CORRECT){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

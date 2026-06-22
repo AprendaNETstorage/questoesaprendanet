@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ENEM 2020 — Problema 46 — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_079.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">80/81</span>
+    <a href="questao_081.html">Próxima &raquo;</a>
+  </nav>
+  <h2>ENEM 2020 — Problema 46</h2>
+  <h3>Problema 46:</h3>
+
+<p><strong>1 – ENEM 2020</strong></p>
+
+<p>
+  O adaptador de tomada tipo T é um acessório usado para ligar vários aparelhos em uma única tomada.
+  Na <strong>Figura 2A</strong> há um único aparelho de resistência <em>R</em> em série com a resistência interna do adaptador <em>r</em>.
+  Na <strong>Figura 2B</strong> há <strong>três</strong> aparelhos idênticos de resistência <em>R</em> ligados ao mesmo adaptador, em paralelo.
+  Os pontos <strong>C</strong> e <strong>D</strong> são os terminais da tomada. Considere resistores ôhmicos.
+</p>
+
+<div class="imgwrap"><img src="adaptador_T_fig.png" alt="Figura 1 — Adaptador tipo T"></div>
+
+<p>
+  <strong>Comparando 2B com 2A</strong>, o possível superaquecimento do adaptador decorre do aumento de qual grandeza?
+</p>
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Em 2A</strong>, <em>R</em> está em série com <em>r</em>. Qual é a <u>resistência equivalente</u> entre <em>C</em> e <em>D</em>?</strong><br>
+  <input placeholder="Digite a expressão" onchange="checkWord(this,'r+r|r + r|r+ r|r +r|R+r|R + r|R+ r|R +r|R mais r')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Em série somam: Req(2A) = R + r.</span>
+  </span>
+</p>
+
+<p><strong>2) Em 2B</strong>, há três <em>R</em> em paralelo. Dê a equivalente dos três e a total entre <em>C</em> e <em>D</em>.</strong><br>
+  <input placeholder="equivalente dos 3 R" onchange="checkWord(this,'r/3|r ÷ 3|r dividido por 3|r/ 3|r /3|r sobre 3|R/3|R / 3|R sobre 3|um terco de R')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Três iguais em paralelo: Rpar = R/3.</span>
+  </span>
+  <br>
+  <input placeholder="total entre C e D" onchange="checkWord(this,'r/3+r|r/3 + r|r/3+ r|r/3 +r|R/3+r|R/3 + r|R/3+ r|R/3 +r|R sobre 3 + r')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Total em 2B: Req(2B) = (R/3) + r.</span>
+  </span>
+</p>
+
+<p><strong>3) Correntes no adaptador</strong> (entre <em>C</em> e <em>D</em>):<br>
+  Em 2A: I(2A) = V / (R + r). Em 2B: I(2B) = V / (R/3 + r). Qual é maior?</br>
+  <input placeholder="Escreva qual é maior" onchange="checkWord(this,'i2b|2b|corrente em 2b|a de 2b|i maior em 2b|i_{2b}|i2 b|i 2b|a corrente aumenta')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Como (R/3 + r) &lt; (R + r), então I(2B) &gt; I(2A).</span>
+  </span>
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  Tensão em <em>R</em>.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  Corrente em <em>R</em>.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  Tensão entre <em>C</em> e <em>D</em>.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  Corrente entre <em>C</em> e <em>D</em>.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  Resistência equivalente entre <em>C</em> e <em>D</em>.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para ignorar acentos
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+  // verificação por palavras-chave
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = (span.style.display === 'inline') ? 'none' : 'inline';
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'D';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto! Superaquecimento ocorre pelo aumento da corrente no adaptador (entre C e D).';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

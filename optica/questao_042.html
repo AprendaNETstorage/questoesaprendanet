@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ondas e Óptica — Problema 63 — Óptica</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Óptica</a>
+    <span class="spacer"></span>
+    <a href="questao_041.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">42/42</span>
+    <span style="opacity:.4">Próxima &raquo;</span>
+  </nav>
+  <h2>Ondas e Óptica — Problema 63</h2>
+  <h3>Problema 63</h3>
+
+<p><strong>96. (Enem 2ª Aplicação 2010)</strong></p>
+<p>
+Os espelhos retrovisores, que deveriam auxiliar os motoristas, às vezes causam problemas.
+No espelho retrovisor do lado direito (modelo que "faz o carro de trás parecer mais longe"),
+usa-se um <em>espelho convexo</em> para ampliar o campo visual. Sabe-se que, com espelhos convexos,
+a imagem formada está mais próxima do espelho do que o objeto, o que parece conflitar com
+a informação da reportagem ("parece longe"). Qual explicação está correta?
+</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Tipo de espelho usado:</strong>
+  <input placeholder="digite aqui" onchange="checkWord(this,'convexo')">
+  <small>(nome do espelho)</small>
+</p>
+
+<p><strong>2) Natureza da imagem no espelho convexo:</strong><br>
+  É uma imagem
+  <input placeholder="ex.: virtual" onchange="checkWord(this,'virtual')">,
+  <input placeholder="ex.: direita" onchange="checkWord(this,'direita|em pe|ereta')"> e
+  <input placeholder="ex.: reduzida/menor" onchange="checkWord(this,'reduzida|menor')">.
+</p>
+
+<p><strong>3) Regra perceptiva do nosso cérebro:</strong><br>
+  Em visão direta/espelho plano, costumamos associar "imagem
+  <input placeholder="maior/menor" onchange="checkWord(this,'menor')">" ⇒ objeto
+  <input placeholder="mais perto/mais distante" onchange="checkWord(this,'mais distante|distante')">.
+  <br><small>Assim, no convexo a imagem fica menor e o motorista <em>acha</em> que o carro está mais longe.</small>
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  a imagem projetada na retina do motorista ser menor do que o objeto.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  a velocidade do automóvel afetar a percepção da distância.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  o cérebro humano interpretar como distante uma imagem pequena.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  o espelho convexo ser capaz de aumentar o campo visual do motorista.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  o motorista perceber a luz vinda do espelho com a parte lateral do olho.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<div class="hint">
+  <button onclick="toggleHint()">💡 Ver dica</button>
+  <div id="hint" style="display:none">
+    Em espelhos <b>convexos</b>, a imagem é <i>virtual, direita e reduzida</i>.
+    O "parece mais longe" é um <b>efeito perceptivo</b>: o cérebro usa o tamanho aparente como pista de distância.
+  </div>
+</div>
+
+<div class="hint" style="margin-top:10px">
+  <button onclick="reveal()">👀 Mostrar gabarito</button>
+  <div id="ans" style="display:none">
+    Alternativa correta: <b>C</b>. A imagem menor é interpretada como estando mais distante.
+  </div>
+</div>
+
+<script>
+  function normalize(s){return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();}
+  function paint(el,ok){
+    if (el.nextElementSibling && el.nextElementSibling.classList.contains('feedback')){
+      el.nextElementSibling.remove();
+    }
+    el.style.backgroundColor = ok ? '#c6f6c6' : '#fdd';
+    el.insertAdjacentHTML('afterend', `<span class="feedback">${ok?'✅':'❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value);
+    const opts = patterns.split('|').map(s=>normalize(s));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+  function checkAnswer(letter){
+    const correct = 'C';
+    const msg = document.getElementById('message');
+    if(letter===correct){ msg.textContent='Correto!'; msg.style.color='green'; }
+    else { msg.textContent='Errado. Tente novamente.'; msg.style.color='red'; }
+  }
+  function toggleHint(){
+    const d = document.getElementById('hint');
+    d.style.display = (d.style.display==='none') ? 'block' : 'none';
+  }
+  function reveal(){
+    document.getElementById('ans').style.display = 'block';
+  }
+</script>
+</div>
+</body>
+</html>

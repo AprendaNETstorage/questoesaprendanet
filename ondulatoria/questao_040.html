@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 36 — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_039.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">40/71</span>
+    <a href="questao_041.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 36</h2>
+  <h3>Problema 36:</h3>
+
+<!-- ENUNCIADO IDÊNTICO -->
+<p><strong>65. (Enem PPL 2012)</strong></p>
+<p>Para afinar um violão, um músico necessita de uma nota para referência, por exemplo, a nota Lá em um piano. Dessa forma, ele ajusta as cordas do violão até que ambos os instrumentos toquem a mesma nota. Mesmo ouvindo a mesma nota, é possível diferenciar o som emitido pelo piano e pelo violão.</p>
+<p>Essa diferenciação é possível, porque</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Tocar a mesma nota significa ter a mesma:</strong>
+  <input onchange="checkWord(this,'frequencia|frequência|altura do som')">.
+</p>
+
+<p><strong>2) Mesmo com a mesma frequência, os sons podem ter a mesma</strong>
+  <input onchange="checkWord(this,'intensidade|amplitude|volume')">, mas ainda assim soarem diferentes.
+</p>
+
+<p><strong>3) O que distingue os instrumentos (piano × violão) é o</strong>
+  <input onchange="checkWord(this,'timbre|forma de onda|harmonicos|harmônicos|espectro')">,
+  associado ao espectro de harmônicos e ao ataque/decaimento do som.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  a ressonância do som emitido pelo piano é maior.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  a potência do som emitido pelo piano é maior.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  a intensidade do som emitido por cada instrumento é diferente.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  o timbre do som produzido por cada instrumento é diferente.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  a amplitude do som emitido por cada instrumento é diferente.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // validação por palavras-chave (tolerante a acentos/variações)
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function checkWord(input, patterns){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'D';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problema 39 - Sistemas Numéricos — Termologia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Termologia</a>
+    <span class="spacer"></span>
+    <a href="questao_057.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">58/58</span>
+    <span style="opacity:.4">Próxima &raquo;</span>
+  </nav>
+  <h2>Problema 39 - Sistemas Numéricos</h2>
+  <h3>Problema 39:</h3>
+  <p>
+    Um imposto é dito cumulativo quando incide em várias etapas da circulação de mercadorias sem abatimento do que já foi pago em etapas anteriores.
+    PIS e Cofins são cumulativos, totalizando 3,65%.
+    Considere um produto com preço inicial \( C \). Ele é vendido da fábrica à loja com o acréscimo desses impostos e, depois, da loja ao consumidor aplicando-se novamente os mesmos impostos sobre o valor pago.
+    <br><br>
+    Qual expressão corresponde ao valor total pago em impostos pelo consumidor?
+  </p>
+
+  <h4>Resolução passo a passo:</h4>
+  <ul>
+    <li>Imposto na 1ª etapa: <input onchange="check(this, '0.0365*C')"> reais</li>
+    <li>Valor com imposto: <input onchange="check(this, 'C*(1+0.0365)')"></li>
+    <li>Imposto na 2ª etapa: <input onchange="check(this, '0.0365*C*(1+0.0365)')"> ou <input onchange="check(this, 'C*0.0365^2 + C*0.0365')"> reais</li>
+    <li>Total dos impostos: <input onchange="check(this, '2*C*0.0365 + C*0.0365^2')"> reais</li>
+  </ul>
+
+  <h4>Alternativas:</h4>
+  <div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> \( C \times 0{,}0365 \)</div>
+  <div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> \( 2C \times 0{,}0365 \)</div>
+  <div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> \( C \times 1{,}0365^2 \)</div>
+  <div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> \( C \times (1 + 2 \times 0{,}0365) \)</div>
+  <div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> \( 2C \times 0{,}0365 + C \times 0{,}0365^2 \)</div>
+
+  <div id="message" class="feedback"></div>
+
+  <script>
+    function check(input, correct) {
+      let value = input.value.trim().replace(',', '.').replace(' ', '');
+      let expected = correct.replace(',', '.').replace(' ', '');
+      value = value.replace(/C²/g, 'C^2');
+      input.nextElementSibling?.remove();
+      if (value === expected) {
+        input.style.backgroundColor = "#c6f6c6";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+      } else {
+        input.style.backgroundColor = "#fdd";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+      }
+    }
+
+    function checkAnswer(letter) {
+      const correct = 'E';
+      const message = document.getElementById('message');
+      if (letter === correct) {
+        message.textContent = 'Correto! A expressão certa é 2C × 0,0365 + C × 0,0365².';
+        message.style.color = 'green';
+      } else {
+        message.textContent = `Errado. A alternativa ${letter} não é correta.`;
+        message.style.color = 'red';
+      }
+    }
+  </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 15 (ENEM 2020 — Q123) — Energia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Energia</a>
+    <span class="spacer"></span>
+    <a href="questao_001.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">2/33</span>
+    <a href="questao_003.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 15 (ENEM 2020 — Q123)</h2>
+  <h3>Problema 15:</h3>
+<p><strong>Enem 2020</strong></p>
+
+<p><strong>Questão 123 – Ciências da Natureza e suas Tecnologias</strong></p>
+
+<p>
+O custo de implantação de redes de transmissão aumenta linearmente com a distância da hidrelétrica, de modo que, a partir de uma certa distância, o uso de energia solar fotovoltaica (ESF), que não depende da distância, é favorecido. Assim, em regiões isoladas, como a Amazônia, o uso da energia solar torna-se alternativa viável. Qual gráfico representa qualitativamente os custos do uso de energia solar fotovoltaica (ESF) e da implantação de redes de transmissão (RT) em função da distância?
+</p>
+
+<!-- Resolução (apenas posicionada antes das alternativas) -->
+<h4>Resolução (interativa):</h4>
+
+<p><strong>1) Com a distância até a usina, o custo de RT tende a:</strong>
+  <input onchange="checkWord(this,'crescer linearmente|aumentar linearmente|linha inclinada crescente|proporcional a distancia|proporcional à distância')">
+</p>
+
+<p><strong>2) O custo de ESF instalado localmente, em 1ª aproximação, é:</strong>
+  <input onchange="checkWord(this,'praticamente constante|aprox constante|horizontal|independente da distancia|independente da distância')">
+</p>
+
+<p><strong>3) Para alguma distância, a solução ESF torna-se mais barata, logo os gráficos devem:</strong>
+  <input onchange="checkWord(this,'se cruzar|cruzar|intersectar|ter interseccao|interseção')">
+</p>
+
+<!-- ALTERNATIVAS COM IMAGENS (mesma pasta do HTML) -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('A')" onkeydown="if(event.key==='Enter')checkAnswer('A')">
+  <span class="circulo">A</span>
+  <img class="altimg" src="questao123a.png" alt="Alternativa A — gráfico de custos ESF e RT versus distância">
+</div>
+
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('B')" onkeydown="if(event.key==='Enter')checkAnswer('B')">
+  <span class="circulo">B</span>
+  <img class="altimg" src="questao123b.png" alt="Alternativa B — gráfico de custos ESF e RT versus distância">
+</div>
+
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('C')" onkeydown="if(event.key==='Enter')checkAnswer('C')">
+  <span class="circulo">C</span>
+  <img class="altimg" src="questao123c.png" alt="Alternativa C — gráfico de custos ESF e RT versus distância">
+</div>
+
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('D')" onkeydown="if(event.key==='Enter')checkAnswer('D')">
+  <span class="circulo">D</span>
+  <img class="altimg" src="questao123d.png" alt="Alternativa D — gráfico de custos ESF e RT versus distância">
+</div>
+
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('E')" onkeydown="if(event.key==='Enter')checkAnswer('E')">
+  <span class="circulo">E</span>
+  <img class="altimg" src="questao123e.png" alt="Alternativa E — gráfico de custos ESF e RT versus distância">
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização e marcação ✅/❌ nos inputs
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito (sem dica ao errar)
+  const CORRECT = 'E';
+  function checkAnswer(letter){
+    const message = document.getElementById('message');
+    if (letter === CORRECT){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

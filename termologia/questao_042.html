@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 97 (ENEM) — Termologia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Termologia</a>
+    <span class="spacer"></span>
+    <a href="questao_041.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">42/58</span>
+    <a href="questao_043.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 97 (ENEM)</h2>
+  <h3>Problema 97:</h3>
+
+<p><strong>137. (Enem PPL 2013)</strong></p>
+
+<p>
+É comum nos referirmos a dias quentes como dias "de calor".  
+Muitas vezes ouvimos expressões como "hoje está calor" ou "hoje o calor está muito forte" quando a temperatura ambiente está alta.  
+No contexto científico, é correto o significado de "calor" usado nessas expressões?
+</p>
+
+
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Definição científica de calor:</strong>
+  <input onchange="checkWord(this,'energia termica em transito|transferencia de energia termica')">
+</p>
+
+<p><strong>2) Calor é uma propriedade do corpo?</strong>
+  <input onchange="checkWord(this,'nao|nao, e energia em transito')">
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  Sim, pois o calor de um corpo depende de sua temperatura.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  Sim, pois calor é sinônimo de alta temperatura.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  Não, pois calor é energia térmica em trânsito.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  Não, pois calor é a quantidade de energia térmica contida em um corpo.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  Não, pois o calor é diretamente proporcional à temperatura, mas são conceitos diferentes.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para tolerar acentos/maiúsculas
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito
+  function checkAnswer(letter){
+    const correct = 'C';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

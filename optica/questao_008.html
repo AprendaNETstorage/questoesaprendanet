@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 22 — Óptica</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Óptica</a>
+    <span class="spacer"></span>
+    <a href="questao_007.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">8/42</span>
+    <a href="questao_009.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 22</h2>
+  <h3>Problema 22:</h3>
+
+<p><strong>(Modelo atômico de Dalton)</strong></p>
+
+<p>
+Em 1808, Dalton publicou <em>Um novo sistema de filosofia química</em>, no qual apresentou cinco postulados para explicar a matéria:
+</p>
+<ol>
+  <li>A matéria é constituída de átomos indivisíveis.</li>
+  <li>Todos os átomos de um mesmo elemento são idênticos em massa e propriedades.</li>
+  <li>Diferentes elementos têm diferentes tipos de átomos; os átomos desses elementos têm massas diferentes.</li>
+  <li>Os átomos são indestrutíveis e, nas reações químicas, mantêm suas identidades.</li>
+  <li>Átomos de elementos combinam-se em proporções de números inteiros pequenos para formar compostos.</li>
+</ol>
+<p>
+Com o avanço da ciência (partículas subatômicas, isótopos, radioatividade, etc.), alguns pontos foram revisados. Com base no modelo atual, qual dos postulados de Dalton ainda é considerado correto?
+</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) O que caiu?</strong>
+  Indivisibilidade (<em>1</em>) caiu por causa de <input onchange="checkWord(this,'eletrons|elétrons|protons|prótons|neutrons|nêutrons|particulas subatomicas|partículas subatômicas')">;
+  identidade absoluta (<em>2</em>) caiu por causa de <input onchange="checkWord(this,'isotopos|isótopos|massas diferentes')">;
+  indestrutibilidade (<em>4</em>) caiu por causa de <input onchange="checkWord(this,'reacoes nucleares|fissao|fissão|radioatividade')">.
+</p>
+
+<p><strong>2) O que ficou válido?</strong>
+  A regra das <input onchange="checkWord(this,'proporcoes multiplas|proporções múltiplas|numeros inteiros pequenos|números inteiros pequenos')">
+  permanece verdadeira nos compostos estáveis ⇒ <strong>postulado 5</strong>.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  1
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  2
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  3
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  4
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  5
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // -------- utilidades --------
+  function safeEval(expr) {
+    const cleaned = String(expr).replace(/\s/g, '');
+    if (!/^[0-9eE+\-*/().,]+$/.test(cleaned)) return null;
+    const withDot = cleaned.replace(/,/g, '.');
+    try {
+      const val = Function('"use strict"; return (' + withDot + ');')();
+      return (typeof val === 'number' && Number.isFinite(val)) ? val : null;
+    } catch { return null; }
+  }
+  function nearlyEqual(a, b, eps = 1e-3) {
+    return Math.abs(a - b) <= eps * Math.max(1, Math.abs(a), Math.abs(b));
+  }
+  function paint(input, ok) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function checkWord(input, patterns) {
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    paint(input, ok);
+  }
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'E';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

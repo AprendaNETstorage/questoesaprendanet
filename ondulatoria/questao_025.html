@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 38 — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_024.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">25/71</span>
+    <a href="questao_026.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 38</h2>
+  <h3>Problema 38:</h3>
+
+<p><strong>(ENEM)</strong></p>
+
+<p>
+  Um experimento para comprovar a natureza ondulatória da radiação de micro-ondas foi
+  realizado da seguinte forma: anotou-se a frequência de operação de um forno de
+  micro-ondas e, em seguida, retirou-se sua plataforma giratória. No seu lugar,
+  colocou-se uma travessa refratária com uma camada grossa de manteiga. Depois disso,
+  o forno foi ligado por alguns segundos. Ao se retirar a travessa refratária do forno,
+  observou-se que havia três pontos de manteiga derretida alinhados sobre toda a
+  travessa. Parte da onda estacionária gerada no interior do forno é ilustrada na figura.
+</p>
+
+<p style="text-align:center;">
+  <img src="questao38_enunciado.png" alt="Onda estacionária com cinco posições marcadas I, II, III, IV e V." style="max-width: 100%; height: auto;">
+</p>
+
+<p>
+  De acordo com a figura, que posições correspondem a dois pontos consecutivos da manteiga
+  derretida?
+</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) O que acontece nos pontos onde a manteiga derrete?</strong><br>
+  Eles ficam onde a energia da onda é
+  <input onchange="checkWord(this,'maxima|maximo|máxima|máximo|maior')">
+  (amplitude maior).
+</p>
+
+<p><strong>2) Numa onda estacionária, como chamamos esses pontos de amplitude máxima?</strong><br>
+  Chamamos de
+  <input onchange="checkWord(this,'ventre|ventres|antinodo|antinodos|antinódo|antinódos')">
+  da onda.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  I e III.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  I e V.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  II e III.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  II e IV.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  III e V.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // -------- helpers (aceita vírgula/ponto e expressões simples) --------
+  function normalize(s){
+    return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  }
+
+  function safeEval(expr){
+    const cleaned = String(expr).replace(/\s/g,'');
+    if(!/^[0-9eE+\-*/().,×^]+$/.test(cleaned)) return null;
+    const norm = cleaned.replace(/,/g,'.').replace(/×/g,'*').replace(/\^/g,'**');
+    try{
+      const v = Function('"use strict"; return ('+norm+');')();
+      return (typeof v === 'number' && Number.isFinite(v)) ? v : null;
+    }catch{ return null; }
+  }
+
+  function nearlyEqual(a,b,eps=1e-3){
+    return Math.abs(a-b) <= eps*Math.max(1,Math.abs(a),Math.abs(b));
+  }
+
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  function checkExpr(input, expectedExprs){
+    const val = safeEval(input.value.trim());
+    const targets = expectedExprs.split('|').map(e => safeEval(e));
+    const ok = (val !== null) && targets.some(t => t !== null && nearlyEqual(val, t));
+    paint(input, ok);
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'A';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto! Os pontos consecutivos de manteiga derretida são I e III.';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Repare que a manteiga derrete onde a amplitude da onda é máxima.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

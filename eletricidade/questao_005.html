@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 14 (ENEM) — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_004.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">5/81</span>
+    <a href="questao_006.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 14 (ENEM)</h2>
+  <h3>Problema 14:</h3>
+
+<p><strong>114. (ENEM)</strong></p>
+
+<p>
+Um curioso estudante, empolgado com a aula de circuito elétrico que assistiu na escola, resolve desmontar sua lanterna.  
+Utilizando a lâmpada e a pilha retiradas do equipamento, e um fio com as extremidades descascadas, faz as ligações mostradas em oito esquemas numerados (1) a (8).  
+Deseja-se saber em quais casos a lâmpada acende.  
+As opções são:
+</p>
+
+<p><img src="questao_144.png" alt="Esquemas de ligação da lâmpada com a pilha (1 a 8)"></p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Para a lâmpada incandescente acender, um terminal da pilha deve tocar:</strong>  
+  <input onchange="checkWord(this,'rosca|lateral da lampada|casco da lampada')">  
+  e o outro terminal deve tocar:  
+  <input onchange="checkWord(this,'pino central|base central')">
+</p>
+
+<p><strong>2) Verificando os esquemas, a lâmpada acende nos casos:</strong>  
+  <input onchange="checkWord(this,'1,3,7|1 3 7|um tres sete')">
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  (1), (3), (6)
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  (3), (4), (5)
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  (1), (3), (5)
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  (1), (3), (7)
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  (1), (2), (5)
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para tolerar acentos/maiúsculas
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito
+  function checkAnswer(letter){
+    const correct = 'D';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

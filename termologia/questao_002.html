@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 11 (ENEM) — Termologia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Termologia</a>
+    <span class="spacer"></span>
+    <a href="questao_001.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">2/58</span>
+    <a href="questao_003.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 11 (ENEM)</h2>
+  <h3>Problema 11:</h3>
+
+<p><strong>144. (Enem 2009)</strong></p>
+
+<p>
+O Sol representa uma fonte limpa e inesgotável de energia para o nosso planeta.  
+Essa energia pode ser captada por aquecedores solares, armazenada e convertida posteriormente em trabalho útil.  
+Uma usina termossolar utiliza concentradores solares parabólicos que refletem a radiação para aquecer água, vaporizando-a em uma caldeira.  
+O calor desse vapor movimenta uma turbina, gerando energia elétrica.  
+</p>
+
+<figure>
+  <img src="extra_43.png" alt="Enunciado/ilustração da questão 144">
+  <figcaption>Enunciado (use a imagem do seu PDF, se desejar)</figcaption>
+</figure>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Quantidade de calor necessária para aquecer 1 t de água (de 20 °C a 100 °C):</strong>
+  <input onchange="checkWord(this,'q=m.c.dt|3,36e8 j|336 mj')">
+</p>
+
+<p><strong>2) Potência solar incidente por metro quadrado:</strong>
+  <input onchange="checkWord(this,'800 w/m2|800w')">
+</p>
+
+<p><strong>3) Tempo de aquecimento (1 hora em segundos):</strong>
+  <input onchange="checkWord(this,'3600 s|1h=3600')">
+</p>
+
+<p><strong>4) Comprimento linear do refletor necessário:</strong>
+  <input onchange="checkWord(this,'entre 15 e 21 m|~18 m')">
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  15 m e 21 m.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  22 m e 30 m.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  105 m e 125 m.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  680 m e 710 m.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  6.700 m e 7.150 m.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para tolerar acentos/maiúsculas
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito
+  function checkAnswer(letter){
+    const correct = 'A';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

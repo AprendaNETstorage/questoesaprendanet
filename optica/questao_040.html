@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problema 20 — Óptica</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Óptica</a>
+    <span class="spacer"></span>
+    <a href="questao_039.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">40/42</span>
+    <a href="questao_041.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Problema 20</h2>
+  <nav class="topnav">
+    
+    
+  </nav>
+
+  <h1>Problema 20</h1>
+  <div class="meta">Fonte: ENEM 2021</div>
+
+  <section class="enunciado">
+    <p>
+      No outono, as folhas das árvores mudam de cor porque a produção de clorofila diminui. 
+      Outros pigmentos, como carotenoides e antocianinas, tornam-se dominantes, absorvendo 
+      diferentes faixas do espectro visível.
+    </p>
+    <div class="imgwrap">
+      <img src="q20_fig.png" alt="Gráfico mostrando o espectro de absorção da clorofila e dos carotenoides.">
+    </div>
+    <p>
+      De acordo com o espectro de absorção, em qual faixa do espectro visível os carotenoides 
+      absorvem majoritariamente?
+    </p>
+  </section>
+
+  <div class="solucao">Solução (interativa)</div>
+
+  <div class="step">
+    <div class="q">1) Que cor o carotenoide reflete, tornando as folhas amareladas ou alaranjadas?</div>
+    <div class="controls">
+      <input type="text" onchange="checkWord(this,'amarelo|alaranjado|amarelo-alaranjado')" placeholder="Digite sua resposta">
+      <div class="status" aria-live="polite"></div>
+      <button onclick="toggleHint(this)">Mostrar dica</button>
+      <div class="hint">A cor percebida é a luz refletida, ou seja, a que não foi absorvida pelo pigmento.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="q">2) Em que região do espectro visível está a luz complementar à cor amarela?</div>
+    <div class="controls">
+      <input type="text" onchange="checkWord(this,'violeta|azul|entre violeta e azul')" placeholder="Digite sua resposta">
+      <div class="status" aria-live="polite"></div>
+      <button onclick="toggleHint(this)">Mostrar dica</button>
+      <div class="hint">As cores complementares se situam em lados opostos do espectro visível.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="q">3) Portanto, entre quais faixas de cor os carotenoides absorvem mais intensamente?</div>
+    <div class="controls">
+      <input type="text" onchange="checkWord(this,'violeta e azul|entre o violeta e o azul')" placeholder="Digite sua conclusão">
+      <div class="status" aria-live="polite"></div>
+      <button onclick="toggleHint(this)">Mostrar dica</button>
+      <div class="hint">Pigmentos alaranjados absorvem comprimentos de onda curtos, correspondentes ao violeta e azul.</div>
+    </div>
+  </div>
+
+  <section class="options" aria-label="Alternativas">
+    <div class="opcao" onclick="checkAnswer('A')"><span class="circulo">A</span> Entre o violeta e o azul.</div>
+    <div class="opcao" onclick="checkAnswer('B')"><span class="circulo">B</span> Entre o azul e o verde.</div>
+    <div class="opcao" onclick="checkAnswer('C')"><span class="circulo">C</span> Entre o verde e o amarelo.</div>
+    <div class="opcao" onclick="checkAnswer('D')"><span class="circulo">D</span> Entre o amarelo e o laranja.</div>
+    <div class="opcao" onclick="checkAnswer('E')"><span class="circulo">E</span> Entre o laranja e o vermelho.</div>
+  </section>
+
+  <div style="margin-top:15px;">
+    <button onclick="checkAnswer('_force')">Confirmar escolha</button>
+    <div id="message" aria-live="polite"></div>
+  </div>
+
+  <script>
+    function normalize(str) {
+      return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+    }
+    function checkWord(input, patterns) {
+      const val = normalize(input.value);
+      const list = patterns.split('|').map(normalize);
+      const ok = list.includes(val);
+      const st = input.parentElement.querySelector('.status');
+      if (ok) {
+        input.className = 'ok';
+        st.textContent = '✅ Correto';
+        st.className = 'status ok';
+      } else {
+        input.className = 'bad';
+        st.textContent = '❌ Verifique';
+        st.className = 'status bad';
+      }
+    }
+    function toggleHint(btn) {
+      const hint = btn.parentElement.querySelector('.hint');
+      hint.style.display = hint.style.display === 'block' ? 'none' : 'block';
+      btn.textContent = hint.style.display === 'block' ? 'Ocultar dica' : 'Mostrar dica';
+    }
+    const correct = 'A';
+    let lastChoice = null;
+    document.querySelectorAll('.option').forEach(o => {
+      o.addEventListener('click', () => {
+        document.querySelectorAll('.option').forEach(e => e.style.borderColor = '#e5e7eb');
+        o.style.borderColor = '#94a3b8';
+        lastChoice = o.querySelector('.circle').textContent.trim();
+      });
+    });
+    function checkAnswer(x) {
+      const chosen = x !== '_force' ? x : lastChoice;
+      const msg = document.getElementById('message');
+      if (!chosen) { msg.textContent = 'Selecione uma alternativa.'; msg.className = ''; return; }
+      if (chosen === correct) { msg.textContent = 'Correto!'; msg.className = 'ok'; }
+      else { msg.textContent = 'Errado. Tente novamente.'; msg.className = 'bad'; }
+    }
+  </script>
+</div>
+</body>
+</html>

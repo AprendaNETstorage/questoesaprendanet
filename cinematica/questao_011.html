@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 21 (ENEM 2020 — Q105) — Cinemática</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Cinemática</a>
+    <span class="spacer"></span>
+    <a href="questao_010.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">11/35</span>
+    <a href="questao_012.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 21 (ENEM 2020 — Q105)</h2>
+  <h3>Problema 21:</h3>
+<p><strong>7 – Enem 2020</strong></p>
+
+<p><strong>Questão 105 – Ciências da Natureza e suas Tecnologias</strong></p>
+
+<p>
+No Autódromo de Interlagos, um carro de Fórmula 1 realiza a curva S do Senna numa trajetória curvilínea.
+Enquanto percorre esse trecho, o velocímetro do carro indica velocidade constante.
+Quais são a direção e o sentido da aceleração do carro?
+</p>
+
+<!-- Resolução apenas posicionada antes das alternativas (sem bloqueio) -->
+<h4>Resolução (interativa):</h4>
+
+<p><strong>1) Se o módulo da velocidade é constante numa curva, o movimento é:</strong>
+  <input onchange="checkWord(this,'mcu|movimento circular uniforme|uniforme em modulo|velocidade escalar constante')">
+</p>
+
+<p><strong>2) Em MCU, a aceleração responsável pela mudança de direção chama-se:</strong>
+  <input onchange="checkWord(this,'aceleracao centripeta|aceleração centrípeta')">
+</p>
+
+<p><strong>3) A direção e o sentido dessa aceleração são:</strong>
+  <input onchange="checkWord(this,'radial para dentro|apontada para o centro|normal para o centro|para dentro da curva')">
+</p>
+
+<!-- ALTERNATIVAS CLICÁVEIS -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('A')" onkeydown="if(event.key==='Enter')checkAnswer('A')">
+  <span class="circulo">A</span> Radial, apontada para fora da curva.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('B')" onkeydown="if(event.key==='Enter')checkAnswer('B')">
+  <span class="circulo">B</span> Radial, apontada para dentro da curva.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('C')" onkeydown="if(event.key==='Enter')checkAnswer('C')">
+  <span class="circulo">C</span> Aceleração nula, portanto, sem direção nem sentido.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('D')" onkeydown="if(event.key==='Enter')checkAnswer('D')">
+  <span class="circulo">D</span> Tangencial, apontada no sentido da velocidade do carro.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('E')" onkeydown="if(event.key==='Enter')checkAnswer('E')">
+  <span class="circulo">E</span> Tangencial, apontada no sentido contrário à velocidade do carro.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização e marcação ✅/❌ nos inputs
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito simples (sem dica ao errar)
+  const CORRECT = 'B';
+  function checkAnswer(letter){
+    const message = document.getElementById('message');
+    if (letter === CORRECT){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista — Problema 32 — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_067.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">68/81</span>
+    <a href="questao_069.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista — Problema 32</h2>
+  <h3>Problema 32:</h3>
+
+<p><strong>11 – ENEM 2024</strong></p>
+
+<p>
+  Em um experimento, duas barras metálicas <strong>A</strong> e <strong>B</strong> são carregadas com cargas opostas e imersas em óleo. Farelo de milho, lançado sobre o óleo, desenha as linhas de campo elétrico entre as barras (vista superior).
+</p>
+
+<!-- figura base (deixar comentada mesmo sem o arquivo) -->
+<!-- <div class="imgwrap"><img src="linhas_campo_placas.png" alt="Linhas de campo retas entre placas A(+) e B(-) vistas de cima"></div> -->
+
+<p>
+  Ao repetir o experimento colocando-se um <strong>cilindro metálico oco</strong> entre as placas, pergunta-se qual esquema melhor representa o <em>formato</em> das linhas de campo observadas pelo farelo.
+</p>
+
+<!-- figuras das alternativas (deixar comentadas) -->
+<!-- <div class="imgwrap"><img src="opcoes_cilindro_eletrostatico.png" alt="Cinco esboços com o cilindro entre as placas e linhas com diferentes desvios"></div> -->
+
+<!-- SOLUÇÃO (INTERATIVA) ANTES DAS ALTERNATIVAS -->
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Em um condutor metálico em equilíbrio eletrostático, como é o campo no <u>interior</u> do material?</strong><br>
+  <input onchange="checkWord(this,'nulo|zero|campo interno nulo|E=0 dentro do condutor')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Os elétrons se redistribuem até cancelar o campo interno.</span>
+  </span>
+</p>
+
+<p><strong>2) E na cavidade oca do cilindro (sem cargas internas), o campo é…?</strong><br>
+  <input onchange="checkWord(this,'nulo tambem|zero na cavidade|blindagem eletrostatica|blindagem|E=0 na cavidade')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Conceito-chave: blindagem eletrostática causada pelo condutor envolvente.</span>
+  </span>
+</p>
+
+<p><strong>3) Portanto, o que acontece com as <u>linhas de campo</u> ao encontrarem o cilindro?</strong><br>
+  <input onchange="checkWord(this,'contornam a superficie|nao penetram|desviam ao redor|tangenciam equipotenciais e passam fora')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>As linhas não atravessam o interior; elas "abraçam" o condutor e seguem adiante.</span>
+  </span>
+</p>
+
+<!-- ALTERNATIVAS (descritas, já que os desenhos podem não estar disponíveis) -->
+<p><strong>Assinale a alternativa que melhor descreve o padrão correto:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  As linhas atravessam o cilindro e seguem praticamente retas entre as placas.
+</div>
+
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  As linhas entram no cilindro, curvam-se no interior e saem pelo lado oposto.
+</div>
+
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  As linhas convergem para dentro do cilindro, concentrando-se no seu centro.
+</div>
+
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  Parte das linhas contorna o cilindro e parte penetra seu interior.
+</div>
+
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  As linhas desviam e <u>contornam</u> a superfície do cilindro, sem penetrar no interior (campo nulo dentro).
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para ignorar acentos
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+  // verificação por palavras-chave
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  // botão Mostrar dica
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = span.style.display === 'inline' ? 'none' : 'inline';
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'E';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

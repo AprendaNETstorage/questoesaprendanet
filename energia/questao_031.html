@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problema 12 — Energia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Energia</a>
+    <span class="spacer"></span>
+    <a href="questao_030.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">31/33</span>
+    <a href="questao_032.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Problema 12</h2>
+  <nav class="topnav">
+    
+    
+  </nav>
+
+  <h1>Problema 12</h1>
+  <div class="meta">Fonte: ENEM 2021</div>
+
+  <section class="enunciado">
+    <p>
+      Analisando a ficha técnica de um automóvel popular, verificam-se algumas características de desempenho em duas versões: motor a gasolina e motor a álcool.
+    </p>
+    <p>
+      Considerando o mesmo automóvel e desprezando a resistência do ar, a tabela mostra os dados de aceleração e velocidade máxima:
+    </p>
+    <div class="imgwrap">
+    <img src="q12_fig.png" alt="Tabela comparando motor a gasolina e motor a álcool: aceleração e velocidade máxima.">
+    </div>
+    <p>
+      Considerando a resistência do ar desprezível, qual versão apresenta maior potência?
+    </p>
+  </section>
+
+  <div class="solucao">Solução (interativa)</div>
+
+  <div class="step">
+    <div class="q">1) A potência está relacionada a qual grandeza física em movimento?</div>
+    <div class="controls">
+      <input type="text" onchange="checkWord(this,'energia cinetica|variação de energia cinetica|taxa de variação de energia cinetica')" placeholder="Digite sua resposta">
+      <div class="status" aria-live="polite"></div>
+      <button onclick="toggleHint(this)">Mostrar dica</button>
+      <div class="hint">A potência é a taxa de variação da energia cinética em relação ao tempo.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="q">2) Se as duas versões atingem a mesma velocidade final, qual delas atinge essa velocidade em menor tempo?</div>
+    <div class="controls">
+      <input type="text" onchange="checkWord(this,'alcool|motor a alcool')" placeholder="Digite o tipo de motor">
+      <div class="status" aria-live="polite"></div>
+      <button onclick="toggleHint(this)">Mostrar dica</button>
+      <div class="hint">Compare os tempos de aceleração de 0 a 100 km/h de cada motor.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="q">3) Qual conclusão podemos tirar sobre a potência da versão a álcool em relação à gasolina?</div>
+    <div class="controls">
+      <input type="text" onchange="checkWord(this,'maior|superior|mais alta')" placeholder="Digite sua conclusão">
+      <div class="status" aria-live="polite"></div>
+      <button onclick="toggleHint(this)">Mostrar dica</button>
+      <div class="hint">Se o mesmo trabalho (aumentar a energia cinética) é feito em menos tempo, a potência é maior.</div>
+    </div>
+  </div>
+
+  <section class="options" aria-label="Alternativas">
+    <div class="opcao" onclick="checkAnswer('A')"><span class="circulo">A</span> Gasolina: maior aceleração, logo maior potência.</div>
+    <div class="opcao" onclick="checkAnswer('B')"><span class="circulo">B</span> Gasolina: maior energia cinética final, logo maior potência.</div>
+    <div class="opcao" onclick="checkAnswer('C')"><span class="circulo">C</span> Álcool: maior taxa de variação de energia cinética, logo maior potência.</div>
+    <div class="opcao" onclick="checkAnswer('D')"><span class="circulo">D</span> As duas têm mesma potência, pois atingem a mesma velocidade final.</div>
+    <div class="opcao" onclick="checkAnswer('E')"><span class="circulo">E</span> Nenhuma conclusão pode ser feita sem considerar a massa do veículo.</div>
+  </section>
+
+  <div style="margin-top:15px;">
+    <button onclick="checkAnswer('_force')">Confirmar escolha</button>
+    <div id="message" aria-live="polite"></div>
+  </div>
+
+  <script>
+    function normalize(str) {
+      return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+    }
+    function checkWord(input, patterns) {
+      const val = normalize(input.value);
+      const list = patterns.split('|').map(normalize);
+      const ok = list.includes(val);
+      const st = input.parentElement.querySelector('.status');
+      if (ok) {
+        input.className = 'ok';
+        st.textContent = '✅ Correto';
+        st.className = 'status ok';
+      } else {
+        input.className = 'bad';
+        st.textContent = '❌ Verifique';
+        st.className = 'status bad';
+      }
+    }
+    function toggleHint(btn) {
+      const hint = btn.parentElement.querySelector('.hint');
+      hint.style.display = hint.style.display === 'block' ? 'none' : 'block';
+      btn.textContent = hint.style.display === 'block' ? 'Ocultar dica' : 'Mostrar dica';
+    }
+    const correct = 'C';
+    let lastChoice = null;
+    document.querySelectorAll('.option').forEach(o => {
+      o.addEventListener('click', () => {
+        document.querySelectorAll('.option').forEach(e => e.style.borderColor = '#e5e7eb');
+        o.style.borderColor = '#94a3b8';
+        lastChoice = o.querySelector('.circle').textContent.trim();
+      });
+    });
+    function checkAnswer(x) {
+      const chosen = x !== '_force' ? x : lastChoice;
+      const msg = document.getElementById('message');
+      if (!chosen) { msg.textContent = 'Selecione uma alternativa.'; msg.className = ''; return; }
+      if (chosen === correct) { msg.textContent = 'Correto!'; msg.className = 'ok'; }
+      else { msg.textContent = 'Errado. Tente novamente.'; msg.className = 'bad'; }
+    }
+  </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 34 — Termologia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Termologia</a>
+    <span class="spacer"></span>
+    <a href="questao_021.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">22/58</span>
+    <a href="questao_023.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 34</h2>
+  <h3>Problema 34:</h3>
+
+<p><strong>(ENEM – mudanças de fase da matéria)</strong></p>
+
+<p>
+Primeiro, em relação àquilo a que chamamos água, quando congela, parece-nos estar a olhar para algo
+que se tornou pedra ou terra, mas, quando derrete e se dispersa, esta torna-se bafo e ar; o ar,
+quando é queimado, torna-se fogo; e, inversamente, o fogo, quando se contrai e se extingue,
+regressa à forma do ar; o ar, novamente concentrado e contraído, torna-se nuvem e nevoeiro, mas, a
+partir destes estados, se for ainda mais comprimido, torna-se água corrente, e, de água, torna-se
+novamente terra e pedras; e desse modo, como nos parece, dão geração uns aos outros de forma cíclica.
+</p>
+
+<p><em>PLATÃO. Timeu–Crítias. Coimbra: CECH, 2011.</em></p>
+
+<p>
+Do ponto de vista da ciência moderna, os "quatro elementos" descritos por Platão correspondem, na
+verdade, às fases sólida, líquida, gasosa e plasmática da matéria. As transições entre elas são
+entendidas como consequências macroscópicas de transformações sofridas pela matéria em escala
+microscópica. Excetuando-se a fase de plasma, essas transformações sofridas pela matéria, em nível
+microscópico, estão associadas a uma
+</p>
+
+<ol type="A">
+  <li>troca de átomos entre as diferentes moléculas do material.</li>
+  <li>transmutação nuclear dos elementos químicos do material.</li>
+  <li>redistribuição de prótons entre os diferentes átomos do material.</li>
+  <li>mudança na estrutura espacial formada pelos diferentes constituintes do material.</li>
+  <li>alteração nas proporções dos diferentes isótopos de cada elemento presente no material.</li>
+</ol>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) O que muda quando a água passa de gelo para líquido ou vapor?</strong><br>
+As partículas continuam sendo as mesmas moléculas de
+<input onchange="checkWord(this,'agua|água')">
+, mas mudam o
+<input onchange="checkWord(this,'arranjo espacial|organizacao|organização|posicao|posição')">
+entre elas e a
+<input onchange="checkWord(this,'energia|energia de ligacao|energia de ligação')">
+das ligações intermoleculares.
+</p>
+
+<p><strong>2) Há troca de átomos ou reações nucleares?</strong><br>
+Nas mudanças de fase comuns (fusão, solidificação, vaporização, condensação) <br>
+não ocorre
+<input onchange="checkWord(this,'transmutacao nuclear|reacao nuclear|reação nuclear|mudanca de elemento|mudança de elemento')">
+nem troca de
+<input onchange="checkWord(this,'atomos|átomos')"> entre moléculas.
+O tipo de molécula permanece o
+<input onchange="checkWord(this,'mesmo|igual')">.
+</p>
+
+<p>
+Logo, em nível microscópico, a transformação está associada a uma reorganização da
+<input onchange="checkWord(this,'estrutura espacial|disposicao espacial|disposição espacial|geometria do arranjo')">
+formada pelos constituintes do material.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  troca de átomos entre as diferentes moléculas do material.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  transmutação nuclear dos elementos químicos do material.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  redistribuição de prótons entre os diferentes átomos do material.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  mudança na estrutura espacial formada pelos diferentes constituintes do material.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  alteração nas proporções dos diferentes isótopos de cada elemento presente no material.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // -------- helpers (aceita vírgula/ponto e expressões simples) --------
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function safeEval(expr){
+    const cleaned = String(expr).replace(/\s/g,'');
+    if(!/^[0-9eE+\-*/().,×^]+$/.test(cleaned)) return null;
+    const norm = cleaned.replace(/,/g,'.').replace(/×/g,'*').replace(/\^/g,'**');
+    try{
+      const v = Function('"use strict"; return ('+norm+');')();
+      return (typeof v === 'number' && Number.isFinite(v)) ? v : null;
+    }catch{ return null; }
+  }
+  function nearlyEqual(a,b,eps=1e-3){
+    return Math.abs(a-b) <= eps * Math.max(1, Math.abs(a), Math.abs(b));
+  }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+  function checkExpr(input, expectedExprs){
+    const val = safeEval(input.value.trim());
+    const targets = expectedExprs.split('|').map(e => safeEval(e));
+    const ok = (val !== null) && targets.some(t => t !== null && nearlyEqual(val, t));
+    paint(input, ok);
+  }
+
+  // gabarito
+  function checkAnswer(letter){
+    const correct = 'D';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto! Mudanças de fase envolvem reorganização espacial das partículas, sem mudar o tipo de molécula.';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Lembre que nas mudanças de fase comuns não há reações nucleares nem troca de átomos, apenas mudança no arranjo das partículas.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

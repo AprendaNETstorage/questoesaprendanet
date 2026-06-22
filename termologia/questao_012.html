@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 25 (ENEM 2020 — Q112) — Termologia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Termologia</a>
+    <span class="spacer"></span>
+    <a href="questao_011.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">12/58</span>
+    <a href="questao_013.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 25 (ENEM 2020 — Q112)</h2>
+  <h3>Problema 25:</h3>
+<p><strong>Enem 2020</strong></p>
+
+<p><strong>Questão 112 – Ciências da Natureza e suas Tecnologias</strong></p>
+
+<p>
+Um fabricante de termômetros orienta em seu manual de instruções que o instrumento deve ficar três minutos em contato com o corpo para aferir a temperatura. Esses termômetros são feitos com o bulbo preenchido com mercúrio conectado a um tubo capilar de vidro. De acordo com a termodinâmica, esse procedimento se justifica, pois é necessário que
+</p>
+
+<!-- Resolução apenas posicionada antes das alternativas (sem bloqueio) -->
+<h4>Resolução (interativa):</h4>
+
+<p><strong>1) Princípio usado quando dois sistemas trocam calor até terem a mesma temperatura:</strong>
+  <input onchange="checkWord(this,'lei zero da termodinamica|lei zero da termodinâmica|lei zero')">
+</p>
+
+<p><strong>2) Para a leitura correta, termômetro e corpo devem ficar com:</strong>
+  <input onchange="checkWord(this,'mesma temperatura|temperaturas iguais|equilibrio termico|equilíbrio térmico')">
+</p>
+
+<p><strong>3) Quando isso ocorre, a troca de calor entre eles:</strong>
+  <input onchange="checkWord(this,'cessa|para|deixa de ocorrer|zera o fluxo de calor')">
+</p>
+
+<!-- ALTERNATIVAS CLICÁVEIS -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('A')" onkeydown="if(event.key==='Enter')checkAnswer('A')">
+  <span class="circulo">A</span> o termômetro e o corpo tenham a mesma energia interna.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('B')" onkeydown="if(event.key==='Enter')checkAnswer('B')">
+  <span class="circulo">B</span> a temperatura do corpo passe para o termômetro.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('C')" onkeydown="if(event.key==='Enter')checkAnswer('C')">
+  <span class="circulo">C</span> o equilíbrio térmico entre os corpos seja atingido.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('D')" onkeydown="if(event.key==='Enter')checkAnswer('D')">
+  <span class="circulo">D</span> a quantidade de calor dos corpos seja a mesma.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('E')" onkeydown="if(event.key==='Enter')checkAnswer('E')">
+  <span class="circulo">E</span> o calor do termômetro passe para o corpo.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização e marcação ✅/❌ nos inputs
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito simples (sem dica ao errar)
+  const CORRECT = 'C';
+  function checkAnswer(letter){
+    const message = document.getElementById('message');
+    if (letter === CORRECT){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

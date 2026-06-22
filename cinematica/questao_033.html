@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problema 36 - Sistemas Numéricos — Cinemática</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Cinemática</a>
+    <span class="spacer"></span>
+    <a href="questao_032.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">33/35</span>
+    <a href="questao_034.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Problema 36 - Sistemas Numéricos</h2>
+  <h3>Problema 36:</h3>
+  <p>
+    Três amigos realizaram uma viagem de carro entre duas cidades, num tempo total de 31 h. Para não fazer paradas, revezaram-se na direção de forma que cada um dirigisse um terço da quilometragem total. O primeiro, mais prudente, dirigiu a 75 km/h; o segundo, a 90 km/h; e o terceiro, mais apressado, a 100 km/h. A distância percorrida por eles, em quilômetros, foi:
+  </p>
+
+  <h4>Resolução passo a passo:</h4>
+  <ul>
+    <li>Velocidade do 1º amigo: <input onchange="check(this, '75')"> km/h</li>
+    <li>Velocidade do 2º amigo: <input onchange="check(this, '90')"> km/h</li>
+    <li>Velocidade do 3º amigo: <input onchange="check(this, '100')"> km/h</li>
+    <li>Tempo total: <input onchange="check(this, '31')"> horas</li>
+    <li>Soma das frações de tempo: <input onchange="check(this, '31/900')"></li>
+    <li>Distância total: <input onchange="check(this, '2700')"> km</li>
+  </ul>
+
+  <h4>Alternativas:</h4>
+  <div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> 900</div>
+  <div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> 2.700</div>
+  <div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> 2.738</div>
+  <div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> 2.790</div>
+  <div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> 8.215</div>
+
+  <div id="message" class="feedback"></div>
+
+  <script>
+    function check(input, correct) {
+      const value = input.value.trim().replace(',', '.');
+      const expected = correct.toString().replace(',', '.');
+      input.nextElementSibling?.remove();
+      if (value === expected) {
+        input.style.backgroundColor = "#c6f6c6";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+      } else {
+        input.style.backgroundColor = "#fdd";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+      }
+    }
+
+    function checkAnswer(letter) {
+      const correct = 'B';
+      const message = document.getElementById('message');
+      if (letter === correct) {
+        message.textContent = 'Correto! A distância total percorrida foi de 2.700 km.';
+        message.style.color = 'green';
+      } else {
+        message.textContent = `Errado. A alternativa ${letter} não é a correta.`;
+        message.style.color = 'red';
+      }
+    }
+  </script>
+</div>
+</body>
+</html>

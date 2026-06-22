@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 23 — Óptica</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Óptica</a>
+    <span class="spacer"></span>
+    <a href="questao_008.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">9/42</span>
+    <a href="questao_010.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 23</h2>
+  <h3>Problema 23:</h3>
+
+<p><strong>132. (Fisiologia da visão — pupila e acuidade)</strong></p>
+
+<p>
+A maioria das pessoas fica com a visão embaçada ao abrir os olhos debaixo d'água. Uma exceção é o povo moken, que habita a costa da Tailândia.
+Essa característica se deve principalmente à adaptabilidade do olho e à plasticidade do cérebro, o que sugere que, com treino, é possível enxergar relativamente bem debaixo d'água. Estudos mostram que as pupilas dos moken sofrem <em>redução significativa</em> de diâmetro sob a água, fazendo com que os raios luminosos que incidem sejam quase paralelos ao eixo óptico da pupila. A acuidade visual associada a essa redução é explicada pela diminuição:
+</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Efeito da pupila menor:</strong>
+  Pupila contraída deixa passar apenas raios próximos ao
+  <input onchange="checkWord(this,'eixo optico|eixo óptico|eixo')">, reduzindo
+  <input onchange="checkWord(this,'aberracoes|aberrações|desvios|desvio')">
+  e melhorando a <input onchange="checkWord(this,'acuidade|resolucao|resolução')">.
+</p>
+
+<p><strong>2) O que acontece dentro do olho (água × córnea):</strong>
+  Sob a água, o contraste de índices muda e raios
+  <input onchange="checkWord(this,'refratados|refracao|refração')">
+  desviam menos quando passam mais perto do eixo ⇒
+  <input onchange="checkWord(this,'diminui o desvio|menor desvio|diminui o desvio dos feixes')">.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  da intensidade luminosa incidente na retina.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  da difração dos feixes luminosos que atravessam a pupila.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  da intensidade dos feixes luminosos em uma direção por polarização.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  do desvio dos feixes luminosos refratados no interior do olho.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  das reflexões dos feixes luminosos no interior do olho.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // -------- utilidades --------
+  function safeEval(expr) {
+    const cleaned = String(expr).replace(/\s/g, '');
+    if (!/^[0-9eE+\-*/().,]+$/.test(cleaned)) return null;
+    const withDot = cleaned.replace(/,/g, '.');
+    try {
+      const val = Function('"use strict"; return (' + withDot + ');')();
+      return (typeof val === 'number' && Number.isFinite(val)) ? val : null;
+    } catch { return null; }
+  }
+  function nearlyEqual(a, b, eps = 1e-3) {
+    return Math.abs(a - b) <= eps * Math.max(1, Math.abs(a), Math.abs(b));
+  }
+  function paint(input, ok) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function checkWord(input, patterns) {
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    paint(input, ok);
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'D';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

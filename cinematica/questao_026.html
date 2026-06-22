@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 04 — Cinemática</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Cinemática</a>
+    <span class="spacer"></span>
+    <a href="questao_025.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">26/35</span>
+    <a href="questao_027.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 04</h2>
+  <h3>Problema 04:</h3>
+
+<!-- ENUNCIADO IDÊNTICO -->
+<p><strong>(Enem PPL 2013)</strong> Antes das lombadas eletrônicas, eram pintadas faixas nas ruas para controle da velocidade dos automóveis. A velocidade era estimada com o uso de binóculos e cronômetros. O policial utilizava a relação entre a distância percorrida e o tempo gasto, para determinar a velocidade de um veículo. Cronometrava-se o tempo que um veículo levava para percorrer a distância entre duas faixas fixas, cuja distância era conhecida. A lombada eletrônica é um sistema muito preciso, porque a tecnologia elimina erros do operador. A distância entre os sensores é de 2 metros, e o tempo é medido por um circuito eletrônico. O tempo mínimo, em segundos, que o motorista deve gastar para passar pela lombada eletrônica, cujo limite é de 40 km/h, sem receber uma multa, é de</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Converter 40 km/h para m/s:</strong></p>
+<p>
+  40 × <span class="fraction"><span><input onchange="check(this,'1000')"></span><span class="bar"></span><span><input onchange="check(this,'3600')"></span></span>
+  = <input onchange="check(this, '11.111111')"> m/s <!-- aceita 11.111..., 11.1, 40*1000/3600 etc. -->
+</p>
+
+<p><strong>2) Relação s = 2 m e v = v<sub>máx</sub> ⇒ t<sub>mín</sub> = s / v<sub>máx</sub>:</strong></p>
+<p>
+  t<sub>mín</sub> = <input onchange="check(this,'2')"> ÷ <input onchange="check(this,'11.111111')"> =
+  <input onchange="check(this,'0.18')"> s
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  0,05.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  11,1.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  0,18.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  22,2.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  0,50.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // --- helpers para aceitar vírgula ou ponto e expressões ---
+  function safeEval(expr) {
+    const cleaned = String(expr).replace(/\s/g, '');
+    if (!/^[0-9+\-*/().,]+$/.test(cleaned)) return null;
+    const withDot = cleaned.replace(/,/g, '.');
+    try {
+      const val = Function('"use strict"; return (' + withDot + ');')();
+      return (typeof val === 'number' && Number.isFinite(val)) ? val : null;
+    } catch { return null; }
+  }
+  function nearlyEqual(a, b, eps = 1e-3) { // tolerância maior para arredondamentos
+    return Math.abs(a - b) <= eps * Math.max(1, Math.abs(a), Math.abs(b));
+  }
+
+  function check(input, correct) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const raw = input.value.trim();
+    if (raw === '') { input.style.backgroundColor = ''; return; }
+
+    const norm = raw.replace(/\s/g, '');
+    const expected = String(correct);
+
+    const parsedUser = safeEval(norm);
+    // permitir várias formas do mesmo valor esperado (ex.: 11.111..., 11.1, 40*1000/3600)
+    let target;
+    if (expected === '11.111111') {
+      target = 40*1000/3600;
+    } else if (expected === '0.18') {
+      target = 0.18;
+    } else {
+      target = safeEval(expected);
+    }
+
+    let ok = false;
+    if (parsedUser !== null && target !== null) {
+      ok = nearlyEqual(parsedUser, target);
+    } else {
+      ok = norm.toLowerCase() === expected.toLowerCase();
+    }
+
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  function checkAnswer(letter) {
+    const correct = 'C';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

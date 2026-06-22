@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 04 — Energia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Energia</a>
+    <span class="spacer"></span>
+    <a href="questao_023.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">24/33</span>
+    <a href="questao_025.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 04</h2>
+  <h3>Problema 45:</h3>
+  <p>
+    Para certas molas, a constante elástica (C) depende do diâmetro médio da circunferência da mola (D), do número de espiras úteis (N), do diâmetro (d) do fio de metal do qual é formada a mola e do módulo de elasticidade do material (G). A fórmula evidencia essas relações de dependência:
+  </p>
+
+  <p><strong>C = Gd⁴ / (8D³N)</strong></p>
+
+  <p>
+    O dono de uma fábrica possui uma mola M₁ em um de seus equipamentos, que tem características D₁, d₁, N₁ e G₁, com constante elástica C₁. Essa mola precisa ser substituída por outra, M₂, produzida com um fio com características diferentes, bem como um novo módulo de elasticidade G₂, da seguinte maneira: i) D₂ = D₁ / 3; ii) d₂ = 3d₁; iii) N₂ = 9N₁. Além disso, a constante de elasticidade G₂ do novo material é 4G₁.
+  </p>
+
+  <p>O valor da constante C₂ em função da constante C₁ é:</p>
+
+  <h4>Solução 45:</h4>
+
+  <p><strong>Passo 1:</strong> Calcular potências</p>
+  <p>
+    (3d₁)<sup><input onchange="check(this, '4')"></sup> = 
+    <input onchange="check(this, '81')">d₁⁴
+    &nbsp;&nbsp;&nbsp;
+    (D₁/3)<sup><input onchange="check(this, '3')"></sup> = 
+    <input onchange="check(this, 'D₁³/27')">
+  </p>
+
+  <p><strong>Passo 2:</strong> Substituir na fórmula de C₂</p>
+  <p>
+    C₂ = 
+    <input onchange="check(this, '4')"> · 
+    <input onchange="check(this, '81')"> · G₁ · d₁⁴ / 
+    8 · 
+    <input onchange="check(this, 'D₁³')"> / 
+    <input onchange="check(this, '27')"> · 
+    <input onchange="check(this, '9')"> · N₁
+  </p>
+
+  <p><strong>Passo 3:</strong> Simplificar</p>
+  <p>
+    C₂ = 
+    <input onchange="check(this, '8748')"> · G₁d₁⁴ / 
+    <input onchange="check(this, '72')"> · D₁³N₁ = 
+    <input onchange="check(this, '121.5')"> · C₁ = 
+    <strong><input onchange="check(this, '972')"> · C₁</strong>
+  </p>
+
+  <h4>Alternativas:</h4>
+
+  <div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> C₂ = 972 C₁</div>
+  <div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> C₂ = 108 C₁</div>
+  <div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> C₂ = 4 C₁</div>
+  <div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> C₂ = 4/3 C₁</div>
+  <div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> C₂ = 4/9 C₁</div>
+
+  <div id="message" class="feedback"></div>
+
+  <script>
+    function check(input, correct) {
+      const value = input.value.trim().replace(',', '.');
+      const expected = correct.toString().replace(',', '.');
+      input.nextElementSibling?.remove();
+      if (value === expected) {
+        input.style.backgroundColor = "#c6f6c6";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+      } else {
+        input.style.backgroundColor = "#fdd";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+      }
+    }
+
+    function checkAnswer(letter) {
+      const correct = 'A';
+      const message = document.getElementById('message');
+      if (letter === correct) {
+        message.textContent = 'Correto! A constante C₂ equivale a 972 vezes C₁.';
+        message.style.color = 'green';
+      } else {
+        message.textContent = `Errado. A alternativa ${letter} não é a correta.`;
+        message.style.color = 'red';
+      }
+    }
+  </script>
+</div>
+</body>
+</html>

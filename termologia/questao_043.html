@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 98 (ENEM) — Termologia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Termologia</a>
+    <span class="spacer"></span>
+    <a href="questao_042.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">43/58</span>
+    <a href="questao_044.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 98 (ENEM)</h2>
+  <h3>Problema 98:</h3>
+
+<p><strong>138. (Enem 2013)</strong></p>
+
+<p>
+Em um experimento foram utilizadas duas garrafas PET, uma pintada de branco e a outra de preto, acopladas cada uma a um termômetro.  
+No ponto médio da distância entre as garrafas, foi mantida acesa, durante alguns minutos, uma lâmpada incandescente.  
+Em seguida a lâmpada foi desligada. Durante o experimento, foram monitoradas as temperaturas das garrafas:  
+(a) enquanto a lâmpada permanecia acesa e  
+(b) após a lâmpada ser desligada e atingirem equilíbrio térmico com o ambiente.  
+</p>
+
+<figure>
+  <img src="imagens/extra_41.png" alt="Enunciado/ilustração da questão 98">
+</figure>
+
+<p>
+A taxa de variação da temperatura da garrafa preta, em comparação à da branca, durante todo experimento, foi
+</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) O que acontece durante o aquecimento com a garrafa preta?</strong>
+  <input onchange="checkWord(this,'a preta aquece mais rapido|maior absorcao de radiacao')">
+</p>
+
+<p><strong>2) O que acontece durante o resfriamento com a garrafa preta?</strong>
+  <input onchange="checkWord(this,'a preta esfria mais rapido|maior emissao de radiacao')">
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  Igual no aquecimento e igual no resfriamento.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  Maior no aquecimento e igual no resfriamento.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  Maior no aquecimento e maior no resfriamento.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  Menor no aquecimento e igual no resfriamento.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  Menor no aquecimento e menor no resfriamento.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para tolerar acentos/maiúsculas
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito
+  function checkAnswer(letter){
+    const correct = 'C';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

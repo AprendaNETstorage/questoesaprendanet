@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 23 — Leis de Newton</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Leis de Newton</a>
+    <span class="spacer"></span>
+    <a href="questao_016.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">17/25</span>
+    <a href="questao_018.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 23</h2>
+  <h3>Problema 23:</h3>
+
+<!-- ENUNCIADO IDÊNTICO -->
+<p><strong>40. (ENEM 2014)</strong></p>
+<p>Para entender os movimentos dos corpos, Galileu discutiu o movimento de uma esfera de metal em dois planos inclinados sem atritos e com a possibilidade de se alterarem os ângulos de inclinação, conforme mostra a figura. Na descrição do experimento, quando a esfera de metal é abandonada para descer um plano inclinado de um determinado nível, ao subir o plano ascendente, no máximo, um nível igual aquele em que foi abandonada.</p>
+
+<div class="imgwrap">
+  <!-- (opcional) coloque a figura do enunciado na mesma pasta e ajuste o src) -->
+  <img src="q23_galileu.png" alt="Planos inclinados: descida e subida da esfera">
+</div>
+
+<p>Se o ângulo de inclinação do plano de subida for reduzido a zero, a esfera</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Forças relevantes (sem atrito):</strong>
+  a única força que pode acelerar ao longo do plano é a componente do
+  <input onchange="checkWord(this,'peso|forca peso|gravidade')"> paralela ao plano.
+</p>
+
+<p><strong>2) Componente paralela em um plano inclinado:</strong>
+  é proporcional a <input onchange="checkWord(this,'sen(theta)|seno do angulo|sen do angulo|mg sen theta|mg sen(θ)')">.
+</p>
+
+<p><strong>3) Se o plano de subida vira horizontal (θ = 0):</strong>
+  essa componente fica <input onchange="checkWord(this,'nula|zero')"> ⇒ a resultante ao longo do movimento é
+  <input onchange="checkWord(this,'nula|zero')"> e a aceleração é <input onchange="checkWord(this,'nula|zero')">.
+</p>
+
+<p><strong>4) Consequência dinâmica:</strong>
+  sem força/resultante ao longo do plano, o impulso resultante é
+  <input onchange="checkWord(this,'nulo|zero')"> e a esfera mantém
+  <input onchange="checkWord(this,'velocidade constante|movimento retilineo uniforme|mru')">.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  manterá sua velocidade constante, pois o impulso resultante sobre ela será nulo.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  manterá sua velocidade constante, pois o impulso da descida continuará a empurrá-la.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  diminuirá gradativamente a sua velocidade, pois não haverá mais impulso para empurrá-la.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  diminuirá gradativamente a sua velocidade, pois o impulso resultante será contrário ao seu movimento.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  aumentará gradativamente a sua velocidade, pois não haverá nenhum impulso contrário ao seu movimento.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // Validação por palavras-chave (tolerante a acentos)
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function checkWord(input, patterns){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok){
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  // Gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'A';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

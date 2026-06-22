@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problema 11 — Energia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Energia</a>
+    <span class="spacer"></span>
+    <a href="questao_029.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">30/33</span>
+    <a href="questao_031.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Problema 11</h2>
+  <nav class="topnav">
+    
+    
+  </nav>
+
+  <h1>Problema 11</h1>
+  <div class="meta">Fonte: ENEM 2021</div>
+
+  <section class="enunciado">
+    <p>
+      Carros elétricos estão cada vez mais baratos, mas o tempo de recarga das baterias ainda é uma preocupação, 
+      pois é mais lento comparado ao abastecimento de um carro a combustão. Um motorista realiza um percurso de 
+      110 km com um carro elétrico que tem desempenho médio de 5,0 km/kWh. Ele utiliza um carregador de 220 V e 
+      corrente de 20 A.
+    </p>
+    <p>
+      Quantas horas são necessárias para recarregar a energia usada nesse percurso?
+    </p>
+    <div class="imgwrap">
+      <!-- <img src="7647464c-3923-44a0-a074-842eedee3012.png" alt="Carregador de carro elétrico operando em 220 V e 20 A"> -->
+    </div>
+  </section>
+
+  <div class="solucao">Solução (interativa)</div>
+
+  <div class="step">
+    <div class="q">1) Qual a energia consumida pelo carro ao percorrer 110 km, dado o rendimento de 5 km/kWh?</div>
+    <div class="controls">
+      <input type="text" onchange="checkWord(this,'22|22 kwh|22kwh')" placeholder="Digite a energia consumida">
+      <div class="status" aria-live="polite"></div>
+      <button onclick="toggleHint(this)">Mostrar dica</button>
+      <div class="hint">Divida a distância total (110 km) pelo rendimento (5 km/kWh).</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="q">2) Qual é a potência do carregador em watts?</div>
+    <div class="controls">
+      <input type="text" onchange="checkWord(this,'4400|4,4 kw|4.4 kw')" placeholder="Digite o valor da potência">
+      <div class="status" aria-live="polite"></div>
+      <button onclick="toggleHint(this)">Mostrar dica</button>
+      <div class="hint">Use a relação P = V × I, com V = 220 V e I = 20 A.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="q">3) Qual o tempo necessário (em horas) para recarregar a energia consumida?</div>
+    <div class="controls">
+      <input type="text" onchange="checkWord(this,'5|5 horas|5.0 h|5 h')" placeholder="Digite o tempo em horas">
+      <div class="status" aria-live="polite"></div>
+      <button onclick="toggleHint(this)">Mostrar dica</button>
+      <div class="hint">Divida a energia (em kWh) pela potência (em kW).</div>
+    </div>
+  </div>
+
+  <section class="options" aria-label="Alternativas">
+    <div class="opcao" onclick="checkAnswer('A')"><span class="circulo">A</span> 0,005 h</div>
+    <div class="opcao" onclick="checkAnswer('B')"><span class="circulo">B</span> 0,125 h</div>
+    <div class="opcao" onclick="checkAnswer('C')"><span class="circulo">C</span> 2,5 h</div>
+    <div class="opcao" onclick="checkAnswer('D')"><span class="circulo">D</span> 5,0 h</div>
+    <div class="opcao" onclick="checkAnswer('E')"><span class="circulo">E</span> 8,0 h</div>
+  </section>
+
+  <div style="margin-top:15px;">
+    <button onclick="checkAnswer('_force')">Confirmar escolha</button>
+    <div id="message" aria-live="polite"></div>
+  </div>
+
+  <script>
+    function normalize(str) {
+      return str.toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .trim();
+    }
+    function checkWord(input, patterns) {
+      const val = normalize(input.value);
+      const list = patterns.split('|').map(normalize);
+      const ok = list.includes(val);
+      const st = input.parentElement.querySelector('.status');
+      if (ok) {
+        input.className = 'ok';
+        st.textContent = '✅ Correto';
+        st.className = 'status ok';
+      } else {
+        input.className = 'bad';
+        st.textContent = '❌ Verifique';
+        st.className = 'status bad';
+      }
+    }
+    function toggleHint(btn) {
+      const hint = btn.parentElement.querySelector('.hint');
+      hint.style.display = hint.style.display === 'block' ? 'none' : 'block';
+      btn.textContent = hint.style.display === 'block' ? 'Ocultar dica' : 'Mostrar dica';
+    }
+    const correct = 'D';
+    let lastChoice = null;
+    document.querySelectorAll('.option').forEach(o => {
+      o.addEventListener('click', () => {
+        document.querySelectorAll('.option').forEach(e => e.style.borderColor = '#e5e7eb');
+        o.style.borderColor = '#94a3b8';
+        lastChoice = o.querySelector('.circle').textContent.trim();
+      });
+    });
+    function checkAnswer(x) {
+      const chosen = x !== '_force' ? x : lastChoice;
+      const msg = document.getElementById('message');
+      if (!chosen) { msg.textContent = 'Selecione uma alternativa.'; msg.className = ''; return; }
+      if (chosen === correct) { msg.textContent = 'Correto!'; msg.className = 'ok'; }
+      else { msg.textContent = 'Errado. Tente novamente.'; msg.className = 'bad'; }
+    }
+  </script>
+</div>
+</body>
+</html>

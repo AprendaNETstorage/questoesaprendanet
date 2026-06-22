@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problema 10 — Leis de Newton</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Leis de Newton</a>
+    <span class="spacer"></span>
+    <a href="questao_023.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">24/25</span>
+    <a href="questao_025.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Problema 10</h2>
+  <nav class="topnav">
+    
+    
+  </nav>
+
+  <h1>Problema 10</h1>
+  <div class="meta">Fonte: ENEM 2021</div>
+
+  <section class="enunciado">
+    <p>
+      Em um estudo sobre a queda dos corpos, Aristóteles afirmava que corpos mais pesados cairiam mais rapidamente que os leves. 
+      Porém, experimentos mostram que, em condições ideais, ambos caem com a mesma aceleração. 
+    </p>
+    <p>
+      Dois colegas realizam um teste: um deixa cair uma pedra e uma folha de papel, e observa que a folha cai mais devagar. 
+      Então, ele amassa a folha e percebe que ela cai quase ao mesmo tempo que a pedra.
+    </p>
+    <div class="imgwrap">
+      <!-- <img src="5286d313-a4b1-40a2-85b0-e244e2e499f5.png" alt="Experimento de queda de corpos com pedra e folha de papel amassada."> -->
+    </div>
+    <p>
+      O aspecto físico comum que explica essa diferença de comportamento entre os corpos é:
+    </p>
+  </section>
+
+  <div class="solucao">Solução (interativa)</div>
+
+  <div class="step">
+    <div class="q">1) Em condições ideais (sem resistência do ar), como dois corpos caem?</div>
+    <div class="controls">
+      <input type="text" onchange="checkWord(this,'mesma aceleracao|igual aceleracao|caem igual')" placeholder="Digite sua resposta">
+      <div class="status" aria-live="polite"></div>
+      <button onclick="toggleHint(this)">Mostrar dica</button>
+      <div class="hint">No vácuo, todos os corpos estão sujeitos à mesma aceleração da gravidade.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="q">2) O que faz a folha de papel cair mais lentamente quando aberta?</div>
+    <div class="controls">
+      <input type="text" onchange="checkWord(this,'resistencia do ar|atrito do ar|forca de resistencia do ar')" placeholder="Digite sua resposta">
+      <div class="status" aria-live="polite"></div>
+      <button onclick="toggleHint(this)">Mostrar dica</button>
+      <div class="hint">Quando exposta, a folha tem maior área de contato com o ar, aumentando a força de resistência.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="q">3) Qual é o fator físico que explica a diferença observada?</div>
+    <div class="controls">
+      <input type="text" onchange="checkWord(this,'resistencia do ar|forca de resistencia do ar')" placeholder="Digite o fator físico">
+      <div class="status" aria-live="polite"></div>
+      <button onclick="toggleHint(this)">Mostrar dica</button>
+      <div class="hint">A diferença é causada pela interação com o ar e não pelo peso ou densidade.</div>
+    </div>
+  </div>
+
+  <section class="options" aria-label="Alternativas">
+    <div class="opcao" onclick="checkAnswer('A')"><span class="circulo">A</span> peso dos corpos.</div>
+    <div class="opcao" onclick="checkAnswer('B')"><span class="circulo">B</span> resistência do ar.</div>
+    <div class="opcao" onclick="checkAnswer('C')"><span class="circulo">C</span> densidade dos corpos.</div>
+    <div class="opcao" onclick="checkAnswer('D')"><span class="circulo">D</span> massa dos corpos.</div>
+    <div class="opcao" onclick="checkAnswer('E')"><span class="circulo">E</span> aceleração da gravidade.</div>
+  </section>
+
+  <div style="margin-top:15px;">
+    <button onclick="checkAnswer('_force')">Confirmar escolha</button>
+    <div id="message" aria-live="polite"></div>
+  </div>
+
+  <script>
+    function normalize(str) {
+      return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+    }
+    function checkWord(input, patterns) {
+      const val = normalize(input.value);
+      const list = patterns.split('|').map(normalize);
+      const ok = list.includes(val);
+      const st = input.parentElement.querySelector('.status');
+      if (ok) {
+        input.className = 'ok';
+        st.textContent = '✅ Correto';
+        st.className = 'status ok';
+      } else {
+        input.className = 'bad';
+        st.textContent = '❌ Verifique';
+        st.className = 'status bad';
+      }
+    }
+    function toggleHint(btn) {
+      const hint = btn.parentElement.querySelector('.hint');
+      hint.style.display = hint.style.display === 'block' ? 'none' : 'block';
+      btn.textContent = hint.style.display === 'block' ? 'Ocultar dica' : 'Mostrar dica';
+    }
+    const correct = 'B';
+    let lastChoice = null;
+    document.querySelectorAll('.option').forEach(o => {
+      o.addEventListener('click', () => {
+        document.querySelectorAll('.option').forEach(e => e.style.borderColor = '#e5e7eb');
+        o.style.borderColor = '#94a3b8';
+        lastChoice = o.querySelector('.circle').textContent.trim();
+      });
+    });
+    function checkAnswer(x) {
+      const chosen = x !== '_force' ? x : lastChoice;
+      const msg = document.getElementById('message');
+      if (!chosen) { msg.textContent = 'Selecione uma alternativa.'; msg.className = ''; return; }
+      if (chosen === correct) { msg.textContent = 'Correto!'; msg.className = 'ok'; }
+      else { msg.textContent = 'Errado. Tente novamente.'; msg.className = 'bad'; }
+    }
+  </script>
+</div>
+</body>
+</html>

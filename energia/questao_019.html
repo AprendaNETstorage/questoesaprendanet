@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 78 (ENEM) — Energia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Energia</a>
+    <span class="spacer"></span>
+    <a href="questao_018.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">19/33</span>
+    <a href="questao_020.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 78 (ENEM)</h2>
+  <h3>Problema 78:</h3>
+
+<p><strong>115. (ENEM)</strong></p>
+
+<p>
+O manual de um chuveiro elétrico apresenta uma tabela de características técnicas.  
+Uma pessoa adquiriu um chuveiro do modelo A e verificou que precisava trocá-lo por um disjuntor de 50 A. Intrigou-se com o fato de que o disjuntor a ser usado no modelo B deveria ter corrente 50% menor.  
+Considerando os chuveiros A e B funcionando à mesma potência de 4400 W, a razão entre suas resistências elétricas — que justifica a diferença — é aproximadamente:
+</p>
+
+<p><img src="imagens/questao_147.png" alt="Tabela técnica dos chuveiros A e B"></p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) A resistência de um chuveiro é dada pela fórmula:</strong>  
+  <input onchange="checkWord(this,'r=v^2/p|r = v^2/p|v^2 dividido por p')">  
+</p>
+
+<p><strong>2) Para os modelos A (127 V) e B (220 V), a razão das resistências é:</strong>  
+  <input onchange="checkWord(this,'(127/220)^2|127/220 ao quadrado|127^2/220^2|0,33|0.33')">
+</p>
+
+<p><strong>3) Aproximando o valor, obtemos:</strong>  
+  <input onchange="checkWord(this,'0,3|0.3')">
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  0,3
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  0,6
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  0,8
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  1,5
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  3,0
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para tolerar acentos/maiúsculas
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito
+  function checkAnswer(letter){
+    const correct = 'A';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

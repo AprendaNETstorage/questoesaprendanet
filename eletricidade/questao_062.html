@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 87 (ENEM) — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_061.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">62/81</span>
+    <a href="questao_063.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 87 (ENEM)</h2>
+  <h3>Problema 87:</h3>
+
+<p><strong>127. (Enem 2009)</strong></p>
+
+<p>
+A eficiência de um processo de conversão de energia é definida como a razão entre a produção de energia ou trabalho útil e o total de entrada de energia no processo. 
+A figura mostra um processo com diversas etapas. Nesse caso, a eficiência geral será igual ao produto das eficiências das etapas individuais. 
+A energia que não se transforma em trabalho útil é perdida sob formas não utilizáveis (como resíduos de calor).
+</p>
+
+<figure>
+  <img src="imagens/extra_35.png" alt="Enunciado/ilustração da questão 127">
+  <figcaption>Enunciado (use a imagem do seu PDF, se desejar)</figcaption>
+</figure>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Eficiência global do processo (produto das etapas):</strong>
+  <input onchange="checkWord(this,'0,16|16%|0.158|aprox 0.16')">
+</p>
+
+<p><strong>2) Aumentar a eficiência global significa:</strong>
+  <input onchange="checkWord(this,'reduzir perdas|diminuir perdas|melhorar condutores|lampadas eficientes')">
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  Aumentar a quantidade de combustível consumido na usina de força.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  Utilizar lâmpadas incandescentes, que geram pouco calor e muita luminosidade.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  Manter o menor número possível de aparelhos elétricos em funcionamento nas moradias.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  Utilizar cabos com menor diâmetro nas linhas de transmissão a fim de economizar material condutor.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  Utilizar materiais com melhores propriedades condutoras nas linhas de transmissão e lâmpadas fluorescentes nas moradias.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para tolerar acentos/maiúsculas
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito
+  function checkAnswer(letter){
+    const correct = 'E';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

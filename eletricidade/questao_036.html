@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 54 — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_035.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">36/81</span>
+    <a href="questao_037.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 54</h2>
+  <h3>Problema 54:</h3>
+
+<!-- ENUNCIADO -->
+<p><strong>112. (ENEM 2018)</strong></p>
+<p>
+Muitos smartphones e tablets não precisam mais de teclas, uma vez que todos os comandos podem ser dados ao se pressionar
+a própria tela. Inicialmente essa tecnologia foi proporcionada por meio das telas resistivas, formadas basicamente por
+duas camadas de material condutor transparente que não se encostam até que alguém as pressione, modificando a
+resistência total do circuito de acordo com o ponto onde ocorre o toque. A imagem é uma simplificação do circuito
+formado pelas placas, em que A e B representam pontos onde o circuito pode ser fechado por meio do toque.
+</p>
+
+<figure>
+  <!-- ajuste o caminho/nome da imagem conforme você salvar -->
+  <img src="questao54_circuito.png" alt="Esquema de três resistores idênticos ligados a uma bateria, com pontos A e B onde o toque pode fechar o circuito.">
+  <figcaption>Figura 1 – Esquema do circuito equivalente formado pela tela resistiva com pontos de toque A e B.</figcaption>
+</figure>
+
+<p>
+Qual é a resistência equivalente no circuito provocada por um toque que fecha o circuito no ponto A?
+</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Valor de cada resistor.</strong><br>
+Cada resistor do circuito tem resistência de
+<input onchange="checkExpr(this,'6000|6e3|6')"> kΩ (use 6 kΩ).
+</p>
+
+<p><strong>2) Associação de dois resistores de 6 kΩ em paralelo.</strong><br>
+Para dois resistores iguais em paralelo vale
+\( R_\text{eq} = \dfrac{R}{2} \). Assim, para 6 kΩ em paralelo com 6 kΩ:<br>
+\( R_{p} = \) <input onchange="checkExpr(this,'3000|3e3|3')"> kΩ.
+</p>
+
+<p><strong>3) Resistência equivalente vista pela bateria quando o toque é em A.</strong><br>
+Analisando as ligações feitas ao pressionar o ponto A, o circuito equivalente entre os terminais da bateria resulta em
+uma resistência efetiva de
+<input onchange="checkExpr(this,'6000|6e3|6')"> kΩ.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  1,3 kΩ.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  4 kΩ.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  6 kΩ.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  6,7 kΩ.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  12 kΩ.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // -------- helpers (aceita vírgula/ponto e expressões simples) --------
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function safeEval(expr){
+    const cleaned = String(expr).replace(/\s/g,'');
+    if(!/^[0-9eE+\-*/().,×^]+$/.test(cleaned)) return null;
+    const norm = cleaned.replace(/,/g,'.').replace(/×/g,'*').replace(/\^/g,'**');
+    try{
+      const v = Function('"use strict"; return ('+norm+');')();
+      return (typeof v === 'number' && Number.isFinite(v)) ? v : null;
+    }catch{ return null; }
+  }
+  function nearlyEqual(a,b,eps=1e-3){
+    return Math.abs(a-b) <= eps * Math.max(1, Math.abs(a), Math.abs(b));
+  }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+  function checkExpr(input, expectedExprs){
+    const val = safeEval(input.value.trim());
+    const targets = expectedExprs.split('|').map(e => safeEval(e));
+    const ok = (val !== null) && targets.some(t => t !== null && nearlyEqual(val, t));
+    paint(input, ok);
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'C';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

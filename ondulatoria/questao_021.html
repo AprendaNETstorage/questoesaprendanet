@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 33 — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_020.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">21/71</span>
+    <a href="questao_022.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 33</h2>
+  <h3>Problema 33:</h3>
+
+<p><strong>112. (ENEM – Trombone de Quincke)</strong></p>
+
+<p>
+O trombone de Quincke é um dispositivo experimental utilizado para demonstrar o fenômeno de interferência de ondas sonoras.
+Uma fonte emite ondas sonoras de determinada frequência na entrada do dispositivo. Essas ondas se dividem em dois caminhos
+(ADC e AEC) e se encontram novamente em um detector, na saída. O trecho ADC pode ter seu comprimento aumentado por
+deslocamento dessa parte do tubo. Com os dois caminhos com o mesmo comprimento, o som chega intenso ao detector.
+</p>
+
+<p>
+À medida que o comprimento de ADC é aumentado, a diferença de trajetos entre ADC e AEC cresce até que, para uma certa
+posição (como na figura), a intensidade sonora na saída fica praticamente nula, indicando interferência destrutiva.
+Sabendo que a velocidade do som no interior do tubo é de aproximadamente 320 m/s, determine a frequência do som produzido
+pela fonte.
+</p>
+
+<figure>
+  <img src="questao33_quincke.png"
+       alt="Esquema do trombone de Quincke com dois caminhos para o som. Entre os pontos D e A o comprimento é de 40 cm e entre A e E é de 30 cm.">
+  <figcaption>Figura – Trombone de Quincke com caminhos ADC e AEC de comprimentos diferentes.</figcaption>
+</figure>
+
+<p>
+Pela figura, a diferença de comprimentos dos caminhos, entre D e E, é de 40 cm no ramo de cima e 30 cm no ramo de baixo.
+</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Diferença de caminho para a primeira extinção.</strong><br>
+Para que ocorra a <em>primeira</em> extinção de som (interferência destrutiva máxima), a diferença de caminhos
+deve ser igual a metade do comprimento de onda:
+<br>
+ΔL =
+<input onchange="checkExpr(this,'0.10|0,10|0.4-0.3')"> m
+e isso vale
+<input onchange="checkWord(this,'meia onda|lambda/2|metade do comprimento de onda')">
+da onda.
+</p>
+
+<p><strong>2) Comprimento de onda do som.</strong><br>
+Se ΔL corresponde a metade do comprimento de onda,
+então o comprimento de onda λ é:
+<br>
+λ =
+<input onchange="checkExpr(this,'0.20|0,20|2*0.10')"> m.
+</p>
+
+<p><strong>3) Cálculo da frequência.</strong><br>
+Sabendo que a velocidade do som no tubo é
+v = <input onchange="checkExpr(this,'320')"> m/s, a frequência é dada por
+<br>
+f = v / λ =
+<input onchange="checkExpr(this,'1600|320/0.2')"> Hz.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  3&nbsp;200
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  1&nbsp;600
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  800
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  640
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  400
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // -------- helpers (aceita vírgula/ponto e expressões simples) --------
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function safeEval(expr){
+    const cleaned = String(expr).replace(/\s/g,'');
+    if(!/^[0-9eE+\-*/().,×^]+$/.test(cleaned)) return null;
+    const norm = cleaned.replace(/,/g,'.').replace(/×/g,'*').replace(/\^/g,'**');
+    try{
+      const v = Function('"use strict"; return ('+norm+');')();
+      return (typeof v === 'number' && Number.isFinite(v)) ? v : null;
+    }catch{ return null; }
+  }
+  function nearlyEqual(a,b,eps=1e-3){
+    return Math.abs(a-b) <= eps * Math.max(1, Math.abs(a), Math.abs(b));
+  }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+  function checkExpr(input, expectedExprs){
+    const val = safeEval(input.value.trim());
+    const targets = expectedExprs.split('|').map(e => safeEval(e));
+    const ok = (val !== null) && targets.some(t => t !== null && nearlyEqual(val, t));
+    paint(input, ok);
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'B';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

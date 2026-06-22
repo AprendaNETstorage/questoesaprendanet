@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Termologia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Termologia</a>
+    <span class="spacer"></span>
+    <a href="questao_048.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">49/58</span>
+    <a href="questao_050.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03</h2>
+  <h3>Problema 05:</h3>
+
+<p>
+  A cor de uma estrela tem relação com a temperatura em sua superfície. Estrelas não muito quentes (cerca de 3 000 K) nos parecem avermelhadas. Já as estrelas amarelas, como o Sol, possuem temperatura em torno dos 6 000 K; as mais quentes são brancas ou azuis porque sua temperatura fica acima dos 10 000 K.
+</p>
+
+<p>
+  A tabela apresenta uma classificação espectral e outros dados para as estrelas dessas classes: luminosidade, massa e raio, tomando o Sol como unidade. Se tomarmos uma estrela que tenha temperatura 5 vezes maior que a temperatura do Sol, qual será a ordem de grandeza de sua luminosidade?
+</p>
+
+<h4>Solução:</h4>
+
+<p>
+  A luminosidade de uma estrela é proporcional a R²·T⁴. Supondo que o raio permaneça constante:
+</p>
+
+<p>
+  <span class="fraction">
+    <span><input onchange="check(this, 'L')"></span>
+    <span class="bar"></span>
+    <span><input onchange="check(this, 'L☉')"></span>
+  </span>
+  =
+  (<input onchange="check(this, '5')">)<sup>4</sup> =
+  <input onchange="check(this, '625')">
+</p>
+
+<p>
+  No entanto, a tabela mostra que uma estrela da classe B0, com temperatura aproximadamente 5 vezes a do Sol, tem luminosidade:
+</p>
+
+<p>
+  L = <input onchange="check(this, '20000')"> · L☉
+</p>
+
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> 20 000 vezes a luminosidade do Sol</div>
+<div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> 28 000 vezes a luminosidade do Sol</div>
+<div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> 28 850 vezes a luminosidade do Sol</div>
+<div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> 30 000 vezes a luminosidade do Sol</div>
+<div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> 50 000 vezes a luminosidade do Sol</div>
+
+<div id="message" class="feedback"></div>
+
+<script>
+  function check(input, correct) {
+    const value = input.value.trim().replace(/\s/g, '').toLowerCase();
+    const expected = typeof correct === 'string' ? correct.toLowerCase() : correct;
+
+    input.nextElementSibling?.remove();
+    if (value === expected.toString()) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  function checkAnswer(letter) {
+    const correct = 'A';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto! A classe B0 tem luminosidade cerca de 20 mil vezes a do Sol.';
+      message.style.color = 'green';
+    } else {
+      message.textContent = `Errado. A alternativa ${letter} não corresponde à ordem correta.`;
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

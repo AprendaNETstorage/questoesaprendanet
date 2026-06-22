@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Questão 15 — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_058.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">59/71</span>
+    <a href="questao_060.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Questão 15</h2>
+  <h3>Problema 15:</h3>
+  <p>
+    O proprietário de um veículo precisa trocar os pneus de seu carro e, ao chegar a uma loja, é informado por um vendedor que há somente pneus com os seguintes códigos:
+    <strong>175/65R15, 175/75R15, 175/80R15, 185/60R15 e 205/55R15</strong>.<br>
+    Analisando, juntamente com o vendedor, as opções de pneus disponíveis, concluem que o pneu mais adequado para seu veículo é o que tem a <strong>menor altura</strong>.<br><br>
+    Desta forma, o proprietário do veículo deverá comprar o pneu com a marcação:
+  </p>
+
+  <h4>Solução:</h4>
+
+  <p><strong>1.</strong> Use a fórmula: <br>
+    Altura = largura × razão ÷ 100
+  </p>
+
+  <p><strong>A)</strong> 205/55R15: 
+    <input onchange="check(this, '205')"> × <input onchange="check(this, '55')"> ÷ 100 = 
+    <input onchange="check(this, '112.75')">
+  </p>
+
+  <p><strong>B)</strong> 175/65R15: 
+    <input onchange="check(this, '175')"> × <input onchange="check(this, '65')"> ÷ 100 = 
+    <input onchange="check(this, '113.75')">
+  </p>
+
+  <p><strong>C)</strong> 175/75R15: 
+    <input onchange="check(this, '175')"> × <input onchange="check(this, '75')"> ÷ 100 = 
+    <input onchange="check(this, '131.25')">
+  </p>
+
+  <p><strong>D)</strong> 175/80R15: 
+    <input onchange="check(this, '175')"> × <input onchange="check(this, '80')"> ÷ 100 = 
+    <input onchange="check(this, '140')">
+  </p>
+
+  <p><strong>E)</strong> 185/60R15: 
+    <input onchange="check(this, '185')"> × <input onchange="check(this, '60')"> ÷ 100 = 
+    <input onchange="check(this, '111')">
+  </p>
+
+  <p><strong>Resposta correta:</strong></p>
+
+  <div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> 205/55R15</div>
+  <div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> 175/65R15</div>
+  <div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> 175/75R15</div>
+  <div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> 175/80R15</div>
+  <div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> 185/60R15</div>
+
+  <div id="message" class="feedback"></div>
+
+  <script>
+    function check(input, correct) {
+      const value = input.value.trim().replace(',', '.');
+      input.nextElementSibling?.remove();
+      if (parseFloat(value) === parseFloat(correct)) {
+        input.style.backgroundColor = "#c6f6c6";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+      } else {
+        input.style.backgroundColor = "#fdd";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+      }
+    }
+
+    function checkAnswer(letter) {
+      const correct = 'E';
+      const message = document.getElementById('message');
+      if (letter === correct) {
+        message.textContent = 'Correto! A menor altura é da opção E: 185/60R15.';
+        message.style.color = 'green';
+      } else {
+        message.textContent = `Errado. A alternativa ${letter} não é a correta.`;
+        message.style.color = 'red';
+      }
+    }
+  </script>
+</div>
+</body>
+</html>

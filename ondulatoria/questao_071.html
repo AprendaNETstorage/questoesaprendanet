@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Óptica — Problema 59 (ENEM 2011) — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_070.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">71/71</span>
+    <span style="opacity:.4">Próxima &raquo;</span>
+  </nav>
+  <h2>Óptica — Problema 59 (ENEM 2011)</h2>
+  <h3>Problema 59 — ENEM 2011</h3>
+
+<p><strong>Enunciado:</strong> Para que uma substância seja colorida ela deve absorver luz na região do visível.
+Quando uma amostra absorve luz visível, a cor que percebemos é a soma das cores
+restantes que são refletidas ou transmitidas pelo objeto. A Figura 1 mostra o espectro
+de absorção para uma substância e é possível observar que há um comprimento de
+onda em que a intensidade de absorção é máxima. Um observador pode prever a
+cor dessa substância pelo uso da roda de cores (Figura 2): o comprimento de ondacorrespondente à cor do objeto é encontrado no lado oposto ao comprimento de onda
+da absorção máxima.</p>
+<figure>
+  <img src="imagens/questao_92.png" alt="Enunciado/ilustração da questão 132">
+</figure>
+<figure>
+  <img src="imagens/questao_92.2.png" alt="Enunciado/ilustração da questão 132">
+</figure>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Pico de absorção no gráfico:</strong></p>
+<p>
+  O comprimento de onda de absorção máxima é aproximadamente
+  <input placeholder="valor em nm" onchange="checkRange(this, 480, 520)"> nm.
+  <small>(aceita ~500 nm)</small>
+</p>
+
+<p><strong>2) Regra da cor percebida:</strong></p>
+<p>
+  A cor observada é a
+  <input placeholder="digite aqui" onchange="checkWord(this,'complementar|oposta')">
+  da cor mais absorvida.
+</p>
+
+<p><strong>3) Da roda de cores:</strong></p>
+<p>
+  A cor complementar do <em>verde</em> é
+  <input placeholder="nome da cor" onchange="checkWord(this,'vermelho|vermelha')">.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  Azul.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  Verde.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  Violeta.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  Laranja.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  Vermelho.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // Aceita número com vírgula/ponto e testa intervalo
+  function parseNum(x){
+    const t = String(x).trim().replace(',', '.');
+    const v = Number(t);
+    return Number.isFinite(v) ? v : null;
+  }
+  function paint(input, ok){
+    const next = input.nextElementSibling;
+    if (next && next.classList.contains('feedback')) next.remove();
+    input.style.backgroundColor = ok ? '#c6f6c6' : '#fdd';
+    input.insertAdjacentHTML('afterend', `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkRange(input, min, max){
+    const v = parseNum(input.value);
+    const ok = v !== null && v >= min && v <= max;
+    paint(input, ok);
+  }
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase(); }
+  function checkWord(input, patterns){
+    const txt = normalize(input.value);
+    const opts = patterns.split('|').map(p => normalize(p));
+    const ok = opts.some(p => txt.includes(p));
+    paint(input, ok);
+  }
+  // Gabarito só aqui, sem spoilers nos inputs
+  function checkAnswer(letter){
+    const correct = 'E';
+    const msg = document.getElementById('message');
+    if (letter === correct){
+      msg.textContent = 'Correto! Complementar do verde → vermelho.';
+      msg.style.color = 'green';
+    } else {
+      msg.textContent = 'Não é essa. Use as etapas acima (pico ~500 nm ⇒ complementar = vermelho).';
+      msg.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

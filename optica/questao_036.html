@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista — Problema 16 — Óptica</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Óptica</a>
+    <span class="spacer"></span>
+    <a href="questao_035.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">36/42</span>
+    <a href="questao_037.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista — Problema 16</h2>
+  <h3>Problema 16:</h3>
+
+<p><strong>4 – ENEM 2024</strong></p>
+
+<p><em>Mirascópio 3D: produtor de ilusão instantânea</em></p>
+
+<p>
+  O equipamento ilustrado é composto por dois espelhos côncavos <em>E₁</em> e <em>E₂</em>, apoiados um sobre o outro por suas bordas, de forma que o vértice de <em>E₁</em> coincide com o foco de <em>E₂</em> e vice-versa. Na abertura circular de <em>E₂</em>, forma-se uma imagem tridimensional de um objeto posicionado sobre o vértice de <em>E₁</em>. Essa imagem é formada por raios provenientes do objeto, refletidos por <em>E₂</em> e <em>E₁</em>, respectivamente. Considere as dimensões do esquema (foco ≈ 3,8 cm).
+</p>
+
+<!-- (duas imagens no enunciado – deixar comentadas) -->
+<!-- <div class="imgwrap"><img src="mirascopio_esquema.png" alt="Esquema com dois espelhos côncavos e trajetórias dos raios"></div>
+<div class="imgwrap"><img src="mirascopio_foto.png" alt="Mirascópio com imagem aparecendo acima da abertura"></div> -->
+
+<p><strong>A natureza da imagem formada e a distância vertical entre cada ponto objeto e seu correspondente ponto imagem são</strong></p>
+
+<!-- SOLUÇÃO (INTERATIVA) ANTES DAS ALTERNATIVAS -->
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Que tipo de espelhos compõem o mirascópio?</strong><br>
+  <input onchange="checkWord(this,'conca vo|concavo|côncavo|espelhos concavos|espelhos côncavos')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>São "cascas de colher" voltadas uma para a outra.</span>
+  </span>
+</p>
+
+<p><strong>2) O objeto fica no vértice de <em>E₁</em>, que coincide com qual ponto de <em>E₂</em>?</strong><br>
+  <input onchange="checkWord(this,'foco de e2|foco do segundo espelho|foco de e_2')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>No desenho, os focos de um coincidem com os vértices do outro.</span>
+  </span>
+</p>
+
+<p><strong>3) Após refletir em <em>E₂</em> e depois em <em>E₁</em>, a imagem que emerge na abertura é de que natureza?</strong><br>
+  <input onchange="checkWord(this,'real|imagem real')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Os raios saem realmente convergentes para a abertura (podem ser projetados).</span>
+  </span>
+</p>
+
+<p><strong>4) A distância focal indicada é <em>f</em> ≈ 3,8 cm. No mirascópio, a separação vertical objeto–imagem é aproximadamente</strong><br>
+  <input onchange="checkWord(this,'2f|7,6 cm|7.6 cm|duas vezes o foco|≈ 7,6')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>A ótica do par de espelhos faz a imagem surgir cerca de duas vezes a distância focal acima do objeto.</span>
+  </span>
+</p>
+
+<!-- ALTERNATIVAS -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  A imagem é real e a distância é de 5 cm.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  A imagem é real e a distância é de 3,8 cm.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  A imagem é real e a distância é de 7,6 cm.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  A imagem é virtual e a distância é de 7,6 cm.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  A imagem é virtual e a distância é de 3,8 cm.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para ignorar acentos
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+  // verificação por palavras-chave (tolerante)
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  // botão Mostrar dica
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = span.style.display === 'inline' ? 'none' : 'inline';
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'C';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 04 — Física (Geral)</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Física (Geral)</a>
+    <span class="spacer"></span>
+    <a href="questao_010.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">11/23</span>
+    <a href="questao_012.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 04</h2>
+  <h3>Problema 48:</h3>
+  <p>
+    Deseja-se comprar determinado produto e, após uma pesquisa de preços, o produto foi encontrado em 5 lojas diferentes, a preços variados.
+  </p>
+  <p>
+    – Loja 1: 20% de desconto, que equivale a R$ 720,00, mais R$ 70,00 de frete;<br>
+    – Loja 2: 20% de desconto, que equivale a R$ 740,00, mais R$ 50,00 de frete;<br>
+    – Loja 3: 20% de desconto, que equivale a R$ 760,00, mais R$ 80,00 de frete;<br>
+    – Loja 4: 15% de desconto, que equivale a R$ 710,00, mais R$ 10,00 de frete;<br>
+    – Loja 5: 15% de desconto, que equivale a R$ 690,00, sem custo de frete.
+  </p>
+  <p>
+    O produto foi comprado na loja que apresentou o menor preço total.
+  </p>
+  <p><strong>O produto foi adquirido na loja:</strong></p>
+
+  <h4>Solução 48:</h4>
+
+  <p><strong>Loja 1:</strong></p>
+  <p>
+    20% → 720 → x = <input onchange="check(this, '3600')"> <br>
+    Preço com desconto: 3600 - 720 = <input onchange="check(this, '2880')"><br>
+    Frete: 70 → Total = <input onchange="check(this, '2950')">
+  </p>
+
+  <p><strong>Loja 2:</strong></p>
+  <p>
+    20% → 740 → x = <input onchange="check(this, '3700')"> <br>
+    Preço com desconto: 3700 - 740 = <input onchange="check(this, '2960')"><br>
+    Frete: 50 → Total = <input onchange="check(this, '3010')">
+  </p>
+
+  <p><strong>Loja 3:</strong></p>
+  <p>
+    20% → 760 → x = <input onchange="check(this, '3800')"> <br>
+    Preço com desconto: 3800 - 760 = <input onchange="check(this, '3040')"><br>
+    Frete: 80 → Total = <input onchange="check(this, '3120')">
+  </p>
+
+  <p><strong>Loja 4:</strong></p>
+  <p>
+    15% → 710 → x = <input onchange="check(this, '4733.33')"> <br>
+    Preço com desconto: 4733.33 - 710 = <input onchange="check(this, '4023.33')"><br>
+    Frete: 10 → Total = <input onchange="check(this, '4033.33')">
+  </p>
+
+  <p><strong>Loja 5:</strong></p>
+  <p>
+    15% → 690 → x = <input onchange="check(this, '4600')"> <br>
+    Preço com desconto: 4600 - 690 = <input onchange="check(this, '3910')"><br>
+    Frete: 0 → Total = <input onchange="check(this, '3910')">
+  </p>
+
+<p><strong>Comparando os totais:</strong></p>
+<p>Agora que você calculou os preços totais de cada loja, analise os valores e complete:</p>
+
+<p>
+  Menor valor total entre as lojas: 
+  <input onchange="check(this, '2950')"> reais
+</p>
+
+<p>
+  Esse valor corresponde à Loja 
+  <input onchange="check(this, '1')">
+</p>
+
+
+  <h4>Alternativas:</h4>
+
+  <div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> Loja 1</div>
+  <div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> Loja 2</div>
+  <div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> Loja 3</div>
+  <div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> Loja 4</div>
+  <div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> Loja 5</div>
+
+  <div id="message" class="feedback"></div>
+
+  <script>
+    function check(input, correct) {
+      const value = input.value.trim().replace(',', '.');
+      const expected = correct.toString().replace(',', '.');
+      input.nextElementSibling?.remove();
+      if (value === expected) {
+        input.style.backgroundColor = "#c6f6c6";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+      } else {
+        input.style.backgroundColor = "#fdd";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+      }
+    }
+
+    function checkAnswer(letter) {
+      const correct = 'A';
+      const message = document.getElementById('message');
+      if (letter === correct) {
+        message.textContent = 'Correto! O menor valor total foi o da Loja 1.';
+        message.style.color = 'green';
+      } else {
+        message.textContent = `Errado. A alternativa ${letter} não é a correta.`;
+        message.style.color = 'red';
+      }
+    }
+  </script>
+</div>
+</body>
+</html>

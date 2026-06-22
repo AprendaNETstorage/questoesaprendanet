@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 12 — Leis de Newton</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Leis de Newton</a>
+    <span class="spacer"></span>
+    <a href="questao_001.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">2/25</span>
+    <a href="questao_003.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 12</h2>
+  <h3>Problema 12:</h3>
+
+<!-- ENUNCIADO -->
+<p><strong>104. (ENEM 2018)</strong></p>
+<p>
+As pessoas que utilizam objetos cujo princípio de funcionamento é o mesmo das alavancas aplicam uma força,
+chamada de força potente, em um dado ponto da barra, para superar ou equilibrar uma segunda força, chamada de
+resistente, em outro ponto da barra. Por causa das diferentes distâncias entre os pontos de aplicação das forças,
+potente e resistente, os seus efeitos também são diferentes. A figura mostra alguns exemplos desses objetos.
+</p>
+
+<figure>
+  <!-- Ajuste o caminho/nome do arquivo conforme você salvar a imagem -->
+  <img src="questao12.png" alt="Exemplos de objetos que funcionam como alavancas: alicate, pinça, quebra-nozes, carrinho de mão e abridor de garrafa.">
+  <figcaption>Figura 1 – Exemplos de alavancas: alicate, pinça, quebra-nozes, carrinho de mão e abridor de garrafa.</figcaption>
+</figure>
+
+<p>
+Em qual dos objetos a força potente é maior que a força resistente?
+</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Conceito de vantagem mecânica (VM).</strong><br>
+A vantagem mecânica é definida como
+<input onchange="checkWord(this,'forca resistente/forca potente|fr/fp|forca resistente dividida pela forca potente')">
+. <br>
+Quando VM &lt; 1, isso significa que a força potente é
+<input onchange="checkWord(this,'maior que a resistente|maior que fr|maior')">
+que a força resistente.
+</p>
+
+<p><strong>2) Identificando o tipo de alavanca.</strong><br>
+A pinça é uma alavanca
+<input onchange="checkWord(this,'inter-resistente|inter resistente|de terceira classe|3a classe|terceira classe')">
+com braços aproximadamente iguais, na qual a força potente deve superar a resistência (fios da pele).
+</p>
+
+<p><strong>3) Comparando com os demais objetos.</strong><br>
+No alicate, no quebra-nozes, no carrinho de mão e no abridor de garrafa, a força resistente é
+<input onchange="checkWord(this,'maior que a potente|maior|predominante')">
+, caracterizando alavancas de vantagem mecânica maior que 1 (amplificam a força aplicada).
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  Pinça.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  Alicate.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  Quebra-nozes.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  Carrinho de mão.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  Abridor de garrafa.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // -------- helpers (aceita vírgula/ponto e expressões simples) --------
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function safeEval(expr){
+    const cleaned = String(expr).replace(/\s/g,'');
+    if(!/^[0-9eE+\-*/().,×^]+$/.test(cleaned)) return null;
+    const norm = cleaned.replace(/,/g,'.').replace(/×/g,'*').replace(/\^/g,'**');
+    try{
+      const v = Function('"use strict"; return ('+norm+');')();
+      return (typeof v === 'number' && Number.isFinite(v)) ? v : null;
+    }catch{ return null; }
+  }
+  function nearlyEqual(a,b,eps=1e-3){
+    return Math.abs(a-b) <= eps * Math.max(1, Math.abs(a), Math.abs(b));
+  }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+  function checkExpr(input, expectedExprs){
+    const val = safeEval(input.value.trim());
+    const targets = expectedExprs.split('|').map(e => safeEval(e));
+    const ok = (val !== null) && targets.some(t => t !== null && nearlyEqual(val, t));
+    paint(input, ok);
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'A';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

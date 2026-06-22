@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 13 — Cinemática</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Cinemática</a>
+    <span class="spacer"></span>
+    <a href="questao_003.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">4/35</span>
+    <a href="questao_005.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 13</h2>
+  <h3>Problema 13:</h3>
+
+<!-- ENUNCIADO (transcrito) -->
+<p><strong>2 – Enem 2023</strong></p>
+<p><strong>Questão 100</strong></p>
+<p>
+  Um professor lança uma esfera verticalmente para cima, a qual retorna, depois de alguns segundos, ao ponto de lançamento. Em seguida, lista em um quadro todas as possibilidades para as grandezas cinemáticas.
+</p>
+
+<table>
+  <tr>
+    <th>Grandeza cinemática</th><th>Módulo</th><th>Sentido</th><th>Sentido</th>
+  </tr>
+  <tr>
+    <td>Velocidade</td><td><em>v</em> ≠ 0</td><td>Para cima</td><td>Para baixo</td>
+  </tr>
+  <tr>
+    <td></td><td><em>v</em> = 0</td><td colspan="2">Indefinido*</td>
+  </tr>
+  <tr>
+    <td>Aceleração</td><td><em>a</em> ≠ 0</td><td>Para cima</td><td>Para baixo</td>
+  </tr>
+  <tr>
+    <td></td><td><em>a</em> = 0</td><td colspan="2">Indefinido*</td>
+  </tr>
+</table>
+<p><small>*Grandezas com módulo nulo não têm sentido definido.</small></p>
+
+<!-- SOLUÇÃO (INTERATIVA) ANTES DAS ALTERNATIVAS -->
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) No instante em que a esfera atinge a altura máxima, qual é a situação da velocidade?</strong><br>
+  <input onchange="checkWord(this,'v=0|velocidade nula|zero|velocidade igual a zero')">
+  <span class="hint">
+    <button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Pense no momento em que o movimento troca de subir para descer.</span>
+  </span>
+</p>
+
+<p><strong>2) Nesse mesmo instante, qual é o <u>sentido</u> da aceleração?</strong><br>
+  <input onchange="checkWord(this,'para baixo|sentido para baixo|direcao para baixo|direção para baixo')">
+  <span class="hint">
+    <button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Considere a ação da gravidade ao longo de todo o movimento.</span>
+  </span>
+</p>
+
+<p><strong>3) E o <u>módulo</u> da aceleração nesse ponto?</strong><br>
+  <input onchange="checkWord(this,'a≠0|nao nula|não nula|g|9,8|9.8|aceleracao da gravidade|aceleração da gravidade')">
+  <span class="hint">
+    <button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Na Terra, vale aproximadamente 9,8&nbsp;m/s².</span>
+  </span>
+</p>
+
+<!-- ALTERNATIVAS -->
+<p><strong>A escolha que corresponde à combinação correta é:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  <em>v</em> = 0 e <em>a</em> ≠ 0 para cima.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  <em>v</em> ≠ 0 para cima e <em>a</em> = 0.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  <em>v</em> = 0 e <em>a</em> ≠ 0 para baixo.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  <em>v</em> ≠ 0 para cima e <em>a</em> ≠ 0 para cima.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  <em>v</em> ≠ 0 para baixo e <em>a</em> ≠ 0 para baixo.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normaliza/remover acentos
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+  // checagem de palavras-chave (tolerante a variações)
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  // botão Mostrar dica
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = span.style.display === 'inline' ? 'none' : 'inline';
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'C';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

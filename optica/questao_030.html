@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ondas — Lista 03 — Problema 60 (ENEM 2011) — Óptica</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Óptica</a>
+    <span class="spacer"></span>
+    <a href="questao_029.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">30/42</span>
+    <a href="questao_031.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Ondas — Lista 03 — Problema 60 (ENEM 2011)</h2>
+  <h3>Problema 60:</h3>
+
+<p><strong>93. (ENEM 2011)</strong></p>
+<p>
+  Para mapear o interior do <em>Titanic</em> a ~4 km de profundidade, usa-se sonar em vez de luz.
+  Por que o <strong>som</strong> é mais adequado do que a <strong>luz</strong> para gerar imagens através de
+  camadas de sedimentos?
+</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) O que acontece com a luz nos sedimentos?</strong></p>
+<p>
+  A luz, ao atravessar sedimentos, sofre
+  <input placeholder="digite aqui" onchange="checkWord(this,'atenuacao|atenuação|absorcao|absorção|espalhamento')">
+  intensa, por isso penetra pouco.
+</p>
+
+<p><strong>2) Como funciona o sonar?</strong></p>
+<p>
+  Ele emite
+  <input placeholder="digite aqui" onchange="checkWord(this,'som|onda sonora|ondas sonoras')">
+  e capta o
+  <input placeholder="digite aqui" onchange="checkWord(this,'eco|ecos')">
+  para formar a imagem.
+</p>
+
+<p><strong>3) Comparação chave:</strong></p>
+<p>
+  Nos materiais do enunciado, a atenuação da <em>luz</em> é
+  <input placeholder="digite aqui" onchange="checkWord(this,'maior|mais alta')">
+  que a do <em>som</em>.
+</p>
+
+<details>
+  <summary>💡 Dica (clique para ver)</summary>
+  <small>
+    Em meios turvos (sedimentos), parte da energia luminosa é absorvida/espalhada logo nos
+    primeiros centímetros. O som sofre menos perdas, atravessa a camada e volta como eco.
+  </small>
+</details>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  A propagação da luz na água ocorre a uma velocidade maior que a do som neste meio.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  A absorção da luz ao longo de uma camada de água é facilitada enquanto a do som não ocorre.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  A refração da luz em grande profundidade acontece com intensidade menor que a do som.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  Os materiais analisados apresentam atenuação da luz distinta (maior) que a do som nesses meios.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  Nas camadas de sedimentos a reflexão da luz é menos intensa que a refração do som.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // ===== helpers (mesmo padrão do seu modelo) =====
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // ===== gabarito (apenas na função) =====
+  function checkAnswer(letter){
+    const correct = 'D';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

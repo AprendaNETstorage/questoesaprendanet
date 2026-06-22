@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 37 — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_040.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">41/71</span>
+    <a href="questao_042.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 37</h2>
+  <h3>Problema 37:</h3>
+
+<!-- ENUNCIADO IDÊNTICO -->
+<p><strong>66. (Enem PPL 2012)</strong></p>
+<p>A terapia fotodinâmica é um tratamento que utiliza luz para cura de câncer através da excitação de moléculas medicamentosas, que promovem a desestruturação das células tumorais. Para a eficácia do tratamento, é necessária a iluminação na região do tecido a ser tratado. Em geral, as moléculas medicamentosas absorvem as frequências mais altas. Por isso, as intervenções cutâneas são limitadas pela penetração da luz visível, conforme a figura:</p>
+
+<div class="imgwrap">
+  <img src="q37_fig_penetracao.png" alt="Profundidade de penetração da luz visível na pele">
+</div>
+
+<p>A profundidade de até 2 mm em que o tratamento cutâneo é eficiente se justifica porque a luz de</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Relação energia–frequência:</strong>
+  <br>E = <input onchange="checkWord(this,'h f|hf|planck f|constante de planck vezes f')"> (energia do fóton cresce com a frequência).
+</p>
+
+<p><strong>2) O enunciado diz que as moléculas "absorvem as frequências mais altas". Isso implica que</strong>
+  <br>f <input onchange="checkWord(this,'alta|maior')"> ⇒ E <input onchange="checkWord(this,'maior|elevada')"> ⇒
+  absorção <input onchange="checkWord(this,'mais intensa|maior|forte')"> nas camadas superficiais.
+</p>
+
+<p><strong>3) Consequência para a profundidade de penetração:</strong>
+  <br>Quanto maior a absorção, <input onchange="checkWord(this,'menor a penetracao|menor a profundidade|penetra menos')"> — limitando o tratamento a poucos milímetros.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  curto comprimento de onda é mais refletida pela pele.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  maior energia é mais absorvida pelo tecido orgânico.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  menor energia é absorvida nas regiões mais profundas.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  todos os comprimentos de onda terão alta intensidade.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  cada comprimento de onda percebe um índice de refração diferente.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // helpers: validação por palavras-chave (tolerante a acentos/variações)
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'B';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

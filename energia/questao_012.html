@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 3 — Energia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Energia</a>
+    <span class="spacer"></span>
+    <a href="questao_011.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">12/33</span>
+    <a href="questao_013.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 3</h2>
+  <h3>Problema 3:</h3>
+
+<!-- ENUNCIADO IDÊNTICO (transcrito) -->
+<p><strong>33. (ENEM 2ª APLICAÇÃO 2010)</strong></p>
+<p>No nosso dia a dia, deparamo-nos com muitas tarefas pequenas e problemas que demandam pouca energia para serem resolvidos e, por isso, não consideramos a eficiência energética de nossas ações. No global, isso significa desperdiçar muito calor que poderia ainda ser usado como fonte de energia para outros processos. Em ambientes industriais, esse reaproveitamento é feito por um processo chamado de cogeração. A figura a seguir ilustra um exemplo de cogeração na produção de energia elétrica.</p>
+
+<div class="imgwrap">
+  <!-- (opcional) coloque o diagrama na mesma pasta e troque o src abaixo) -->
+  <img src="q20_cogeracao.png" alt="Esquema de cogeração na produção de energia elétrica">
+</div>
+
+<p>Em relação ao processo secundário de aproveitamento de energia ilustrado na figura, a perda global de energia é reduzida por meio da transformação de energia</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) O que é aproveitado no processo secundário?</strong>
+  <br><input onchange="checkWord(this,'calor residual|gases de exaustao|gases quentes|vapor gerado')">
+  de outro processo é usado para movimentar uma turbina.
+</p>
+
+<p><strong>2) Qual é a conversão dentro da turbina?</strong>
+  <br>Energia <input onchange="checkWord(this,'termica|térmica')"> →
+  energia <input onchange="checkWord(this,'mecanica|mecânica')"> (eixo da turbina).
+  <small>(Depois, o gerador converte mecânica em elétrica, mas a redução da perda vem do reaproveitamento do calor na turbina.)</small>
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  térmica em mecânica.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  térmica em elétrica.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  mecânica em térmica.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  química em elétrica.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  elétrica em luminosa.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // validação por palavras-chave (tolerante a acentos)
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter) {
+    const correct = 'A';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

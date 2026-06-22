@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 50 (ENEM 2020 — Q118) — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_031.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">32/81</span>
+    <a href="questao_033.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 50 (ENEM 2020 — Q118)</h2>
+  <h3>Problema 50:</h3>
+<p><strong>Enem 2020</strong></p>
+
+<p><strong>Questão 118 – Ciências da Natureza e suas Tecnologias</strong></p>
+
+<p>
+Diversos brinquedos são constituídos de pilhas ligadas a um motor elétrico. A figura (esquemática) mostra uma pilha e um motor acoplados, em que \(e\) representa a força eletromotriz (FEM) da pilha, \(e'\) representa a força contraeletromotriz (FCEM) do motor e \(r\) sua resistência interna.
+Um problema comum que danifica esses brinquedos é o travamento do eixo do motor.
+O que ocorre com a FCEM e com a energia fornecida pelas pilhas quando o eixo de rotação fica travado?
+</p>
+<figure class="illustration" aria-labelledby="figcap">
+  <img src="questao50.png" alt="Esquema com pilha, chave e motor indicando FEM e FCEM">
+  <figcaption id="figcap">Figura 1 – Esquema do circuito da questão.</figcaption>
+</figure>
+<h4>Resolução (interativa):</h4>
+
+<p><strong>1) A FCEM em um motor é proporcional à velocidade de rotação. Se o eixo fica travado, a FCEM torna-se:</strong>
+  <input onchange="checkWord(this,'zero|nula|0')">
+</p>
+
+<p><strong>2) Com FCEM ≈ 0, a corrente no motor tende a:</strong>
+  <input onchange="checkWord(this,'aumentar|subir|ficar maxima|maxima|maior|alta')">
+</p>
+
+<p><strong>3) Nessa condição, a energia das pilhas é principalmente:</strong>
+  <input onchange="checkWord(this,'dissipada como calor na resistencia interna do motor|dissipada em calor|perdida em calor|efeito joule na resistencia interna|efeito joule no enrolamento')">
+</p>
+
+<!-- ALTERNATIVAS CLICÁVEIS -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('A')" onkeydown="if(event.key==='Enter')checkAnswer('A')">
+  <span class="circulo">A</span> A FCEM iguala-se à FEM e toda a energia das pilhas fica armazenada no circuito.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('B')" onkeydown="if(event.key==='Enter')checkAnswer('B')">
+  <span class="circulo">B</span> A FCEM sofre grande aumento e a energia das pilhas passa a ser dissipada na forma de calor.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('C')" onkeydown="if(event.key==='Enter')checkAnswer('C')">
+  <span class="circulo">C</span> A FCEM inverte a polaridade e a energia das pilhas é devolvida em forma de energia potencial.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('D')" onkeydown="if(event.key==='Enter')checkAnswer('D')">
+  <span class="circulo">D</span> A FCEM reduz-se a zero e a energia das pilhas passa a ser dissipada na resistência interna do motor.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('E')" onkeydown="if(event.key==='Enter')checkAnswer('E')">
+  <span class="circulo">E</span> A FCEM mantém-se constante e a energia das pilhas converte-se integralmente em energia mecânica.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização e marcação ✅/❌ nos inputs
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito simples (sem dica ao errar)
+  const CORRECT = 'D';
+  function checkAnswer(letter){
+    const message = document.getElementById('message');
+    if (letter === CORRECT){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 12 (ENEM) — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_002.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">3/81</span>
+    <a href="questao_004.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 12 (ENEM)</h2>
+  <h3>Problema 12:</h3>
+
+<p><strong>112. (ENEM)</strong></p>
+
+<p>
+Para ligar ou desligar uma mesma lâmpada a partir de dois interruptores, conectam-se os interruptores de tal modo que a mudança de posição de um deles faça acender ou apagar a lâmpada independentemente da posição do outro. 
+Essa montagem, conhecida como ligação paralela de interruptores, utiliza uma chave de duas posições com um polo e dois terminais: na Posição I, o polo é ligado ao terminal superior; na Posição II, ao terminal inferior.
+</p>
+
+<p><img src="questao_117.png" alt="Posição I e II do interruptor"></p>
+
+<p>
+O circuito que cumpre a finalidade de funcionamento descrita no texto é:
+</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Essa montagem é conhecida como ligação:</strong>  
+  <input onchange="checkWord(this,'paralela de interruptores|paralela|three way|two way')">
+</p>
+
+<p><strong>2) A finalidade é permitir ligar ou desligar a lâmpada a partir de:</strong>  
+  <input onchange="checkWord(this,'dois pontos|dois interruptores')">
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  <img src="questao_118.png" alt="Alternativa A">
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  <img src="questao_119.png" alt="Alternativa B">
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  <img src="questao_120.png" alt="Alternativa C">
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  <img src="questao_122.png" alt="Alternativa D">
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  <img src="questao_127.png" alt="Alternativa E">
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para tolerar acentos/maiúsculas
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito
+  function checkAnswer(letter){
+    const correct = 'E';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

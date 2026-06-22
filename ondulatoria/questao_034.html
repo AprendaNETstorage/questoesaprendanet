@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 30 — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_033.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">34/71</span>
+    <a href="questao_035.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 30</h2>
+  <h3>Problema 30:</h3>
+
+<!-- ENUNCIADO IDÊNTICO -->
+<p><strong>59. (ENEM 2014)</strong></p>
+<p>Quando adolescente, as nossas tardes, após as aulas, consistiam em tomar às mãos o violão e o dicionário de acordes de Almir Chediak e desafiar nosso amigo Hamilton a descobrir, apenas ouvindo o acorde, quais notas eram escolhidas. Sempre perdíamos a aposta, ele possuía o ouvido absoluto.</p>
+<p>O ouvido absoluto é uma característica perceptual de poucos indivíduos capazes de identificar notas isoladas sem outras referências, isto é, sem precisar relacioná-las com outras notas de uma melodia.</p>
+<p><em>LENT, R. O cérebro do meu professor de acordeão.</em> Disponível em: cienciahoje.uol.com.br. Acesso em: 15 ago. 2012 (adaptado).</p>
+<p>No contexto apresentado, a propriedade física das ondas que permite essa distinção entre as notas é a</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) O que diferencia notas musicais (dó, ré, mi...)?</strong>
+  <br>Principalmente a <input onchange="checkWord(this,'frequencia|frequência|altura do som')">.
+</p>
+
+<p><strong>2) O que as outras grandezas indicam?</strong></p>
+<p>• <em>Amplitude</em> relaciona-se à <input onchange="checkWord(this,'intensidade|volume|loudness')"> do som.</p>
+<p>• <em>Forma de onda</em> (timbre) distingue <input onchange="checkWord(this,'instrumentos|fontes sonoras')"> tocando a mesma nota.</p>
+<p>• <em>Velocidade de propagação</em> depende do <input onchange="checkWord(this,'meio|material')">, não da nota.</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  frequência.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  intensidade.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  forma da onda.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  amplitude da onda.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  velocidade de propagação.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // Validação por palavras-chave (tolerante a acentos/variações)
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function checkWord(input, patterns){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'A';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

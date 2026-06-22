@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 43 — Óptica</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Óptica</a>
+    <span class="spacer"></span>
+    <a href="questao_020.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">21/42</span>
+    <a href="questao_022.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 43</h2>
+  <h3>Problema 43:</h3>
+
+<!-- ENUNCIADO IDÊNTICO -->
+<p><strong>73. (Enem PPL 2013)</strong></p>
+<p>As moléculas de água são dipolos elétricos que podem se alinhar com o campo elétrico, da mesma forma que uma bússola se alinha com um campo magnético. Quando o campo elétrico oscila, as moléculas de água fazem o mesmo. No forno de micro-ondas, a frequência de oscilação do campo elétrico é igual à frequência natural de rotação das moléculas de água. Assim, a comida é cozida quando o movimento giratório das moléculas de água transfere a energia térmica às moléculas circundantes.</p>
+<p><em>HEWITT, P. Física conceitual. Porto Alegre: Bookman, 2002 (adaptado).</em></p>
+<p>A propriedade das ondas que permite, nesse caso, um aumento da energia de rotação das moléculas de água é a</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Condição para máxima absorção de energia:</strong></p>
+<p>
+  Frequência do campo elétrico =
+  <input onchange="checkWord(this,'mesma frequencia|frequencia igual|mesma frequência|frequência igual')">
+  à frequência natural de rotação das moléculas.
+</p>
+
+<p><strong>2) Nome do fenômeno quando o sistema absorve energia máxima nesta condição:</strong></p>
+<p>
+  <input onchange="checkWord(this,'ressonancia|ressonância')">
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  reflexão.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  refração.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  ressonância.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  atenuação.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  difração.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // validação por palavras-chave (tolerante a acentos/variações)
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'C';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

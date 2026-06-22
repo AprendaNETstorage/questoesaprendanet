@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista — Problema 17 — Óptica</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Óptica</a>
+    <span class="spacer"></span>
+    <a href="questao_036.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">37/42</span>
+    <a href="questao_038.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista — Problema 17</h2>
+  <h3>Problema 17:</h3>
+
+<p><strong>7 – ENEM 2024</strong></p>
+
+<p>
+  Em aeroportos, por segurança, os passageiros têm suas bagagens inspecionadas por aparelhos de raios X. Nessa inspeção, os passageiros são orientados a retirar seus computadores portáteis (notebooks) de malas, mochilas ou bolsas para passá-los isoladamente pela esteira.
+</p>
+
+<!-- (se quiser, pode usar uma figura; manter comentado) -->
+<!-- <div class="imgwrap"><img src="raiox_aeroporto_laptop.png" alt="Esteira de raio-X no aeroporto com laptop separado da bagagem"></div> -->
+
+<p><strong>Qual explicação física justifica esse procedimento?</strong></p>
+
+<!-- SOLUÇÃO (INTERATIVA) ANTES DAS ALTERNATIVAS -->
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Partes internas de laptops (baterias, radiadores, placas metálicas) interagem como com os raios X?</strong><br>
+  <input onchange="checkWord(this,'bloqueiam|absorvem|atenuam fortemente|sombra|sao densas e absorvem|são densas e absorvem')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Raios X sofrem forte atenuação em materiais densos/espessos.</span>
+  </span>
+</p>
+
+<p><strong>2) Qual o efeito disso na imagem de raio X da bagagem?</strong><br>
+  <input onchange="checkWord(this,'criam sombras|obstruem a visao|impedem visualizar objetos atras|mascaram itens|imagem fica pouco nitida')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>A atenuação produz regiões escuras que ocultam objetos ao redor.</span>
+  </span>
+</p>
+
+<p><strong>3) Por que passar o computador separadamente ajuda?</strong><br>
+  <input onchange="checkWord(this,'evita sobreposicao|melhora a nitidez|permite ver o que esta a frente e atras|imagem mais clara')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Separando, não há sobreposição de sombras do laptop com outros itens.</span>
+  </span>
+</p>
+
+<!-- ALTERNATIVAS -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')"><span class="circulo">A</span> Os raios X não interagem com os componentes metálicos do computador, impedindo a formação de imagens.</div>
+<div class="opcao" onclick="checkAnswer('B')"><span class="circulo">B</span> Os raios X desmagnetizam o disco rígido quando refratados pelos componentes metálicos das bagagens.</div>
+<div class="opcao" onclick="checkAnswer('C')"><span class="circulo">C</span> Os raios X aquecem os materiais metálicos quando refletidos pelos componentes do computador.</div>
+<div class="opcao" onclick="checkAnswer('D')"><span class="circulo">D</span> Os raios X não atravessam os componentes densos do computador, impedindo a visualização de objetos que estão à frente ou atrás dele.</div>
+<div class="opcao" onclick="checkAnswer('E')"><span class="circulo">E</span> Os raios X ionizam os materiais metálicos normalmente encontrados em bagagens quando difratados pelos componentes do computador.</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para ignorar acentos
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+  // verificação por palavras-chave
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  // botão Mostrar dica
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = span.style.display === 'inline' ? 'none' : 'inline';
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'D';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

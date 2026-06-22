@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 6 — Leis de Newton</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Leis de Newton</a>
+    <span class="spacer"></span>
+    <a href="questao_009.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">10/25</span>
+    <a href="questao_011.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 6</h2>
+  <h3>Problema 6:</h3>
+
+<p><strong>4 – Enem 2023</strong></p>
+<p><strong>Questão 109</strong></p>
+
+<p>
+  Uma academia decide trocar gradualmente seus aparelhos de musculação. Agora, os frequentadores que utilizam os aparelhos do tipo 1 podem também utilizar os aparelhos do tipo 2, representados na figura, para elevar cargas correspondentes às massas <em>M</em><sub>1</sub> e <em>M</em><sub>2</sub>, com velocidade constante. A fim de que o exercício seja realizado com a mesma força <em>F</em>, os usuários devem ser orientados a respeito da relação entre as cargas nos dois tipos de aparelhos, já que as polias fixas apenas mudam a direção das forças, enquanto a polia móvel divide as forças. Em ambos os aparelhos, considere as cordas inextensíveis, as massas das polias e das cordas desprezíveis e que não há dissipação de energia.
+</p>
+
+<!-- Opcional: coloque a ilustração na pasta e descomente a linha abaixo -->
+<!-- <div class="imgwrap"><img src="q_polias_tipo1_tipo2.png" alt="Aparelho tipo 1 (polia fixa) e tipo 2 (polia móvel)"></div> -->
+
+<p>
+  Para essa academia, qual deve ser a razão <strong><em>M</em><sub>2</sub>/<em>M</em><sub>1</sub></strong> informada aos usuários?
+</p>
+
+<!-- SOLUÇÃO (INTERATIVA) ANTES DAS ALTERNATIVAS -->
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) No tipo 2 há polia móvel. O que ela faz com a força necessária para erguer a carga?</strong><br>
+  <input onchange="checkWord(this,'divide a forca|metade da forca|reduz a forca pela metade|vantagem mecanica 2|vantagem mecânica 2')">
+  <span class="hint">
+    <button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Compare "polia fixa" × "polia móvel" na ideia de vantagem mecânica.</span>
+  </span>
+</p>
+
+<p><strong>2) Mantendo a mesma força aplicada <em>F</em> nos dois aparelhos, como deve ser a relação entre as massas levantadas?</strong><br>
+  <input onchange="checkWord(this,'m2 maior que m1|m2 deve ser o dobro de m1|m2=2m1|m2 e duas vezes m1')">
+  <span class="hint">
+    <button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>No tipo 2, a corda "suporta" a carga em dois ramos.</span>
+  </span>
+</p>
+
+<p><strong>3) Escreva a razão pedida.</strong><br>
+  <input onchange="checkWord(this,'m2/m1=2|m2/m1 igual a 2|razao 2|dois')">
+  <span class="hint">
+    <button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Pense em <em>F</em> (tipo 1) = <em>F</em> (tipo 2) e vantagem mecânica = 2.</span>
+  </span>
+</p>
+
+<!-- ALTERNATIVAS -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')"><span class="circulo">A</span> <sup>1</sup>&frasl;<sub>4</sub></div>
+<div class="opcao" onclick="checkAnswer('B')"><span class="circulo">B</span> <sup>1</sup>&frasl;<sub>2</sub></div>
+<div class="opcao" onclick="checkAnswer('C')"><span class="circulo">C</span> 1</div>
+<div class="opcao" onclick="checkAnswer('D')"><span class="circulo">D</span> 2</div>
+<div class="opcao" onclick="checkAnswer('E')"><span class="circulo">E</span> 4</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normaliza/remover acentos
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+  // checagem de palavras-chave
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  // botão Mostrar dica
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = span.style.display === 'inline' ? 'none' : 'inline';
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'D';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

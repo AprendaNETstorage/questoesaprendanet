@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista — Problema 15 (ENEM 2022) — Cinemática</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Cinemática</a>
+    <span class="spacer"></span>
+    <a href="questao_030.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">31/35</span>
+    <a href="questao_032.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista — Problema 15 (ENEM 2022)</h2>
+  <h3>Problema 15:</h3>
+
+<p><strong>ENEM 2022 — Tribologia / Muleta</strong></p>
+
+<p>
+  Tribologia é o estudo da interação entre duas superfícies em contato, como desgaste e atrito, sendo de extrema importância na avaliação de diferentes produtos e de bens de consumo em geral. Para testar a conformidade de uma muleta, realiza-se um ensaio tribológico, pressionando-a verticalmente contra o piso com uma força <em>F</em>, conforme ilustra a imagem, em que CM representa o centro de massa da muleta.
+</p>
+
+<!-- figura do enunciado (deixe comentado se não tiver arquivo) -->
+<div class="imgwrap"><img src="muleta_forca_vertical.png" alt="Muleta sendo pressionada verticalmente contra o piso com força F; CM no meio"></div>
+
+<p>
+  Mantendo-se a força <em>F</em> paralela à muleta, varia-se lentamente o ângulo entre a muleta e a vertical, até o máximo ângulo imediatamente anterior ao de escorregamento, denominado ângulo crítico. Esse ângulo também pode ser calculado a partir da identificação dos pontos de aplicação, da direção e do sentido das forças peso (<em>P</em>), normal (<em>N</em>) e de atrito estático (<em>f<sub>e</sub></em>). O esquema que representa corretamente todas as forças que atuam sobre a muleta quando ela atinge o ângulo crítico é:
+</p>
+
+<!-- miniaturas das alternativas (opcional) -->
+<!--
+<div class="imgwrap"><img src="muleta_opcoes_A_B_C_D_E.png" alt="Cinco esquemas com forças P, N, f_e e F"></div>
+-->
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Onde atuam e em que direções estão as forças básicas?</strong><br>
+  <input onchange="checkWord(this,'p no cm para baixo|peso no centro de massa para baixo|n no piso para cima|normal vertical para cima no contato com o piso')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span><em>P</em> é vertical p/ baixo no CM; <em>N</em> é do piso, vertical p/ cima no ponto de contato.</span>
+  </span>
+</p>
+
+<p><strong>2) A força aplicada <em>F</em> está ao longo da muleta. No ângulo crítico, que força do piso equilibra a componente horizontal de <em>F</em>?</strong><br>
+  <input onchange="checkWord(this,'atrito estatico|f_e|atua no piso|contrario a componente horizontal de f')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Se existe componente horizontal de <em>F</em>, o piso responde com <em>f<sub>e</sub></em> no sentido oposto.</span>
+  </span>
+</p>
+
+<p><strong>3) E a reação no encosto/superfície superior (topo da muleta) aponta para qual sentido?</strong><br>
+  <input onchange="checkWord(this,'forca do encosto para baixo|reacao no topo vertical para baixo|empurra a muleta para baixo')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>O encosto "aper­ta" a muleta: a reação no topo aponta para baixo.</span>
+  </span>
+</p>
+
+<p><strong>Agora escolha o esquema que contempla:</strong></p>
+<ul>
+  <li><em>P</em> no CM para baixo;</li>
+  <li><em>N</em> no piso para cima;</li>
+  <li><em>f<sub>e</sub></em> no piso opondo-se à componente horizontal de <em>F</em>;</li>
+  <li>reação no topo para baixo; <em>F</em> ao longo da muleta.</li>
+</ul>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<!-- se tiver as imagens de cada alternativa, pode deixá-las comentadas abaixo de cada opção -->
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  <img src="opcao_A15.png" alt="Esquema A" style="max-width:320px; vertical-align:middle;">
+  (esquema A)
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  <img src="opcao_B15.png" alt="Esquema B" style="max-width:320px; vertical-align:middle;">
+  (esquema B)
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+ <img src="opcao_C15.png" alt="Esquema C" style="max-width:320px; vertical-align:middle;">
+  (esquema C)
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  <img src="opcao_D15.png" alt="Esquema D" style="max-width:320px; vertical-align:middle;">
+  (esquema D)
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  <img src="opcao_E15.png" alt="Esquema E" style="max-width:320px; vertical-align:middle;">
+  (esquema E)
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para ignorar acentos
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+  // verificação por palavras-chave (tolerante)
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = (span.style.display === 'inline') ? 'none' : 'inline';
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'A';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista — Problema 27 — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_063.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">64/71</span>
+    <a href="questao_065.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista — Problema 27</h2>
+  <h3>Problema 27:</h3>
+
+<p><strong>1 – Enem 2022</strong></p>
+
+<p>
+  O sinal sonoro oriundo da queda de um grande bloco de gelo de uma geleira é detectado por dois dispositivos situados em um barco, sendo que o detector <strong>A</strong> está imerso em <u>água</u> e o <strong>B</strong>, na proa da embarcação. Sabe-se que a velocidade do som na água é de <span class="eq">1540 m/s</span> e no ar é de <span class="eq">340 m/s</span>.
+</p>
+
+<p>
+  Os gráficos indicam, em tempo real, o sinal sonoro detectado pelos dois dispositivos, os quais foram ligados simultaneamente em um instante anterior à queda do bloco de gelo. Ao comparar pontos correspondentes desse sinal em cada dispositivo, é possível obter informações sobre a onda sonora.
+</p>
+
+<!-- IMAGENS DO ENUNCIADO (MANTER COMENTADAS) -->
+<div class="imgwrap"><img src="barco_geladeira_distancia.png" alt="Barco com sensores A (na água) e B (no ar), distante L do iceberg"></div>
+<div class="imgwrap"><img src="sinais_tempo_A.png" alt="Sinal detectado no sensor A (água)"></div>
+
+
+<p><strong>Com base nos dados fornecidos, a distância <em>L</em> entre o barco e a geleira, em metros, é mais próxima de:</strong></p>
+
+<!-- =========================
+     SOLUÇÃO (INTERATIVA)
+     ========================= -->
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Qual sensor detecta primeiro? E a diferença de tempo observada nos gráficos (aprox.)?</strong><br>
+  <input onchange="checkWord(this,'agua primeiro|água primeiro|sensor a primeiro|12 s|12s|cerca de 12 s')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Na água o som é mais rápido; do gráfico, a defasagem é ≈ 12 s.</span>
+  </span>
+</p>
+
+<p><strong>2) Relacione L e o atraso Δt (texto simples):</strong><br>
+  <span class="eq">t_ar − t_agua = Δt</span> &nbsp; e &nbsp;
+  <span class="eq">L = v_agua · t_agua = v_ar · t_ar</span><br>
+  Daí, <span class="eq">L = (v_agua · v_ar / (v_agua − v_ar)) · Δt</span>.<br>
+  <input onchange="checkWord(this,'l=(1540*340/(1540-340))*12|5240 m|aprox 5,24 km|5,24 km|5.24 km|~5,2 km')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Use v_agua = 1540, v_ar = 340 (m/s) e Δt ≈ 12 s.</span>
+  </span>
+</p>
+
+<!-- =========================
+     ALTERNATIVAS
+     ========================= -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')"><span class="circulo">A</span> 339000</div>
+<div class="opcao" onclick="checkAnswer('B')"><span class="circulo">B</span> 78900</div>
+<div class="opcao" onclick="checkAnswer('C')"><span class="circulo">C</span> 14400</div>
+<div class="opcao" onclick="checkAnswer('D')"><span class="circulo">D</span> 5240</div>
+<div class="opcao" onclick="checkAnswer('E')"><span class="circulo">E</span> 100</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = span.style.display === 'inline' ? 'none' : 'inline';
+  }
+
+  function checkAnswer(letter) {
+    const correct = 'D';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

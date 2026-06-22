@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problema 39 — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_068.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">69/71</span>
+    <a href="questao_070.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Problema 39</h2>
+  <div class="top-nav">
+    
+    <span>Problema 39</span>
+    
+  </div>
+
+  <div class="container">
+    <h1>Questão 39</h1>
+
+    <div class="enunciado">
+      <p>
+        O aquecimento de um material por irradiação com micro-ondas ocorre por causa da interação
+        da onda eletromagnética com o dipolo elétrico da molécula. Um importante atributo do
+        aquecimento por micro-ondas é a absorção direta da energia pelo material a ser aquecido.
+        Assim, esse aquecimento é seletivo e dependerá, principalmente, da constante dielétrica e
+        da frequência de relaxação do material.
+      </p>
+      <p>
+        O gráfico mostra a taxa de aquecimento de cinco solventes sob irradiação de micro-ondas.
+      </p>
+    </div>
+
+    <div class="figura">
+      <!-- ajuste o caminho da imagem conforme a sua pasta -->
+      <img src="imagens/questao39_grafico.png"
+           alt="Gráfico da taxa de aquecimento de cinco solventes sob irradiação de micro-ondas">
+    </div>
+
+    <div class="enunciado">
+      <p>
+        No gráfico, qual solvente apresenta taxa média de aquecimento mais próxima de zero,
+        no intervalo de 0 s a 40 s?
+      </p>
+    </div>
+
+    <ul class="options">
+      <li><button class="option-btn" data-correct="false">A) H<sub>2</sub>O</button></li>
+      <li><button class="option-btn" data-correct="false">B) CH<sub>3</sub>OH</button></li>
+      <li><button class="option-btn" data-correct="false">C) CH<sub>3</sub>CH<sub>2</sub>OH</button></li>
+      <li><button class="option-btn" data-correct="false">D) CH<sub>3</sub>CH<sub>2</sub>CH<sub>2</sub>OH</button></li>
+      <li><button class="option-btn" data-correct="true">E) CH<sub>3</sub>CH<sub>2</sub>CH<sub>2</sub>CH<sub>2</sub>CH<sub>2</sub>CH<sub>3</sub></button></li>
+    </ul>
+
+    <div class="feedback" id="feedback"></div>
+
+    <div class="buttons-area">
+      <button class="btn btn-primary" onclick="verificar()">Verificar resposta</button>
+      <button class="btn btn-secondary" onclick="mostrarResolucao()">Mostrar resolução</button>
+    </div>
+
+    <div class="resolucao" id="resolucao">
+      <h2>Resolução comentada</h2>
+      <p>
+        O aquecimento por micro-ondas é eficiente para substâncias
+        <input class="gap" data-answer="polares" placeholder="preencha" />
+        , que possuem dipolo elétrico permanente e frequências de relaxação
+        compatíveis com a frequência do forno. Entre os solventes citados, a água, o metanol,
+        o etanol e o propanol são moléculas polares e absorvem energia, elevando
+        significativamente a temperatura.
+      </p>
+      <p>
+        O
+        <input class="gap" data-answer="n-hexano" placeholder="preencha" />
+        é uma molécula apolar (constituída apenas de hidrocarbonetos)
+        e praticamente não interage com o campo eletromagnético das micro-ondas. Sua taxa de
+        aquecimento, portanto, é quase nula. Assim, o solvente com taxa média de aquecimento
+        mais próxima de zero é o n-hexano.
+      </p>
+      <p><strong>Alternativa correta: E.</strong></p>
+      <button class="btn btn-primary" onclick="corrigirGaps()">Conferir lacunas</button>
+    </div>
+  </div>
+
+  <script>
+    const botoes = document.querySelectorAll('.option-btn');
+    let escolha = null;
+
+    botoes.forEach(btn => {
+      btn.addEventListener('click', () => {
+        botoes.forEach(b => {
+          b.classList.remove('correct', 'incorrect');
+        });
+        escolha = btn;
+        btn.classList.add('selected');
+      });
+    });
+
+    function verificar() {
+      const feedback = document.getElementById('feedback');
+      if (!escolha) {
+        feedback.textContent = 'Escolha uma alternativa antes de verificar.';
+        feedback.style.color = '#e67e22';
+        return;
+      }
+      const correta = escolha.getAttribute('data-correct') === 'true';
+      if (correta) {
+        escolha.classList.add('correct');
+        feedback.textContent = 'Perfeito! O n-hexano praticamente não aquece no intervalo considerado.';
+        feedback.style.color = '#27ae60';
+      } else {
+        escolha.classList.add('incorrect');
+        feedback.textContent = 'Não é essa ainda. Observe qual curva fica quase horizontal entre 0 s e 40 s.';
+        feedback.style.color = '#e74c3c';
+      }
+    }
+
+    function mostrarResolucao() {
+      document.getElementById('resolucao').style.display = 'block';
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+
+    function corrigirGaps() {
+      const gaps = document.querySelectorAll('.gap');
+      gaps.forEach(gap => {
+        const resp = gap.dataset.answer.trim().toLowerCase();
+        const valor = gap.value.trim().toLowerCase();
+        gap.classList.remove('correct', 'incorrect');
+        if (!valor) return;
+        if (valor === resp) {
+          gap.classList.add('correct');
+        } else {
+          gap.classList.add('incorrect');
+        }
+      });
+    }
+  </script>
+</div>
+</body>
+</html>

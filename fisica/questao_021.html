@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problema 38 - Sistemas Numéricos — Física (Geral)</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Física (Geral)</a>
+    <span class="spacer"></span>
+    <a href="questao_020.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">21/23</span>
+    <a href="questao_022.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Problema 38 - Sistemas Numéricos</h2>
+  <h3>Problema 38:</h3>
+  <p>
+    Um cinema tem capacidade para 180 pessoas e cobra R$ 30,00 pelo ingresso inteiro e R$ 15,00 pela meia-entrada. A ocupação média é de 100 pessoas, sendo 60 meias e 40 inteiras.
+    <br>
+    Pesquisas mostraram que, para cada desconto de R$ 2,00 no preço inteiro e R$ 1,00 na meia-entrada, o número de pagantes de inteira cresce 20%.
+    O administrador assume que, se os descontos forem duplicados, os percentuais de aumento também duplicarão.
+    <br>
+    Assim, decidiu aplicar descontos de R$ 8,00 (inteira) e R$ 4,00 (meia), visando aumentar a arrecadação.
+    <br>
+    Ele classificará o sucesso da promoção conforme o acréscimo obtido:
+  </p>
+  <ul>
+    <li>fraco: até R$ 500,00</li>
+    <li>regular: acima de R$ 500,00 até R$ 800,00</li>
+    <li>bom: acima de R$ 800,00 até R$ 1 200,00</li>
+    <li>muito bom: acima de R$ 1 200,00 até R$ 2 000,00</li>
+    <li>ótimo: acima de R$ 2 000,00</li>
+  </ul>
+  <p>
+    Caso a hipótese seja confirmada, o sucesso da promoção será classificado como:
+  </p>
+
+  <h4>Resolução passo a passo:</h4>
+  <ul>
+    <li>Arrecadação atual: \( R = \) <input onchange="check(this, '2100')"> reais</li>
+    <li>Nova quantidade de inteiras: <input onchange="check(this, '56')"></li>
+    <li>Nova quantidade de meias: <input onchange="check(this, '72')"></li>
+    <li>Preço com desconto (inteira): R$ <input onchange="check(this, '22')"></li>
+    <li>Preço com desconto (meia): R$ <input onchange="check(this, '11')"></li>
+    <li>Nova arrecadação: \( R' = \) <input onchange="check(this, '2024')"> reais</li>
+    <li>Variação: \( \Delta R = \) <input onchange="check(this, '-76')"> reais</li>
+  </ul>
+
+  <h4>Alternativas:</h4>
+  <div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> fraco</div>
+  <div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> regular</div>
+  <div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> bom</div>
+  <div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> muito bom</div>
+  <div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> ótimo</div>
+
+  <div id="message" class="feedback"></div>
+
+  <script>
+    function check(input, correct) {
+      let value = input.value.trim().replace(',', '.');
+      input.nextElementSibling?.remove();
+      if (value === correct) {
+        input.style.backgroundColor = "#c6f6c6";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+      } else {
+        input.style.backgroundColor = "#fdd";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+      }
+    }
+
+    function checkAnswer(letter) {
+      const correct = 'A';
+      const message = document.getElementById('message');
+      if (letter === correct) {
+        message.textContent = 'Correto! Mesmo com mais público, a arrecadação caiu. Classificação: fraco.';
+        message.style.color = 'green';
+      } else {
+        message.textContent = `Errado. A alternativa ${letter} não corresponde à classificação correta.`;
+        message.style.color = 'red';
+      }
+    }
+  </script>
+</div>
+</body>
+</html>

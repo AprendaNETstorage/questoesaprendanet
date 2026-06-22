@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 14 — Leis de Newton</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Leis de Newton</a>
+    <span class="spacer"></span>
+    <a href="questao_013.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">14/25</span>
+    <a href="questao_015.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 14</h2>
+  <h3>Problema 14:</h3>
+
+<!-- ENUNCIADO IDÊNTICO -->
+<p><strong>14. (ENEM 2013)</strong></p>
+<p>Em um dia sem vento, ao saltar de um avião, um paraquedista cai verticalmente até atingir a velocidade limite. No instante em que o paraquedas é aberto (instante TA), ocorre a diminuição de sua velocidade de queda. Algum tempo após a abertura do paraquedas, ele passa a ter velocidade de queda constante, o que possibilita sua aterrissagem em segurança.</p>
+<p>Que gráfico representa a força resultante sobre o paraquedista, durante o seu movimento de queda?</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Início da queda:</strong>
+  resistência do ar é <input onchange="checkWord(this,'zero|desprezavel|desprezível')"> ⇒ resultante é o peso (para baixo) ⇒ valor
+  <input onchange="checkWord(this,'positivo|maior que zero')">.
+</p>
+
+<p><strong>2) Antes de TA (paraquedas fechado):</strong>
+  com a velocidade aumentando, a resistência do ar
+  <input onchange="checkWord(this,'aumenta|cresce')"> e a resultante
+  <input onchange="checkWord(this,'diminui|tende a zero|aproxima de zero')"> (primeira velocidade limite).
+</p>
+
+<p><strong>3) No instante TA (abertura do paraquedas):</strong>
+  a resistência do ar fica maior que o peso ⇒ a resultante passa a ser
+  <input onchange="checkWord(this,'negativa|para cima')">.
+</p>
+
+<p><strong>4) Após TA:</strong>
+  a velocidade diminui, a resistência do ar diminui, e a resultante
+  <input onchange="checkWord(this,'se aproxima de zero pelo lado negativo|tende a zero negativa')"> (nova velocidade limite).
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<!-- Coloque as imagens das alternativas (recortes) na mesma pasta e ajuste os src -->
+<div class="opcao" onclick="checkAnswer('A')">
+  <div class="label"><span class="circulo">A</span> a)</div>
+  <img class="optimg" src="q14_a.png" alt="Gráfico da alternativa a">
+</div>
+
+<div class="opcao" onclick="checkAnswer('B')">
+  <div class="label"><span class="circulo">B</span> b)</div>
+  <img class="optimg" src="q14_b.png" alt="Gráfico da alternativa b">
+</div>
+
+<div class="opcao" onclick="checkAnswer('C')">
+  <div class="label"><span class="circulo">C</span> c)</div>
+  <img class="optimg" src="q14_c.png" alt="Gráfico da alternativa c">
+</div>
+
+<div class="opcao" onclick="checkAnswer('D')">
+  <div class="label"><span class="circulo">D</span> d)</div>
+  <img class="optimg" src="q14_d.png" alt="Gráfico da alternativa d">
+</div>
+
+<div class="opcao" onclick="checkAnswer('E')">
+  <div class="label"><span class="circulo">E</span> e)</div>
+  <img class="optimg" src="q14_e.png" alt="Gráfico da alternativa e">
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // Validação por palavras-chave (flexível, sem LaTeX)
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = input.value.trim().toLowerCase();
+    const opts = patterns.toLowerCase().split('|').map(s => s.trim());
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  // Gabarito só aqui (nada "entrega" no texto)
+  function checkAnswer(letter) {
+    const correct = 'B';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

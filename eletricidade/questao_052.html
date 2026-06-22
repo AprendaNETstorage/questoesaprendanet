@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 72 (ENEM 2013) — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_051.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">52/81</span>
+    <a href="questao_053.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 72 (ENEM 2013)</h2>
+  <h3>Problema 72:</h3>
+
+<p><strong>107. (ENEM 2013)</strong></p>
+
+<p>
+Medir temperatura é fundamental em muitas aplicações, e apresentar a leitura em mostradores digitais é bastante prático. O seu funcionamento é baseado na correspondência entre valores de temperatura e de diferença de potencial elétrico.
+</p>
+
+<p>
+Por exemplo, podemos usar o circuito elétrico apresentado, no qual o elemento sensor de temperatura ocupa um dos braços do circuito e a dependência da resistência com a temperatura é conhecida.
+</p>
+
+<figure>
+  <img src="imagens/questao_114.png" alt="Circuito da questão 107 ENEM 2013">
+</figure>
+<p>
+Para um valor de temperatura em que <strong>R<sub>S</sub> = 100 Ω</strong>, a leitura apresentada pelo voltímetro será de
+</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Corrente no ramo esquerdo (470 + 100):</strong>
+  <input onchange="checkWord(this,'1/57|0,0175')"> A
+</p>
+
+<p><strong>2) Corrente no ramo direito (470 + 120):</strong>
+  <input onchange="checkWord(this,'1/59|0,0169')"> A
+</p>
+
+<p><strong>3) Diferença de potencial medida pelo voltímetro (V<sub>B</sub> − V<sub>C</sub>):</strong>
+  <input onchange="checkWord(this,'-0,3|-0.3|aprox -0,28')"> V
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  +6,2 V
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  +1,7 V
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  +0,3 V
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  –0,3 V
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  –6,2 V
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para tolerar acentos/maiúsculas
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito
+  function checkAnswer(letter){
+    const correct = 'D';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

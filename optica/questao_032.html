@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 04 — Óptica</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Óptica</a>
+    <span class="spacer"></span>
+    <a href="questao_031.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">32/42</span>
+    <a href="questao_033.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 04</h2>
+  <h3>Problema 49:</h3>
+  <p>
+    Para a compra de um repelente eletrônico, uma pessoa fez uma pesquisa nos mercados de seu bairro. Cada tipo de repelente pesquisado traz escrito no rótulo da embalagem as informações quanto à duração, em dias, associada à quantidade de horas de utilização por dia. Essas informações e o preço por unidade foram representados no quadro.
+  </p>
+
+  <p><strong>Tabela:</strong></p>
+  <pre>
+Tipo | Duração (dias) | Horas por dia | Preço (R$)
+ I   |       30       |      12       |   12,00
+ II  |       32       |       9       |    9,00
+ III |       40       |      10       |   10,00
+ IV  |       44       |       8       |   11,00
+ V   |       48       |       8       |   12,00
+  </pre>
+
+  <p>
+    A pessoa comprará aquele que apresentar o menor custo diário, quando ligado durante 8 horas por dia.
+  </p>
+
+  <p><strong>Nessas condições, o repelente eletrônico que essa pessoa comprará é do tipo:</strong></p>
+
+  <h4>Solução 49:</h4>
+
+  <p><strong>Fórmula:</strong></p>
+  <p>
+    <em>Tempo total de uso</em> = dias × horas por dia<br>
+    <em>Custo por hora</em> = preço ÷ tempo total<br>
+    <em>Custo diário</em> = 8 × custo por hora
+  </p>
+
+  <p><strong>Tipo I:</strong></p>
+  <p>
+    Tempo: 30 × 12 = <input onchange="check(this, '360')"> horas<br>
+    Custo/hora: 12 ÷ 360 = <input onchange="check(this, '0.0333')"><br>
+    Custo diário: 8 × 0.0333 = <input onchange="check(this, '0.2667')">
+  </p>
+
+  <p><strong>Tipo II:</strong></p>
+  <p>
+    Tempo: 32 × 9 = <input onchange="check(this, '288')"><br>
+    Custo/hora: 9 ÷ 288 = <input onchange="check(this, '0.03125')"><br>
+    Custo diário: 8 × 0.03125 = <input onchange="check(this, '0.25')">
+  </p>
+
+  <p><strong>Tipo III:</strong></p>
+  <p>
+    Tempo: 40 × 10 = <input onchange="check(this, '400')"><br>
+    Custo/hora: 10 ÷ 400 = <input onchange="check(this, '0.025')"><br>
+    Custo diário: 8 × 0.025 = <input onchange="check(this, '0.20')">
+  </p>
+
+  <p><strong>Tipo IV:</strong></p>
+  <p>
+    Tempo: 44 × 8 = <input onchange="check(this, '352')"><br>
+    Custo/hora: 11 ÷ 352 = <input onchange="check(this, '0.03125')"><br>
+    Custo diário: 8 × 0.03125 = <input onchange="check(this, '0.25')">
+  </p>
+
+  <p><strong>Tipo V:</strong></p>
+  <p>
+    Tempo: 48 × 8 = <input onchange="check(this, '384')"><br>
+    Custo/hora: 12 ÷ 384 = <input onchange="check(this, '0.03125')"><br>
+    Custo diário: 8 × 0.03125 = <input onchange="check(this, '0.25')">
+  </p>
+
+  <p>
+    <strong>Conclusão:</strong> O menor custo diário é 
+    R$ <input onchange="check(this, '0.20')">, correspondente ao tipo 
+    <input onchange="check(this, 'III')">
+  </p>
+
+  <h4>Alternativas:</h4>
+
+  <div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> I</div>
+  <div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> II</div>
+  <div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> III</div>
+  <div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> IV</div>
+  <div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> V</div>
+
+  <div id="message" class="feedback"></div>
+
+  <script>
+    function check(input, correct) {
+      const value = input.value.trim().replace(',', '.');
+      const expected = correct.toString().replace(',', '.');
+      input.nextElementSibling?.remove();
+      if (value === expected || Math.abs(parseFloat(value) - parseFloat(expected)) < 0.01) {
+        input.style.backgroundColor = "#c6f6c6";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+      } else {
+        input.style.backgroundColor = "#fdd";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+      }
+    }
+
+    function checkAnswer(letter) {
+      const correct = 'C';
+      const message = document.getElementById('message');
+      if (letter === correct) {
+        message.textContent = 'Correto! O menor custo diário é do repelente tipo III.';
+        message.style.color = 'green';
+      } else {
+        message.textContent = `Errado. A alternativa ${letter} não é a correta.`;
+        message.style.color = 'red';
+      }
+    }
+  </script>
+</div>
+</body>
+</html>

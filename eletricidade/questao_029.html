@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 48 (ENEM 2020 — Q98) — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_028.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">29/81</span>
+    <a href="questao_030.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 48 (ENEM 2020 — Q98)</h2>
+  <h3>Problema 48:</h3>
+<p><strong>Enem 2020</strong></p>
+
+<p><strong>Questão 98 – Ciências da Natureza e suas Tecnologias</strong></p>
+
+<p>
+Os ventos solares são fenômenos caracterizados por feixes de partículas carregadas, lançadas pelo Sol no espaço em alta velocidade. Somente uma pequena fração dessas partículas atinge a atmosfera nos polos, provocando as auroras. A chegada dessas partículas à superfície pode gerar efeitos indesejáveis, interferindo nas telecomunicações, no tráfego aéreo e nas linhas de transmissão de energia elétrica. Esses efeitos são minimizados na Terra pela ação de seu/sua
+</p>
+
+<!-- Resolução apenas posicionada antes das alternativas (sem bloqueio) -->
+<h4>Resolução (interativa):</h4>
+
+<p><strong>1) O vento solar é composto por:</strong>
+  <input onchange="checkWord(this,'particulas carregadas|íons e elétrons|ions e eletrons|plasma solar')">
+</p>
+
+<p><strong>2) Na Terra, essas partículas são desviadas principalmente por:</strong>
+  <input onchange="checkWord(this,'campo magnetico terrestre|campo geomagnetico|campo magnético da terra|magnetosfera')">
+</p>
+
+<p><strong>3) O "escudo" formado que protege o planeta chama-se:</strong>
+  <input onchange="checkWord(this,'magnetosfera')">
+</p>
+
+<!-- ALTERNATIVAS CLICÁVEIS -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('A')" onkeydown="if(event.key==='Enter')checkAnswer('A')">
+  <span class="circulo">A</span> ionosfera.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('B')" onkeydown="if(event.key==='Enter')checkAnswer('B')">
+  <span class="circulo">B</span> campo geomagnético.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('C')" onkeydown="if(event.key==='Enter')checkAnswer('C')">
+  <span class="circulo">C</span> camada de ozônio.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('D')" onkeydown="if(event.key==='Enter')checkAnswer('D')">
+  <span class="circulo">D</span> campo gravitacional.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('E')" onkeydown="if(event.key==='Enter')checkAnswer('E')">
+  <span class="circulo">E</span> atmosfera.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização e marcação ✅/❌ nos inputs
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito simples (sem dica ao errar)
+  const CORRECT = 'B';
+  function checkAnswer(letter){
+    const message = document.getElementById('message');
+    if (letter === CORRECT){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

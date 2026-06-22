@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Física (Geral)</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Física (Geral)</a>
+    <span class="spacer"></span>
+    <a href="questao_005.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">6/23</span>
+    <a href="questao_007.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03</h2>
+  <h3>Problema 08:</h3>
+
+<p>
+  Antônio, Joaquim e José são sócios de uma empresa cujo capital é dividido, entre os três, em partes proporcionais a: 4, 6 e 6, respectivamente.
+  <br><br>
+  Com a intenção de igualar a participação dos três sócios no capital da empresa, Antônio pretende adquirir uma fração do capital de cada um dos outros dois sócios.
+</p>
+
+<p>
+  A fração do capital de cada sócio que Antônio deverá adquirir é:
+</p>
+
+<h4>Solução:</h4>
+
+<p>
+  As participações originais são:
+</p>
+
+<p>
+  Antônio:
+  <span class="fraction">
+    <span><input onchange="check(this, '4')"></span>
+    <span class="bar"></span>
+    <span><input onchange="check(this, '16')"></span>
+  </span>
+  &nbsp;&nbsp; Joaquim:
+  <span class="fraction">
+    <span><input onchange="check(this, '6')"></span>
+    <span class="bar"></span>
+    <span><input onchange="check(this, '16')"></span>
+  </span>
+  &nbsp;&nbsp; José:
+  <span class="fraction">
+    <span><input onchange="check(this, '6')"></span>
+    <span class="bar"></span>
+    <span><input onchange="check(this, '16')"></span>
+  </span>
+</p>
+
+<p>
+  Para que todos tenham
+  <span class="fraction">
+    <span><input onchange="check(this, '1')"></span>
+    <span class="bar"></span>
+    <span><input onchange="check(this, '3')"></span>
+  </span>
+  do capital, Antônio precisa adquirir:
+  <span class="fraction">
+    <span><input onchange="check(this, '1')"></span>
+    <span class="bar"></span>
+    <span><input onchange="check(this, '3')"></span>
+  </span>
+  −
+  <span class="fraction">
+    <span><input onchange="check(this, '1')"></span>
+    <span class="bar"></span>
+    <span><input onchange="check(this, '4')"></span>
+  </span>
+  =
+  <span class="fraction">
+    <span><input onchange="check(this, '1')"></span>
+    <span class="bar"></span>
+    <span><input onchange="check(this, '12')"></span>
+  </span>
+</p>
+
+<p>
+  Essa quantidade será dividida igualmente entre Joaquim e José, ou seja, cada um cederá:
+  <span class="fraction">
+    <span><input onchange="check(this, '1')"></span>
+    <span class="bar"></span>
+    <span><input onchange="check(this, '24')"></span>
+  </span>
+</p>
+
+<p>
+  Comparando isso com a fração original de cada sócio:
+</p>
+
+<p>
+  Joaquim:
+  <span class="fraction">
+    <span><input onchange="check(this, '1')"></span>
+    <span class="bar"></span>
+    <span><input onchange="check(this, '24')"></span>
+  </span>
+  ÷
+  <span class="fraction">
+    <span><input onchange="check(this, '6')"></span>
+    <span class="bar"></span>
+    <span><input onchange="check(this, '16')"></span>
+  </span>
+  =
+  <span class="fraction">
+    <span><input onchange="check(this, '1')"></span>
+    <span class="bar"></span>
+    <span><input onchange="check(this, '9')"></span>
+  </span>
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> 1/2</div>
+<div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> 1/3</div>
+<div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> 1/9</div>
+<div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> 2/3</div>
+<div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> 4/3</div>
+
+<div id="message" class="feedback"></div>
+
+<script>
+  function check(input, correct) {
+    const value = input.value.trim().replace(/\s/g, '').toLowerCase();
+    const expected = typeof correct === 'string' ? correct.toLowerCase() : correct;
+
+    input.nextElementSibling?.remove();
+    if (value === expected.toString()) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  function checkAnswer(letter) {
+    const correct = 'C';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto! A fração a ser adquirida de cada sócio é 1/9 do capital dele.';
+      message.style.color = 'green';
+    } else {
+      message.textContent = `Errado. A alternativa ${letter} não corresponde à fração correta.`;
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

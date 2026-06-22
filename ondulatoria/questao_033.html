@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 29 — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_032.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">33/71</span>
+    <a href="questao_034.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 29</h2>
+  <h3>Problema 29:</h3>
+
+<!-- ENUNCIADO IDÊNTICO -->
+<p><strong>58. (Enem PPL 2013)</strong></p>
+<p>Um enfeite para berço é constituído de um aro metálico com um ursinho pendurado, que gira com velocidade angular constante. O aro permanece orientado na horizontal, de forma que o movimento do ursinho seja projetado na parede pela sua sombra. Enquanto o ursinho gira, sua sombra descreve um movimento</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Movimento do ursinho:</strong>
+  <br>É um <input onchange="checkWord(this,'movimento circular uniforme|circular uniforme|mcu')"> (velocidade angular constante).
+</p>
+
+<p><strong>2) Relação com a sombra na parede:</strong>
+  <br>A sombra é a <input onchange="checkWord(this,'projecao em uma reta|projeção em uma reta|projecao do mcu|projeção do mcu')">
+  do movimento do ursinho.
+</p>
+
+<p><strong>3) Tipo de movimento resultante na sombra:</strong>
+  <br>Essa projeção em uma reta descreve um
+  <input onchange="checkWord(this,'movimento retilineo harmonico simples|retilineo harmonico simples|mrhs|mhs')">.
+</p>
+
+<p><strong>4) Característica essencial:</strong>
+  <br>A aceleração é <input onchange="checkWord(this,'variavel e restauradora|dirigida ao ponto medio|proporcional e oposta ao deslocamento')">,
+  típica de um movimento harmônico.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  circular uniforme.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  retilíneo uniforme.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  retilíneo harmônico simples.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  circular uniformemente variado.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  retilíneo uniformemente variado.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // validação por palavras-chave (tolerante a acentos e variações)
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function checkWord(input, patterns){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'C';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

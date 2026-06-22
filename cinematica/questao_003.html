@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 12 — Cinemática</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Cinemática</a>
+    <span class="spacer"></span>
+    <a href="questao_002.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">3/35</span>
+    <a href="questao_004.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 12</h2>
+  <h3>Problema 12:</h3>
+
+<!-- ENUNCIADO IDÊNTICO -->
+<p><strong>(ENEM 2010 — 2ª aplicação)</strong></p>
+<p>O trecho da música, de Lenine e Arnaldo Antunes (1999), ilustra a preocupação com o trânsito nas cidades, motivo de uma campanha publicitária de uma seguradora brasileira. Considere dois automóveis, A e B, respectivamente conduzidos por um motorista imprudente e por um motorista consciente e atento à campanha citada. Ambos se encontram lado a lado no instante inicial t = 0 s, quando avistam um semáforo amarelo (que indica atenção, parando obrigatória ao se tornar vermelho).</p>
+<p>O movimento de A e B pode ser analisado por meio do gráfico, que representa a velocidade de cada automóvel em função do tempo.</p>
+
+<p>As velocidades dos veículos variam com o tempo em dois intervalos: (I) entre os instantes 10 s e 20 s; (II) entre os instantes 30 s e 40 s. De acordo com o gráfico, quais os módulos das taxas de variação da velocidade do veículo conduzido pelo motorista imprudente, em m/s², nos intervalos (I) e (II), respectivamente?</p>
+
+<!-- Se quiser, coloque a imagem do gráfico na mesma pasta e referencie aqui -->
+<p><img src="q12_grafico.png" alt="Gráfico v×t dos carros A e B" style="max-width:520px;border:1px solid #ddd;border-radius:6px;padding:4px;"></p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Identificar o motorista imprudente:</strong>
+  <br>É o veículo <input onchange="checkWord(this,'a')"> (maiores variações de velocidade).
+</p>
+
+<p><strong>2) Aceleração média no intervalo (I): 10 s a 20 s</strong></p>
+<p>
+  v<sub>i</sub> = <input onchange="checkNum(this,'10')"> m/s,
+  v<sub>f</sub> = <input onchange="checkNum(this,'30')"> m/s,
+  Δt = <input onchange="checkNum(this,'10')"> s  ⇒
+  a<sub>I</sub> = (v<sub>f</sub> − v<sub>i</sub>) / Δt =
+  <input onchange="checkNum(this,'2')"> m/s²
+</p>
+
+<p><strong>3) Aceleração média no intervalo (II): 30 s a 40 s</strong></p>
+<p>
+  v<sub>i</sub> = <input onchange="checkNum(this,'30')"> m/s,
+  v<sub>f</sub> = <input onchange="checkNum(this,'0')"> m/s,
+  Δt = <input onchange="checkNum(this,'10')"> s  ⇒
+  |a<sub>II</sub>| = |(v<sub>f</sub> − v<sub>i</sub>) / Δt| =
+  <input onchange="checkNum(this,'3')"> m/s²
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="optwrap">
+  <div class="opcao" onclick="checkAnswer('A')">
+    <span class="circulo">A</span>
+    0,0 e 3,0
+  </div>
+  <div class="opcao" onclick="checkAnswer('B')">
+    <span class="circulo">B</span>
+    2,0 e 1,0
+  </div>
+  <div class="opcao" onclick="checkAnswer('C')">
+    <span class="circulo">C</span>
+    2,0 e 1,5
+  </div>
+  <div class="opcao" onclick="checkAnswer('D')">
+    <span class="circulo">D</span>
+    2,0 e 3,0
+  </div>
+  <div class="opcao" onclick="checkAnswer('E')">
+    <span class="circulo">E</span>
+    0,0 e 30,0
+  </div>
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // --- utilidades (aceita vírgula/ponto e expressões simples) ---
+  function safeEval(expr) {
+    const cleaned = String(expr).replace(/\s/g, '');
+    if (!/^[0-9+\-*/().,]+$/.test(cleaned)) return null;
+    const withDot = cleaned.replace(/,/g, '.');
+    try {
+      const val = Function('"use strict"; return (' + withDot + ');')();
+      return (typeof val === 'number' && Number.isFinite(val)) ? val : null;
+    } catch { return null; }
+  }
+  function nearlyEqual(a, b, eps = 1e-3) {
+    return Math.abs(a - b) <= eps * Math.max(1, Math.abs(a), Math.abs(b));
+  }
+  function checkNum(input, expected) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const raw = input.value.trim();
+    if (raw === '') { input.style.backgroundColor = ''; return; }
+    const parsedUser = safeEval(raw);
+    const target = Number(expected);
+    const ok = (parsedUser !== null) && nearlyEqual(parsedUser, target);
+    paint(input, ok);
+  }
+  function checkWord(input, expectedWord) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const raw = input.value.trim().toLowerCase();
+    const ok = raw === expectedWord.toLowerCase();
+    paint(input, ok);
+  }
+  function paint(input, ok) {
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter) {
+    const correct = 'D';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

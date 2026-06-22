@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 50 — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_049.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">50/71</span>
+    <a href="questao_051.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 50</h2>
+  <h3>Problema 50:</h3>
+
+<!-- ENUNCIADO IDÊNTICO -->
+<p><strong>81. (Enem 2009)</strong></p>
+<p>O progresso da tecnologia introduziu diversos artefatos geradores de campos eletromagnéticos. Uma das mais empregadas invenções nessa área são os telefones celulares e smartphones. As tecnologias de transmissão de celular atualmente em uso no Brasil contemplam dois sistemas. O primeiro deles é operado entre as frequências de 800 MHz e 900 MHz e constitui os chamados sistemas TDMA/CDMA. Já a tecnologia GSM ocupa a frequência de 1,800 MHz.</p>
+<p>Considerando que a intensidade de transmissão e o nível de recepção "celular" sejam os mesmos para as tecnologias de transmissão TDMA/CDMA ou GSM, se um engenheiro tiver de escolher entre as duas tecnologias para obter a mesma cobertura, levando em consideração apenas o número de antenas em uma região, ele deverá escolher:</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Velocidade das ondas EM no ar:</strong>
+  Todas propagam-se com a mesma
+  <input onchange="checkWord(this,'velocidade|velocidade da luz|c|3e8|3x10^8|3 x 10^8')">
+  (aprox. igual à da luz).
+</p>
+
+<p><strong>2) Atenuação em espaço livre:</strong>
+  A intensidade recebida decai com o
+  <input onchange="checkWord(this,'inverso do quadrado|1/r^2|quadrado da distancia|quadrado da distância')">
+  da distância à antena (mesma potência e mesmo receptor).
+</p>
+
+<p><strong>3) Dependência com a frequência:</strong>
+  Nesse modelo, o decaimento é
+  <input onchange="checkWord(this,'independente da frequencia|independente da frequência|nao depende da frequencia|não depende da frequência')">
+  , logo a cobertura não muda entre 900&nbsp;MHz e 1 800&nbsp;MHz.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  a tecnologia GSM, pois é a que opera com ondas de maior comprimento de onda.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  a tecnologia TDMA/CDMA, pois é a que apresenta Efeito Doppler mais pronunciado.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  a tecnologia GSM, pois é a que utiliza ondas que se propagam com maior velocidade.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  qualquer uma das duas, pois as diferenças nas frequências são compensadas pelas diferenças nos comprimentos de onda.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  qualquer uma das duas, pois, nesse caso as intensidades decaem igualmente da mesma forma, independentemente da frequência.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // Normalização para aceitar variações/acentos
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // Gabarito (feedback somente ao clicar)
+  function checkAnswer(letter){
+    const correct = 'E';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

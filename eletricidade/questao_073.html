@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista — Problema 37 — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_072.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">73/81</span>
+    <a href="questao_074.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista — Problema 37</h2>
+  <h3>Problema 37:</h3>
+
+<p><strong>5 – Enem 2022</strong></p>
+
+<p>
+  Uma lanterna funciona com três pilhas de resistência interna igual a 0,5&nbsp;Ω cada, ligadas em série. Quando posicionadas corretamente, devem acender a lâmpada incandescente de especificações 4,5&nbsp;W e 4,5&nbsp;V. Cada pilha na posição correta gera uma f.e.m. (força eletromotriz) de 1,5&nbsp;V. Uma pessoa, ao trocar as pilhas da lanterna, comete o equívoco de inverter a posição de uma das pilhas. Considere que as pilhas mantêm contato independentemente da posição. Com esse equívoco, qual é a intensidade de corrente que passa pela lâmpada ao se ligar a lanterna?
+</p>
+
+<!-- (Opcional) esqueminha de pilhas/lâmpada – manter comentado -->
+<!-- <div class="imgwrap"><img src="lanterna_pilhas_invertida.png" alt="Três pilhas em série, uma invertida, alimentando lâmpada de 4,5 V 4,5 W"></div> -->
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Qual a resistência da lâmpada a partir das especificações 4,5&nbsp;V e 4,5&nbsp;W?</strong><br>
+  <input onchange="checkWord(this,'r=4,5|r=4.5|4,5 ohm|4.5 ohm|4,5 Ω|4.5 Ω|v^2/p=4,5')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Use R = V²/P com V = 4,5 e P = 4,5.</span>
+  </span>
+</p>
+
+<p><strong>2) Com uma pilha invertida, qual é a f.e.m. resultante do conjunto?</strong><br>
+  <input onchange="checkWord(this,'1,5 v|1.5 v|1,5 volts|1.5 volts|uma pilha equivalente|duas menos uma')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Somam-se 2×1,5 para frente e subtrai 1×1,5 ao contrário.</span>
+  </span>
+</p>
+
+<p><strong>3) Qual é a resistência total em série vista pela fonte?</strong><br>
+  <input onchange="checkWord(this,'r_total=4,5+1,5|6,0 ohm|6 ohm|6 Ω|R+3r|4,5+3*0,5')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Lâmpada (R) em série com as três resistências internas (3·0,5 Ω).</span>
+  </span>
+</p>
+
+<p><strong>4) Calcule a corrente na lâmpada.</strong><br>
+  <input onchange="checkWord(this,'0,25 a|0.25 a|0,25|0.25|1,5/6')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Lei de Ohm: I = ε / (R + 3r).</span>
+  </span>
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')"><span class="circulo">A</span> 0,25 A</div>
+<div class="opcao" onclick="checkAnswer('B')"><span class="circulo">B</span> 0,33 A</div>
+<div class="opcao" onclick="checkAnswer('C')"><span class="circulo">C</span> 0,75 A</div>
+<div class="opcao" onclick="checkAnswer('D')"><span class="circulo">D</span> 1,00 A</div>
+<div class="opcao" onclick="checkAnswer('E')"><span class="circulo">E</span> 1,33 A</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para ignorar acentos
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+  // checagem tolerante por palavras-chave
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = (span.style.display === 'inline') ? 'none' : 'inline';
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'A';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

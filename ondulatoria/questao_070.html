@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problema 43 - Sistemas Numéricos — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_069.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">70/71</span>
+    <a href="questao_071.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Problema 43 - Sistemas Numéricos</h2>
+  <h3>Problema 43:</h3>
+  <p>
+    Uma partida de futebol tem dois tempos de 45 minutos cada. A duração do intervalo entre cada tempo é de 15 minutos.
+    Eventualmente, por ocasião de paralisações ocorridas durante um dos tempos (como comemorações de gols, atendimento a jogadores que necessitem de maca), ocorre acréscimo ao tempo de jogo.<br><br>
+    No Brasil, o segundo tempo é iniciado zerando-se o cronômetro, mas em campeonatos europeus, começa com o cronômetro posicionado em 45 minutos.
+    Em uma partida de um campeonato europeu, uma equipe marcou um gol aos 17 minutos e 45 segundos. A outra equipe empatou o jogo aos 54 minutos e 32 segundos.
+    O tempo do intervalo foi respeitado e houve um acréscimo de 2 minutos ao primeiro tempo de jogo.<br><br>
+    O tempo transcorrido entre os dois gols foi de:
+  </p>
+
+  <h4>Resolução interativa:</h4>
+  <ul>
+    <li>Fim do 1º tempo com acréscimo: <input onchange="check(this, '47')"> minutos</li>
+    <li>Gol 1: marcado aos <input onchange="check(this, '17')"> minutos e <input onchange="check(this, '45')"> segundos</li>
+    <li>Gol 2: marcado aos <input onchange="check(this, '54')"> minutos e <input onchange="check(this, '32')"> segundos</li>
+    <li>Intervalo entre os tempos: <input onchange="check(this, '15')"> minutos</li>
+    <li>Tempo entre gol 1 e fim do 1º tempo: <input onchange="check(this, '29')"> minutos e <input onchange="check(this, '15')"> segundos</li>
+    <li>Tempo no 2º tempo até o gol 2: <input onchange="check(this, '9')"> minutos e <input onchange="check(this, '32')"> segundos</li>
+    <li>Soma total: <input onchange="check(this, '53')"> minutos e <input onchange="check(this, '47')"> segundos</li>
+  </ul>
+
+  <h4>Alternativas:</h4>
+  <div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> 54 minutos e 47 segundos</div>
+  <div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> 53 minutos e 47 segundos</div>
+  <div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> 51 minutos e 47 segundos</div>
+  <div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> 38 minutos e 47 segundos</div>
+  <div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> 36 minutos e 47 segundos</div>
+
+  <div id="message" class="feedback"></div>
+
+  <script>
+    function normalize(str) {
+      return str.trim().replace(',', '.').replace(/[^0-9.]/g, '');
+    }
+
+    function check(input, correct) {
+      const value = normalize(input.value);
+      const expected = normalize(correct);
+      input.nextElementSibling?.remove();
+      if (value === expected) {
+        input.style.backgroundColor = "#c6f6c6";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+      } else {
+        input.style.backgroundColor = "#fdd";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+      }
+    }
+
+    function checkAnswer(letter) {
+      const correct = 'B';
+      const message = document.getElementById('message');
+      if (letter === correct) {
+        message.textContent = 'Correto! O tempo total entre os gols foi de 53 minutos e 47 segundos.';
+        message.style.color = 'green';
+      } else {
+        message.textContent = `Errado. A alternativa ${letter} não é a correta.`;
+        message.style.color = 'red';
+      }
+    }
+  </script>
+</div>
+</body>
+</html>

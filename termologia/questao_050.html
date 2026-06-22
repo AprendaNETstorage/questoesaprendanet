@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 04 — Termologia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Termologia</a>
+    <span class="spacer"></span>
+    <a href="questao_049.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">50/58</span>
+    <a href="questao_051.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 04</h2>
+  <h3>Problema 28:</h3>
+  <p>
+    Um motorista de um carro flex (bicombustível) calcula que, abastecido com 45 litros de gasolina ou com 60 litros de etanol, o carro percorre a mesma distância.<br><br>
+    Chamando de <i>x</i> o valor do litro de gasolina e de <i>y</i> o valor do litro de etanol, a situação em que abastecer com gasolina é economicamente mais vantajosa do que abastecer com etanol é expressa por:
+  </p>
+
+  <h4>Solução 27:</h4>
+
+  <p>Sabemos que o carro percorre a mesma distância com:</p>
+  <ul>
+    <li>45 litros de gasolina → custo: 45x</li>
+    <li>60 litros de etanol → custo: 60y</li>
+  </ul>
+
+  <p>Queremos saber quando é mais vantajoso abastecer com gasolina, ou seja, quando:</p>
+  <p>
+    <input onchange="check(this, '45')">x &lt; <input onchange="check(this, '60')">y
+  </p>
+
+  <p>Dividindo ambos os lados por 15:</p>
+  <p>
+    <input onchange="check(this, '3')">x &lt; <input onchange="check(this, '4')">y
+  </p>
+
+  <p>Dividindo por y (com y &gt; 0):</p>
+  <p>
+    <strong>x / y &lt; <input onchange="check(this, '4/3')"></strong>
+  </p>
+
+  <h4>Alternativas:</h4>
+
+  <div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> x/y = 4/3</div>
+  <div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> x/y = 3/4</div>
+  <div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> x/y &gt; 4/3</div>
+  <div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> x/y &gt; 3/4</div>
+  <div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> x/y &lt; 4/3</div>
+
+  <div id="message" class="feedback"></div>
+
+  <script>
+    function check(input, correct) {
+      const value = input.value.trim().replace(',', '.');
+      const expected = correct.toString().replace(',', '.');
+      input.nextElementSibling?.remove();
+      if (value === expected) {
+        input.style.backgroundColor = "#c6f6c6";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+      } else {
+        input.style.backgroundColor = "#fdd";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+      }
+    }
+
+    function checkAnswer(letter) {
+      const correct = 'E';
+      const message = document.getElementById('message');
+      if (letter === correct) {
+        message.textContent = 'Correto! A razão x/y deve ser menor que 4/3.';
+        message.style.color = 'green';
+      } else {
+        message.textContent = `Errado. A alternativa ${letter} não é a correta.`;
+        message.style.color = 'red';
+      }
+    }
+  </script>
+</div>
+</body>
+</html>

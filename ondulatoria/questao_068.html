@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física ENEM — Problema 37 — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_067.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">68/71</span>
+    <a href="questao_069.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física ENEM — Problema 37</h2>
+  <h3>Problema 37:</h3>
+
+<p><strong>(ENEM)</strong></p>
+
+<p>
+Num experimento, um professor deixa duas bandejas de mesma massa, uma de plástico e outra de alumínio, sobre a mesa do laboratório. Após algumas horas, ele pede aos alunos que avaliem a temperatura das duas bandejas, usando para isso o tato. Seus alunos afirmam, categoricamente, que a bandeja de alumínio encontra-se com uma temperatura mais baixa. Intrigado, ele propõe uma segunda atividade, em que coloca um cubo de gelo sobre cada uma das bandejas, que estão em equilíbrio térmico com o ambiente, e os questiona em qual delas a taxa de derretimento do gelo será maior.
+</p>
+
+<p>
+O aluno que responder corretamente ao questionamento do professor dirá que o derretimento ocorrerá
+</p>
+
+<ol type="A">
+  <li>mais rapidamente na bandeja de alumínio, pois ela tem uma maior condutividade térmica que a de plástico.</li>
+  <li>mais rapidamente na bandeja de plástico, pois ela tem uma menor condutividade térmica que a de alumínio.</li>
+  <li>mais rapidamente na bandeja de plástico, pois ela tem inicialmente uma temperatura mais alta que a de alumínio.</li>
+  <li>mais rapidamente na bandeja de plástico, pois ela tem uma maior capacidade térmica que a de alumínio.</li>
+  <li>com a mesma rapidez nas duas bandejas, pois apresentarão a mesma variação de temperatura.</li>
+</ol>
+
+<h4>Solução (interativa):</h4>
+
+<p>
+<strong>1) Situação inicial das bandejas:</strong><br>
+Após várias horas sobre a mesa, as duas bandejas ficam em
+<input onchange="checkWord(this,'equilibrio termico|equilíbrio térmico|equilibrio com o ambiente|equilíbrio com o ambiente')">
+com o ambiente, ou seja, têm a mesma temperatura.
+</p>
+
+<p>
+<strong>2) Por que o alumínio parece mais frio ao toque?</strong><br>
+A bandeja de alumínio retira calor da mão mais rapidamente porque tem maior
+<input onchange="checkWord(this,'condutividade termica|condutividade térmica')">
+do que a de plástico.
+</p>
+
+<p>
+<strong>3) E o gelo, derrete onde mais depressa?</strong><br>
+Como o alumínio transfere calor mais rápido para o gelo, o derretimento ocorre mais
+<input onchange="checkWord(this,'rapido|rápido|rapidamente')">
+na bandeja de alumínio.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  mais rapidamente na bandeja de alumínio, pois ela tem uma maior condutividade térmica que a de plástico.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  mais rapidamente na bandeja de plástico, pois ela tem uma menor condutividade térmica que a de alumínio.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  mais rapidamente na bandeja de plástico, pois ela tem inicialmente uma temperatura mais alta que a de alumínio.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  mais rapidamente na bandeja de plástico, pois ela tem uma maior capacidade térmica que a de alumínio.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  com a mesma rapidez nas duas bandejas, pois apresentarão a mesma variação de temperatura.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // -------- helpers (aceita vírgula/ponto e expressões simples) --------
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function safeEval(expr){
+    const cleaned = String(expr).replace(/\s/g,'');
+    if(!/^[0-9eE+\-*/().,×^]+$/.test(cleaned)) return null;
+    const norm = cleaned.replace(/,/g,'.').replace(/×/g,'*').replace(/\^/g,'**');
+    try{
+      const v = Function('"use strict"; return ('+norm+');')();
+      return (typeof v === 'number' && Number.isFinite(v)) ? v : null;
+    }catch{ return null; }
+  }
+  function nearlyEqual(a,b,eps=1e-3){ return Math.abs(a-b) <= eps*Math.max(1,Math.abs(a),Math.abs(b)); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+  function checkExpr(input, expectedExprs){
+    const val = safeEval(input.value.trim());
+    const targets = expectedExprs.split('|').map(e => safeEval(e));
+    const ok = (val !== null) && targets.some(t => t !== null && nearlyEqual(val, t));
+    paint(input, ok);
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'A';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto! O gelo derrete mais rápido na bandeja de alumínio.';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Reflita sobre qual material conduz melhor o calor.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

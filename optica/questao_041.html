@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Q55 (Enem 2012) | Eficiência de lâmpadas — Óptica</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Óptica</a>
+    <span class="spacer"></span>
+    <a href="questao_040.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">41/42</span>
+    <a href="questao_042.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Q55 (Enem 2012) | Eficiência de lâmpadas</h2>
+  <h3>Problema 5 — Enem 2012</h3>
+
+<p>
+A eficiência de lâmpadas é a razão entre a quantidade de luz produzida (<strong>Q</strong>, em lúmens) e a potência consumida (<strong>P</strong>, em watts): <code>eficiência = Q / P</code> (unidade: lm/W).
+</p>
+<ul>
+  <li>Incandescente 40 W → produz 600 lm.</li>
+  <li>Fluorescente 40 W → produz 3000 lm.</li>
+  <li>Fluorescente 8 W → produz 600 lm.</li>
+</ul>
+
+<h4>Solução (interativa)</h4>
+<p class="note">Digite a <em>expressão</em> (ex.: <code>600/40</code>) ou o <em>número</em>. Aceita vírgula ou ponto.</p>
+
+<p><strong>1) Eficiência da incandescente 40 W:</strong><br>
+  e<sub>inc</sub> = Q / P = 
+  <input placeholder="ex.: 600/40" onchange="checkExpr(this,'600/40')"> lm/W
+</p>
+
+<p><strong>2) Eficiência da fluorescente 40 W:</strong><br>
+  e<sub>fluor40</sub> = Q / P = 
+  <input placeholder="ex.: 3000/40" onchange="checkExpr(this,'3000/40')"> lm/W
+</p>
+
+<p><strong>3) Eficiência da fluorescente 8 W (600 lm):</strong><br>
+  e<sub>fluor8</sub> = Q / P = 
+  <input placeholder="ex.: 600/8" onchange="checkExpr(this,'600/8')"> lm/W
+</p>
+
+<p><strong>4) Com base nas eficiências, assinale a alternativa correta sobre a eficiência da incandescente 40 W:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  maior que a de uma fluorescente de 8 W, que produz menor quantidade de luz.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  maior que a de uma fluorescente de 40 W, que produz menor quantidade de luz.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  menor que a de uma fluorescente de 40 W, que produz maior quantidade de luz.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  menor que a de uma fluorescente de 40 W, pois consome maior quantidade de energia.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  igual à de uma fluorescente de 40 W, que consome a mesma quantidade de energia.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // -------- helpers numéricos --------
+  function safeEval(expr){
+    const cleaned = String(expr || '').trim();
+    if(!cleaned) return null;
+    const allowed = cleaned.replace(/\s/g,'')
+                           .replace(/,/g,'.')
+                           .replace(/×/g,'*')
+                           .replace(/\^/g,'**');
+    if(!/^[0-9eE+\-*/().]+$/.test(allowed)) return null;
+    try{
+      const v = Function('"use strict";return('+allowed+')')();
+      return (typeof v === 'number' && Number.isFinite(v)) ? v : null;
+    }catch{ return null; }
+  }
+  function nearlyEqual(a,b,eps=1e-3){
+    return Math.abs(a-b) <= eps*Math.max(1,Math.abs(a),Math.abs(b));
+  }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkExpr(input, expectedExpr){
+    const user = safeEval(input.value);
+    const targetVal = safeEval(expectedExpr);
+    const ok = (user !== null) && (targetVal !== null) && nearlyEqual(user, targetVal);
+    paint(input, ok);
+  }
+
+  // -------- gabarito (oculto) --------
+  function checkAnswer(letter){
+    const correct = 'C';
+    const msg = document.getElementById('message');
+    if (letter === correct){
+      msg.textContent = 'Correto!';
+      msg.style.color = 'green';
+    } else {
+      msg.textContent = 'Errado. Tente novamente.';
+      msg.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_054.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">55/71</span>
+    <a href="questao_056.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03</h2>
+  <h3>Problema 10:</h3>
+
+<p>
+  A figura mostra os preços da gasolina no Brasil e nos Estados Unidos (EUA), feita a conversão para reais, considerando o preço total de venda ao consumidor (abaixo dos nomes dos países) e os valores das parcelas correspondentes à refinaria, aos tributos e à distribuição e revenda.
+</p>
+
+<p>
+  Note que, considerando apenas a parte correspondente à refinaria, o preço da gasolina vendida no Brasil é inferior ao preço cobrado nos Estados Unidos, mas os tributos, a distribuição e a revenda aumentam o preço final de venda nos postos brasileiros.
+</p>
+
+<p>
+  Suponha que fosse tomada a decisão de se diminuir o preço final de venda nos postos brasileiros, sem alterar a parcela do preço da gasolina vendida na refinaria, de modo que o preço final se iguale ao cobrado nos postos dos Estados Unidos.
+</p>
+
+<p>
+  O percentual mais aproximado de redução dos valores em tributos, distribuição e revenda seria:
+</p>
+
+<h4>Solução:</h4>
+
+<p><strong>Valores da figura:</strong></p>
+<ul>
+  <li>Preço final Brasil: R$ <input onchange="check(this, '2.80')"></li>
+  <li>Refinaria (Brasil): R$ <input onchange="check(this, '1.37')"></li>
+  <li>Tributos: R$ <input onchange="check(this, '1.00')"></li>
+  <li>Distribuição e revenda: R$ <input onchange="check(this, '0.43')"></li>
+</ul>
+
+<p><strong>Total a ser reduzido:</strong></p>
+<p>
+  T<sub>original</sub> = 1,00 + 0,43 = R$ <input onchange="check(this, '1.43')">
+</p>
+
+<p><strong>Novo preço final desejado:</strong></p>
+<p>
+  P<sub>novo</sub> = R$ <input onchange="check(this, '2.00')">
+</p>
+
+<p><strong>Como a parcela da refinaria permanece fixa:</strong></p>
+<p>
+  T<sub>novo</sub> = 2,00 − 1,37 = R$ <input onchange="check(this, '0.63')">
+</p>
+
+<p><strong>Redução absoluta:</strong></p>
+<p>
+  ΔT = 1,43 − 0,63 = R$ <input onchange="check(this, '0.80')">
+</p>
+
+<p><strong>Cálculo da redução percentual:</strong></p>
+<p>
+  <span class="fraction">
+    <span><input onchange="check(this, '0.80')"></span>
+    <span class="bar"></span>
+    <span><input onchange="check(this, '1.43')"></span>
+  </span> × 100 =
+  <input onchange="check(this, '55.94')"> %
+</p>
+
+<p>
+  (arredondando: aproximadamente <input onchange="check(this, '56')">%)
+</p>
+
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> 29</div>
+<div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> 44</div>
+<div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> 56</div>
+<div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> 63</div>
+<div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> 80</div>
+
+<div id="message" class="feedback"></div>
+
+<script>
+  function check(input, correct) {
+    const value = input.value.trim().replace(',', '.').toLowerCase();
+    const expected = correct.toLowerCase();
+    input.nextElementSibling?.remove();
+    if (value === expected) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  function checkAnswer(letter) {
+    const correct = 'D';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto! A redução de 2 em 3 reais equivale a aproximadamente 66,6%.';
+      message.style.color = 'green';
+    } else {
+      message.textContent = `Errado. A alternativa ${letter} não corresponde ao percentual de redução correto.`;
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista — Problema 18 — Óptica</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Óptica</a>
+    <span class="spacer"></span>
+    <a href="questao_037.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">38/42</span>
+    <a href="questao_039.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista — Problema 18</h2>
+  <h3>Problema 18:</h3>
+
+<p><strong>10 – ENEM 2024</strong></p>
+
+<p>
+  Placas de saída de emergência brilham no escuro porque possuem substâncias que <em>fosforescem</em> após exposição à luz. O texto cita o sulfeto de zinco (ZnS) dopado (com prata ou cobre) na superfície da placa.
+</p>
+
+<!-- Figura do enunciado (deixar comentada mesmo sem o arquivo) -->
+<!-- <div class="imgwrap"><img src="placa_saida_fosforescente.png" alt="Placa de saída que brilha no escuro"></div> -->
+
+<p><strong>O aparecimento do brilho nessas condições ocorre como consequência de</strong></p>
+
+<!-- SOLUÇÃO (INTERATIVA) ANTES DAS ALTERNATIVAS -->
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) O que a luz ambiente faz com os elétrons do material dopado?</strong><br>
+  <input onchange="checkWord(this,'excita os eletrons|eletrons excitados|promove para niveis superiores|sobe de nivel')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Fótons incidentes elevam elétrons a estados de maior energia.</span>
+  </span>
+</p>
+
+<p><strong>2) Esses materiais possuem <em>estados metaestáveis</em>. O que acontece com os elétrons depois?</strong><br>
+  <input onchange="checkWord(this,'retornam lentamente emitindo luz|decaem emitindo fotons|emissao retardada|fosforescencia')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>O retorno não é imediato; a emissão persiste no escuro.</span>
+  </span>
+</p>
+
+<p><strong>3) Esse brilho está ligado a qual fenômeno microscópico?</strong><br>
+  <input onchange="checkWord(this,'transicoes eletronicas|transições eletrônicas|saltos de nivel|recombinacao radiativa')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Não é reflexão nem reação nuclear; é emissão por decaimento eletrônico.</span>
+  </span>
+</p>
+
+<!-- ALTERNATIVAS -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')"><span class="circulo">A</span> Colisões interatômicas</div>
+<div class="opcao" onclick="checkAnswer('B')"><span class="circulo">B</span> Coloração dos átomos</div>
+<div class="opcao" onclick="checkAnswer('C')"><span class="circulo">C</span> Transições eletrônicas</div>
+<div class="opcao" onclick="checkAnswer('D')"><span class="circulo">D</span> Reações nucleares</div>
+<div class="opcao" onclick="checkAnswer('E')"><span class="circulo">E</span> Reflexão da luz</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para ignorar acentos
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+  // verificação por palavras-chave
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = span.style.display === 'inline' ? 'none' : 'inline';
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'C';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 04 — Leis de Newton</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Leis de Newton</a>
+    <span class="spacer"></span>
+    <a href="questao_020.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">21/25</span>
+    <a href="questao_022.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 04</h2>
+  <h3>Problema 30:</h3>
+  <p>
+    Uma pessoa tem massa corporal de 167 kg. Sob orientação de um nutricionista, submeteu-se a um regime alimentar em que se projeta que a perda de quilos mensais seja inferior a 5 kg. <br>
+    Após iniciar o regime, observou-se, nos três primeiros meses, uma perda de 4 kg por mês, e, nos quatro meses seguintes, uma perda mensal de 3 kg. <br>
+    Daí em diante, segundo as recomendações do nutricionista, deveria haver uma perda mensal fixa em cada um dos meses subsequentes, objetivando alcançar a massa corporal de 71 kg ao final do regime.
+  </p>
+  <p>
+    Segundo as projeções e recomendações do nutricionista, para alcançar seu objetivo, a duração mínima, em mês, que essa pessoa deverá manter o seu regime será de:
+  </p>
+
+  <h4>Solução:</h4>
+
+  <p>
+    Massa inicial: 167 kg<br>
+    Massa final desejada: 71 kg<br>
+    Total a perder: <input onchange="check(this, '96')"> kg
+  </p>
+
+  <p>Perdas iniciais:</p>
+  <ul>
+    <li>3 primeiros meses: perda de 4 kg por mês: 
+      3 × 4 = <input onchange="check(this, '12')"> kg
+    </li>
+    <li>4 meses seguintes: perda de 3 kg por mês:
+      4 × 3 = <input onchange="check(this, '12')"> kg
+    </li>
+  </ul>
+
+  <p>
+    Total perdido nos 7 primeiros meses: 12 + 12 = <input onchange="check(this, '24')"> kg<br>
+    Resta perder: 96 − 24 = <input onchange="check(this, '72')"> kg
+  </p>
+
+  <p>
+    A partir de agora, a perda será mensal e fixa, com valor ≤ 5 kg.<br>
+    Para que a perda total não ultrapasse 5 kg por mês, queremos que:
+  </p>
+
+  <p>
+    <span class="fraction">
+      <span>72</span>
+    </span>
+    ÷
+    <input onchange="check(this, 'x')"> &lt; 5
+  </p>
+
+  <p>
+    Ou seja, <strong>x ≥ <input onchange="check(this, '15')"></strong> meses
+  </p>
+
+  <p>
+    Total de meses de regime: 3 + 4 + 15 = <strong><input onchange="check(this, '22')"></strong>
+  </p>
+
+  <h4>Alternativas:</h4>
+  <div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> 15</div>
+  <div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> 20</div>
+  <div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> 21</div>
+  <div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> 22</div>
+  <div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> 25</div>
+
+  <div id="message" class="feedback"></div>
+
+  <script>
+    function check(input, correct) {
+      const val = input.value.trim().replace(',', '.');
+      const expected = correct.toString().replace(',', '.');
+      input.nextElementSibling?.remove();
+      if (val === expected) {
+        input.style.backgroundColor = "#c6f6c6";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+      } else {
+        input.style.backgroundColor = "#fdd";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+      }
+    }
+
+    function checkAnswer(letter) {
+      const correct = 'D';
+      const message = document.getElementById('message');
+      if (letter === correct) {
+        message.textContent = 'Correto! São necessários 22 meses no total.';
+        message.style.color = 'green';
+      } else {
+        message.textContent = `Errado. A alternativa ${letter} não é a correta.`;
+        message.style.color = 'red';
+      }
+    }
+  </script>
+</div>
+</body>
+</html>

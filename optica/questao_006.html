@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Óptica</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Óptica</a>
+    <span class="spacer"></span>
+    <a href="questao_005.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">6/42</span>
+    <a href="questao_007.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03</h2>
+  <p>
+  <a href="index.html">🔹 Ir para Problema 1</a> |
+  
+</p>
+
+<h3>Problema 2:</h3>
+
+<p><strong>(Enem 2014)</strong> Uma proposta de dispositivo capaz de indicar a qualidade da gasolina vendida em postos e, consequentemente, evitar fraudes, poderia utilizar o conceito de refração luminosa. Nesse sentido, a gasolina não adulterada, na temperatura ambiente, apresenta <em>razão entre os senos dos raios incidente e refratado</em> igual a 1,4. Desse modo, fazendo incidir o feixe de luz proveniente do ar com um ângulo fixo e maior que zero, qualquer modificação no ângulo do feixe refratado indicará adulteração no combustível.</p>
+
+<p>Em uma fiscalização rotineira, o teste apresentou o valor de 1,9. Qual foi o comportamento do raio refratado?</p>
+
+<h4>Solução:</h4>
+
+<div class="step">
+  <p><strong>1) Comparação do quociente.</strong> Considere o valor do teste em relação ao da gasolina pura, calculando mentalmente o quociente
+  <span class="fraction"><span>1,4</span><span class="bar"></span><span>1,9</span></span>.
+  Esse quociente é:</p>
+  <label><input type="radio" name="q1" value="menor" onchange="checkStep('q1','menor')"> menor que 1</label>
+  <label><input type="radio" name="q1" value="igual"  onchange="checkStep('q1','menor')"> igual a 1</label>
+  <label><input type="radio" name="q1" value="maior" onchange="checkStep('q1','menor')"> maior que 1</label>
+  <span id="q1_tick" class="tick"></span>
+</div>
+
+<div class="step">
+  <p><strong>2) Consequência para o ângulo refratado.</strong> Sabendo que
+  <em>sen&nbsp;r<sub>2</sub> = (1,4/1,9) · sen&nbsp;r<sub>1</sub></em>, a relação correta entre os ângulos é:</p>
+  <label><input type="radio" name="q2" value="menor" onchange="checkStep('q2','menor')"> r<sub>2</sub> &lt; r<sub>1</sub></label>
+  <label><input type="radio" name="q2" value="igual"  onchange="checkStep('q2','menor')"> r<sub>2</sub> = r<sub>1</sub></label>
+  <label><input type="radio" name="q2" value="maior" onchange="checkStep('q2','menor')"> r<sub>2</sub> &gt; r<sub>1</sub></label>
+  <span id="q2_tick" class="tick"></span>
+</div>
+
+<div class="step">
+  <p><strong>3) Interpretação geométrica.</strong> Se o ângulo refratado diminui ao entrar no outro meio, o raio:</p>
+  <label><input type="radio" name="q3" value="aproxima" onchange="checkStep('q3','aproxima')"> aproxima-se da normal</label>
+  <label><input type="radio" name="q3" value="afasta" onchange="checkStep('q3','aproxima')"> afasta-se da normal</label>
+  <label><input type="radio" name="q3" value="outros" onchange="checkStep('q3','aproxima')"> sofre outro efeito</label>
+  <span id="q3_tick" class="tick"></span>
+</div>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> Mudou de sentido.</div>
+<div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> Sofreu reflexão total.</div>
+<div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> Atingiu o valor do ângulo limite.</div>
+<div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> Direcionou-se para a superfície de separação.</div>
+<div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> Aproximou-se da normal à superfície de separação.</div>
+
+<div id="message" class="feedback"></div>
+
+<script>
+  function mark(el, ok){
+    el.textContent = ok ? '✅' : '❌';
+    el.style.color = ok ? 'green' : 'red';
+  }
+  function checkStep(group, correct){
+    const sel = document.querySelector(`input[name="${group}"]:checked`);
+    const ok = sel && sel.value === correct;
+    mark(document.getElementById(group + '_tick'), ok);
+  }
+  function checkAnswer(letter){
+    const correct='E';
+    const msg=document.getElementById('message');
+    if(letter===correct){ msg.textContent='Correto!'; msg.style.color='green'; }
+    else{ msg.textContent='Tente novamente.'; msg.style.color='red'; }
+  }
+</script>
+</div>
+</body>
+</html>

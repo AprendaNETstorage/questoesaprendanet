@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 17 (ENEM) — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_007.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">8/81</span>
+    <a href="questao_009.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 17 (ENEM)</h2>
+  <h3>Problema 17:</h3>
+
+<p><strong>117. (ENEM 2010)</strong></p>
+
+<p>
+Todo carro possui uma caixa de fusíveis, usados para proteção dos circuitos elétricos.  
+Os fusíveis se fundem quando a corrente elétrica ultrapassa o valor que suportam.  
+Um farol utiliza uma lâmpada halógena de 55 W com tensão de 36 V.  
+Normalmente cada farol tem seu fusível, mas um motorista ligou dois faróis em paralelo, usando apenas um fusível.  
+Qual o menor fusível adequado para proteger esse circuito?
+</p>
+<p><img src="extra_27.png" alt="Tabela de condutividade elétrica dos materiais"></p>
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) A corrente em um farol é:</strong>  
+  <input onchange="checkWord(this,'55/36|1,5 a|1.5 a|aprox 1,5')">  
+</p>
+
+<p><strong>2) Como são dois faróis em paralelo, a corrente total é:</strong>  
+  <input onchange="checkWord(this,'3,0 a|3 a|3.0 a')">  
+</p>
+
+<p><strong>3) O menor fusível acima desse valor é:</strong>  
+  <input onchange="checkWord(this,'5 a|5 amperes|laranja')">
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  azul
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  preto
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  laranja
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  amarelo
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  vermelho
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para tolerar acentos/maiúsculas
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito
+  function checkAnswer(letter){
+    const correct = 'C';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

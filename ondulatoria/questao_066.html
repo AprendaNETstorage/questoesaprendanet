@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problema 29 — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_065.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">66/71</span>
+    <a href="questao_067.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Problema 29</h2>
+  <nav class="topnav" aria-label="Navegação entre problemas">
+    
+    
+  </nav>
+
+  <h1>Problema 29</h1>
+  <div class="meta">Fonte/rotulagem: ENEM 2021 — ondas sonoras em barras metálicas (sino dos ventos)</div>
+
+  <section class="enunciado">
+    <strong>Enunciado (texto integral):</strong>
+    <p>
+      O sino dos ventos é composto por várias barras metálicas de mesmo material e espessura, mas
+      de comprimentos diferentes, conforme a figura.
+    </p>
+    <div class="imgwrap">
+      <img src="q29_fig1.png" alt="Sino dos ventos com barras metálicas de diferentes comprimentos; uma barra mais curta (comprimento 1) e outra mais longa (comprimento 2).">
+    </div>
+    <p>
+      Considere <code>f1</code> e <code>v1</code>, respectivamente, como a frequência fundamental e a velocidade
+      de propagação do som emitido pela barra de <strong>menor</strong> comprimento, e <code>f2</code> e <code>v2</code> as mesmas
+      grandezas para a barra de <strong>maior</strong> comprimento. As relações entre as frequências fundamentais e entre
+      as velocidades de propagação são, respectivamente:
+    </p>
+  </section>
+
+  <div class="solucao">Solução (interativa)</div>
+
+  <div class="step">
+    <div class="q">1) A frequência fundamental de uma barra vibrante depende de que forma do comprimento?</div>
+    <div class="controls">
+      <input type="text" aria-label="Passo 1" placeholder="Ex.: inversamente proporcional"
+             onchange="checkWord(this,'inversamente proporcional|inversamente ao comprimento')" />
+      <div class="status" aria-live="polite"></div>
+      <button type="button" onclick="toggleHint(this)">Mostrar dica</button>
+      <div class="hint">Barras mais curtas "soam" mais agudo: <code>f ∝ 1/L</code>.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="q">2) Comparando as barras, qual relação entre as frequências <code>f1</code> (barra menor) e <code>f2</code> (barra maior)?</div>
+    <div class="controls">
+      <input type="text" aria-label="Passo 2" placeholder="Ex.: f1 > f2"
+             onchange="checkWord(this,'f1 > f2|f1&gt;f2|f1 maior que f2')" />
+      <div class="status" aria-live="polite"></div>
+      <button type="button" onclick="toggleHint(this)">Mostrar dica</button>
+      <div class="hint">Se <code>f ∝ 1/L</code> e a barra 1 é menor, sua frequência fundamental é maior.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="q">3) E quanto às velocidades de propagação <code>v1</code> e <code>v2</code> do som nas barras do mesmo material?</div>
+    <div class="controls">
+      <input type="text" aria-label="Passo 3" placeholder="Ex.: v1 = v2"
+             onchange="checkWord(this,'v1 = v2|v1=v2|iguais')" />
+      <div class="status" aria-live="polite"></div>
+      <button type="button" onclick="toggleHint(this)">Mostrar dica</button>
+      <div class="hint">No mesmo material e ambiente, a velocidade do som é a mesma: <code>v</code> independe do comprimento.</div>
+    </div>
+  </div>
+
+  <section aria-label="Alternativas de resposta">
+    <h2 style="font-size:20px; margin-top:26px;">Alternativas</h2>
+    <div class="options">
+      <div class="opcao" onclick="checkAnswer('A')">
+        <div class="optline"><span class="circulo">A</span><div><code>f1 &gt; f2</code> e <code>v1 = v2</code>.</div></div>
+      </div>
+      <div class="opcao" onclick="checkAnswer('B')">
+        <div class="optline"><span class="circulo">B</span><div><code>f1 &lt; f2</code> e <code>v1 = v2</code>.</div></div>
+      </div>
+      <div class="opcao" onclick="checkAnswer('C')">
+        <div class="optline"><span class="circulo">C</span><div><code>f1 = f2</code> e <code>v1 &gt; v2</code>.</div></div>
+      </div>
+      <div class="opcao" onclick="checkAnswer('D')">
+        <div class="optline"><span class="circulo">D</span><div><code>f1 &gt; f2</code> e <code>v1 &gt; v2</code>.</div></div>
+      </div>
+      <div class="opcao" onclick="checkAnswer('E')">
+        <div class="optline"><span class="circulo">E</span><div><code>f1 &lt; f2</code> e <code>v1 &lt; v2</code>.</div></div>
+      </div>
+
+      <!-- EXEMPLO DE BLOCO DE OPÇÃO COM IMAGEM (para copiar)
+      <div class="opcao" onclick="checkAnswer('A')">
+        <div class="optline">
+          <span class="circulo">A</span>
+          <!-- <img class="altimg" src="q29_altA.png" alt="Diagrama indicando f1 maior que f2 e mesma velocidade v"> -->
+        </div>
+      </div>
+      -->
+    </div>
+
+    <div style="margin-top:12px;">
+      <button type="button" onclick="checkAnswer('_force')">Confirmar escolha</button>
+      <div id="message" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <script>
+    // ===== Funções exigidas =====
+    function normalize(str){
+      if(typeof str!=='string') return '';
+      return str.toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+        .replace(/\s+/g,' ').trim();
+    }
+    function checkWord(inputEl, patterns){
+      const norm = normalize(inputEl.value);
+      const accepted = String(patterns||'').split('|').map(s=>normalize(s)).filter(Boolean);
+      const ok = accepted.some(acc => acc === norm);
+      const st = inputEl.parentElement.querySelector('.status');
+      if(ok){ inputEl.classList.remove('bad'); inputEl.classList.add('ok'); st.textContent='✅ Correto'; st.className='status ok'; }
+      else { inputEl.classList.remove('ok'); inputEl.classList.add('bad'); st.textContent='❌ Verifique sua resposta'; st.className='status bad'; }
+    }
+    function toggleHint(btn){
+      const hint = btn.closest('.controls').querySelector('.hint');
+      const show = hint.style.display === 'block';
+      hint.style.display = show ? 'none' : 'block';
+      btn.textContent = show ? 'Mostrar dica' : 'Ocultar dica';
+    }
+
+    // ===== Checagem de alternativas =====
+    const correct = 'A';
+    let lastChoice = null;
+    document.querySelectorAll('.option').forEach(opt=>{
+      opt.addEventListener('click',()=>{
+        document.querySelectorAll('.option').forEach(o=>o.style.borderColor='#e5e7eb');
+        opt.style.borderColor='#94a3b8';
+        lastChoice = opt.querySelector('.circle').textContent.trim();
+      });
+    });
+    function checkAnswer(trigger){
+      const msg = document.getElementById('message');
+      const chosen = (trigger && trigger!=='_force') ? trigger : lastChoice;
+      if(!chosen){ msg.textContent = 'Selecione uma alternativa.'; msg.className=''; return; }
+      if(chosen===correct){ msg.textContent = 'Correto!'; msg.className='ok'; }
+      else { msg.textContent = 'Errado. Tente novamente.'; msg.className='bad'; }
+    }
+  </script>
+</div>
+</body>
+</html>

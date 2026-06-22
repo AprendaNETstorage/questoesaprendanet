@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 04 — Energia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Energia</a>
+    <span class="spacer"></span>
+    <a href="questao_022.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">23/33</span>
+    <a href="questao_024.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 04</h2>
+  <h3>Problema 27:</h3>
+  <p>
+    O Índice de Desenvolvimento Humano (IDH) é uma medida usada para classificar os países pelo seu grau de desenvolvimento. Para seu cálculo, são levados em consideração a expectativa de vida ao nascer, tempo de escolaridade e renda per capita, entre outros. O menor valor deste índice é zero e o maior é um. Cinco países foram avaliados e obtiveram os seguintes índices de desenvolvimento humano: o primeiro país recebeu um valor X, o segundo √X, o terceiro X<sup>1/3</sup>, o quarto X² e o último X³. Nenhum desses países zerou ou atingiu o índice máximo.<br><br>
+    Qual desses países obteve o maior IDH?
+  </p>
+
+  <h4>Solução 26:</h4>
+
+  <p>Os valores de IDH dos cinco países são:</p>
+  <ul>
+    <li>Primeiro país: X</li>
+    <li>Segundo país: √X = X<sup>1/2</sup></li>
+    <li>Terceiro país: X<sup>1/3</sup></li>
+    <li>Quarto país: X²</li>
+    <li>Quinto país: X³</li>
+  </ul>
+
+  <p>
+    Sabemos que <strong>0 &lt; X &lt; 1</strong>, pois nenhum país atingiu o valor máximo (1) nem zerou.
+    Como estamos trabalhando com potências de uma base <strong>X entre 0 e 1</strong>, quanto <strong>maior o expoente, menor será o resultado</strong>.
+  </p>
+
+  <p>
+    Assim: <br>
+    X<sup>3</sup> &lt; X<sup>2</sup> &lt; X &lt; X<sup>1/2</sup> &lt; <strong>X<sup><input onchange="check(this, '1/3')"></sup></strong>
+  </p>
+
+  <p>
+    Logo, o maior valor entre os índices é <strong>X<sup>1/3</sup></strong>, que corresponde ao <strong>terceiro país</strong>.
+  </p>
+
+  <h4>Alternativas:</h4>
+
+  <div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> O primeiro.</div>
+  <div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> O segundo.</div>
+  <div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> O terceiro.</div>
+  <div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> O quarto.</div>
+  <div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> O quinto.</div>
+
+  <div id="message" class="feedback"></div>
+
+  <script>
+    function check(input, correct) {
+      const value = input.value.trim().replace(',', '.');
+      const expected = correct.toString().replace(',', '.');
+      input.nextElementSibling?.remove();
+      if (value === expected) {
+        input.style.backgroundColor = "#c6f6c6";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+      } else {
+        input.style.backgroundColor = "#fdd";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+      }
+    }
+
+    function checkAnswer(letter) {
+      const correct = 'C';
+      const message = document.getElementById('message');
+      if (letter === correct) {
+        message.textContent = 'Correto! O terceiro país tem o maior IDH: X^(1/3).';
+        message.style.color = 'green';
+      } else {
+        message.textContent = `Errado. A alternativa ${letter} não é a correta.`;
+        message.style.color = 'red';
+      }
+    }
+  </script>
+</div>
+</body>
+</html>

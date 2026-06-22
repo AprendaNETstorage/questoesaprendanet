@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 04 — Física (Geral)</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Física (Geral)</a>
+    <span class="spacer"></span>
+    <a href="questao_008.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">9/23</span>
+    <a href="questao_010.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 04</h2>
+  <h3>Problema 29:</h3>
+  <p>
+    A figura apresenta dois mapas, em que o estado do Rio de Janeiro é visto em diferentes escalas.<br><br>
+    Há interesse em estimar o número de vezes que foi ampliada a área correspondente a esse estado no mapa do Brasil. Esse número é:
+  </p>
+
+  <h4>Solução 28:</h4>
+
+  <p>
+    O mapa do Brasil está na escala 1 : <input onchange="check(this, '25000000')">,<br>
+    e o do estado do Rio de Janeiro está na escala 1 : <input onchange="check(this, '4000000')">.
+  </p>
+
+  <p>A razão entre as escalas (em comprimento) é:</p>
+
+  <p>
+    <span class="fraction">
+      <span><input onchange="check(this, '25000000')"></span>
+      <span class="bar"></span>
+      <span><input onchange="check(this, '4000000')"></span>
+    </span>
+    = 
+    <span class="fraction">
+      <span><input onchange="check(this, '25')"></span>
+      <span class="bar"></span>
+      <span><input onchange="check(this, '4')"></span>
+    </span>
+    = <input onchange="check(this, '6.25')">
+  </p>
+
+  <p>Como se trata de uma ampliação de área, devemos elevar ao quadrado essa razão:</p>
+
+  <p>
+    (6,25)² = <input onchange="check(this, '39.0625')">
+  </p>
+
+  <p>
+    Logo, a área foi ampliada aproximadamente <strong><input onchange="check(this, '39')"></strong> vezes.
+  </p>
+
+  <h4>Alternativas:</h4>
+  <div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> menor que 10</div>
+  <div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> maior que 10 e menor que 20</div>
+  <div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> maior que 20 e menor que 30</div>
+  <div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> maior que 30 e menor que 40</div>
+  <div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> maior que 40</div>
+
+  <div id="message" class="feedback"></div>
+
+  <script>
+    function check(input, correct) {
+      const value = input.value.trim().replace(',', '.');
+      const expected = correct.toString().replace(',', '.');
+      input.nextElementSibling?.remove();
+      if (value === expected) {
+        input.style.backgroundColor = "#c6f6c6";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+      } else {
+        input.style.backgroundColor = "#fdd";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+      }
+    }
+
+    function checkAnswer(letter) {
+      const correct = 'D';
+      const message = document.getElementById('message');
+      if (letter === correct) {
+        message.textContent = 'Correto! A área foi ampliada aproximadamente 39 vezes.';
+        message.style.color = 'green';
+      } else {
+        message.textContent = `Errado. A alternativa ${letter} não é a correta.`;
+        message.style.color = 'red';
+      }
+    }
+  </script>
+</div>
+</body>
+</html>

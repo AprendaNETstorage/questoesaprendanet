@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista — Problema 19 — Óptica</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Óptica</a>
+    <span class="spacer"></span>
+    <a href="questao_038.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">39/42</span>
+    <a href="questao_040.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista — Problema 19</h2>
+  <h3>Problema 19:</h3>
+
+<p><strong>Enem 2022 — "luz engarrafada"</strong></p>
+
+<p>
+  Em 2002, um mecânico da cidade mineira de Uberaba (MG) teve uma ideia para economizar o consumo de energia elétrica e iluminar a própria casa num dia de sol. Para isso, ele utilizou garrafas plásticas PET com água e cloro, conforme ilustram as figuras. Cada garrafa foi fixada ao telhado de sua casa em um buraco com diâmetro igual ao da garrafa, muito maior que o comprimento de onda da luz. Nos últimos anos, sua ideia já alcançou diversas partes do mundo e deve atingir a marca de 1 milhão de casas utilizando a "luz engarrafada".
+</p>
+
+<!-- Imagem ilustrativa (deixe comentada mesmo sem o arquivo) -->
+<div class="imgwrap"><img src="luz_engarrafada.png" alt="Garrafas PET com água no telhado iluminando o interior"></div>
+
+<p><strong>O fenômeno físico predominante que explica a iluminação do ambiente é</strong></p>
+
+<!-- =========================
+     SOLUÇÃO (INTERATIVA)
+     ========================= -->
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) O que acontece com a luz do Sol ao passar do ar para o interior da garrafa com água?</strong><br>
+  <input onchange="checkWord(this,'muda de direcao|desvia|propaga com outra velocidade no meio|entra no liquido e espalha|traietoria curva ao atravessar a interface')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Pense na interface ar → água e no fato de os meios terem índices ópticos diferentes.</span>
+  </span>
+</p>
+
+<p><strong>2) Esse efeito permite que a luz se distribua pelo cômodo. Ele está ligado a qual tipo de fenômeno óptico de transmissão entre meios?</strong><br>
+  <input onchange="checkWord(this,'transmissao com desvio|mudanca de meio com desvio do raio|lei de snell|angulo muda ao atravessar')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>É o fenômeno responsável por "quebrar" o caminho do raio ao atravessar a superfície.</span>
+  </span>
+</p>
+
+<!-- =========================
+     ALTERNATIVAS
+     ========================= -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')"><span class="circulo">A</span> difração</div>
+<div class="opcao" onclick="checkAnswer('B')"><span class="circulo">B</span> absorção</div>
+<div class="opcao" onclick="checkAnswer('C')"><span class="circulo">C</span> polarização</div>
+<div class="opcao" onclick="checkAnswer('D')"><span class="circulo">D</span> reflexão total</div>
+<div class="opcao" onclick="checkAnswer('E')"><span class="circulo">E</span> refração</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para ignorar acentos
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+  // verificação por palavras-chave (tolerante)
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  // botão Mostrar dica
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = span.style.display === 'inline' ? 'none' : 'inline';
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'E';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

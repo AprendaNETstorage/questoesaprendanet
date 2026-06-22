@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 04 — Óptica</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Óptica</a>
+    <span class="spacer"></span>
+    <a href="questao_032.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">33/42</span>
+    <a href="questao_034.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 04</h2>
+  <h3>Problema 50:</h3>
+  <p>
+    O tamanho mínimo que a visão humana é capaz de visualizar sem o uso de equipamento auxiliar é equivalente a 100 micrômetros (1 micrômetro = 10⁻³ milímetros).
+    Uma estudante pretende visualizar e analisar hemácias do sangue humano, que medem 0,007 mm de diâmetro.
+    Ela adquiriu um microscópio óptico que tem uma lente ocular que amplia em 10 vezes a imagem do objeto em observação, e um conjunto de lentes objetivas com estas capacidades de ampliação:
+  </p>
+  <ul>
+    <li>Lente I: 2×</li>
+    <li>Lente IV: 1,1×</li>
+    <li>Lente II: 10×</li>
+    <li>Lente V: 4×</li>
+    <li>Lente III: 15×</li>
+  </ul>
+  <p>
+    O funcionamento desse microscópio permite o uso da lente ocular sozinha ou a combinação dela com uma das lentes objetivas, proporcionando, nesse caso, um aumento de sua capacidade de ampliação. Deseja-se encontrar a menor ampliação necessária que permita visualizar as hemácias.
+  </p>
+  <p><strong>Qual lente objetiva deve ser selecionada pela estudante?</strong></p>
+
+  <h4>Solução 50:</h4>
+
+  <p><strong>Passo 1:</strong> A menor estrutura visível a olho nu é 0,1 mm. A hemácia mede 0,007 mm.</p>
+  <p>
+    Para ser visível, a imagem ampliada da hemácia deve ter tamanho mínimo de 0,1 mm:<br>
+    <input onchange="check(this, 'A')"> × 0,007 ≥ 0,1
+  </p>
+
+  <p><strong>Passo 2:</strong> Isolando A:</p>
+  <p>
+    A ≥ 0,1 / 0,007 = <input onchange="check(this, '14.29')">
+  </p>
+
+  <p><strong>Passo 3:</strong> Como a lente ocular amplia 10×, então:</p>
+  <p>
+    A = 10 × A_objetiva ⇒ A_objetiva ≥ <input onchange="check(this, '1.429')">
+  </p>
+
+  <p><strong>Passo 4:</strong> Entre as lentes disponíveis, a menor que satisfaz essa condição é:</p>
+  <p>
+    A_objetiva = <input onchange="check(this, '2')"> ⇒ <strong>Lente I</strong>
+  </p>
+
+  <h4>Alternativas:</h4>
+
+  <div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> I</div>
+  <div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> II</div>
+  <div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> III</div>
+  <div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> IV</div>
+  <div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> V</div>
+
+  <div id="message" class="feedback"></div>
+
+  <script>
+    function check(input, correct) {
+      const value = parseFloat(input.value.trim().replace(',', '.'));
+      const expected = correct === 'A' ? null : parseFloat(correct.replace(',', '.'));
+      input.nextElementSibling?.remove();
+      if (
+        correct === 'A' ||
+        (!isNaN(value) && expected !== null && Math.abs(value - expected) < 0.02)
+      ) {
+        input.style.backgroundColor = "#c6f6c6";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+      } else {
+        input.style.backgroundColor = "#fdd";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+      }
+    }
+
+    function checkAnswer(letter) {
+      const correct = 'A';
+      const message = document.getElementById('message');
+      if (letter === correct) {
+        message.textContent = 'Correto! A lente objetiva de 2× é a menor que permite a visualização da hemácia.';
+        message.style.color = 'green';
+      } else {
+        message.textContent = `Errado. A alternativa ${letter} não é a correta.`;
+        message.style.color = 'red';
+      }
+    }
+  </script>
+</div>
+</body>
+</html>

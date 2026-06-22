@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Termologia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Termologia</a>
+    <span class="spacer"></span>
+    <a href="questao_045.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">46/58</span>
+    <a href="questao_047.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03</h2>
+  <h3>Problema 12:</h3>
+
+<p>
+  Na aferição de um novo semáforo, os tempos são ajustados de modo que, em cada ciclo completo (verde–amarelo–vermelho), a luz amarela permaneça acesa por 5 segundos, e o tempo em que a luz verde permanece acesa é igual a 
+  <span class="fraction">
+    <span>2</span>
+    <span class="bar"></span>
+    <span>3</span>
+  </span>
+  do tempo em que a luz vermelha fique acesa.
+</p>
+
+<p>
+  A luz verde fica acesa, em cada ciclo, durante <strong>X</strong> segundos e cada ciclo dura <strong>Y</strong> segundos.
+</p>
+
+<p><strong>Qual a expressão que representa a relação entre X e Y?</strong></p>
+
+<h4>Solução:</h4>
+
+<ul>
+  <li>Luz amarela: 5 s</li>
+  <li>Luz verde: X s</li>
+  <li>Luz vermelha: R s</li>
+</ul>
+
+<p>
+  Se 
+  <span class="fraction">
+    <span>X</span>
+    <span class="bar"></span>
+    <span><input onchange="check(this, 'R')"></span>
+  </span> 
+  = 
+  <span class="fraction">
+    <span>2</span>
+    <span class="bar"></span>
+    <span>3</span>
+  </span>, 
+  então R =
+  <span class="fraction">
+    <span><input onchange="check(this, '3')"></span>
+    <span class="bar"></span>
+    <span><input onchange="check(this, '2')"></span>
+  </span> · X
+</p>
+
+<p>
+  Então Y = X + 5 + R = X + 5 + 
+  <span class="fraction">
+    <span><input onchange="check(this, '3')"></span>
+    <span class="bar"></span>
+    <span><input onchange="check(this, '2')"></span>
+  </span> · X
+</p>
+
+<p>
+  Y = 
+  <span class="fraction">
+    <span><input onchange="check(this, '5')"></span>
+    <span class="bar"></span>
+    <span><input onchange="check(this, '2')"></span>
+  </span> · X + 5
+</p>
+
+<p>
+  Multiplicando por 2:  
+  2Y = <input onchange="check(this, '5X')"> + <input onchange="check(this, '10')">
+</p>
+
+<p>
+  Passando tudo para o mesmo lado: 
+  <input onchange="check(this, '5X')"> − 
+  <input onchange="check(this, '2Y')"> + 
+  <input onchange="check(this, '10')"> = 0
+</p>
+
+<h4>Assinale a alternativa correta:</h4>
+
+<div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> 5X − 3Y + 15 = 0</div>
+<div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> 5X − 2Y + 10 = 0</div>
+<div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> 3X − 3Y + 15 = 0</div>
+<div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> 3X − 2Y + 15 = 0</div>
+<div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> 3X − 2Y + 10 = 0</div>
+
+<div id="message" class="feedback"></div>
+
+<script>
+  function check(input, correct) {
+    const value = input.value.trim().replace(/\s/g, '').toUpperCase();
+    const expected = correct.toUpperCase();
+    input.nextElementSibling?.remove();
+    if (value === expected) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  function checkAnswer(letter) {
+    const correct = 'B';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto! A equação correta é 5X − 2Y + 10 = 0.';
+      message.style.color = 'green';
+    } else {
+      message.textContent = `Errado. A alternativa ${letter} não representa a relação correta.`;
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

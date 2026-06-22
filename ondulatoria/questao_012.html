@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 20 — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_011.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">12/71</span>
+    <a href="questao_013.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 20</h2>
+  <h3>Problema 20:</h3>
+
+<!-- ENUNCIADO IDÊNTICO -->
+<p><strong>79. (Enem 2ª aplicação 2010)</strong></p>
+<p>Um garoto que passeia de carro com seu pai pela cidade, ao ouvir o rádio, percebe que a sua estação de rádio preferida, a 94,9 FM, que opera na banda de frequência de megahertz, tem seu sinal de transmissão superposto pela transmissão de uma rádio pirata de mesma frequência que interfere no sinal da emissora do centro em algumas regiões da cidade.</p>
+<p>Considerando a situação apresentada, a rádio pirata interfere no sinal da rádio do centro devido à</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Relação básica:</strong>
+  No mesmo meio, a velocidade de propagação é
+  <input onchange="checkWord(this,'constante|fixa')">
+  e vale a relação
+  <input onchange="checkWord(this,'v = lambda f|v = λ f|v=lambda f|v=λf|v=lamda f')">
+  (aceitamos "lambda" para λ).
+</p>
+
+<p><strong>2) Dados do enunciado:</strong>
+  As duas emissoras operam na
+  <input onchange="checkWord(this,'mesma frequencia|mesma frequência|frequencias muito proximas|frequências muito próximas')">
+  (94,9&nbsp;FM).
+</p>
+
+<p><strong>3) Consequência:</strong>
+  Se <em>f</em> é igual no mesmo meio, então os comprimentos de onda são
+  <input onchange="checkWord(this,'iguais|praticamente iguais|muito proximos|muito próximos')">
+  , e sinais assim coincidentes tendem a produzir
+  <input onchange="checkWord(this,'interferencia|interferência|sobreposicao|sobreposição')">
+  no receptor.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  atenuação promovida pelo ar nas radiações emitidas.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  maior amplitude da radiação emitida pela estação do centro.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  diferença de intensidade entre as fontes emissoras de ondas.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  menor potência de transmissão das ondas da emissora pirata.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  semelhança dos comprimentos de onda das radiações emitidas.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // Normalização para aceitar variações/acentos
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // Gabarito
+  function checkAnswer(letter){
+    const correct = 'E';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

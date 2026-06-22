@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Termologia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Termologia</a>
+    <span class="spacer"></span>
+    <a href="questao_044.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">45/58</span>
+    <a href="questao_046.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03</h2>
+  <h3>Problema 11:</h3>
+
+<p>
+  O governo decidiu reduzir de 25% para 20% o teor de álcool anidro misturado à gasolina vendida nos postos do país.
+  Considere que a média de desempenho, ou seja, a quantidade de quilômetros (km) que um carro anda com 1 litro de combustível, é diretamente proporcional à porcentagem de gasolina presente no combustível, e que a média de desempenho de um carro antes da decisão do governo era de 13,5 km/L.
+</p>
+
+<p>
+  Nas condições do texto, qual será a estimativa da média de desempenho após a redução de álcool anidro no combustível?
+</p>
+
+<h4>Solução:</h4>
+
+<p>
+  Antes da redução:
+  <br>
+  Gasolina = <input onchange="check(this, '75')">% 
+</p>
+
+<p>
+  Depois da redução:
+  <br>
+  Gasolina = <input onchange="check(this, '80')">%
+</p>
+
+<p>
+  A eficiência é diretamente proporcional à porcentagem de gasolina:
+  <br>
+  <span class="fraction">
+    <span><input onchange="check(this, '80')"></span>
+    <span class="bar"></span>
+    <span><input onchange="check(this, '75')"></span>
+  </span> × 13,5 = 
+  <span class="fraction">
+    <span><input onchange="check(this, '16')"></span>
+    <span class="bar"></span>
+    <span><input onchange="check(this, '15')"></span>
+  </span> × 13,5
+</p>
+
+<p>
+  Resultado: 1,0666... × 13,5 = 
+  <input onchange="check(this, '14.4')"> km/L
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> 10,80 km/L</div>
+<div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> 12,65 km/L</div>
+<div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> 12,82 km/L</div>
+<div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> 14,15 km/L</div>
+<div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> 14,40 km/L</div>
+
+<div id="message" class="feedback"></div>
+
+<script>
+  function check(input, correct) {
+    const value = input.value.trim().replace(',', '.').toLowerCase();
+    const expected = correct.toLowerCase();
+    input.nextElementSibling?.remove();
+    if (value === expected) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  function checkAnswer(letter) {
+    const correct = 'E';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto! A nova média de desempenho é 14,4 km/L.';
+      message.style.color = 'green';
+    } else {
+      message.textContent = `Errado. A alternativa ${letter} não corresponde à média correta.`;
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

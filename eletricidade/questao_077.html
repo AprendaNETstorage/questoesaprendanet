@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problema 41 — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_076.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">77/81</span>
+    <a href="questao_078.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Problema 41</h2>
+  <nav class="topnav">
+    
+    
+  </nav>
+
+  <h1>Problema 41</h1>
+  <div class="meta">Fonte: ENEM 2021</div>
+
+  <section class="enunciado">
+    <p>
+      Um garoto precisa montar um circuito que acenda três lâmpadas de cores diferentes (verde, vermelha e azul), 
+      sendo acesa apenas uma de cada vez. Ele dispõe de fios, uma bateria e dois interruptores de três pontos 
+      (tipo "chave comutadora"), conforme mostrado.
+    </p>
+    <div class="imgwrap">
+    <img src="q41_fig1.png" alt="Esquema com três lâmpadas coloridas e dois interruptores de três pontos (A, B, C)">
+    </div>
+    <p>
+      O garoto fez cinco circuitos elétricos com esses dois interruptores, mas apenas um satisfaz a condição de 
+      acender apenas uma lâmpada por vez. Qual diagrama representa esse circuito?
+    </p>
+  </section>
+
+  <div class="solucao">Solução (interativa)</div>
+
+  <div class="step">
+    <div class="q">1) Quantas lâmpadas devem acender simultaneamente, segundo o enunciado?</div>
+    <div class="controls">
+      <input type="text" onchange="checkWord(this,'1|uma|somente uma')" placeholder="Digite sua resposta">
+      <div class="status" aria-live="polite"></div>
+      <button onclick="toggleHint(this)">Mostrar dica</button>
+      <div class="hint">Apenas uma lâmpada deve acender em cada posição dos interruptores.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="q">2) Que tipo de interruptor possui três terminais, ligando AB ou BC alternadamente?</div>
+    <div class="controls">
+      <input type="text" onchange="checkWord(this,'comutador|chave comutadora|chave reversora')" placeholder="Digite o nome do interruptor">
+      <div class="status" aria-live="polite"></div>
+      <button onclick="toggleHint(this)">Mostrar dica</button>
+      <div class="hint">É um tipo de chave usada para alternar o contato entre dois caminhos elétricos.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="q">3) Para que apenas uma lâmpada acenda, como os interruptores devem atuar sobre as ligações?</div>
+    <div class="controls">
+      <input type="text" onchange="checkWord(this,'selecionar apenas um ramo|conectar um ramo de cada vez|ligar um circuito de cada vez')" placeholder="Descreva a condição">
+      <div class="status" aria-live="polite"></div>
+      <button onclick="toggleHint(this)">Mostrar dica</button>
+      <div class="hint">Cada posição dos interruptores deve conectar a bateria a apenas um dos três ramos de lâmpadas.</div>
+    </div>
+  </div>
+
+  <section class="options" aria-label="Alternativas">
+    <div class="opcao" onclick="checkAnswer('A')">
+      <span class="circulo">A</span> 
+      <img class="altimg" src="q41_altA.png" alt="Circuito com as três lâmpadas em paralelo e ligações cruzadas incorretas">
+      <div>Configuração com duas lâmpadas ligadas simultaneamente.</div>
+    </div>
+
+    <div class="opcao" onclick="checkAnswer('B')">
+      <span class="circulo">B</span> 
+     <img class="altimg" src="q41_altB.png" alt="Configuração alternativa incorreta.">
+      <div>Circuito em que duas lâmpadas permanecem ligadas em todas as posições.</div>
+    </div>
+
+    <div class="opcao" onclick="checkAnswer('C')">
+      <span class="circulo">C</span> 
+      <img class="altimg" src="q41_altC.png" alt="Configuração que acende duas lâmpadas alternadamente.">
+      <div>Duas lâmpadas acendem alternadamente, mas nunca apenas uma.</div>
+    </div>
+
+    <div class="opcao" onclick="checkAnswer('D')">
+      <span class="circulo">D</span> 
+      <img class="altimg" src="q41_altD.png" alt="Circuito correto: cada posição do interruptor seleciona uma única lâmpada.">
+      <div>Circuito em que cada posição dos interruptores seleciona uma única lâmpada (correto).</div>
+    </div>
+
+    <div class="opcao" onclick="checkAnswer('E')">
+      <span class="circulo">E</span> 
+      <img class="altimg" src="q41_altE.png" alt="Circuito em que as três lâmpadas ligam juntas.">
+      <div>Todas as lâmpadas acendem simultaneamente.</div>
+    </div>
+  </section>
+
+  <div style="margin-top:15px;">
+    <button onclick="checkAnswer('_force')">Confirmar escolha</button>
+    <div id="message" aria-live="polite"></div>
+  </div>
+
+  <script>
+    function normalize(str) {
+      return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+    }
+    function checkWord(input, patterns) {
+      const val = normalize(input.value);
+      const list = patterns.split('|').map(normalize);
+      const ok = list.includes(val);
+      const st = input.parentElement.querySelector('.status');
+      if (ok) {
+        input.className = 'ok';
+        st.textContent = '✅ Correto';
+        st.className = 'status ok';
+      } else {
+        input.className = 'bad';
+        st.textContent = '❌ Verifique';
+        st.className = 'status bad';
+      }
+    }
+    function toggleHint(btn) {
+      const hint = btn.parentElement.querySelector('.hint');
+      hint.style.display = hint.style.display === 'block' ? 'none' : 'block';
+      btn.textContent = hint.style.display === 'block' ? 'Ocultar dica' : 'Mostrar dica';
+    }
+    const correct = 'D';
+    let lastChoice = null;
+    document.querySelectorAll('.option').forEach(o => {
+      o.addEventListener('click', () => {
+        document.querySelectorAll('.option').forEach(e => e.style.borderColor = '#e5e7eb');
+        o.style.borderColor = '#94a3b8';
+        lastChoice = o.querySelector('.circle').textContent.trim();
+      });
+    });
+    function checkAnswer(x) {
+      const chosen = x !== '_force' ? x : lastChoice;
+      const msg = document.getElementById('message');
+      if (!chosen) { msg.textContent = 'Selecione uma alternativa.'; msg.className = ''; return; }
+      if (chosen === correct) { msg.textContent = 'Correto!'; msg.className = 'ok'; }
+      else { msg.textContent = 'Errado. Tente novamente.'; msg.className = 'bad'; }
+    }
+  </script>
+</div>
+</body>
+</html>

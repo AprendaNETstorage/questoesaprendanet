@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Óptica — Lista 03 — Problema 6 (ENEM PPL 2012) — Óptica</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Óptica</a>
+    <span class="spacer"></span>
+    <a href="questao_017.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">18/42</span>
+    <a href="questao_019.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Óptica — Lista 03 — Problema 6 (ENEM PPL 2012)</h2>
+  <h3>Problema 6:</h3>
+
+<p><strong>89. (Enem PPL 2012)</strong></p>
+<p>
+Em um experimento, coloca-se glicerina dentro de um tubo de vidro liso. Em seguida,
+parte do tubo é colocada em um copo de vidro que contém glicerina e a parte do tubo
+<i>imersa</i> fica invisível.
+</p>
+<p><strong>Esse fenômeno ocorre porque…</strong></p>
+
+<h4>Solução (interativa)</h4>
+
+<p><strong>1) Complete a frase:</strong></p>
+<p>
+Vidro e glicerina possuem
+<input placeholder="digite aqui" onchange="checkNeedle(this,'indice|índice','igual|iguais|mesmo')">
+de refração.
+</p>
+
+<p><strong>2) Consequência para a velocidade da luz:</strong></p>
+<p>
+Se os índices são praticamente iguais, a velocidade da luz nos dois meios é
+<input placeholder="digite aqui" onchange="checkWord(this,'igual|iguais|a mesma|mesma')">.
+</p>
+
+<p><strong>3) Na interface glicerina–vidro:</strong></p>
+<p>
+O raio sofre
+<input placeholder="digite aqui" onchange="checkWord(this,'nenhum desvio|sem desvio|pouco desvio|minimo desvio|mínimo desvio|refração desprezivel|refração desprezível|refração pequena')">
+(isto é, refração desprezível).
+</p>
+
+<div class="hint">
+  <button onclick="toggleHint()">Mostrar dica</button>
+  <span id="hint" style="display:none"><small>lembrar: quanto **maior** o índice de refração do meio, **menor** é a velocidade da luz nele (n ∝ 1/v).</small></span>
+</div>
+
+<hr>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  a intensidade da luz é praticamente constante no vidro.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  a parcela de luz refletida pelo vidro é praticamente nula.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  a luz que incide no copo não é transmitida para o tubo de vidro.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  a velocidade da luz é a mesma no vidro e na glicerina.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  a trajetória da luz é alterada quando ela passa da glicerina para o vidro.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normaliza/remover acentos
+  function normalize(s){ return String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim(); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? '#c6f6c6' : '#fdd';
+    input.insertAdjacentHTML('afterend', `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value);
+    const opts = patterns.split('|').map(p=>normalize(p));
+    const ok = opts.some(p => text.includes(p));
+    paint(input, ok);
+  }
+  // precisa conter ao menos UMA palavra do grupo1 e UMA do grupo2
+  function checkNeedle(input, group1, group2){
+    const t = normalize(input.value);
+    const g1 = group1.split('|').map(p=>normalize(p));
+    const g2 = group2.split('|').map(p=>normalize(p));
+    const ok = g1.some(p=>t.includes(p)) && g2.some(p=>t.includes(p));
+    paint(input, ok);
+  }
+  function toggleHint(){
+    const h = document.getElementById('hint');
+    h.style.display = (h.style.display === 'none') ? 'inline' : 'none';
+  }
+  // gabarito só aqui:
+  function checkAnswer(letter){
+    const correct = 'D';
+    const msg = document.getElementById('message');
+    if(letter === correct){
+      msg.textContent = 'Correto!';
+      msg.style.color = 'green';
+    }else{
+      msg.textContent = 'Errado. Tente novamente.';
+      msg.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

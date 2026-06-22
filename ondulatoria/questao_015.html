@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 23 — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_014.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">15/71</span>
+    <a href="questao_016.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 23</h2>
+  <h3>Problema 23:</h3>
+
+<p><strong>7 – Enem 2023</strong></p>
+<p><strong>Questão 113</strong></p>
+
+<p>
+  O bluetooth é uma tecnologia de comunicação sem fio, de curto alcance, presente em diferentes dispositivos eletrônicos de consumo. Ela permite que aparelhos eletrônicos diferentes se conectem e troquem dados entre si. No padrão bluetooth, denominado de Classe 2, as antenas transmitem sinais de potência igual a 2,4 mW e possibilitam conectar dois dispositivos distanciados até 10 m. Considere que essas antenas se comportam como fontes puntiformes que emitem ondas eletromagnéticas esféricas e que a intensidade do sinal é calculada pela potência por unidade de área. Considere 3 como valor aproximado para π.
+</p>
+
+<!-- Ilustração do enunciado (deixar comentada mesmo sem o arquivo) -->
+<!-- <div class="imgwrap"><img src="bluetooth_classe2.png" alt="Atenas bluetooth Classe 2, potência 2,4 mW, alcance 10 m"></div> -->
+
+<p>
+  Para que o sinal de bluetooth seja detectado pelas antenas, o valor mínimo de sua intensidade, em W·m<sup>−2</sup>, é mais próximo de
+</p>
+
+<!-- SOLUÇÃO (INTERATIVA) ANTES DAS ALTERNATIVAS -->
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Escreva a expressão da intensidade para emissão esférica.</strong><br>
+  <input onchange="checkWord(this,'i=p/(4pir^2)|i=p/4pir^2|p/(4pir^2)|intensidade p sobre 4 pi r^2')">
+  <span class="hint">
+    <button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Área da esfera: <em>4πr²</em>.</span>
+  </span>
+</p>
+
+<p><strong>2) Converta a potência dada de mW para W.</strong><br>
+  <input onchange="checkWord(this,'2,4e-3|2.4e-3|0,0024|0.0024|2,4×10^-3|2.4×10^-3')">
+  <span class="hint">
+    <button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>1 mW = 10<sup>−3</sup> W.</span>
+  </span>
+</p>
+
+<p><strong>3) Use r = 10 m e π ≈ 3. Calcule o denominador 4πr².</strong><br>
+  <input onchange="checkWord(this,'1200|1,2e3|1.2e3')">
+  <span class="hint">
+    <button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>r² = 100 ⇒ 4·3·100 = ?</span>
+  </span>
+</p>
+
+<p><strong>4) Estime a intensidade numérica (ordem de grandeza e valor).</strong><br>
+  <input onchange="checkWord(this,'2,0e-6|2.0e-6|2×10^-6|2x10^-6|2,0×10^-6|0,000002')">
+  <span class="hint">
+    <button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Divida 2,4×10<sup>−3</sup> por 1,2×10<sup>3</sup>.</span>
+  </span>
+</p>
+
+<!-- ALTERNATIVAS -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')"><span class="circulo">A</span> 2,0 × 10<sup>−6</sup>.</div>
+<div class="opcao" onclick="checkAnswer('B')"><span class="circulo">B</span> 2,0 × 10<sup>−5</sup>.</div>
+<div class="opcao" onclick="checkAnswer('C')"><span class="circulo">C</span> 2,4 × 10<sup>−5</sup>.</div>
+<div class="opcao" onclick="checkAnswer('D')"><span class="circulo">D</span> 2,4 × 10<sup>−3</sup>.</div>
+<div class="opcao" onclick="checkAnswer('E')"><span class="circulo">E</span> 2,4 × 10<sup>−1</sup>.</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normaliza/remover acentos
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+  // checagem de palavras-chave (tolerante a variações)
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  // botão Mostrar dica
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = span.style.display === 'inline' ? 'none' : 'inline';
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'A';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

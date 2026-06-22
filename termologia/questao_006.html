@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 15 — Termologia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Termologia</a>
+    <span class="spacer"></span>
+    <a href="questao_005.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">6/58</span>
+    <a href="questao_007.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 15</h2>
+  <h3>Problema 15:</h3>
+
+<p><strong>12 – Enem 2023</strong></p>
+<p><strong>Questão 122</strong></p>
+
+<p>
+  Em uma indústria alimentícia, para produção de doce de leite, utiliza-se um tacho de parede oca com uma entrada para vapor de água a 120&nbsp;°C e uma saída para água líquida em equilíbrio com o vapor a 100&nbsp;°C. Ao passar pela parte oca do tacho, o vapor de água transforma-se em líquido, liberando energia. A parede transfere essa energia para o interior do tacho, resultando na evaporação de água e consequente concentração do produto.
+</p>
+<p>
+  No processo de concentração do produto, é utilizada energia proveniente
+</p>
+
+<!-- Imagem do enunciado (deixar comentada mesmo sem o arquivo) -->
+<!-- <div class="imgwrap"><img src="tacho_doce_de_leite.png" alt="Tacho de parede oca com vapor a 120°C entrando e água a 100°C saindo"></div> -->
+
+<!-- SOLUÇÃO (INTERATIVA) ANTES DAS ALTERNATIVAS -->
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) O que acontece com o vapor na parede oca ao sair a 100&nbsp;°C?</strong><br>
+  <input onchange="checkWord(this,'condensa|condensacao|condensação|vira liquido|torna-se liquido|liquido a 100')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Pense em mudança de fase do vapor ao perder energia.</span>
+  </span>
+</p>
+
+<p><strong>2) Ao condensar, qual "tipo" de calor é liberado?</strong><br>
+  <input onchange="checkWord(this,'calor latente de condensacao|latente de condensacao|calor latente')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>É o calor associado à mudança de fase (sem variar a temperatura).</span>
+  </span>
+</p>
+
+<p><strong>3) A água líquida formada vai de 120&nbsp;°C para 100&nbsp;°C. Esse resfriamento fornece que tipo de calor?</strong><br>
+  <input onchange="checkWord(this,'calor sensivel|sensivel|calor de resfriamento do condensado|calor sensível')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>É o calor relacionado à variação de temperatura (sem mudança de fase).</span>
+  </span>
+</p>
+
+<p><strong>4) Portanto, a energia usada para evaporar água do produto provém de quais contribuições?</strong><br>
+  <input onchange="checkWord(this,'calor sensivel e calor latente de condensacao|sensivel e latente de condensacao|calor sensivel + latente de condensacao')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Combine a mudança de fase do vapor com o resfriamento do líquido formado.</span>
+  </span>
+</p>
+
+<!-- ALTERNATIVAS -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')"><span class="circulo">A</span> somente do calor latente de vaporização.</div>
+<div class="opcao" onclick="checkAnswer('B')"><span class="circulo">B</span> somente do calor latente de condensação.</div>
+<div class="opcao" onclick="checkAnswer('C')"><span class="circulo">C</span> do calor sensível e do calor latente de vaporização.</div>
+<div class="opcao" onclick="checkAnswer('D')"><span class="circulo">D</span> do calor sensível e do calor latente de condensação.</div>
+<div class="opcao" onclick="checkAnswer('E')"><span class="circulo">E</span> do calor latente de condensação e do calor latente de vaporização.</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normaliza/remover acentos
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+  // checagem de palavras-chave (tolerante a variações)
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  // botão Mostrar dica
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = span.style.display === 'inline' ? 'none' : 'inline';
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'D';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

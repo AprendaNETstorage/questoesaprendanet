@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 04 — Física (Geral)</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Física (Geral)</a>
+    <span class="spacer"></span>
+    <a href="questao_009.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">10/23</span>
+    <a href="questao_011.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 04</h2>
+  <h3>Problema 46:</h3>
+  <p>
+    Um vidraceiro é contratado para colocar uma porta de vidro que escorregará em uma canaleta de largura interna igual a 1,45 cm, como mostra a figura.
+  </p>
+  <p><em>[Inserir figura da canaleta e espessura]</em></p>
+  <p>
+    O vidraceiro precisa de uma placa de vidro de maior espessura possível, tal que deixe uma folga total de pelo menos 0,2 cm, para que o vidro possa escorregar na canaleta, e no máximo 0,5 cm para que o vidro não fique batendo com a interferência do vento após a instalação. Para conseguir essa placa de vidro, esse vidraceiro foi até uma loja e lá encontrou placas de vidro com espessuras iguais a: 0,75 cm; 0,95 cm; 1,05 cm; 1,20 cm; 1,40 cm.
+  </p>
+  <p>
+    Para atender às restrições especificadas, o vidraceiro deverá comprar a placa de espessura, em centímetro, igual a:
+  </p>
+
+  <h4>Solução 46:</h4>
+
+  <p><strong>Dados:</strong></p>
+  <ul>
+    <li>Largura da canaleta: 1,45 cm</li>
+    <li>Folga mínima: 0,2 cm → Espessura máxima: 
+      <input onchange="check(this, '1.25')"> cm
+    </li>
+    <li>Folga máxima: 0,5 cm → Espessura mínima: 
+      <input onchange="check(this, '0.95')"> cm
+    </li>
+  </ul>
+
+  <p>
+    A espessura E do vidro deve satisfazer:
+    <br>
+    <input onchange="check(this, '0.95')"> ≤ E ≤ <input onchange="check(this, '1.25')">
+  </p>
+
+  <p>Entre as opções disponíveis: 0,75, 0,95, 1,05, 1,20, 1,40</p>
+  <p><strong>A maior espessura que satisfaz a condição é:</strong> 
+    <input onchange="check(this, '1.20')"> cm
+  </p>
+
+  <h4>Alternativas:</h4>
+
+  <div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> 0,75</div>
+  <div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> 0,95</div>
+  <div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> 1,05</div>
+  <div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> 1,20</div>
+  <div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> 1,40</div>
+
+  <div id="message" class="feedback"></div>
+
+  <script>
+    function check(input, correct) {
+      const value = input.value.trim().replace(',', '.');
+      const expected = correct.toString().replace(',', '.');
+      input.nextElementSibling?.remove();
+      if (value === expected) {
+        input.style.backgroundColor = "#c6f6c6";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+      } else {
+        input.style.backgroundColor = "#fdd";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+      }
+    }
+
+    function checkAnswer(letter) {
+      const correct = 'D';
+      const message = document.getElementById('message');
+      if (letter === correct) {
+        message.textContent = 'Correto! A maior espessura dentro do intervalo é 1,20 cm.';
+        message.style.color = 'green';
+      } else {
+        message.textContent = `Errado. A alternativa ${letter} não é a correta.`;
+        message.style.color = 'red';
+      }
+    }
+  </script>
+</div>
+</body>
+</html>

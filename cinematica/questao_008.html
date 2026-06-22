@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 19 — Cinemática</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Cinemática</a>
+    <span class="spacer"></span>
+    <a href="questao_007.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">8/35</span>
+    <a href="questao_009.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 19</h2>
+  <h3>Problema 19:</h3>
+
+<p><strong>(VANT — sobreposição frontal de imagens)</strong></p>
+
+<p>
+A agricultura de precisão utiliza fotografia aérea de baixa altitude com veículo aéreo não tripulado (VANT).
+Na fase de aquisição, é importante determinar o nível de sobreposição entre as fotografias. O operador recebe a exigência de
+<strong>20% de sobreposição frontal</strong>, voando a altitude fixa <em>H</em> = 1000 m, com velocidade constante de 50 m·s<sup>−1</sup>.
+A abertura da câmera fotográfica do VANT é de 90°. Considere <em>tan</em>(45°) = 1.
+</p>
+
+<p>
+Qual deve ser o intervalo de tempo entre duas tomadas consecutivas?
+</p>
+
+<div class="imgwrap">
+  <!-- (opcional) esquema -->
+  <img src="questao19_vant.png" alt="VANT com câmera (FOV 90°) e faixas com 20% de sobreposição frontal" />
+</div>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Pegada no solo (ao longo da rota):</strong>
+  Ângulo de visão = 90° ⇒ semiângulo = 45°.  
+  \(L = 2 H \tan 45^\circ = 2 \times\)
+  <input onchange="checkNum(this,'1000')"> ×
+  <input onchange="checkNum(this,'1')">
+  = <input onchange="checkNum(this,'2000')"> m.
+</p>
+
+<p><strong>2) Passo entre fotos com 20% de sobreposição:</strong>
+  Passo \(\Delta S = (1 - 0{,}20)\,L = 0{,}80\,L =\)
+  <input onchange="checkNum(this,'1600')"> m.
+</p>
+
+<p><strong>3) Intervalo de tempo:</strong>
+  Velocidade \(v=\) <input onchange="checkNum(this,'50')"> m/s ⇒
+  \(t = \Delta S / v =\) <input onchange="checkNum(this,'32')"> s.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  40 segundos.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  32 segundos.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  28 segundos.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  16 segundos.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  8 segundos.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // -------- utilidades --------
+  function safeEval(expr) {
+    const cleaned = String(expr).replace(/\s/g, '');
+    if (!/^[0-9eE+\-*/().,]+$/.test(cleaned)) return null;
+    const withDot = cleaned.replace(/,/g, '.');
+    try {
+      const val = Function('"use strict"; return (' + withDot + ');')();
+      return (typeof val === 'number' && Number.isFinite(val)) ? val : null;
+    } catch { return null; }
+  }
+  function nearlyEqual(a, b, eps = 1e-3) {
+    return Math.abs(a - b) <= eps * Math.max(1, Math.abs(a), Math.abs(b));
+  }
+  function paint(input, ok) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function checkWord(input, patterns) {
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    paint(input, ok);
+  }
+  function checkNum(input, expected) {
+    const raw = input.value.trim();
+    if (raw === '') return paint(input, false);
+    const val = safeEval(raw);
+    const ok = (val !== null) && nearlyEqual(val, Number(expected));
+    paint(input, ok);
+  }
+  function checkRange(input, rangeStr) {
+    const raw = input.value.trim();
+    if (raw === '') return paint(input, false);
+    const val = safeEval(raw);
+    const parts = rangeStr.split(',').map(Number);
+    const lo = Math.min(parts[0], parts[1]);
+    const hi = Math.max(parts[0], parts[1]);
+    const ok = (val !== null) && val >= lo && val <= hi;
+    paint(input, ok);
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'B';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

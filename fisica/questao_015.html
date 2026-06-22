@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Questão 19 — Física (Geral)</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Física (Geral)</a>
+    <span class="spacer"></span>
+    <a href="questao_014.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">15/23</span>
+    <a href="questao_016.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Questão 19</h2>
+  <h3>Problema 19:</h3>
+  <p>
+    A insulina é utilizada no tratamento de pacientes com diabetes para o controle glicêmico. Para facilitar sua aplicação, foi desenvolvida uma "caneta" na qual pode ser inserido um refil contendo 3 mL de insulina, como mostra a imagem.
+  </p>
+  <p>
+    Para controle das aplicações, definiu-se a unidade de insulina como 0,01 mL. Antes de cada aplicação, é necessário descartar 2 unidades de insulina, de forma a retirar possíveis bolhas de ar.
+  </p>
+  <p>
+    A um paciente foram prescritas duas aplicações diárias: 10 unidades de insulina pela manhã e 10 à noite.
+  </p>
+  <p>
+    <strong>Qual o número máximo de aplicações por refil que o paciente poderá utilizar com a dosagem prescrita?</strong>
+  </p>
+
+  <h4>Solução:</h4>
+  <p>
+    Sabemos que 1 unidade de insulina equivale a 0,01 mL, portanto:
+    <br>
+    <strong>→</strong> Cada refil de 3 mL contém <input onchange="check(this, '300')"> unidades.
+  </p>
+
+  <p>
+    Em cada aplicação, são usadas:
+    <br>
+    <strong>→</strong> <input onchange="check(this, '2')"> unidades descartadas + <input onchange="check(this, '10')"> unidades aplicadas = 
+    <input onchange="check(this, '12')"> unidades no total.
+  </p>
+
+  <p>
+    Assim, o número máximo de aplicações por refil é:
+    <br>
+    <strong>→</strong> <input onchange="check(this, '300')"> ÷ <input onchange="check(this, '12')"> = <input onchange="check(this, '25')">
+  </p>
+
+  <p><strong>Resposta correta:</strong></p>
+
+  <div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> 25</div>
+  <div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> 15</div>
+  <div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> 13</div>
+  <div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> 12</div>
+  <div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> 8</div>
+
+  <div id="message" class="feedback"></div>
+
+  <script>
+    function check(input, correct) {
+      const value = input.value.trim().replace(',', '.');
+      input.nextElementSibling?.remove();
+      if (parseFloat(value) === parseFloat(correct)) {
+        input.style.backgroundColor = "#c6f6c6";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+      } else {
+        input.style.backgroundColor = "#fdd";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+      }
+    }
+
+    function checkAnswer(letter) {
+      const correct = 'A';
+      const message = document.getElementById('message');
+      if (letter === correct) {
+        message.textContent = 'Correto! O número máximo de aplicações por refil é 25.';
+        message.style.color = 'green';
+      } else {
+        message.textContent = `Errado. A alternativa ${letter} não é a correta.`;
+        message.style.color = 'red';
+      }
+    }
+  </script>
+</div>
+</body>
+</html>

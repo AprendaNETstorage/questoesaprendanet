@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Questão 18 — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_059.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">60/71</span>
+    <a href="questao_061.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Questão 18</h2>
+  <h3>Problema 18:</h3>
+<p>
+  O Salto Triplo é uma modalidade do atletismo em que o atleta dá um salto em um só pé, uma passada e um salto, nessa ordem. Sendo que o salto com impulsão em um só pé será feito de modo que o atleta caia primeiro sobre o mesmo pé que deu a impulsão; na passada ele cairá com o outro pé, do qual o salto é realizado.
+</p>
+<p>
+  Um atleta da modalidade Salto Triplo, depois de estudar seus movimentos, percebeu que, do segundo para o primeiro salto, o alcance diminuía em 1,2 m, e, do terceiro para o segundo salto, o alcance diminuía 1,5 m. Querendo atingir a meta de 17,4 m nessa prova e considerando os seus estudos, a distância alcançada no primeiro salto teria de estar entre:
+</p>
+
+  <h4>Solução:</h4>
+
+  <p>
+    Seja \( x \) a distância do 1º salto.
+    <br> Então: 2º salto = \( x - \) <input onchange="check(this, '1.2')">,
+    3º salto = \( x - \) <input onchange="check(this, '2.7')">
+  </p>
+
+  <p>
+    Equação: \( x + (x - 1.2) + (x - 2.7) = 17.4 \)
+    <br> Soma: <input onchange="check(this, '3x')"> - <input onchange="check(this, '3.9')"> = <input onchange="check(this, '17.4')">
+  </p>
+
+  <p>
+    Resolvendo: \( 3x = \) <input onchange="check(this, '21.3')"> → \( x = \) <input onchange="check(this, '7.1')">
+  </p>
+
+  <p><strong>Resposta correta:</strong></p>
+
+  <div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> 4,0 m e 5,0 m</div>
+  <div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> 5,0 m e 6,0 m</div>
+  <div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> 6,0 m e 7,0 m</div>
+  <div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> 7,0 m e 8,0 m</div>
+  <div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> 8,0 m e 9,0 m</div>
+
+  <div id="message" class="feedback"></div>
+
+  <script>
+    function check(input, correct) {
+      const value = input.value.trim().replace(',', '.');
+      input.nextElementSibling?.remove();
+      if (parseFloat(value) === parseFloat(correct)) {
+        input.style.backgroundColor = "#c6f6c6";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+      } else {
+        input.style.backgroundColor = "#fdd";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+      }
+    }
+
+    function checkAnswer(letter) {
+      const correct = 'D';
+      const message = document.getElementById('message');
+      if (letter === correct) {
+        message.textContent = 'Correto! A distância inicial deve estar entre 7,0 m e 8,0 m.';
+        message.style.color = 'green';
+      } else {
+        message.textContent = `Errado. A alternativa ${letter} não é a correta.`;
+        message.style.color = 'red';
+      }
+    }
+  </script>
+</div>
+</body>
+</html>

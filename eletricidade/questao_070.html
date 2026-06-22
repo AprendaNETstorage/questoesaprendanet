@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista — Problema 34 — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_069.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">70/81</span>
+    <a href="questao_071.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista — Problema 34</h2>
+  <h3>Problema 34:</h3>
+
+<p><strong>14 – ENEM 2024</strong></p>
+
+<p>
+  Um LED conduz em um único sentido e acende quando a queda de tensão nele atinge seu valor de funcionamento. Um estudante dispõe de: uma bateria de 4,5&nbsp;V; <strong>dois LEDs</strong> de tensão de funcionamento 3,0&nbsp;V e <em>I</em><sub>max</sub>=1,0&nbsp;mA cada; e <strong>dois resistores</strong> de 1,5&nbsp;kΩ. O circuito deve ser montado de modo que <u>ambos os LEDs</u> fiquem acesos e <u>cada um</u> seja percorrido por 1,0&nbsp;mA.
+</p>
+
+<!-- (figuras do enunciado – manter comentadas mesmo sem arquivo) -->
+<!-- <div class="imgwrap"><img src="led_simbolo.png" alt="Símbolo do LED e sentido permitido da corrente"></div>
+<div class="imgwrap"><img src="led_opcoes_circuito.png" alt="Cinco opções de montagem com resistores e LEDs"></div> -->
+
+<!-- =========================
+     SOLUÇÃO (INTERATIVA)
+     ========================= -->
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Com bateria de 4,5&nbsp;V e LED de 3,0&nbsp;V, qual é a <u>tensão no resistor</u> quando o LED conduz?</strong><br>
+  <input onchange="checkWord(this,'1,5 v|1.5 v|1,5 volts|1.5 volts|um virgula cinco')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Use V<sub>bat</sub> − V<sub>LED</sub>.</span>
+  </span>
+</p>
+
+<p><strong>2) Para <em>I</em>=1,0&nbsp;mA em cada LED, qual <u>R</u> garante essa corrente com a tensão acima?</strong><br>
+  <input onchange="checkWord(this,'1,5 kohm|1.5 kohm|1500 ohm|1,5 kΩ|1.5 kΩ|1500 Ω')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Lei de Ohm no resistor: R = V<sub>R</sub>/I.</span>
+  </span>
+</p>
+
+<p><strong>3) Para que <u>cada LED</u> receba 1,0&nbsp;mA independentemente do outro, como deve ser a <u>topologia</u>?</strong><br>
+  <input onchange="checkWord(this,'ramos paralelos|em paralelo|cada led com seu proprio resistor em serie|um resistor em serie com cada led')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Cada ramo deve ter 3,0&nbsp;V no LED e ~1,5&nbsp;V no resistor.</span>
+  </span>
+</p>
+
+<!-- =========================
+     ALTERNATIVAS
+     ========================= -->
+<p><strong>Assinale a alternativa correta (montagem):</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  (LEDs em paralelo sem resistores dedicados; um único resistor no ramo comum).
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  (Dois ramos em paralelo; <u>cada ramo</u>: resistor de 1,5&nbsp;kΩ em série com um LED).
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  (Dois resistores em paralelo no ramo central; LEDs juntos no outro ramo).
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  (Malha única em série: resistor–LED–resistor–LED).
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  (Resistor único em série antes de dois LEDs em paralelo).
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para ignorar acentos
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+  // verificação por palavras-chave
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = (span.style.display === 'inline') ? 'none' : 'inline';
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'B';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

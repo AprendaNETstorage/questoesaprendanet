@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista — Problema 26 — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_062.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">63/71</span>
+    <a href="questao_064.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista — Problema 26</h2>
+  <h3>Problema 26:</h3>
+
+<p><strong>5 – ENEM 2024</strong></p>
+
+<p><em>A saúde do professor: acústica arquitetônica</em></p>
+
+<p>
+  Em salas, o ruído de fundo e a atenuação do som com a distância dificultam a inteligibilidade da fala. No infográfico, a 1&nbsp;m do professor o nível sonoro da fala é 60&nbsp;dB, e <u>cada duplicação da distância</u> reduz o nível cerca de <u>6&nbsp;dB</u>. Suponha ruído de fundo de 45&nbsp;dB e que a fala, para ser compreendida, deva ficar 5&nbsp;dB acima desse ruído.
+</p>
+
+<!-- Figura do enunciado (deixar comentada mesmo sem o arquivo) -->
+<!-- <div class="imgwrap"><img src="acustica_sala_professor.png" alt="Nível sonoro da fala diminuindo com a distância; ruído de fundo 45 dB"></div> -->
+
+<p><strong>Para um valor máximo do ruído de fundo, a maior distância que um estudante pode estar do professor e ainda compreender sua fala é mais próxima de</strong></p>
+
+<!-- SOLUÇÃO (INTERATIVA) ANTES DAS ALTERNATIVAS -->
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Qual deve ser o nível mínimo da fala para superar o ruído de 45&nbsp;dB em 5&nbsp;dB?</strong><br>
+  <input onchange="checkWord(this,'50 db|50db|50 decibeis|50 dB')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Exigência: fala − ruído = 5 dB ⇒ ?</span>
+  </span>
+</p>
+
+<p><strong>2) A 1&nbsp;m, o nível da fala é 60&nbsp;dB. Usando a regra dos 6&nbsp;dB por duplicação, qual o nível a 2&nbsp;m? e a 4&nbsp;m?</strong><br>
+  <input onchange="checkWord(this,'2 m 54 db e 4 m 48 db|54 dB e 48 dB|54db e 48db|a2m 54 a4m 48')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>60 → 54 (×2); 54 → 48 (×4).</span>
+  </span>
+</p>
+
+<p><strong>3) Em qual intervalo de distância o nível cruza o limite de 50&nbsp;dB?</strong><br>
+  <input onchange="checkWord(this,'entre 2 e 4 m|2 a 4 m|entre 2m e 4m')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Em 2&nbsp;m: 54&nbsp;dB (>50). Em 4&nbsp;m: 48&nbsp;dB (&lt;50).</span>
+  </span>
+</p>
+
+<p><strong>4) A opção mais próxima (em metros) para a <u>maior</u> distância ainda &ge; 50&nbsp;dB é</strong><br>
+  <input onchange="checkWord(this,'3,0 m|3 m|3.0 m|aprox 3 m')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>O valor fica entre 2 e 4&nbsp;m, mais próximo de 3&nbsp;m.</span>
+  </span>
+</p>
+
+<!-- ALTERNATIVAS -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')"><span class="circulo">A</span> 3,0 m</div>
+<div class="opcao" onclick="checkAnswer('B')"><span class="circulo">B</span> 4,5 m</div>
+<div class="opcao" onclick="checkAnswer('C')"><span class="circulo">C</span> 6,5 m</div>
+<div class="opcao" onclick="checkAnswer('D')"><span class="circulo">D</span> 8,0 m</div>
+<div class="opcao" onclick="checkAnswer('E')"><span class="circulo">E</span> 9,5 m</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização p/ ignorar acentos
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+  // verificação por palavras-chave
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  // botão Mostrar dica
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = span.style.display === 'inline' ? 'none' : 'inline';
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'A';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

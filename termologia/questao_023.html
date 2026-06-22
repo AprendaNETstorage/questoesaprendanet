@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 35 — Termologia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Termologia</a>
+    <span class="spacer"></span>
+    <a href="questao_022.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">23/58</span>
+    <a href="questao_024.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 35</h2>
+  <h3>Problema 35:</h3>
+
+<p><strong>(ENEM)</strong></p>
+
+<p>
+  A magnetohipertermia é um procedimento terapêutico que se baseia na elevação da temperatura das
+  células de uma região específica do corpo que estejam afetadas por um tumor. Nesse tipo de
+  tratamento, nanopartículas magnéticas são fagocitadas pelas células tumorais, e um campo
+  magnético alternado externo é utilizado para promover a agitação das nanopartículas e
+  consequente aquecimento da célula.
+</p>
+
+<p>
+  A elevação de temperatura descrita ocorre porque
+</p>
+
+<p><strong>Antes de escolher a alternativa, complete:</strong></p>
+
+<p>
+  1) O campo magnético alternado aplica um torque sobre as nanopartículas magnéticas.
+  Isso faz com que elas entrem em movimento de
+  <input onchange="checkWord(this,'rotacao|rotação|giro|giracao|giração')">
+  .
+</p>
+
+<p>
+  2) Esse movimento dentro da célula produz calor principalmente por
+  <input onchange="checkWord(this,'atrito|histerese|histerese magnetica|histerese magnética')">
+  com o meio intracelular.
+</p>
+
+<p><strong>Agora marque a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  o campo magnético gerado pela oscilação das nanopartículas é absorvido pelo tumor.
+</div>
+
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  o campo magnético alternado faz as nanopartículas girarem, transferindo calor por atrito.
+</div>
+
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  as nanopartículas interagem magneticamente com as células do corpo, transferindo calor.
+</div>
+
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  o campo magnético alternado fornece calor para as nanopartículas que o transferem às células do corpo.
+</div>
+
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  as nanopartículas são aceleradas em um único sentido em razão da interação com o campo magnético,
+  fazendo-as colidir com as células e transferir calor.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // ------------ Funções auxiliares ------------
+
+  function normalize(s){
+    return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  }
+
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend",
+      `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    paint(input, ok);
+  }
+
+  // gabarito só aqui
+  function checkAnswer(letter){
+    const correct = 'B';
+    const msg = document.getElementById('message');
+    if (letter === correct){
+      msg.textContent = 'Correto! O campo magnético alternado faz as nanopartículas girarem e o atrito com o meio gera calor.';
+      msg.style.color = 'green';
+    } else {
+      msg.textContent = 'Não é essa. Pense que o campo alternado provoca rotação das nanopartículas e o calor vem desse movimento.';
+      msg.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

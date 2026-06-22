@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problema 32 - Sistemas Numéricos — Física (Geral)</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Física (Geral)</a>
+    <span class="spacer"></span>
+    <a href="questao_018.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">19/23</span>
+    <a href="questao_020.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Problema 32 - Sistemas Numéricos</h2>
+  <h3>Problema 32:</h3>
+  <p>
+    No ano em que uma empresa lançou seu novo modelo de celular no mercado brasileiro, investiu 45 milhões de reais no primeiro semestre em cada uma das cinco regiões do país, colocando à venda 30.000 aparelhos por região.<br><br>
+    No primeiro semestre, todos os aparelhos colocados à venda foram vendidos, gerando um lucro total de 30 milhões de reais. No segundo semestre, a empresa decidiu que faria o mesmo investimento e colocou à venda as mesmas quantidades de aparelhos por região. Por causa da demanda observada, a empresa considerou que todos os aparelhos desse modelo que fossem ofertados seriam vendidos e, além disso, planeja obter um lucro total 10% maior no segundo semestre do que o que obteve no primeiro.
+  </p>
+
+  <p>
+    Para que essa empresa alcance o lucro planejado, qual deve ser o valor de venda, em real, de um aparelho celular desse modelo, no segundo semestre desse ano?
+  </p>
+
+  <h4>Resolução passo a passo:</h4>
+
+  <ul>
+    <li>Investimento por região: R$ 45.000.000,00 → Total investido: <input onchange="check(this, '225000000')"> reais</li>
+    <li>Aparelhos vendidos: <input onchange="check(this, '150000')"> unidades</li>
+    <li>Lucro no 1º semestre: R$ <input onchange="check(this, '30000000')"> reais</li>
+    <li>Receita total no 1º semestre: <input onchange="check(this, '255000000')"> reais</li>
+    <li>Preço de venda por aparelho no 1º semestre: <input onchange="check(this, '1700')"> reais</li>
+    <li>Lucro por aparelho no 1º semestre: <input onchange="check(this, '200')"> reais</li>
+    <li>Lucro 10% maior no 2º semestre: <input onchange="check(this, '220')"> reais por aparelho</li>
+    <li>Preço de venda necessário no 2º semestre: <input onchange="check(this, '1720')"> reais</li>
+  </ul>
+
+  <h4>Alternativas:</h4>
+  <div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> R$ 1.650,00</div>
+  <div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> R$ 1.720,00</div>
+  <div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> R$ 1.870,00</div>
+  <div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> R$ 2.500,00</div>
+  <div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> R$ 2.600,00</div>
+
+  <div id="message" class="feedback"></div>
+
+  <script>
+    function check(input, correct) {
+      const value = input.value.trim().replace(',', '.');
+      const expected = correct.toString().replace(',', '.');
+      input.nextElementSibling?.remove();
+      if (value === expected) {
+        input.style.backgroundColor = "#c6f6c6";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+      } else {
+        input.style.backgroundColor = "#fdd";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+      }
+    }
+
+    function checkAnswer(letter) {
+      const correct = 'B';
+      const message = document.getElementById('message');
+      if (letter === correct) {
+        message.textContent = 'Correto! O preço deve ser R$ 1.720,00.';
+        message.style.color = 'green';
+      } else {
+        message.textContent = `Errado. A alternativa ${letter} não é a correta.`;
+        message.style.color = 'red';
+      }
+    }
+  </script>
+</div>
+</body>
+</html>

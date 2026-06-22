@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 8 (ENEM 2013) — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_042.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">43/81</span>
+    <a href="questao_044.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 8 (ENEM 2013)</h2>
+  <h3>Problema 8:</h3>
+
+<p><strong>106. (ENEM 2013)</strong></p>
+
+<p>
+O chuveiro elétrico é um dispositivo capaz de transformar energia elétrica em energia térmica, o que possibilita a elevação da temperatura da água. Um chuveiro projetado para funcionar em 110 V pode ser adaptado para funcionar em 220 V, de modo a manter inalterada sua potência.
+</p>
+
+<p>
+Uma das maneiras de fazer essa adaptação é trocar a resistência do chuveiro por outra, de mesmo material e com o(a):
+</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Potência de um resistor é dada por:</strong>  
+  <input onchange="checkWord(this,'p=v^2/r|p=v2/r|lei de joule')">
+</p>
+
+<p><strong>2) Se a tensão é dobrada (110 V → 220 V), a nova resistência deve ser:</strong>  
+  <input onchange="checkWord(this,'4r|quadruplicada|quatro vezes')">
+</p>
+
+<p><strong>3) Para o mesmo material, a resistência é:</strong>  
+  <input onchange="checkWord(this,'r=ρ.l/a|resistividade vezes comprimento sobre area')">
+</p>
+
+<p><strong>4) Para quadruplicar a resistência, uma opção é reduzir a área a:</strong>  
+  <input onchange="checkWord(this,'a/4|um quarto da area|quarta parte da area')">
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  dobro do comprimento do fio.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  metade do comprimento do fio.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  metade da área da seção reta do fio.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  quádruplo da área da seção reta do fio.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  quarta parte da área da seção reta do fio.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para tolerar acentos/maiúsculas
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito
+  function checkAnswer(letter){
+    const correct = 'E';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

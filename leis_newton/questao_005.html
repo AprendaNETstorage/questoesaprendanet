@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 15 — Leis de Newton</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Leis de Newton</a>
+    <span class="spacer"></span>
+    <a href="questao_004.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">5/25</span>
+    <a href="questao_006.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 15</h2>
+  <h3>Problema 15:</h3>
+
+<!-- ENUNCIADO 100% EM TEXTO -->
+<p><strong>Questão 59. (ENEM 2016)</strong></p>
+
+<p>
+Uma invenção que significou um grande avanço tecnológico na Antiguidade, a polia composta
+ou a associação de polias, é atribuída a Arquimedes (287 a.C. a 212 a.C.). O aparato consiste
+em associar uma série de polias móveis a uma polia fixa. A figura exemplifica um arranjo
+possível para esse aparato. É relatado que Arquimedes teria demonstrado para o rei Hierão
+um outro arranjo desse aparato, movendo sozinho, sobre a areia da praia, um navio repleto
+de passageiros e cargas, algo que seria impossível sem a participação de muitos homens.
+Suponha que a massa do navio era de 3 000 kg, que o coeficiente de atrito estático entre o
+navio e a areia era de 0,8 e que Arquimedes tenha puxado o navio com uma força
+<strong>F⃗</strong>, paralela à direção do movimento e de módulo igual a 400 N. Considere os fios e as
+polias ideais, a aceleração da gravidade igual a 10 m/s² e que a superfície da praia é
+perfeitamente horizontal.
+</p>
+
+<p><em>O número mínimo de polias móveis usadas, nessa situação, por Arquimedes foi</em></p>
+
+  <!-- use o nome do arquivo da figura que você tiver salvo -->
+  <img src="polias_enem2016.png" alt="Sistema de polias do problema de Arquimedes" style="width: 30rem; height: auto;">
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Força de atrito estático máxima que precisa ser vencida</strong></p>
+<p>
+  Massa do navio:
+  m = <input onchange="checkExpr(this,'3000|3e3')"> kg<br>
+  Peso (força normal): N = m·g = 
+  <input onchange="checkExpr(this,'3000*10|3e4')"> N<br>
+  Coeficiente de atrito estático: μ = 
+  <input onchange="checkExpr(this,'0.8')">.<br>
+  Força de atrito máxima: F<sub>at</sub> = μ·N ≈ 
+  <input onchange="checkExpr(this,'0.8*30000|24000')"> N.
+</p>
+
+<p><strong>2) Vantagem mecânica necessária do conjunto de polias</strong></p>
+<p>
+  Força que Arquimedes é capaz de fazer: F = 
+  <input onchange="checkExpr(this,'400')"> N.<br>
+  Vantagem mecânica requerida: V = F<sub>at</sub> / F ≈ 
+  <input onchange="checkExpr(this,'24000/400|60')">
+</p>
+
+<p><strong>3) Relação com o número de polias móveis</strong></p>
+<p>
+  Em um sistema de polias ideais, a vantagem mecânica é V = 2<sup>n</sup>, em que n é o número
+  de polias móveis. Assim, é preciso que 2<sup>n</sup> ≥ 60.<br>
+  Testando:<br>
+  2<sup>5</sup> = <input onchange="checkExpr(this,'32')"> (ainda é menor que 60)<br>
+  2<sup>6</sup> = <input onchange="checkExpr(this,'64')"> (primeiro valor maior ou igual a 60).<br>
+  Logo, o número mínimo de polias móveis é 
+  <input onchange="checkExpr(this,'6')">.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  3.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  6.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  7.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  8.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  10.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // -------- helpers (aceita vírgula/ponto e expressões simples) --------
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function safeEval(expr){
+    const cleaned = String(expr).replace(/\s/g,'');
+    if(!/^[0-9eE+\-*/().,×^]+$/.test(cleaned)) return null;
+    const norm = cleaned.replace(/,/g,'.').replace(/×/g,'*').replace(/\^/g,'**');
+    try{
+      const v = Function('"use strict"; return ('+norm+');')();
+      return (typeof v === 'number' && Number.isFinite(v)) ? v : null;
+    }catch{ return null; }
+  }
+  function nearlyEqual(a,b,eps=1e-3){ return Math.abs(a-b) <= eps*Math.max(1,Math.abs(a),Math.abs(b)); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+  function checkExpr(input, expectedExprs){
+    const val = safeEval(input.value.trim());
+    const targets = expectedExprs.split('|').map(e => safeEval(e));
+    const ok = (val !== null) && targets.some(t => t !== null && nearlyEqual(val, t));
+    paint(input, ok);
+  }
+
+  // gabarito
+  function checkAnswer(letter){
+    const correct = 'B';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto! Número mínimo: 6 polias móveis.';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Releia a vantagem mecânica (2^n) e tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

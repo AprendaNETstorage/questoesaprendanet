@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 14 — Cinemática</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Cinemática</a>
+    <span class="spacer"></span>
+    <a href="questao_004.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">5/35</span>
+    <a href="questao_006.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 14</h2>
+  <h3>Problema 14:</h3>
+
+<p><strong>13 – Enem 2023</strong></p>
+<p><strong>Questão 124</strong></p>
+
+<p>
+  Uma concessionária é responsável por um trecho de 480 quilômetros de uma rodovia. Nesse trecho, foram construídas 10 praças de pedágio, onde funcionários recebem os pagamentos nas cabines de cobrança. Também existe o serviço automático, em que os veículos providos de um dispositivo passam por uma cancela, que se abre automaticamente, evitando filas e diminuindo o tempo de viagem. Segundo a concessionária, o tempo médio para efetuar a passagem em uma cabine é de 3 minutos, e as velocidades máximas permitidas na rodovia são 100 km/h, para veículos leves, e 80 km/h, para veículos de grande porte.
+</p>
+<p>
+  Considere um carro e um caminhão viajando, ambos com velocidades constantes e iguais às máximas permitidas, e que somente o caminhão tenha o serviço automático de cobrança.
+</p>
+<p>
+  Comparado ao caminhão, quantos minutos a menos o carro leva para percorrer toda a rodovia?
+</p>
+
+<!-- (Sem figura no enunciado; se houver, manter comentado) -->
+<!-- <div class="imgwrap"><img src="rodovia_pedagios.png" alt="Trecho de rodovia com 10 praças de pedágio"></div> -->
+
+<!-- SOLUÇÃO (INTERATIVA) ANTES DAS ALTERNATIVAS -->
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Tempo de viagem do carro a 100&nbsp;km/h para 480&nbsp;km (em horas e em minutos):</strong><br>
+  <input onchange="checkWord(this,'4,8 h|4.8 h|288 min|288 minutos')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>t = d/v. Depois, 1 h = 60 min.</span>
+  </span>
+</p>
+
+<p><strong>2) O carro para em 10 pedágios (3&nbsp;min cada). Quanto tempo extra ele gasta?</strong><br>
+  <input onchange="checkWord(this,'30 min|30 minutos')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>10 × 3 min.</span>
+  </span>
+</p>
+
+<p><strong>3) Tempo total do carro (minutos):</strong><br>
+  <input onchange="checkWord(this,'318 min|318 minutos')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Some o tempo de viagem com as paradas.</span>
+  </span>
+</p>
+
+<p><strong>4) Tempo do caminhão a 80&nbsp;km/h para 480&nbsp;km, sem paradas (minutos):</strong><br>
+  <input onchange="checkWord(this,'360 min|360 minutos|6 h|6 horas')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>t = 480/80 h.</span>
+  </span>
+</p>
+
+<p><strong>5) Diferença (tempo do caminhão − tempo do carro), em minutos:</strong><br>
+  <input onchange="checkWord(this,'42|minutos 42|42 min')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>360 − 318 = ?</span>
+  </span>
+</p>
+
+<!-- ALTERNATIVAS -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')"><span class="circulo">A</span> 30</div>
+<div class="opcao" onclick="checkAnswer('B')"><span class="circulo">B</span> 42</div>
+<div class="opcao" onclick="checkAnswer('C')"><span class="circulo">C</span> 72</div>
+<div class="opcao" onclick="checkAnswer('D')"><span class="circulo">D</span> 28</div>
+<div class="opcao" onclick="checkAnswer('E')"><span class="circulo">E</span> 360</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normaliza/remover acentos
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+  // checagem de palavras-chave (tolerante a variações)
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  // botão Mostrar dica
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = span.style.display === 'inline' ? 'none' : 'inline';
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'B';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

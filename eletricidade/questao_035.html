@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 53 — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_034.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">35/81</span>
+    <a href="questao_036.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 53</h2>
+  <h3>Problema 53:</h3>
+
+<!-- ENUNCIADO -->
+<p><strong>108. (ENEM 2018)</strong></p>
+<p>
+Ao pesquisar um resistor feito de um novo tipo de material, um cientista observou o comportamento mostrado no gráfico
+tensão versus corrente.
+Após a análise do gráfico, ele concluiu que a tensão em função da corrente é dada pela equação
+\( V = 10i + i^2 \). O gráfico da resistência elétrica \( R \) do resistor em função da corrente \( i \) é
+</p>
+
+<figure>
+  <!-- ajuste o caminho da imagem do gráfico V × i, se desejar usar -->
+  <img src="questao53_vi.png" alt="Gráfico tensão V em função da corrente i para o resistor: curva crescente ajustada por V = 10 i + i².">
+  <figcaption>Figura 1 – Gráfico tensão V em função da corrente i: \(V(i) = 10i + i^2\).</figcaption>
+</figure>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Relação entre resistência, tensão e corrente.</strong><br>
+A resistência efetiva é definida como
+<input onchange="checkWord(this,'r=v/i|resistencia e v dividido por i|v sobre i')">.
+</p>
+
+<p><strong>2) Expressão de R(i).</strong><br>
+Dado \( V(i) = 10i + i^2 \), então
+\( R(i) = \dfrac{V}{i} = \) 
+<input onchange="checkExpr(this,'10+i|i+10')">.
+</p>
+
+<p><strong>3) Comportamento do gráfico de R(i).</strong><br>
+O gráfico é uma
+<input onchange="checkWord(this,'reta|funcao linear|linha reta')">
+crescente, com coeficiente angular aproximadamente
+<input onchange="checkExpr(this,'1')">
+e valor de \( R \) quando \( i = 0 \) igual a
+<input onchange="checkExpr(this,'10')">
+ohms.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  R é constante e igual a 10&nbsp;Ω para todo valor de i.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  R é constante e igual a 20&nbsp;Ω para todo valor de i.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  R cresce linearmente a partir de 0&nbsp;Ω quando i = 0 (reta que passa pela origem).
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  R cresce linearmente, iniciando em 10&nbsp;Ω quando i = 0, com inclinação positiva.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  R cresce de forma não linear (curva) com a corrente i.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // -------- helpers (aceita vírgula/ponto e expressões simples) --------
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function safeEval(expr){
+    const cleaned = String(expr).replace(/\s/g,'');
+    if(!/^[0-9eE+\-*/().,×^]+$/.test(cleaned)) return null;
+    const norm = cleaned.replace(/,/g,'.').replace(/×/g,'*').replace(/\^/g,'**');
+    try{
+      const v = Function('"use strict"; return ('+norm+');')();
+      return (typeof v === 'number' && Number.isFinite(v)) ? v : null;
+    }catch{ return null; }
+  }
+  function nearlyEqual(a,b,eps=1e-3){
+    return Math.abs(a-b) <= eps * Math.max(1, Math.abs(a), Math.abs(b));
+  }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+  function checkExpr(input, expectedExprs){
+    const val = safeEval(input.value.trim());
+    const targets = expectedExprs.split('|').map(e => safeEval(e));
+    const ok = (val !== null) && targets.some(t => t !== null && nearlyEqual(val, t));
+    paint(input, ok);
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'D';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

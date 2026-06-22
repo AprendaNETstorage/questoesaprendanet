@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 04 — Física (Geral)</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Física (Geral)</a>
+    <span class="spacer"></span>
+    <a href="questao_011.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">12/23</span>
+    <a href="questao_013.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 04</h2>
+  <h3>Problema 51:</h3>
+
+  <p>
+    Uma sala com piso no formato retangular, com lados de medidas 3 m e 6 m, será dividida em dois ambientes.
+    Para isso, serão utilizadas colunas em formato cilíndrico, dispostas perpendicularmente ao piso e representadas na figura por círculos de cor azul.
+    Os centros desses círculos estarão sobre uma reta paralela aos lados de menor medida do piso da sala.
+    Os vãos entre duas colunas e entre uma coluna e a parede não poderão ser superiores a 15 cm.
+  </p>
+
+  <p><em>[Inserir figura da sala com colunas]</em></p>
+
+  <p>
+    Para efetuar a compra dessas colunas, foram feitos orçamentos com base em dados fornecidos por cinco lojas:
+  </p>
+
+  <pre>
+Loja | Raio (cm) | Preço por unidade (R$)
+ I   |    5      |         60
+ II  |   10      |         70
+ III |   12      |         75
+ IV  |   15      |         90
+ V   |   20      |        120
+  </pre>
+
+  <p><strong>A compra será realizada na loja cujo orçamento resulte no menor valor total possível.</strong></p>
+
+  <h4>Solução 51:</h4>
+
+  <p><strong>Passo 1:</strong> Converter a largura da sala:</p>
+  <p>3 metros = <input onchange="check(this, '300')"> cm</p>
+
+  <p><strong>Passo 2:</strong> Como os vãos entre colunas não podem ultrapassar 15 cm:</p>
+  <p>Espaçamento máximo = <input onchange="check(this, '2')">r + <input onchange="check(this, '15')"> cm</p>
+
+  <p><strong>Fórmula:</strong> Número de colunas = 
+    <input onchange="check(this, '⌈270/(2r+15)⌉+1')">
+  </p>
+
+  <p><strong>Loja III:</strong> Raio = 12 → Espaçamento = 2×12 + 15 = <input onchange="check(this, '39')"> cm</p>
+  <p>Número de colunas = ⌈270 / 39⌉ + 1 = <input onchange="check(this, '7')"> + 1 = <input onchange="check(this, '8')"> colunas</p>
+  <p>Preço por unidade = R$ <input onchange="check(this, '75')"> → Total = 8 × 75 = <input onchange="check(this, '600')"> reais</p>
+
+  <p><strong>Conclusão:</strong> A loja com menor custo total é a:
+    <input onchange="check(this, 'III')">
+  </p>
+
+  <h4>Alternativas:</h4>
+
+  <div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> I</div>
+  <div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> II</div>
+  <div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> III</div>
+  <div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> IV</div>
+  <div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> V</div>
+
+  <div id="message" class="feedback"></div>
+
+  <script>
+    function check(input, correct) {
+      const user = input.value.trim().replace(',', '.');
+      input.nextElementSibling?.remove();
+      if (correct.includes('⌈')) {
+        input.insertAdjacentHTML("afterend", '<span class="feedback">✅ fórmula aceita</span>');
+        input.style.backgroundColor = "#c6f6c6";
+        return;
+      }
+      const expected = correct.replace(',', '.');
+      if (user === expected) {
+        input.style.backgroundColor = "#c6f6c6";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+      } else {
+        input.style.backgroundColor = "#fdd";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+      }
+    }
+
+    function checkAnswer(letter) {
+      const correct = 'C';
+      const message = document.getElementById('message');
+      if (letter === correct) {
+        message.textContent = 'Correto! A Loja III oferece o menor custo total: R$ 600.';
+        message.style.color = 'green';
+      } else {
+        message.textContent = `Errado. A alternativa ${letter} não é a correta.`;
+        message.style.color = 'red';
+      }
+    }
+  </script>
+</div>
+</body>
+</html>

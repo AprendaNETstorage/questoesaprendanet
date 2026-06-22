@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 10 (ENEM 2013) — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <span style="opacity:.4">&laquo; Anterior</span>
+    <span style="font-size:13px;color:#666">1/81</span>
+    <a href="questao_002.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 10 (ENEM 2013)</h2>
+  <h3>Problema 10:</h3>
+
+<p><strong>108. (ENEM 2013)</strong></p>
+
+<p>
+Um circuito em série é formado por uma pilha, uma lâmpada incandescente e uma chave interruptora. 
+Ao se ligar a chave, a lâmpada acende quase instantaneamente, irradiando calor e luz. 
+Popularmente, associa-se o fenômeno da irradiação de energia a um desgaste da corrente elétrica, ao atravessar o filamento da lâmpada, e à rapidez com que a lâmpada começa a brilhar. 
+Essa explicação está em desacordo com o modelo clássico de corrente.
+</p>
+
+<p>
+De acordo com o modelo mencionado, o fato de a lâmpada acender quase instantaneamente está relacionado à rapidez com que
+</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) O que acontece ao fechar a chave?</strong>  
+  O <input onchange="checkWord(this,'campo eletrico|campo elétrico')"> se estabelece em todo o circuito.
+</p>
+
+<p><strong>2) Isso ocorre quase instantaneamente porque:</strong>  
+  a <input onchange="checkWord(this,'informacao eletromagnetica|sinal eletromagnetico')"> se propaga rapidamente ao longo dos condutores.
+</p>
+
+<p><strong>3) Assim, o brilho imediato da lâmpada está associado ao:</strong>  
+  <input onchange="checkWord(this,'estabelecimento do campo eletrico|estabelecimento do campo elétrico')">
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  o fluido elétrico se desloca no circuito.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  as cargas negativas móveis atravessam o circuito.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  a bateria libera cargas móveis para o filamento da lâmpada.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  o campo elétrico se estabelece em todos os pontos do circuito.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  as cargas positivas e negativas se chocam no filamento da lâmpada.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para tolerar acentos/maiúsculas
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito
+  function checkAnswer(letter){
+    const correct = 'D';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

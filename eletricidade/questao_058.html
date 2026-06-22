@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 79 (ENEM) — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_057.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">58/81</span>
+    <a href="questao_059.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 79 (ENEM)</h2>
+  <h3>Problema 79:</h3>
+
+<p><strong>116. (ENEM)</strong></p>
+
+<p>
+A resistência elétrica de um fio depende de suas dimensões e da estrutura do material 
+(caracterizada pela condutividade).  
+A tabela a seguir relaciona valores de condutividade em temperatura ambiente:
+</p>
+
+<p><img src="imagens/extra_26.png" alt="Tabela de condutividade elétrica dos materiais"></p>
+<p><img src="imagens/extra_27.png" alt="Tabela de condutividade elétrica dos materiais"></p>
+<p>
+Mantendo-se as mesmas dimensões geométricas, o fio que apresenta <strong>maior resistência elétrica</strong> é feito de:
+</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) A resistência elétrica de um fio é inversamente proporcional à:</strong>  
+  <input onchange="checkWord(this,'condutividade|sigma')">
+</p>
+
+<p><strong>2) Logo, quanto maior a condutividade, menor será a:</strong>  
+  <input onchange="checkWord(this,'resistividade|resistencia')">
+</p>
+
+<p><strong>3) Comparando os materiais, o que possui maior condutividade é:</strong>  
+  <input onchange="checkWord(this,'prata')">
+</p>
+
+<p><strong>Portanto, o fio com menor resistência elétrica é de:</strong>  
+  <input onchange="checkWord(this,'prata')">
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  tungstênio
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  alumínio
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  ferro
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  cobre
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  prata
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para tolerar acentos/maiúsculas
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito
+  function checkAnswer(letter){
+    const correct = 'E';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 4 — Energia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Energia</a>
+    <span class="spacer"></span>
+    <a href="questao_012.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">13/33</span>
+    <a href="questao_014.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 4</h2>
+  <h3>Problema 4:</h3>
+
+<p><strong>1 – Enem 2023</strong></p>
+<p><strong>Questão 93</strong></p>
+
+<p>
+A utilização de tecnologia nuclear é um tema bastante controverso, por causa do risco de acidentes graves, como aqueles ocorridos em Chernobyl (1986), em Goiânia (1987) e em Fukushima (2011). Apesar de muitas desvantagens, como a geração de resíduos tóxicos, a descontaminação ambiental dispendiosa em caso de acidentes e a utilização em armas nucleares, a geração de energia nuclear apresenta vantagens em comparação a outras fontes de energia. A geração dessa energia tem como característica:
+</p>
+
+<!-- SOLUÇÃO (INTERATIVA) ANTES DAS ALTERNATIVAS -->
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Escreva, com suas palavras, a principal vantagem destacada no texto.</strong><br>
+  <input onchange="checkWord(this,'produzir calor sem combustiveis fosseis|sem consumo de combustiveis fosseis|nao consome combustiveis fosseis|não consome combustíveis fósseis')">
+  <span class="hint">
+    <button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Compare com fontes que usam carvão, petróleo ou gás.</span>
+  </span>
+</p>
+
+<p><strong>2) Qual fenômeno físico no reator libera o calor utilizado?</strong><br>
+  <input onchange="checkWord(this,'fissao nuclear|fissão nuclear|fissao de nucleos pesados|fissão de núcleos pesados')">
+  <span class="hint">
+    <button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Pense no processo que ocorre quando núcleos pesados são divididos.</span>
+  </span>
+</p>
+
+<!-- ALTERNATIVAS -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')"><span class="circulo">A</span> Formar resíduos facilmente recicláveis.</div>
+<div class="opcao" onclick="checkAnswer('B')"><span class="circulo">B</span> Promover o aumento do desmatamento.</div>
+<div class="opcao" onclick="checkAnswer('C')"><span class="circulo">C</span> Contribuir para a produção de chuva ácida.</div>
+<div class="opcao" onclick="checkAnswer('D')"><span class="circulo">D</span> Emitir gases tóxicos que são lançados no ambiente.</div>
+<div class="opcao" onclick="checkAnswer('E')"><span class="circulo">E</span> Produzir calor sem o consumo de combustíveis fósseis.</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // validação por palavras-chave (tolerante a acentos)
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  // mostrar/ocultar dica sem revelar resposta diretamente
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = span.style.display === 'inline' ? 'none' : 'inline';
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter) {
+    const correct = 'E';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

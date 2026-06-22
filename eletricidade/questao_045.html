@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 105 (ENEM) — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_044.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">45/81</span>
+    <a href="questao_046.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 105 (ENEM)</h2>
+  <h3>Problema 105:</h3>
+
+<p><strong>150. (Enem PPL 2014)</strong></p>
+
+<p>
+Para a proteção contra curtos-circuitos em residências são utilizados disjuntores, compostos por duas lâminas de metais diferentes, com suas superfícies soldadas uma à outra, ou seja, uma lâmina bimetálica.  
+Essa lâmina toca o contato elétrico, fechando o circuito e deixando a corrente elétrica passar.  
+Quando da passagem de uma corrente superior à estipulada (limite), a lâmina se curva para um dos lados, afastando-se do contato elétrico e, assim, interrompendo o circuito.  
+Isso ocorre porque os metais da lâmina possuem uma característica física cuja resposta é diferente para a mesma corrente elétrica que passa no circuito.  
+</p>
+
+<p>
+A característica física que deve ser observada para a escolha dos dois metais dessa lâmina bimetálica é o coeficiente de
+</p>
+
+<figure>
+  <img src="imagens/extra_44.png" alt="Enunciado/ilustração da questão 150">
+  <figcaption>Enunciado (use a imagem do seu PDF, se desejar)</figcaption>
+</figure>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) O que acontece com uma lâmina bimetálica quando aquecida?</strong>
+  <input onchange="checkWord(this,'ela se curva|arqueia')">
+</p>
+
+<p><strong>2) Por que isso acontece?</strong>
+  <input onchange="checkWord(this,'diferenca de dilatacao termica|coeficientes diferentes de dilatacao')">
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  Dureza.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  Elasticidade.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  Dilatação térmica.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  Compressibilidade.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  Condutividade elétrica.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para tolerar acentos/maiúsculas
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito
+  function checkAnswer(letter){
+    const correct = 'C';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

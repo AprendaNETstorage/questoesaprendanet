@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 3 (ENEM 2010 2ª aplicação) — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_021.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">22/81</span>
+    <a href="questao_023.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 3 (ENEM 2010 2ª aplicação)</h2>
+  <h3>Problema 3:</h3>
+
+<p><strong>100. (ENEM 2ª aplicação 2010)</strong></p>
+
+<p>
+Atualmente, existem inúmeras opções de celulares com telas sensíveis ao toque (touchscreen). Para decidir qual escolher, é bom conhecer as diferenças entre os principais tipos de telas sensíveis ao toque existentes no mercado. Existem dois sistemas básicos usados para reconhecer o toque de uma pessoa:
+</p>
+
+<p><em>— Primeiro sistema:</em> painel de vidro normal, recoberto por duas camadas afastadas por espaçadores. Uma camada resistente a riscos é colocada por cima de todo o conjunto. Uma corrente elétrica passa através das duas camadas enquanto a tela está operacional. Quando um usuário toca a tela, as duas camadas fazem contato exatamente naquele ponto. A mudança no campo elétrico é percebida, e as coordenadas do ponto de contato são calculadas pelo computador.
+</p>
+
+<p><em>— Segundo sistema:</em> uma camada que <strong>armazena carga elétrica</strong> é colocada no painel de vidro do monitor. Quando um usuário toca o monitor com seu dedo, parte da carga elétrica é transferida para o usuário, de modo que a carga na camada que a armazena diminui. Esta redução é medida nos circuitos localizados em cada canto do monitor. Considerando as diferenças relativas de carga em cada canto, o computador calcula exatamente onde ocorreu o toque.
+</p>
+
+<p><em>O elemento de armazenamento de carga análogo ao exposto no segundo sistema e a aplicação cotidiana correspondente são, respectivamente:</em></p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Elemento que armazena carga:</strong>
+  <input onchange="checkWord(this,'capacitor|capacitores')">
+</p>
+
+<p><strong>2) Aplicação cotidiana correspondente:</strong>
+  <input onchange="checkWord(this,'flash de maquina fotografica|flash de máquina fotográfica|flash fotografico|flash fotográfico')">
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  receptores — televisor.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  resistores — chuveiro elétrico.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  geradores — telefone celular.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  fusíveis — caixa de força residencial.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  capacitores — flash de máquina fotográfica.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para tolerar acentos/maiúsculas
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito
+  function checkAnswer(letter){
+    const correct = 'E';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

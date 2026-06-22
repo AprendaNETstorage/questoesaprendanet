@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista — Problema 8 — Energia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Energia</a>
+    <span class="spacer"></span>
+    <a href="questao_026.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">27/33</span>
+    <a href="questao_028.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista — Problema 8</h2>
+  <h3>Problema 8:</h3>
+
+<p>
+  Um Buraco Negro é um corpo celeste que possui uma grande quantidade de matéria concentrada em uma pequena região do espaço, de modo que sua força gravitacional é tão grande que qualquer partícula fica aprisionada em sua superfície, inclusive a luz. O raio dessa região caracteriza uma superfície-limite, chamada de horizonte de eventos, da qual nada consegue escapar. Considere que o Sol foi instantaneamente substituído por um Buraco Negro com a <strong>mesma massa solar</strong>, de modo que o seu horizonte de eventos seja de aproximadamente 3,0 km.
+</p>
+
+<p style="margin-top:-6px;">
+  SCHWARZSCHILD, K. <em>On the Gravitational Field of a Mass Point According to Einstein's Theory</em>. Disponível em: arxiv.org. Acesso em: 26 maio 2022 (adaptado).
+</p>
+
+<p><strong>Após a substituição descrita, o que aconteceria aos planetas do Sistema Solar?</strong></p>
+
+<!-- (Opcional) alguma ilustração – deixar comentado se não tiver o arquivo -->
+<!-- <div class="imgwrap"><img src="buraco_negro_sistema_solar.png" alt="Esquema conceitual de um buraco negro no lugar do Sol"></div> -->
+
+<!-- =========================
+     SOLUÇÃO (INTERATIVA) ANTES DAS ALTERNATIVAS
+     ========================= -->
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) De que grandeza o campo gravitacional <u>externo</u> de um corpo esférico depende?</strong><br>
+  <input onchange="checkWord(this,'massa total e distancia|massa e distancia|apenas da massa total vista de fora|msm massa a mesma gravidade|campo depende da massa')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Pense na solução externa esférica: fora do corpo, só "importa" a massa total concentrada.</span>
+  </span>
+</p>
+
+<p><strong>2) Se o Sol for trocado por um buraco negro de <u>mesma massa</u>, a força gravitacional sobre os planetas (a grandes distâncias) muda?</strong><br>
+  <input onchange="checkWord(this,'nao muda|permanece praticamente a mesma|forca igual|campo igual nas orbitas')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Compare "M" antes e depois. As órbitas estão muito além do raio de 3 km.</span>
+  </span>
+</p>
+
+<p><strong>3) Então, qual é a consequência para as órbitas planetárias?</strong><br>
+  <input onchange="checkWord(this,'se mantem inalteradas|permanecem praticamente as mesmas|orbitas inalteradas|nao muda a orbita')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Se o campo externo é o mesmo, o movimento orbital não se altera.</span>
+  </span>
+</p>
+
+<!-- =========================
+     ALTERNATIVAS
+     ========================= -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')"><span class="circulo">A</span>
+  Eles se moveriam em órbitas espirais, aproximando-se sucessivamente do Buraco Negro.
+</div>
+<div class="opcao" onclick="checkAnswer('B')"><span class="circulo">B</span>
+  Eles osciliariam aleatoriamente em torno de suas órbitas elípticas originais.
+</div>
+<div class="opcao" onclick="checkAnswer('C')"><span class="circulo">C</span>
+  Eles se moveriam em direção ao centro do Buraco Negro.
+</div>
+<div class="opcao" onclick="checkAnswer('D')"><span class="circulo">D</span>
+  Eles passariam a precessionar mais rapidamente.
+</div>
+<div class="opcao" onclick="checkAnswer('E')"><span class="circulo">E</span>
+  Eles manteriam suas órbitas inalteradas.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para ignorar acentos
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+  // verificação por palavras-chave
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  // botão Mostrar dica
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = (span.style.display === 'inline') ? 'none' : 'inline';
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'E';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

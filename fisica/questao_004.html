@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Física (Geral)</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Física (Geral)</a>
+    <span class="spacer"></span>
+    <a href="questao_003.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">4/23</span>
+    <a href="questao_005.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03</h2>
+  <h3>Problema 06:</h3>
+
+<p>
+  Um produtor de milho utiliza uma área de 160 hectares para as suas atividades agrícolas. Essa área é dividida em duas partes: uma de 40 hectares, com maior produtividade, e outra, de 120 hectares, com menor produtividade.
+  <br><br>
+  A produtividade é dada pela razão entre a produção (em toneladas) e a área cultivada. Sabe-se que a área de 40 hectares tem produtividade igual a 2,5 vezes à da outra.
+  <br><br>
+  Esse fazendeiro pretende aumentar sua produção total em 15%, aumentando o tamanho da sua propriedade. Para tanto, pretende comprar uma parte de uma fazenda vizinha, que possui a mesma produtividade da parte de 120 hectares de suas terras.
+</p>
+
+<p>Qual é a área mínima, em hectare, que o produtor precisará comprar?</p>
+
+<h4>Solução:</h4>
+
+<p>Seja <input onchange="check(this, 'x')"> a produtividade da parte de 120 ha.</p>
+<p>
+  Então, a produtividade da parte de 40 ha é:
+  <input onchange="check(this, '2.5x')">
+</p>
+
+<p>
+  A produção atual total é:
+  120 × <input onchange="check(this, 'x')"> + 40 × <input onchange="check(this, '2.5x')"> =
+  <input onchange="check(this, '120x')"> + <input onchange="check(this, '100x')"> =
+  <input onchange="check(this, '220x')">
+</p>
+
+<p>
+  Deseja-se aumentar a produção total em 15%, ou seja:
+  <input onchange="check(this, '220x')"> × 1,15 = <input onchange="check(this, '253x')">
+</p>
+
+<p>
+  Seja <input onchange="check(this, 'a')"> a área que será comprada, com produtividade <input onchange="check(this, 'x')">.
+</p>
+
+<p>
+  Nova produção total:
+  <input onchange="check(this, '220x')"> + <input onchange="check(this, 'ax')"> =
+  <input onchange="check(this, '253x')">
+</p>
+
+<p>
+  Subtraindo os dois lados:
+  <input onchange="check(this, 'ax')"> = <input onchange="check(this, '33x')"> ⇒
+  <input onchange="check(this, 'a')"> = <input onchange="check(this, '33')">
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> 36</div>
+<div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> 33</div>
+<div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> 27</div>
+<div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> 24</div>
+<div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> 21</div>
+
+<div id="message" class="feedback"></div>
+
+<script>
+  function check(input, correct) {
+    const value = input.value.trim().replace(/\s/g, '').toLowerCase();
+    const expected = typeof correct === 'string' ? correct.toLowerCase() : correct;
+
+    input.nextElementSibling?.remove();
+    if (value === expected.toString()) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  function checkAnswer(letter) {
+    const correct = 'B';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto! A área a ser comprada deve ser 33 ha para atingir o aumento de 15%.';
+      message.style.color = 'green';
+    } else {
+      message.textContent = `Errado. A alternativa ${letter} não é a correta.`;
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

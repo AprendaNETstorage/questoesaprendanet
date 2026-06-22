@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problema 21 — Termologia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Termologia</a>
+    <span class="spacer"></span>
+    <a href="questao_053.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">54/58</span>
+    <a href="questao_055.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Problema 21</h2>
+  <nav class="topnav">
+    
+    
+  </nav>
+
+  <h1>Problema 21</h1>
+  <div class="meta">Fonte: ENEM 2021</div>
+
+  <section class="enunciado">
+    <p>
+      O alcoômetro Gay Lussac é um instrumento destinado a medir o teor de álcool, em porcentagem de volume (v/v), de soluções de água e álcool. O funcionamento baseia-se no princípio de flutuabilidade de Arquimedes, semelhante a um densímetro.
+    </p>
+    <p>
+      A calibração é feita a 20 °C. Quando a medição ocorre a uma temperatura diferente, é necessário aplicar uma correção conforme a tabela a seguir:
+    </p>
+    <div class="imgwrap">
+    <img src="Tabela_alcool.png" alt="Tabela de correção do alcoômetro em diferentes temperaturas">
+    </div>
+    <p>
+      É necessária a correção da medida do instrumento, pois um aumento na temperatura promove:
+    </p>
+  </section>
+
+  <div class="solucao">Solução (interativa)</div>
+
+  <div class="step">
+    <div class="q">1) Que grandeza o alcoômetro mede diretamente?</div>
+    <div class="controls">
+      <input type="text" onchange="checkWord(this,'densidade|massa especifica')" placeholder="Digite sua resposta">
+      <div class="status" aria-live="polite"></div>
+      <button onclick="toggleHint(this)">Mostrar dica</button>
+      <div class="hint">O alcoômetro flutua mais ou menos conforme a densidade da solução.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="q">2) O que acontece com o volume da solução e do instrumento quando a temperatura aumenta?</div>
+    <div class="controls">
+      <input type="text" onchange="checkWord(this,'ambos aumentam|ambos se dilatam|dilatacao termica dos dois')" placeholder="Digite sua resposta">
+      <div class="status" aria-live="polite"></div>
+      <button onclick="toggleHint(this)">Mostrar dica</button>
+      <div class="hint">A variação térmica provoca dilatação tanto no líquido quanto no recipiente.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="q">3) O aumento da temperatura altera a densidade de que forma?</div>
+    <div class="controls">
+      <input type="text" onchange="checkWord(this,'diminui|menor|reduz')" placeholder="Digite sua resposta">
+      <div class="status" aria-live="polite"></div>
+      <button onclick="toggleHint(this)">Mostrar dica</button>
+      <div class="hint">Quando o volume aumenta e a massa é constante, a densidade tende a diminuir.</div>
+    </div>
+  </div>
+
+  <section class="options" aria-label="Alternativas">
+    <div class="opcao" onclick="checkAnswer('A')"><span class="circulo">A</span> aumento da dissociação da água.</div>
+    <div class="opcao" onclick="checkAnswer('B')"><span class="circulo">B</span> aumento da densidade da água e do álcool.</div>
+    <div class="opcao" onclick="checkAnswer('C')"><span class="circulo">C</span> diminuição do volume dos materiais por dilatação.</div>
+    <div class="opcao" onclick="checkAnswer('D')"><span class="circulo">D</span> aumento da concentração de álcool durante a medida.</div>
+    <div class="opcao" onclick="checkAnswer('E')"><span class="circulo">E</span> alteração das propriedades químicas entre álcool e água.</div>
+  </section>
+
+  <div style="margin-top:15px;">
+    <button onclick="checkAnswer('_force')">Confirmar escolha</button>
+    <div id="message" aria-live="polite"></div>
+  </div>
+
+  <script>
+    function normalize(str) {
+      return str.toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .trim();
+    }
+    function checkWord(input, patterns) {
+      const val = normalize(input.value);
+      const list = patterns.split('|').map(normalize);
+      const ok = list.includes(val);
+      const st = input.parentElement.querySelector('.status');
+      if (ok) {
+        input.className = 'ok';
+        st.textContent = '✅ Correto';
+        st.className = 'status ok';
+      } else {
+        input.className = 'bad';
+        st.textContent = '❌ Verifique';
+        st.className = 'status bad';
+      }
+    }
+    function toggleHint(btn) {
+      const hint = btn.parentElement.querySelector('.hint');
+      hint.style.display = hint.style.display === 'block' ? 'none' : 'block';
+      btn.textContent = hint.style.display === 'block' ? 'Ocultar dica' : 'Mostrar dica';
+    }
+    const correct = 'C';
+    let lastChoice = null;
+    document.querySelectorAll('.option').forEach(o => {
+      o.addEventListener('click', () => {
+        document.querySelectorAll('.option').forEach(e => e.style.borderColor = '#e5e7eb');
+        o.style.borderColor = '#94a3b8';
+        lastChoice = o.querySelector('.circle').textContent.trim();
+      });
+    });
+    function checkAnswer(x) {
+      const chosen = x !== '_force' ? x : lastChoice;
+      const msg = document.getElementById('message');
+      if (!chosen) { msg.textContent = 'Selecione uma alternativa.'; msg.className = ''; return; }
+      if (chosen === correct) { msg.textContent = 'Correto!'; msg.className = 'ok'; }
+      else { msg.textContent = 'Errado. Tente novamente.'; msg.className = 'bad'; }
+    }
+  </script>
+</div>
+</body>
+</html>

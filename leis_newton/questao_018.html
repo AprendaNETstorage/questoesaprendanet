@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 26 — Leis de Newton</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Leis de Newton</a>
+    <span class="spacer"></span>
+    <a href="questao_017.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">18/25</span>
+    <a href="questao_019.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 26</h2>
+  <h3>Problema 26:</h3>
+
+<!-- ENUNCIADO IDÊNTICO -->
+<p>Em um experimento realizado para determinar a densidade da água de um lago, foram utilizados alguns materiais, conforme ilustrado: um dinamômetro D com graduação de 0 N a 50 N e um cubo maciço e homogêneo de 10 cm de aresta e 3 kg de massa. Inicialmente, foi conferida a calibração do dinamômetro, constatando-se a leitura de 30 N quando o cubo era preso ao dinamômetro e suspenso no ar. Ao mergulhar o cubo na água do lago, até que 1/2 do seu volume ficasse submerso, foi registrada a leitura de 24 N no dinamômetro.</p>
+
+<div class="imgwrap">
+  <!-- (opcional) adicione a figura do enunciado na mesma pasta e troque o src) -->
+  <img src="q26_fig.png" alt="Cubo preso ao dinamômetro, metade submerso">
+</div>
+
+<p>Considerando que a aceleração da gravidade local é 10 m/s², a densidade da água do lago, em g/cm³, é</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Peso e empuxo:</strong></p>
+<p>
+  Peso do cubo (no ar): <input onchange="checkExpr(this,'30|3*10')"> N.
+  Tensão no dinamômetro na água (metade submerso): <input onchange="checkExpr(this,'24')"> N.
+</p>
+<p>
+  Empuxo = P − T = <input onchange="checkExpr(this,'30-24|6')"> N.
+</p>
+
+<p><strong>2) Volume do cubo e volume submerso:</strong></p>
+<p>
+  Aresta a = <input onchange="checkExpr(this,'10|0.1*100')"> cm = <input onchange="checkExpr(this,'0.1')"> m,
+  V<sub>cubo</sub> = a³ = <input onchange="checkExpr(this,'0.1^3|1e-3|0.001')"> m³.
+</p>
+<p>
+  Como metade está submersa: V<sub>sub</sub> = <input onchange="checkExpr(this,'0.5*1e-3|5e-4|0.0005')"> m³.
+</p>
+
+<p><strong>3) Densidade da água (SI):</strong></p>
+<p>
+  ρ = E / (g · V<sub>sub</sub>) = <input onchange="checkExpr(this,'6/(10*5e-4)|1200')"> kg/m³.
+</p>
+
+<p><strong>4) Conversão para g/cm³:</strong>
+  <br>1 g/cm³ = 1000 kg/m³ ⇒ ρ =
+  <input onchange="checkExpr(this,'1200/1000|1.2')"> g/cm³.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  0,6
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  1,2
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  1,5
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  2,4
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  4,8
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // --- utilitários: aceita vírgula/ponto e expressões simples ---
+  function safeEval(expr) {
+    const cleaned = String(expr).replace(/\s/g, '');
+    if (!/^[0-9eE+\-*/().,×^]+$/.test(cleaned)) return null;
+    const norm = cleaned.replace(/,/g,'.').replace(/×/g,'*').replace(/\^/g,'**');
+    try {
+      const val = Function('"use strict"; return (' + norm + ');')();
+      return (typeof val === 'number' && Number.isFinite(val)) ? val : null;
+    } catch { return null; }
+  }
+  function nearlyEqual(a,b,eps=1e-3){ return Math.abs(a-b) <= eps*Math.max(1,Math.abs(a),Math.abs(b)); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkExpr(input, expectedExprs){
+    const val = safeEval(input.value.trim());
+    const targets = expectedExprs.split('|').map(e => safeEval(e));
+    const ok = (val !== null) && targets.some(t => t !== null && nearlyEqual(val, t));
+    paint(input, ok);
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'B';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

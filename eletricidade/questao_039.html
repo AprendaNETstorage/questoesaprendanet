@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 57 — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_038.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">39/81</span>
+    <a href="questao_040.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 57</h2>
+  <h3>Problema 57:</h3>
+
+<p><strong>59. (ENEM – "sorvete" de resistores)</strong></p>
+
+<p>
+Por apresentar resistividade elétrica significativa, o grafite pode ser usado para simular resistores
+em circuitos desenhados no papel, com o uso de lápis. Dependendo do tipo de lápis e do comprimento
+dos traços, pode-se determinar a resistência elétrica de cada trecho do circuito. No esquema,
+foram utilizados três tipos de lápis diferentes (2H, HB e 6B) para produzir três traços distintos.
+</p>
+
+<figure>
+  <img src="questao57_tracos.png"
+       alt="Três traços em forma de zig-zag identificados como 2H, HB e 6B, representando resistores de grafite." />
+  <figcaption>Figura 1 – Traços de grafite com lápis 2H, HB e 6B simulando resistores.</figcaption>
+</figure>
+
+<figure>
+  <img src="questao57_circuito.png"
+       alt="Circuito em forma de sorvete de casquinha com resistores de 10 ohms, 20 ohms e 5 ohms ligados entre os pontos A, B e C." />
+  <figcaption>Figura 2 – Circuito em forma de "sorvete" com resistores de 10 Ω, 20 Ω e 5 Ω entre os pontos A, B e C.</figcaption>
+</figure>
+
+<p>
+Munido dessas informações, um estudante desenhou sobre uma folha de papel o circuito mostrado na Figura 2,
+utilizando os três tipos de traços de grafite. As resistências (R), medidas com um ohmímetro ligado entre
+as extremidades dos traços, foram obtidas de modo que o circuito equivale a resistores de 10&nbsp;Ω,
+20&nbsp;Ω e 5&nbsp;Ω, como indicado. Em seguida, o estudante conectou o ohmímetro nos terminais A e B
+obtendo a leitura R<sub>AB</sub>, e depois entre B e C obtendo R<sub>BC</sub>. Ao estabelecer a razão
+R<sub>AB</sub>/R<sub>BC</sub>, que resultado ele obteve?
+</p>
+
+<ol type="A">
+  <li>1</li>
+  <li><sup>7</sup>/<sub>4</sub></li>
+  <li><sup>10</sup>/<sub>27</sub></li>
+  <li><sup>14</sup>/<sub>81</sub></li>
+  <li><sup>4</sup>/<sub>81</sub></li>
+</ol>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Resistência equivalente entre A e B.</strong><br>
+Entre A e B há três ramos em paralelo:
+dois resistores de 10&nbsp;Ω em série (equivalendo a 20&nbsp;Ω), um resistor de 20&nbsp;Ω e um de 5&nbsp;Ω.
+No paralelo, todos os ramos têm
+<input onchange="checkWord(this,'mesma tensao|mesma diferença de potencial|mesma ddp')">
+.</p>
+
+<p>
+A resistência equivalente R<sub>AB</sub> é:
+<br>
+1/R<sub>AB</sub> = 1/20 + 1/20 + 1/5.
+<br>
+1/R<sub>AB</sub> = <input onchange="checkExpr(this,'6/20|3/10|0.3')"> (em 1/Ω) ⇒
+R<sub>AB</sub> ≈ <input onchange="checkExpr(this,'10/3|3.33')"> Ω.
+</p>
+
+<p><strong>2) Resistência equivalente entre B e C.</strong><br>
+Entre B e C, primeiro os resistores de 20&nbsp;Ω e 5&nbsp;Ω estão em paralelo:
+<br>
+1/R<sub>p</sub> = 1/20 + 1/5 ⇒ R<sub>p</sub> =
+<input onchange="checkExpr(this,'4')"> Ω.
+</p>
+
+<p>
+Esse R<sub>p</sub> de 4&nbsp;Ω está em série com dois resistores de 10&nbsp;Ω, totalizando
+<input onchange="checkExpr(this,'14')"> Ω, e esse conjunto fica em paralelo com outro
+resistor de 10&nbsp;Ω. Então:
+<br>
+1/R<sub>BC</sub> = 1/10 + 1/14 ⇒ R<sub>BC</sub> ≈
+<input onchange="checkExpr(this,'35/6|5.833')"> Ω.
+</p>
+
+<p><strong>3) Razão pedida.</strong><br>
+R<sub>AB</sub>/R<sub>BC</sub> =
+<input onchange="checkExpr(this,'(10/3)/(35/6)|4/7|0.571')">.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  1
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  7/4
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  10/27
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  14/81
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  4/81
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // -------- helpers (aceita vírgula/ponto e expressões simples) --------
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function safeEval(expr){
+    const cleaned = String(expr).replace(/\s/g,'');
+    if(!/^[0-9eE+\-*/().,×^]+$/.test(cleaned)) return null;
+    const norm = cleaned.replace(/,/g,'.').replace(/×/g,'*').replace(/\^/g,'**');
+    try{
+      const v = Function('"use strict"; return ('+norm+');')();
+      return (typeof v === 'number' && Number.isFinite(v)) ? v : null;
+    }catch{ return null; }
+  }
+  function nearlyEqual(a,b,eps=1e-3){
+    return Math.abs(a-b) <= eps * Math.max(1, Math.abs(a), Math.abs(b));
+  }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+  function checkExpr(input, expectedExprs){
+    const val = safeEval(input.value.trim());
+    const targets = expectedExprs.split('|').map(e => safeEval(e));
+    const ok = (val !== null) && targets.some(t => t !== null && nearlyEqual(val, t));
+    paint(input, ok);
+  }
+
+  // gabarito apenas aqui (razão correta é 4/7; no enunciado original isso corresponde à alternativa B)
+  function checkAnswer(letter){
+    const correct = 'B';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto! A razão R_AB / R_BC é 4/7.';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Refaça as equivalências em série e paralelo e calcule a razão novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

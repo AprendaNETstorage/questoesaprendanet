@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física - Lista 03 — Problema 58 — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_050.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">51/71</span>
+    <a href="questao_052.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física - Lista 03 — Problema 58</h2>
+  <h3>Problema 58:</h3>
+
+<p><strong>91. (Enem 2011)</strong></p>
+<p>
+O processo de interpretação de imagens capturadas por sensores instalados a bordo
+de satélites que imageiam determinadas faixas ou bandas do espectro de radiação
+eletromagnética (REM) baseia-se na interação dessa radiação com os objetos presentes
+sobre a superfície terrestre. Uma das formas de avaliar essa interação é por meio
+da quantidade de energia refletida pelos objetos. A relação entre a reflectância
+de um dado objeto e o comprimento de onda da REM é conhecida como curva de
+comportamento espectral ou assinatura espectral do objeto, como mostrado na figura,
+para objetos comuns na superfície terrestre.
+
+</p>
+<figure>
+  <img src="/imagem/questao_91.png" alt="Enunciado/ilustração da questão 51">
+  <figcaption></figcaption>
+</figure>
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Regra de ouro:</strong></p>
+<p>
+Para discriminar materiais no gráfico, a melhor faixa é onde as curvas estão
+<input id="rule" placeholder="digite aqui (ex.: bem separadas)">
+entre si. <small>(escreva em palavras)</small>
+</p>
+
+<p><strong>Agora marque a alternativa com a melhor faixa de comprimentos de onda (µm):</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  0,4 a 0,5
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  0,5 a 0,6
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  0,6 a 0,7
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  0,7 a 0,8
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  0,8 a 0,9
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<details>
+  <summary>💡 Quer uma explicação rápida?</summary>
+  <p>
+  No trecho entre <strong>0,8 µm e 0,9 µm</strong> (infravermelho próximo) as curvas de grama, solo,
+  concreto e asfalto ficam mais afastadas umas das outras, o que maximiza a diferença de
+  refletância entre os materiais e facilita a identificação na imagem.
+  </p>
+</details>
+
+<script>
+  // marca o campo 1 como ok se o aluno escrever algo tipo "separadas/afastadas/maior diferença"
+  function normalize(s){ return (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase(); }
+  const rule = document.getElementById('rule');
+  rule.addEventListener('change', () => {
+    const t = normalize(rule.value);
+    const ok = /(separad|afastad|distant|diferenc[a|e] maior|bem longe)/.test(t);
+    paint(rule, ok);
+  });
+
+  function paint(el, ok){
+    if (el.nextElementSibling && el.nextElementSibling.classList.contains('feedback')){
+      el.nextElementSibling.remove();
+    }
+    el.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    el.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+
+  // gabarito interno
+  function checkAnswer(letter){
+    const correct = 'E';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto! Essa faixa é onde as curvas estão mais afastadas.';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Não foi essa. Observe onde as curvas mais se separam no gráfico e tente de novo.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

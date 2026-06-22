@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Questão 22 — Física (Geral)</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Física (Geral)</a>
+    <span class="spacer"></span>
+    <a href="questao_017.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">18/23</span>
+    <a href="questao_019.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Questão 22</h2>
+  <h3>Problema 22:</h3>
+  <p>
+    Uma empresa de comunicação tem a tarefa de elaborar um material publicitário de um estaleiro para divulgar um novo navio equipado com um guindaste de 15 m de altura e uma esteira de 90 m de comprimento. No desenho desse navio, a representação do guindaste deve ter sua altura entre 0,5 cm e 1 cm, enquanto a esteira deve apresentar comprimento superior a 4 cm. Todo o desenho deverá ser feito em uma escala 1 : X.
+  </p>
+
+  <p>
+    <strong>Os valores possíveis para X são, apenas:</strong>
+  </p>
+
+  <h4>Solução:</h4>
+
+  <p>
+    A escala é do tipo \( 1 : X \), ou seja: 
+    <br>
+    \( \text{medida no desenho} = \frac{\text{medida real}}{X} \)
+  </p>
+
+  <p><strong>1. Guindaste:</strong></p>
+  <ul>
+    <li>Altura real: 15 m = <input onchange="check(this, '1500')"> cm</li>
+    <li>Altura no desenho entre 0,5 e 1 cm: \( 0,5 \leq \frac{1500}{X} \leq 1 \)</li>
+    <li>Multiplicando: <input onchange="check(this, '1500')"> ÷ <input onchange="check(this, '0.5')"> = <input onchange="check(this, '3000')"> e <input onchange="check(this, '1500')"> ÷ <input onchange="check(this, '1')"> = <input onchange="check(this, '1500')"></li>
+    <li>Portanto: \( 1500 < X < 3000 \)</li>
+  </ul>
+
+  <p><strong>2. Esteira:</strong></p>
+  <ul>
+    <li>Comprimento real: 90 m = <input onchange="check(this, '9000')"> cm</li>
+    <li>No desenho: \( \frac{9000}{X} > 4 \) ⇒ \( X < \) <input onchange="check(this, '2250')"></li>
+  </ul>
+
+  <p>
+    <strong>Condição final:</strong> 
+    <br>
+    \( 1500 < X < \) <input onchange="check(this, '2250')">
+  </p>
+
+  <p><strong>Resposta correta:</strong></p>
+
+  <div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> X &gt; 1500</div>
+  <div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> X &lt; 3 000</div>
+  <div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> 1 500 &lt; X &lt; 2 250</div>
+  <div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> 1 500 &lt; X &lt; 3 000</div>
+  <div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> 2 250 &lt; X &lt; 3 000</div>
+
+  <div id="message" class="feedback"></div>
+
+  <script>
+    function check(input, correct) {
+      const value = input.value.trim().replace(',', '.');
+      input.nextElementSibling?.remove();
+      if (parseFloat(value) === parseFloat(correct)) {
+        input.style.backgroundColor = "#c6f6c6";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+      } else {
+        input.style.backgroundColor = "#fdd";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+      }
+    }
+
+    function checkAnswer(letter) {
+      const correct = 'C';
+      const message = document.getElementById('message');
+      if (letter === correct) {
+        message.textContent = 'Correto! Os valores possíveis para X estão entre 1500 e 2250.';
+        message.style.color = 'green';
+      } else {
+        message.textContent = `Errado. A alternativa ${letter} não é a correta.`;
+        message.style.color = 'red';
+      }
+    }
+  </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 08 — Cinemática</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Cinemática</a>
+    <span class="spacer"></span>
+    <a href="questao_019.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">20/35</span>
+    <a href="questao_021.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 08</h2>
+  <h3>Problema 08:</h3>
+
+<!-- ENUNCIADO IDÊNTICO -->
+<p><strong>(Enem 2012)</strong> Uma empresa de transportes precisa efetuar a entrega de uma encomenda o mais breve possível. Para tanto, a equipe de logística analisa o trajeto desde a empresa até o local da entrega. Ela verifica que o trajeto apresenta dois trechos de distâncias diferentes e velocidades máximas permitidas diferentes. No primeiro trecho, a velocidade máxima permitida é de 80 km/h e a distância a ser percorrida é de 80 km. No segundo trecho, cujo comprimento vale 60 km, a velocidade máxima permitida é 120 km/h.</p>
+
+<p>Supondo que as condições de trânsito sejam favoráveis para que o veículo da empresa ande continuamente na velocidade máxima permitida, qual será o tempo necessário, em horas, para a realização da entrega?</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Tempo no trecho 1:</strong> t<sub>1</sub> = d<sub>1</sub> / v<sub>1</sub> =
+  <input onchange="check(this,'80')"> ÷ <input onchange="check(this,'80')"> =
+  <input onchange="check(this,'1')"> h
+</p>
+
+<p><strong>2) Tempo no trecho 2:</strong> t<sub>2</sub> = d<sub>2</sub> / v<sub>2</sub> =
+  <input onchange="check(this,'60')"> ÷ <input onchange="check(this,'120')"> =
+  <input onchange="check(this,'0.5')"> h
+</p>
+
+<p><strong>3) Tempo total:</strong>
+  t = t<sub>1</sub> + t<sub>2</sub> =
+  <input onchange="check(this,'1')"> + <input onchange="check(this,'0.5')"> =
+  <input onchange="check(this,'1.5')"> h
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  0,7
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  1,4
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  1,5
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  2,0
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  3,0
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // Aceita vírgula/ponto e expressões (ex.: 60/120)
+  function safeEval(expr) {
+    const cleaned = String(expr).replace(/\s/g, '');
+    if (!/^[0-9+\-*/().,]+$/.test(cleaned)) return null;
+    const withDot = cleaned.replace(/,/g, '.');
+    try {
+      const val = Function('"use strict"; return (' + withDot + ');')();
+      return (typeof val === 'number' && Number.isFinite(val)) ? val : null;
+    } catch { return null; }
+  }
+  function nearlyEqual(a, b, eps = 1e-3) {
+    return Math.abs(a - b) <= eps * Math.max(1, Math.abs(a), Math.abs(b));
+  }
+  function check(input, correct) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const raw = input.value.trim();
+    if (raw === '') { input.style.backgroundColor = ''; return; }
+
+    const norm = raw.replace(/\s/g, '');
+    const expected = String(correct);
+
+    // alvo numérico
+    let target = Number(expected);
+    if (Number.isNaN(target)) target = safeEval(expected);
+
+    const parsedUser = safeEval(norm);
+    let ok = false;
+    if (parsedUser !== null && target !== null) {
+      ok = nearlyEqual(parsedUser, target);
+    } else {
+      ok = norm.toLowerCase() === expected.toLowerCase();
+    }
+
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  function checkAnswer(letter) {
+    const correct = 'C';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

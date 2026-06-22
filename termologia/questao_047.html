@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Termologia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Termologia</a>
+    <span class="spacer"></span>
+    <a href="questao_046.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">47/58</span>
+    <a href="questao_048.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03</h2>
+  <h3>Problema 14:</h3>
+
+<p>
+  Para fazer um novo aterramento, essa pessoa utilizou uma barra com a mesma densidade, mas com o dobro da massa e o dobro do diâmetro em relação à usada no chuveiro.
+</p>
+<p>
+  A densidade é dada por \( \rho = \frac{m}{V} \) e o volume da barra cilíndrica é \( V = \pi R^2 h \).
+</p>
+<p><strong>Qual a relação da altura da barra utilizada no novo aterramento comparada àquela utilizada no aterramento do chuveiro?</strong></p>
+
+<h4>Solução:</h4>
+
+<p><strong>Sabemos que:</strong></p>
+<ul>
+  <li>Densidade: \( \rho = \frac{m}{\pi R^2 h} \)</li>
+</ul>
+
+<p><strong>Barra original:</strong></p>
+<ul>
+  <li>massa = \( m \)</li>
+  <li>raio = \( R \)</li>
+  <li>altura = \( h \)</li>
+</ul>
+<p>
+  \( m = \rho \cdot \pi \cdot R^2 \cdot h \)
+</p>
+
+<p><strong>Nova barra:</strong></p>
+<ul>
+  <li>massa = <input onchange="check(this, '2m')"> </li>
+  <li>raio = <input onchange="check(this, '2R')"> </li>
+  <li>altura = <input onchange="check(this, 'h\'')"> </li>
+</ul>
+
+<p>
+  Substituindo na fórmula:<br>
+  \( 2m = \rho \cdot \pi \cdot (2R)^2 \cdot ") <input onchange="check(this, 'h\'')"> 
+</p>
+
+<p>
+  Desenvolvendo:<br>
+  \( 2m = \rho \cdot \pi \cdot 4R^2 \cdot h' \Rightarrow \) = 4 \( \rho \cdot \pi R^2 \cdot ") <input onchange="check(this, 'h\'')">
+</p>
+
+<p>
+  Agora comparamos com a expressão \( m = \rho \cdot \pi R^2 h \) multiplicada por 2:<br>
+  \( 2m = 2 \cdot \rho \cdot \pi R^2 \cdot h \)
+</p>
+
+<p>
+  Igualando: \( 2 \cdot \rho \cdot \pi R^2 \cdot h = 4 \cdot \rho \cdot \pi R^2 \cdot ") <input onchange="check(this, 'h\'')">
+</p>
+<p>
+  Cancelando: \( 2h = 4h' \Rightarrow h' = ") <input onchange="check(this, 'h/2')">
+</p>
+
+<h4>Assinale a alternativa correta:</h4>
+<div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> Quarta parte</div>
+<div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> Metade</div>
+<div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> Igual</div>
+<div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> Dobro</div>
+<div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> Quádruplo</div>
+
+<div id="message" class="feedback"></div>
+
+<script>
+  function check(input, correct) {
+    const value = input.value.trim().replaceAll(' ', '').toLowerCase();
+    const expected = correct.toLowerCase();
+    input.nextElementSibling?.remove();
+    if (value === expected) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  function checkAnswer(letter) {
+    const correct = 'B';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto! A nova barra tem metade da altura da original.';
+      message.style.color = 'green';
+    } else {
+      message.textContent = `Errado. A alternativa ${letter} não é a correta.`;
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 27 (ENEM 2020 — Q133) — Termologia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Termologia</a>
+    <span class="spacer"></span>
+    <a href="questao_013.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">14/58</span>
+    <a href="questao_015.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 27 (ENEM 2020 — Q133)</h2>
+  <h3>Problema 27:</h3>
+<p><strong>Enem 2020</strong></p>
+
+<p><strong>Questão 133 – Ciências da Natureza e suas Tecnologias</strong></p>
+
+<p>
+O leite UHT é aquecido rapidamente sob alta pressão e, em seguida, resfriado de modo abrupto por redução súbita da pressão, fazendo com que parte da água evapore e a temperatura caia. Qual é o processo termodinâmico que explica essa redução rápida de temperatura?
+</p>
+
+<!-- Resolução (apenas posicionada antes das alternativas) -->
+<h4>Resolução (interativa):</h4>
+
+<p><strong>1) A queda brusca de pressão favorece a mudança de fase da água para:</strong>
+  <input onchange="checkWord(this,'vapor|fase gasosa|evaporacao|evaporação')">
+</p>
+
+<p><strong>2) A energia necessária para essa mudança é o:</strong>
+  <input onchange="checkWord(this,'calor latente de vaporizacao|calor latente|vaporizacao|vaporização')">
+</p>
+
+<p><strong>3) Essa energia é retirada do próprio leite, causando:</strong>
+  <input onchange="checkWord(this,'resfriamento|queda de temperatura|arrefecimento')">
+</p>
+
+<!-- ALTERNATIVAS -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('A')" onkeydown="if(event.key==='Enter')checkAnswer('A')">
+  <span class="circulo">A</span> convecção induzida pelo movimento de bolhas de vapor de água.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('B')" onkeydown="if(event.key==='Enter')checkAnswer('B')">
+  <span class="circulo">B</span> emissão de radiação térmica durante a liberação de vapor de água.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('C')" onkeydown="if(event.key==='Enter')checkAnswer('C')">
+  <span class="circulo">C</span> expansão livre do vapor de água liberado pelo leite no resfriamento.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('D')" onkeydown="if(event.key==='Enter')checkAnswer('D')">
+  <span class="circulo">D</span> conversão de energia térmica em energia química pelas moléculas orgânicas.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('E')" onkeydown="if(event.key==='Enter')checkAnswer('E')">
+  <span class="circulo">E</span> transferência de energia térmica durante a vaporização da água presente no leite.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização e marcação ✅/❌ nos inputs
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito (sem dica ao errar)
+  const CORRECT = 'E';
+  function checkAnswer(letter){
+    const message = document.getElementById('message');
+    if (letter === CORRECT){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

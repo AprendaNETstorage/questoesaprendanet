@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 20 (ENEM 2020 — Q99) — Cinemática</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Cinemática</a>
+    <span class="spacer"></span>
+    <a href="questao_009.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">10/35</span>
+    <a href="questao_011.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 20 (ENEM 2020 — Q99)</h2>
+  <h3>Problema 20:</h3>
+<p><strong>Enem 2020</strong></p>
+
+<p><strong>Questão 99 – Ciências da Natureza e suas Tecnologias</strong></p>
+
+<p>
+A resolução de um instrumento de medição é definida como a menor variação de uma grandeza que pode ser medida. O paquímetro é um instrumento de medição de grandezas de comprimento linear. Um fabricante de componentes para portões eletrônicos produz eixos com diâmetros diferentes e possui paquímetros com resoluções de 0,02 mm (paquímetro A) e 0,05 mm (paquímetro B). Um funcionário dessa empresa mediu um eixo com diâmetro nominal de 11,0 mm com o uso do paquímetro A, e outro eixo com diâmetro nominal de 12,5 mm com o paquímetro B. Quais são as possíveis leituras obtidas com o uso dos paquímetros A e B, em milímetro, respectivamente?
+</p>
+
+<!-- Resolução apenas posicionada antes das alternativas (sem bloqueio) -->
+<h4>Resolução (interativa):</h4>
+
+<p><strong>1) Definição de resolução (o que o instrumento consegue "enxergar"):</strong>
+  <input onchange="checkWord(this,'menor variacao|menor variação|menor incremento|passo de medida|menor grandeza mensuravel|menor grandeza mensurável')">
+</p>
+
+<p><strong>2) Paquímetro A (0,02 mm): leituras são múltiplos de 0,02. A mais próxima de 11,00 mm acima é:</strong>
+  <input onchange="checkWord(this,'11,02|11.02')">
+</p>
+
+<p><strong>3) Paquímetro B (0,05 mm): leituras são múltiplos de 0,05. A imediatamente superior a 12,50 mm é:</strong>
+  <input onchange="checkWord(this,'12,55|12.55')">
+</p>
+
+<!-- ALTERNATIVAS CLICÁVEIS -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('A')" onkeydown="if(event.key==='Enter')checkAnswer('A')">
+  <span class="circulo">A</span> 11,01 e 12,50.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('B')" onkeydown="if(event.key==='Enter')checkAnswer('B')">
+  <span class="circulo">B</span> 11,02 e 12,51.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('C')" onkeydown="if(event.key==='Enter')checkAnswer('C')">
+  <span class="circulo">C</span> 11,02 e 12,55.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('D')" onkeydown="if(event.key==='Enter')checkAnswer('D')">
+  <span class="circulo">D</span> 11,10 e 12,50.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('E')" onkeydown="if(event.key==='Enter')checkAnswer('E')">
+  <span class="circulo">E</span> 11,06 e 12,54.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização e marcação ✅/❌ nos inputs
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito simples (sem dica ao errar)
+  const CORRECT = 'C';
+  function checkAnswer(letter){
+    const message = document.getElementById('message');
+    if (letter === CORRECT){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

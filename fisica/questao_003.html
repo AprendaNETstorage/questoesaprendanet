@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Física (Geral)</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Física (Geral)</a>
+    <span class="spacer"></span>
+    <a href="questao_002.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">3/23</span>
+    <a href="questao_004.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03</h2>
+  <p>
+  <a href="index.html">🔹 Ir para Problema 01</a> |
+  
+</p>
+
+<h2>Problema 02</h2>
+
+<p>
+  Numa tarefa escolar, um aluno precisava fazer a planta baixa de sua casa em uma escala 1:40.  
+  Ele verificou que a base da casa era retangular, tendo 12 metros de comprimento e 8 metros de largura.  
+  O aluno foi a uma papelaria e lá observou que havia cinco tipos de folhas de papel, todas com diferentes dimensões.  
+  O quadro contém os cinco tipos de folhas, com seus comprimentos e larguras fornecidos em centímetro.  
+  O aluno analisou os cinco tipos de folha e comprovou que as possuía as dimensões mínimas necessárias para que ele fizesse a planta de sua casa na escala desejada,  
+  deixando exatamente 2 centímetros de margem em cada um dos quatro lados da folha.
+</p>
+
+<table>
+  <tr>
+    <th>Folha de papel</th>
+    <th>Comprimento</th>
+    <th>Largura</th>
+  </tr>
+  <tr>
+    <td>Tipo I</td>
+    <td>18</td>
+    <td>16</td>
+  </tr>
+  <tr>
+    <td>Tipo II</td>
+    <td>30</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Tipo III</td>
+    <td>32</td>
+    <td>22</td>
+  </tr>
+  <tr>
+    <td>Tipo IV</td>
+    <td>34</td>
+    <td>24</td>
+  </tr>
+  <tr>
+    <td>Tipo V</td>
+    <td>48</td>
+    <td>32</td>
+  </tr>
+</table>
+
+<h2>Solução do problema 02:</h2>
+<p>Preencha as lacunas corretamente para resolver o problema.</p>
+
+<p>
+  A casa mede 
+  <input onchange="check(this, 12)"> m × 
+  <input onchange="check(this, 8)"> m, e a escala é 1 : 
+  <input onchange="check(this, 40)">. Assim:
+</p>
+
+<p>
+  <input onchange="check(this, 12)"> ÷ 
+  <input onchange="check(this, 40)"> = 
+  <input onchange="check(this, 0.3)"> m = 
+  <input onchange="check(this, 30)"> cm, &nbsp;&nbsp;
+  <input onchange="check(this, 8)"> ÷ 
+  <input onchange="check(this, 40)"> = 
+  <input onchange="check(this, 0.2)"> m = 
+  <input onchange="check(this, 20)"> cm
+</p>
+
+<p>
+  Precisamos deixar margem de 
+  <input onchange="check(this, 2)"> cm em cada lado, ou seja:
+</p>
+
+<p>
+  <input onchange="check(this, 30)"> + 
+  <input onchange="check(this, 4)"> = 
+  <input onchange="check(this, 34)"> cm, &nbsp;&nbsp;
+  <input onchange="check(this, 20)"> + 
+  <input onchange="check(this, 4)"> = 
+  <input onchange="check(this, 24)"> cm
+</p>
+
+<p>
+  A menor folha que comporta 
+  <input onchange="check(this, 34)"> × 
+  <input onchange="check(this, 24)"> cm é a 
+  <input onchange="checkText(this, ['Tipo IV', 'IV', 'D'])">. As demais são pequenas.
+</p>
+
+<p>
+  A folha escolhida pelo aluno foi a de tipo:
+</p>
+
+<div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> I</div>
+<div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> II</div>
+<div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> III</div>
+<div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> IV</div>
+<div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> V</div>
+
+<div id="message" class="feedback"></div>
+
+<script>
+  function check(input, correct) {
+  const value = input.value.trim().replace(',', '.');
+
+  // Remove qualquer feedback anterior próximo
+  const next = input.nextElementSibling;
+  if (next && next.classList.contains("feedback")) next.remove();
+
+  if (Number(value) === correct) {
+    input.style.backgroundColor = "#c6f6c6";
+    input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+  } else {
+    input.style.backgroundColor = "#fdd";
+    input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+  }
+}
+
+  function checkText(input, expectedList) {
+    const userText = input.value.trim().toLowerCase();
+    const isCorrect = expectedList.some(expected => userText === expected.trim().toLowerCase());
+
+    input.nextElementSibling?.remove();
+    if (isCorrect) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  function checkAnswer(letter) {
+    const correct = 'D';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto! A folha Tipo IV é a menor que comporta as dimensões da planta com margens.';
+      message.style.color = 'green';
+    } else {
+      message.textContent = `Errado. A alternativa ${letter} não é a menor folha adequada.`;
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

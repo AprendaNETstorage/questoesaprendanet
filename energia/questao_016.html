@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 19 — Energia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Energia</a>
+    <span class="spacer"></span>
+    <a href="questao_015.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">16/33</span>
+    <a href="questao_017.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 19</h2>
+  <h3>Problema 19:</h3>
+
+<!-- ENUNCIADO IDÊNTICO -->
+<p><strong>32. (Enem 2010)</strong></p>
+<p>Deseja-se instalar uma estação de geração de energia elétrica em um município localizado no interior de um pequeno vale cercado de altas montanhas de difícil acesso. A cidade é cruzada por um rio, que é fonte de água para consumo, irrigação das lavouras de subsistência e pesca. Na região, que possui pequena extensão territorial, a incidência solar é alta o ano todo. A estação em questão irá abastecer apenas o município apresentado.</p>
+
+<p>Qual forma de obtenção de energia, entre as apresentadas, é a mais indicada para ser implantada nesse município de modo a causar o menor impacto ambiental?</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Critério principal do problema:</strong>
+  escolher a opção com <input onchange="checkWord(this,'menor impacto ambiental|baixo impacto|pouca interferencia')">.
+</p>
+
+<p><strong>2) Informações-chave do local:</strong></p>
+<p>• Área pequena e vale com montanhas ⇒ evitar grandes obras que exijam
+  <input onchange="checkWord(this,'reservatorio|barragem|grandes areas alagadas|muita terra')">.
+</p>
+<p>• Rio é usado para consumo/irrigação/pesca ⇒ preferível não
+  <input onchange="checkWord(this,'comprometer a vazao do rio|alterar o rio|dependencia grande de agua')">.
+</p>
+<p>• Incidência solar é
+  <input onchange="checkWord(this,'alta o ano todo|elevada|constante')"> e a demanda é só local.</p>
+
+<p><strong>3) Conclusão guiada:</strong> tecnologia que aproveita diretamente essa disponibilidade local, sem combustão, sem barragens e com instalação modular é a
+  <input onchange="checkWord(this,'fotovoltaica|painel solar|solar')">.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  Termelétrica, pois é possível utilizar a água do rio no sistema de refrigeração.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  Eólica, pois a geografia do local é própria para a captação desse tipo de energia.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  Nuclear, pois o modo de resfriamento de seus sistemas não afetaria a população.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  Fotovoltaica, pois é possível aproveitar a energia solar que chega à superfície do local.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  Hidrelétrica, pois o rio que corta o município é suficiente para abastecer a usina construída.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // --- validação por palavras-chave (flexível, sem LaTeX) ---
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter) {
+    const correct = 'D';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

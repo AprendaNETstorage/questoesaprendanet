@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 10 — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <span style="opacity:.4">&laquo; Anterior</span>
+    <span style="font-size:13px;color:#666">1/71</span>
+    <a href="questao_002.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 10</h2>
+  <h3>Problema 10:</h3>
+
+<!-- ENUNCIADO IDÊNTICO -->
+<p><strong>69. (Enem PPL 2014)</strong></p>
+<p>O sonar é um equipamento eletrônico que permite a localização de objetos e a medida de distâncias no fundo do mar, pela emissão de sinais sônicos e ultrassônicos e a recepção dos respectivos ecos. O fenômeno do eco corresponde à reflexão de uma onda sonora por um objeto, a qual volta ao receptor pouco tempo depois de o som ser emitido. No caso do ser humano, o ouvido é capaz de distinguir sons separados por, no mínimo, 0,1 segundo.</p>
+<p>Considerando uma condição em que a velocidade do som no ar é 340 m/s, qual é a distância mínima a que uma pessoa deve estar de um anteparo refletor para que se possa distinguir o eco do som emitido?</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Dados do problema</strong></p>
+<p>
+  Velocidade do som <em>v</em> = <input onchange="checkExpr(this,'340')"> m/s &nbsp; | &nbsp;
+  Intervalo mínimo distinguível Δt = <input onchange="checkExpr(this,'0.1|0,1')"> s
+</p>
+
+<p><strong>2) Eco = ida e volta</strong> <small>(o som percorre 2d nesse tempo)</small></p>
+<p>
+  Relação: 2d = v · Δt → d =
+  <input onchange="checkExpr(this,'340*0.1/2|340*0,1/2|17')"> m
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  17 m
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  34 m
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  68 m
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  1 700 m
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  3 400 m
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // ---- helpers: aceita vírgula/ponto e expressões simples ----
+  function safeEval(expr){
+    const cleaned = String(expr).replace(/\s/g,'');
+    if(!/^[0-9eE+\-*/().,×^]+$/.test(cleaned)) return null;
+    const norm = cleaned.replace(/,/g,'.').replace(/×/g,'*').replace(/\^/g,'**');
+    try{
+      const v = Function('"use strict"; return ('+norm+');')();
+      return (typeof v === 'number' && Number.isFinite(v)) ? v : null;
+    }catch{ return null; }
+  }
+  function nearlyEqual(a,b,eps=1e-3){ return Math.abs(a-b) <= eps*Math.max(1,Math.abs(a),Math.abs(b)); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkExpr(input, expectedExprs){
+    const val = safeEval(input.value.trim());
+    const targets = expectedExprs.split('|').map(e => safeEval(e));
+    const ok = (val !== null) && targets.some(t => t !== null && nearlyEqual(val, t));
+    paint(input, ok);
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'A';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

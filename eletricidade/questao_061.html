@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 86 (ENEM) — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_060.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">61/81</span>
+    <a href="questao_062.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 86 (ENEM)</h2>
+  <h3>Problema 86:</h3>
+
+<p><strong>125. (Enem 2009)</strong></p>
+
+<p>
+É possível, com 1 litro de gasolina, usando todo o calor produzido por sua combustão direta,
+aquecer 200 litros de água de 20&nbsp;°C a 55&nbsp;°C. Pode-se efetuar esse mesmo aquecimento por um gerador de eletricidade,
+que consome 1 litro de gasolina por hora e fornece 110&nbsp;V a um resistor de 11&nbsp;Ω, imerso na água, durante um certo intervalo de tempo.
+Todo o calor liberado pelo resistor é transferido à água. Considerando que o calor específico da água é 4,19&nbsp;J&nbsp;g<sup>−1</sup>&nbsp;°C<sup>−1</sup>,
+aproximadamente qual a quantidade de gasolina consumida para o aquecimento de água obtido pelo gerador, quando comparado ao obtido a partir da combustão?
+</p>
+
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Energia necessária para aquecer a água (Q = m·c·ΔT):</strong>
+  <input onchange="checkWord(this,'~2,93e7 j|2,93e7 j|29,3 mj|29300 kj|200*4,19*(55-20)')">
+</p>
+
+<p><strong>2) Potência elétrica do resistor (P = V²/R):</strong>
+  <input onchange="checkWord(this,'1100 w|1,1 kw|110^2/11')">
+</p>
+
+<p><strong>3) Energia fornecida pelo gerador em 1 h:</strong>
+  <input onchange="checkWord(this,'1,1 kwh|3,96 mj|3.96 mj|1.1 kwh')">
+</p>
+
+<p><strong>4) Razão (energia da combustão / energia elétrica por litro):</strong>
+  <input onchange="checkWord(this,'~7|7,4|aprox 7')">
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  A quantidade de gasolina consumida é igual para os dois casos.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  A quantidade consumida pelo gerador é duas vezes maior que a da combustão.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  A quantidade consumida pelo gerador é duas vezes menor que a da combustão.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  A quantidade consumida pelo gerador é <u>sete vezes maior</u> que a da combustão.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  A quantidade consumida pelo gerador é sete vezes menor que a da combustão.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para tolerar acentos/maiúsculas
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito
+  function checkAnswer(letter){
+    const correct = 'D';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

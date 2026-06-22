@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 14 — Óptica</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Óptica</a>
+    <span class="spacer"></span>
+    <a href="questao_003.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">4/42</span>
+    <a href="questao_005.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 14</h2>
+  <h3>Problema 14:</h3>
+
+<p><strong>6 – Enem 2023</strong></p>
+<p><strong>Questão 112</strong></p>
+
+<p>
+  Informações digitais — dados — são gravadas em discos ópticos, como CD e DVD, na forma de cavidades microscópicas. A gravação e a leitura óptica dessas informações são realizadas por um laser (fonte de luz monocromática). Quanto menores as dimensões dessas cavidades, mais dados são armazenados na mesma área do disco. O fator limitante para a leitura de dados é o espalhamento da luz pelo efeito de difração, fenômeno que ocorre quando a luz atravessa um obstáculo com dimensões da ordem de seu comprimento de onda. Essa limitação motivou o desenvolvimento de lasers com emissão em menores comprimentos de onda, possibilitando armazenar e ler dados em cavidades cada vez menores.
+</p>
+
+<!-- Ilustração do enunciado (deixar comentada mesmo sem o arquivo) -->
+<!-- <div class="imgwrap"><img src="disco_optico_laser.png" alt="Leitura óptica de dados em disco por laser"></div> -->
+
+<p>
+  Em qual região espectral se situa o comprimento de onda do laser que otimiza o armazenamento e a leitura de dados em discos de uma mesma área?
+</p>
+
+<!-- SOLUÇÃO (INTERATIVA) ANTES DAS ALTERNATIVAS -->
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Para reduzir os efeitos de difração, o comprimento de onda deve ser maior ou menor?</strong><br>
+  <input onchange="checkWord(this,'menor|comprimento de onda menor|diminuir lambda|lambda menor|reduzir comprimento de onda')">
+  <span class="hint">
+    <button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Lembre: resolução ~ dimensão da ordem de <em>λ</em>.</span>
+  </span>
+</p>
+
+<p><strong>2) No visível, ordene qualitativamente as cores por comprimento de onda (do maior para o menor).</strong><br>
+  <input onchange="checkWord(this,'vermelho laranja amarelo verde azul violeta|vermelho ... violeta|do vermelho ao violeta|vermelho para violeta')">
+  <span class="hint">
+    <button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Pense no arco-íris do lado "quente" para o "frio".</span>
+  </span>
+</p>
+
+<p><strong>3) Fora do visível, quem tem <em>λ</em> maior que o vermelho: infravermelho ou ultravioleta?</strong><br>
+  <input onchange="checkWord(this,'infravermelho|infra vermelho')">
+  <span class="hint">
+    <button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Compare prefixos: "ultra" vs "infra".</span>
+  </span>
+</p>
+
+<!-- ALTERNATIVAS -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')"><span class="circulo">A</span> Violeta.</div>
+<div class="opcao" onclick="checkAnswer('B')"><span class="circulo">B</span> Azul.</div>
+<div class="opcao" onclick="checkAnswer('C')"><span class="circulo">C</span> Verde.</div>
+<div class="opcao" onclick="checkAnswer('D')"><span class="circulo">D</span> Vermelho.</div>
+<div class="opcao" onclick="checkAnswer('E')"><span class="circulo">E</span> Infravermelho.</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normaliza/remover acentos
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+  // checagem de palavras-chave (tolerante a variações)
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  // botão Mostrar dica
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = span.style.display === 'inline' ? 'none' : 'inline';
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'A';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

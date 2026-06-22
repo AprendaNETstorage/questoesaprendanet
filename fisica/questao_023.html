@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problema 42 - Sistemas Numéricos — Física (Geral)</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Física (Geral)</a>
+    <span class="spacer"></span>
+    <a href="questao_022.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">23/23</span>
+    <span style="opacity:.4">Próxima &raquo;</span>
+  </nav>
+  <h2>Problema 42 - Sistemas Numéricos</h2>
+  <h3>Problema 42:</h3>
+  <p>
+    Foi feita uma pesquisa sobre a escolaridade dos funcionários de uma empresa. Verificou-se que \( \dfrac{1}{4} \) dos homens que ali trabalham têm o ensino médio completo, enquanto \( \dfrac{2}{3} \) das mulheres que trabalham na empresa têm o ensino médio completo. Constatou-se, também, que entre todos os que têm o ensino médio completo, metade são homens.<br><br>
+    A fração que representa o número de funcionários homens em relação ao total de funcionários dessa empresa é:
+  </p>
+
+  <h4>Resolução passo a passo:</h4>
+
+  <ol>
+    <li>
+      <b>Entendendo o que foi dado:</b><br>
+      - \( \dfrac{1}{4} \) dos homens têm ensino médio completo. <br>
+      - \( \dfrac{2}{3} \) das mulheres têm ensino médio completo. <br>
+      - Metade dos funcionários com ensino médio completo são homens.
+    </li>
+
+    <li>
+      <b>Usando variáveis:</b><br>
+      \( H \) = número de homens, \( M \) = número de mulheres.<br>
+      Total de funcionários: \( T = H + M \)
+    </li>
+
+    <li>
+      <b>Quantidade de pessoas com ensino médio completo:</b><br>
+      Homens com médio completo: \( \dfrac{1}{4}H \)<br>
+      Mulheres com médio completo: \( \dfrac{2}{3}M \)<br>
+      Total com médio completo: \( \dfrac{1}{4}H + \dfrac{2}{3}M \)
+    </li>
+
+    <li>
+      <b>Igualando à metade do total com médio completo:</b><br>
+      \( \dfrac{1}{4}H = \dfrac{1}{2} \left( \dfrac{1}{4}H + \dfrac{2}{3}M \right) \)<br>
+      Multiplicando ambos os lados por 2:<br>
+      \( \dfrac{1}{2}H = \dfrac{1}{4}H + \dfrac{2}{3}M \)<br>
+      Subtraindo \( \dfrac{1}{4}H \):<br>
+      \( \dfrac{1}{4}H = \dfrac{2}{3}M \)
+    </li>
+
+    <li>
+      <b>Multiplicando por 12:</b><br>
+      \( 3H = 8M \Rightarrow \dfrac{H}{M} = \)<input onchange="check(this, '8/3')">
+    </li>
+
+    <li>
+      <b>Calculando a fração de homens:</b><br>
+      \( \dfrac{H}{H + M} = \dfrac{\frac{8}{3}M}{\frac{8}{3}M + M} = \dfrac{8}{3}/\left(\frac{8}{3} + 1\right) = \)<input onchange="check(this, '8/11')">
+    </li>
+  </ol>
+
+  <h4>Alternativas:</h4>
+  <div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> \( \dfrac{1}{8} \)</div>
+  <div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> \( \dfrac{1}{3} \)</div>
+  <div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> \( \dfrac{3}{11} \)</div>
+  <div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> \( \dfrac{2}{3} \)</div>
+  <div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> \( \dfrac{8}{11} \)</div>
+
+  <div id="message" class="feedback"></div>
+
+  <script>
+    function normalize(str) {
+      return str.trim().replace(',', '.').replace(/\s/g, '');
+    }
+
+    function check(input, correct) {
+      const value = normalize(input.value);
+      const expected = normalize(correct);
+      input.nextElementSibling?.remove();
+      if (value === expected) {
+        input.style.backgroundColor = "#c6f6c6";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+      } else {
+        input.style.backgroundColor = "#fdd";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+      }
+    }
+
+    function checkAnswer(letter) {
+      const correct = 'E';
+      const message = document.getElementById('message');
+      if (letter === correct) {
+        message.textContent = 'Correto! A fração correta é 8/11.';
+        message.style.color = 'green';
+      } else {
+        message.textContent = `Errado. A alternativa ${letter} não é a correta.`;
+        message.style.color = 'red';
+      }
+    }
+  </script>
+</div>
+</body>
+</html>

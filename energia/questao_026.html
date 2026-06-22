@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista — Problema 7 — Energia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Energia</a>
+    <span class="spacer"></span>
+    <a href="questao_025.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">26/33</span>
+    <a href="questao_027.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista — Problema 7</h2>
+  <h3>Problema 7:</h3>
+
+<p><strong>13 – ENEM 2024</strong></p>
+
+<p>
+  O diagrama P–V a seguir representa o <strong>ciclo de Otto</strong> de um motor de combustão interna. O trecho sombreado marcado por <em>W</em> indica o <em>trabalho útil</em> produzido no ciclo.
+</p>
+
+<!-- Figura do diagrama PV (deixe comentado mesmo sem o arquivo) -->
+<!-- <div class="imgwrap"><img src="ciclo_otto_pv.png" alt="Diagrama P–V com pontos 1-2-3-4 e área W"></div> -->
+
+<p>
+  As etapas do ciclo estão resumidas em uma tabela (admissão isotérmica/isoentrópica não; aqui: 0→1 admissão isobárica simplificada, 1→2 compressão adiabática, 2→3 adição de calor a volume constante, 3→4 <u>expansão adiabática</u>, 4→1 rejeição de calor a volume constante).
+</p>
+
+<!-- Tabela do enunciado (comente se não tiver o arquivo) -->
+<!-- <div class="imgwrap"><img src="tabela_etapas_otto.png" alt="Tabela com as etapas I a VI do ciclo de Otto"></div> -->
+
+<p><strong>Qual item (I, II, III, IV, V ou VI) corresponde ao trecho do diagrama responsável pelo trabalho indicado?</strong></p>
+
+<!-- SOLUÇÃO (INTERATIVA) ANTES DAS ALTERNATIVAS -->
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Em que trecho ocorre a <u>expansão</u> do gás no ciclo de Otto?</strong><br>
+  <input onchange="checkWord(this,'3->4|3 a 4|expansao adiab atica|expansão adiabática|trajeto 3-4')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Após a combustão a volume constante (2→3), o pistão desce.</span>
+  </span>
+</p>
+
+<p><strong>2) Quem realiza trabalho sobre quem nesse trecho?</strong><br>
+  <input onchange="checkWord(this,'gas sobre o piston|gás realiza trabalho|pistao recebe trabalho do gas|trabalho util do ciclo')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Quando o gás se expande, empurra o pistão → trabalho útil.</span>
+  </span>
+</p>
+
+<p><strong>3) Na tabela do problema, qual é a identificação da etapa 3→4?</strong><br>
+  <input onchange="checkWord(this,'iv|etapa iv|4|quarta etapa do quadro')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Procure a linha com "expansão adiabática".</span>
+  </span>
+</p>
+
+<!-- ALTERNATIVAS -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')"><span class="circulo">A</span> II</div>
+<div class="opcao" onclick="checkAnswer('B')"><span class="circulo">B</span> III</div>
+<div class="opcao" onclick="checkAnswer('C')"><span class="circulo">C</span> IV</div>
+<div class="opcao" onclick="checkAnswer('D')"><span class="circulo">D</span> V</div>
+<div class="opcao" onclick="checkAnswer('E')"><span class="circulo">E</span> VI</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização p/ ignorar acentos
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+  // verificação por palavras-chave (tolerante a variações)
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  // botão Mostrar dica
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = span.style.display === 'inline' ? 'none' : 'inline';
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'C';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

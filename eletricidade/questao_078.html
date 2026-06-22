@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problema 42 — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_077.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">78/81</span>
+    <a href="questao_079.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Problema 42</h2>
+  <nav class="topnav" aria-label="Navegação entre problemas">
+    
+    
+  </nav>
+
+  <h1>Problema 42</h1>
+  <div class="meta">Fonte/rotulagem: ENEM 2021 — Lei de Ohm em fios com áreas e comprimentos diferentes</div>
+
+  <section class="enunciado">
+    <strong>Enunciado (texto integral):</strong>
+    <p>
+      Cientistas demonstraram que a Lei de Ohm é válida mesmo para fios finíssimos. A tabela a seguir
+      apresenta as áreas e os comprimentos de quatro fios condutores (mesmas unidades para todos).
+      Considere que a resistividade é a mesma para todos os fios.
+    </p>
+
+    <div class="imgwrap">
+      <img src="q42_tabela.png" alt="Tabela com quatro fios: Fio 1 (área 9, comprimento 312, resistência R1), Fio 2 (área 4, comprimento 47, resistência R2), Fio 3 (área 2, comprimento 54, resistência R3), Fio 4 (área 1, comprimento 106, resistência R4)">
+    </div>
+
+    <p>
+      As resistências elétricas dos fios, em ordem crescente, são:
+    </p>
+  </section>
+
+  <div class="solucao">Solução (interativa)</div>
+
+  <!-- PASSO 1 -->
+  <div class="step">
+    <div class="q">1) Escreva a relação (em monoespaço) entre resistência, comprimento e área para <em>mesma</em> resistividade.</div>
+    <div class="controls">
+      <input type="text" aria-label="Passo 1" placeholder="Ex.: R = ρ L / A"
+             onchange="checkWord(this,'r = rho l / a|r=rho l/a|r = p l / a|r = ro l / a|r = ρ l / a')" />
+      <div class="status" aria-live="polite"></div>
+      <button type="button" onclick="toggleHint(this)">Mostrar dica</button>
+      <div class="hint">Use a segunda lei de Ohm: <code>R</code> é proporcional a <code>L</code> e inversamente proporcional a <code>A</code>.</div>
+    </div>
+  </div>
+
+  <!-- PASSO 2 -->
+  <div class="step">
+    <div class="q">2) Qual fio tem a <strong>menor</strong> razão <code>L/A</code> (e, portanto, a menor resistência)?</div>
+    <div class="controls">
+      <input type="text" aria-label="Passo 2" placeholder="Ex.: Fio 2"
+             onchange="checkWord(this,'fio 2|2')" />
+      <div class="status" aria-live="polite"></div>
+      <button type="button" onclick="toggleHint(this)">Mostrar dica</button>
+      <div class="hint">Calcule mentalmente: <code>L/A</code> dos fios 1–4 são, respectivamente, <code>312/9</code>, <code>47/4</code>, <code>54/2</code>, <code>106/1</code>.</div>
+    </div>
+  </div>
+
+  <!-- PASSO 3 -->
+  <div class="step">
+    <div class="q">3) Escreva a ordem crescente das resistências (formato <code>R2&lt;R3&lt;R1&lt;R4</code>).</div>
+    <div class="controls">
+      <input type="text" aria-label="Passo 3" placeholder="Digite a sequência"
+             onchange="checkWord(this,'r2<r3<r1<r4|r2 &lt; r3 &lt; r1 &lt; r4|r2&lt;r3&lt;r1&lt;r4')" />
+      <div class="status" aria-live="polite"></div>
+      <button type="button" onclick="toggleHint(this)">Mostrar dica</button>
+      <div class="hint">Quanto maior <code>L/A</code>, maior a resistência. Compare 11,75; 27; 34,7; 106.</div>
+    </div>
+  </div>
+
+  <!-- ALTERNATIVAS -->
+  <section aria-label="Alternativas de resposta">
+    <h2 style="font-size:20px; margin-top:26px;">Alternativas</h2>
+    <div class="options">
+      <div class="opcao" onclick="checkAnswer('A')">
+        <div class="optline"><span class="circulo">A</span><div>R1 &lt; R2 &lt; R3 &lt; R4.</div></div>
+      </div>
+      <div class="opcao" onclick="checkAnswer('B')">
+        <div class="optline"><span class="circulo">B</span><div>R2 &lt; R3 &lt; R1 &lt; R4.</div></div>
+      </div>
+      <div class="opcao" onclick="checkAnswer('C')">
+        <div class="optline"><span class="circulo">C</span><div>R3 &lt; R1 &lt; R2 &lt; R4.</div></div>
+      </div>
+      <div class="opcao" onclick="checkAnswer('D')">
+        <div class="optline"><span class="circulo">D</span><div>R4 &lt; R3 &lt; R1 &lt; R2.</div></div>
+      </div>
+      <div class="opcao" onclick="checkAnswer('E')">
+        <div class="optline"><span class="circulo">E</span><div>R3 &lt; R2 &lt; R1 &lt; R4.</div></div>
+      </div>
+
+      <!-- EXEMPLO DE BLOCO DE OPÇÃO COM IMAGEM (para copiar)
+      <div class="opcao" onclick="checkAnswer('B')">
+        <div class="optline">
+          <span class="circulo">B</span>
+          <!-- <img class="altimg" src="q42_altB.png" alt="Diagrama ilustrando a ordem R2 menor, depois R3, em seguida R1 e R4 maior"> -->
+        </div>
+      </div>
+      -->
+    </div>
+
+    <div style="margin-top:12px;">
+      <button type="button" onclick="checkAnswer('_force')">Confirmar escolha</button>
+      <div id="message" aria-live="polite"></div>
+      <div class="small" style="margin-top:6px;">Fórmulas em monoespaço simples, sem LaTeX renderizado.</div>
+    </div>
+  </section>
+
+  <script>
+    // ===== Funções exigidas =====
+    function normalize(str){
+      if(typeof str!=='string') return '';
+      return str.toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g,'') // remove acentos
+        .replace(/\s+/g,' ').trim();
+    }
+    function checkWord(inputEl, patterns){
+      const norm = normalize(inputEl.value);
+      const accepted = String(patterns||'').split('|').map(s=>normalize(s)).filter(Boolean);
+      const ok = accepted.some(acc => acc === norm);
+      const st = inputEl.parentElement.querySelector('.status');
+      if(ok){
+        inputEl.classList.remove('bad'); inputEl.classList.add('ok');
+        st.textContent = '✅ Correto'; st.className = 'status ok';
+      }else{
+        inputEl.classList.remove('ok'); inputEl.classList.add('bad');
+        st.textContent = '❌ Verifique sua resposta'; st.className = 'status bad';
+      }
+    }
+    function toggleHint(btn){
+      const hint = btn.closest('.controls').querySelector('.hint');
+      const show = hint.style.display === 'block';
+      hint.style.display = show ? 'none' : 'block';
+      btn.textContent = show ? 'Mostrar dica' : 'Ocultar dica';
+    }
+    const correct = 'B'; // letra correta
+    let lastChoice = null;
+    document.querySelectorAll('.option').forEach(opt=>{
+      opt.addEventListener('click',()=>{
+        document.querySelectorAll('.option').forEach(o=>o.style.borderColor='#e5e7eb');
+        opt.style.borderColor='#94a3b8';
+        const c = opt.querySelector('.circle');
+        lastChoice = c ? c.textContent.trim() : null;
+      });
+    });
+    function checkAnswer(trigger){
+      const msg = document.getElementById('message');
+      const chosen = (trigger && trigger!=='_force') ? trigger : lastChoice;
+      if(!chosen){ msg.textContent='Selecione uma alternativa.'; msg.className=''; return; }
+      if(chosen===correct){ msg.textContent='Correto!'; msg.className='ok'; }
+      else{ msg.textContent='Errado. Tente novamente.'; msg.className='bad'; }
+    }
+  </script>
+</div>
+</body>
+</html>

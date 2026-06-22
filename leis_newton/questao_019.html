@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 27 — Leis de Newton</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Leis de Newton</a>
+    <span class="spacer"></span>
+    <a href="questao_018.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">19/25</span>
+    <a href="questao_020.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 27</h2>
+  <h3>Problema 27:</h3>
+
+<!-- ENUNCIADO IDÊNTICO -->
+<p><strong>54. (Enem 2010)</strong></p>
+<p>Durante uma obra em um clube, um grupo de trabalhadores teve de remover uma escultura de ferro maciço colocada no fundo de uma piscina vazia. Cinco trabalhadores amarraram cordas à escultura e tentaram puxá-la para cima, sem sucesso. Se a piscina for preenchida com água, ficará mais fácil para os trabalhadores removerem a escultura, pois a</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Força do fluido sobre o corpo imerso:</strong>
+  o líquido exerce um <input onchange="checkWord(this,'empuxo|forca de empuxo|força de empuxo')">
+  de direção vertical e sentido <input onchange="checkWord(this,'para cima|ascendente')">.
+</p>
+
+<p><strong>2) De que depende o empuxo?</strong>
+  <br>E = ρ · g · V<sub>sub</sub> ⇒ é proporcional ao
+  <input onchange="checkWord(this,'volume submerso|volume imerso|volume deslocado')"> (e não à massa do corpo).
+</p>
+
+<p><strong>3) Efeito no "peso aparente":</strong>
+  <br>P<sub>aparente</sub> = P − E ⇒ na água, o esforço necessário para erguer a escultura
+  <input onchange="checkWord(this,'diminui|fica menor|reduz')">.
+</p>
+
+<p><strong>4) Quando a escultura pode subir:</strong>
+  <br>Se E + força das cordas for
+  <input onchange="checkWord(this,'maior que o peso|superior ao peso|maior que p')">, a resultante fica para cima e a escultura sobe.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  escultura flutuará. Dessa forma, os homens não precisarão fazer força para remover a escultura do fundo.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  escultura ficará com peso menor. Dessa forma, a intensidade da força necessária para elevar a escultura será menor.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  água exercerá uma força na escultura proporcional à sua massa, e para cima. Esta força se somará à força que os trabalhadores fazem para anular a ação da força peso da escultura.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  água exercerá uma força na escultura para baixo, e esta passará a receber uma força ascendente do piso da piscina. Esta força ajudará a anular a ação da força peso na escultura.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  água exercerá uma força na escultura proporcional ao seu volume, e para cima. Esta força se somará à força que os trabalhadores fazem, podendo resultar em uma força ascendente maior que o peso da escultura.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // validação por palavras-chave (tolerante a acentos/variações)
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function checkWord(input, patterns){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+
+  // gabarito apenas aqui
+  function checkAnswer(letter){
+    const correct = 'E';
+    const message = document.getElementById('message');
+    if (letter === correct){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

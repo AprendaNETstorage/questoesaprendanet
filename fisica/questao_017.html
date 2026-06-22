@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Questão 21 — Física (Geral)</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Física (Geral)</a>
+    <span class="spacer"></span>
+    <a href="questao_016.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">17/23</span>
+    <a href="questao_018.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Questão 21</h2>
+  <h3>Problema 21:</h3>
+  <p>
+    A fabricação da Bandeira Nacional deve obedecer ao descrito na Lei nº 5.700, de 1º de setembro de 1971, que trata dos Símbolos Nacionais. No artigo que se refere às dimensões da Bandeira, observa-se:
+  </p>
+
+  <blockquote>
+    "Para cálculos das dimensões, será tomada por base a largura, dividindo-a em 14 (quatorze) partes iguais, sendo que cada uma das partes será considerada uma medida ou módulo (M).<br>
+    Os demais requisitos dimensionais seguem o critério abaixo:<br>
+    I. Comprimento será de vinte módulos (20 M);<br>
+    II. A distância dos vértices do losango amarelo ao quadro externo será de um módulo e sete décimos (1,7 M);<br>
+    III. O raio do círculo azul no meio do losango amarelo será de três módulos e meio (3,5 M)."
+  </blockquote>
+
+  <p>
+    Um torcedor, preparando-se para a Copa do Mundo e dispondo de cortes de tecidos verde (180 cm x 150 cm) e amarelo (o quanto baste), deseja confeccionar a maior Bandeira Nacional possível a partir das medidas do tecido verde.
+  </p>
+
+  <p>
+    <strong>Qual a medida, em centímetro, do lado do menor quadrado de tecido azul que deverá ser comprado para confecção do círculo da bandeira desejada?</strong>
+  </p>
+
+  <h4>Solução:</h4>
+
+  <p>
+    A bandeira tem proporções:
+    <br>Comprimento: <strong>20M</strong>, Largura: <strong>14M</strong>, Raio do círculo azul: <strong>3,5M</strong>
+  </p>
+
+  <p>
+    Tecidos disponíveis: 180 cm (largura) × 150 cm (comprimento)
+  </p>
+
+  <p><strong>1. Calcular o maior módulo \( M \) possível:</strong></p>
+  <ul>
+    <li><input onchange="check(this, '150')"> ÷ 20 = <input onchange="check(this, '7.5')"> cm</li>
+    <li><input onchange="check(this, '180')"> ÷ 14 ≈ <input onchange="check(this, '12.86')"> cm</li>
+  </ul>
+  <p>
+    Logo, o maior valor viável de \( M \) é: <input onchange="check(this, '7.5')"> cm
+  </p>
+
+  <p><strong>2. Calcular o diâmetro do círculo azul:</strong></p>
+  <ul>
+    <li>Raio = 3,5 × 7,5 = <input onchange="check(this, '26.25')"> cm</li>
+    <li>Diâmetro = 2 × <input onchange="check(this, '26.25')"> = <input onchange="check(this, '52.5')"> cm</li>
+  </ul>
+
+  <p>
+    Como o círculo precisa caber em um quadrado azul, o lado do tecido azul deve ser <strong>pelo menos</strong>: 
+    <input onchange="check(this, '53')"> cm
+  </p>
+
+  <p><strong>Resposta correta:</strong></p>
+
+  <div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> 27</div>
+  <div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> 32</div>
+  <div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> 53</div>
+  <div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> 63</div>
+  <div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> 90</div>
+
+  <div id="message" class="feedback"></div>
+
+  <script>
+    function check(input, correct) {
+      const value = input.value.trim().replace(',', '.');
+      input.nextElementSibling?.remove();
+      if (parseFloat(value) === parseFloat(correct)) {
+        input.style.backgroundColor = "#c6f6c6";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+      } else {
+        input.style.backgroundColor = "#fdd";
+        input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+      }
+    }
+
+    function checkAnswer(letter) {
+      const correct = 'C';
+      const message = document.getElementById('message');
+      if (letter === correct) {
+        message.textContent = 'Correto! O lado do quadrado azul deve ser de pelo menos 53 cm.';
+        message.style.color = 'green';
+      } else {
+        message.textContent = `Errado. A alternativa ${letter} não é a correta.`;
+        message.style.color = 'red';
+      }
+    }
+  </script>
+</div>
+</body>
+</html>

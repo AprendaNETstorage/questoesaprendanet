@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 13 — Leis de Newton</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Leis de Newton</a>
+    <span class="spacer"></span>
+    <a href="questao_012.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">13/25</span>
+    <a href="questao_014.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 13</h2>
+  <h3>Problema 13:</h3>
+
+<!-- ENUNCIADO IDÊNTICO -->
+<p><strong>13. (ENEM 2014)</strong> Um professor utiliza essa história em quadrinhos para discutir com os estudantes o movimento de satélites. Nesse sentido, pede a eles que analisem o movimento do coelhinho, considerando o módulo da velocidade constante.</p>
+
+<div class="imgwrap">
+  <!-- (opcional) coloque a tirinha na mesma pasta e troque o src abaixo -->
+  <img src="q13_tirinha.png" alt="Tirinha do coelhinho (Cebolinha)">
+</div>
+
+<p>Desprezando a existência de forças dissipativas, o vetor aceleração tangencial do coelhinho, no terceiro quadrinho, é</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Tipo de movimento no 3º quadrinho:</strong>
+  trajetória <input onchange="check(this,'circular')"> com velocidade de módulo
+  <input onchange="check(this,'constante|fixo|invariavel|invariável')">.
+</p>
+
+<p><strong>2) O que mede a aceleração tangencial?</strong>
+  Está associada à variação do <input onchange="check(this,'modulo da velocidade|módulo da velocidade|intensidade da velocidade')">.
+</p>
+
+<p><strong>3) Então, nesse caso, a aceleração tangencial é</strong>
+  <input onchange="check(this,'nula|zero')">.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  nulo.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  paralelo à sua velocidade linear e no mesmo sentido.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  paralelo à sua velocidade linear e no sentido oposto.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  perpendicular à sua velocidade linear e dirigido para o centro da Terra.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  perpendicular à sua velocidade linear e dirigido para fora da superfície da Terra.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // Validação por palavras-chave (sem LaTeX)
+  function check(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const raw = input.value.trim().toLowerCase();
+    const opts = patterns.toLowerCase().split('|').map(s => s.trim());
+    const ok = opts.some(p => raw.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  // Gabarito apenas aqui
+  function checkAnswer(letter) {
+    const correct = 'A';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

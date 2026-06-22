@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03Sistemas Numéricos - Lista 03 — Física (Geral)</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Física (Geral)</a>
+    <span class="spacer"></span>
+    <a href="questao_006.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">7/23</span>
+    <a href="questao_008.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03Sistemas Numéricos - Lista 03</h2>
+  <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Sistemas Numéricos - Lista 03</title>
+  
+</head>
+<body>
+
+<h3>Problema 09:</h3>
+
+<p>
+  José, Carlos e Paulo devem transportar, em suas bicicletas, uma certa quantidade de laranjas. Decidiram dividir o trajeto a ser percorrido em duas partes, sendo que, ao final da primeira parte, eles redistribuiriam a quantidade de laranjas que cada um carregava, dependendo do cansaço de cada um.
+</p>
+
+<p>
+  Na primeira parte do trajeto, José, Carlos e Paulo dividiram as laranjas na proporção 6 : 5 : 4, respectivamente. Na segunda parte do trajeto, José, Carlos e Paulo dividiram as laranjas na proporção 4 : 4 : 2.
+</p>
+
+<p>
+  Sabendo-se que um deles levou 50 laranjas a mais na segunda parte do trajeto, qual a quantidade de laranjas que José, Carlos e Paulo, nessa ordem, transportaram na segunda parte do trajeto?
+</p>
+
+<h4>Solução:</h4>
+
+<p>
+  Seja <strong>M</strong> a quantidade total de laranjas. Então:
+</p>
+
+<p><strong>1ª parte:</strong></p>
+<ul>
+  <li>José: <span class="fraction"><span>6</span><span class="bar"></span><span>15</span></span>M = <input onchange="check(this, '2/5')">M</li>
+  <li>Carlos: <span class="fraction"><span>5</span><span class="bar"></span><span>15</span></span>M = <input onchange="check(this, '1/3')">M</li>
+  <li>Paulo: <span class="fraction"><span>4</span><span class="bar"></span><span>15</span></span>M = <input onchange="check(this, '4/15')">M</li>
+</ul>
+
+<p><strong>2ª parte:</strong></p>
+<ul>
+  <li>José: <span class="fraction"><span>4</span><span class="bar"></span><span>10</span></span>M = <input onchange="check(this, '2/5')">M</li>
+  <li>Carlos: <span class="fraction"><span>4</span><span class="bar"></span><span>10</span></span>M = <input onchange="check(this, '2/5')">M</li>
+  <li>Paulo: <span class="fraction"><span>2</span><span class="bar"></span><span>10</span></span>M = <input onchange="check(this, '1/5')">M</li>
+</ul>
+
+<p><strong>Diferenças entre 2ª e 1ª parte:</strong></p>
+<ul>
+  <li>José: <input onchange="check(this, '2/5')">M − <input onchange="check(this, '2/5')">M = <input onchange="check(this, '0')">M</li>
+  <li>Carlos: <input onchange="check(this, '2/5')">M − <input onchange="check(this, '1/3')">M = <input onchange="check(this, '1/15')">M</li>
+  <li>Paulo: <input onchange="check(this, '1/5')">M − <input onchange="check(this, '4/15')">M = <input onchange="check(this, '-1/15')">M</li>
+</ul>
+
+<p>
+  Segundo o enunciado, alguém levou 50 laranjas a mais: <input onchange="check(this, '1/15')">M = 50 ⇒ M = <input onchange="check(this, '750')">
+</p>
+
+<p><strong>Aplicando M = 750 na 2ª parte:</strong></p>
+<ul>
+  <li>José: <span class="fraction"><span>2</span><span class="bar"></span><span>5</span></span> × 750 = <input onchange="check(this, '300')"></li>
+  <li>Carlos: <span class="fraction"><span>2</span><span class="bar"></span><span>5</span></span> × 750 = <input onchange="check(this, '300')"></li>
+  <li>Paulo: <span class="fraction"><span>1</span><span class="bar"></span><span>5</span></span> × 750 = <input onchange="check(this, '150')"></li>
+</ul>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')"><div class="circulo">A</div> 600, 550, 350</div>
+<div class="opcao" onclick="checkAnswer('B')"><div class="circulo">B</div> 300, 300, 150</div>
+<div class="opcao" onclick="checkAnswer('C')"><div class="circulo">C</div> 300, 250, 200</div>
+<div class="opcao" onclick="checkAnswer('D')"><div class="circulo">D</div> 200, 200, 100</div>
+<div class="opcao" onclick="checkAnswer('E')"><div class="circulo">E</div> 100, 100, 50</div>
+
+<div id="message" class="feedback"></div>
+
+<script>
+  function check(input, correct) {
+    const value = input.value.trim().replace(/\s/g, '').toLowerCase();
+    const expected = correct.toLowerCase();
+
+    input.nextElementSibling?.remove();
+    if (value === expected) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  function checkAnswer(letter) {
+    const correct = 'B';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto! Essa é a distribuição correta na 2ª parte do trajeto.';
+      message.style.color = 'green';
+    } else {
+      message.textContent = `Errado. A alternativa ${letter} não representa a distribuição correta.`;
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 06 — Cinemática</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Cinemática</a>
+    <span class="spacer"></span>
+    <a href="questao_017.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">18/35</span>
+    <a href="questao_019.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 06</h2>
+  <h3>Problema 06:</h3>
+
+<!-- ENUNCIADO IDÊNTICO -->
+<p><strong>(Enem PPL 2013)</strong> Em uma experiência didática, cinco esferas de metal foram presas em um barbante, de forma que a distância entre esferas consecutivas aumentava em progressão aritmética. O barbante foi suspenso e a primeira esfera ficou em contato com o chão. Olhando o barbante de baixo para cima, as distâncias entre as esferas ficavam cada vez maiores. Quando o barbante foi solto, o som das colisões entre duas esferas consecutivas e o solo foi gerado em intervalos de tempo exatamente iguais.</p>
+
+<p>A razão de os intervalos de tempo citados serem iguais é que a</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Modelo do movimento:</strong> queda livre a partir do repouso. Qual é a característica da força que atua em cada esfera?
+  <br>Força resultante: <input onchange="check(this,'constante')"> (peso, mesma para cada esfera).
+</p>
+
+<p><strong>2) Consequência dinâmica:</strong> se a força resultante é constante, então a aceleração é
+  <input onchange="check(this,'constante')">.
+</p>
+
+<p><strong>3) Relação posição-tempo na queda livre (do repouso):</strong>
+  distância percorrida s é proporcional a <input onchange="check(this,'t^2')">.
+  <br><small>Dica: s = (1/2) · g · t².</small>
+</p>
+
+<p><strong>4) Por que os sons são igualmente espaçados no tempo?</strong>
+  <br>Se os tempos entre impactos são iguais, as alturas devem seguir a lei acima.
+  Mostrar que diferenças de alturas consecutivas crescem como <input onchange="check(this,'progressao aritmetica')"> (números ímpares).
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  velocidade de cada esfera é constante.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  força resultante em cada esfera é constante.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  aceleração de cada esfera aumenta com o tempo.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  tensão aplicada em cada esfera aumenta com o tempo.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  energia mecânica de cada esfera aumenta com o tempo.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // Validação simples por palavras-chave (sem LaTeX)
+  function check(input, correct) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const raw = input.value.trim().toLowerCase();
+    const exp = correct.toLowerCase();
+
+    let ok = false;
+    if (exp === 'constante') {
+      ok = raw.includes('constante');
+    } else if (exp === 't^2') {
+      ok = raw.includes('t2') || raw.includes('t^2') || raw.includes('t ao quadrado') || raw.includes('t quadratic') || raw.includes('t²');
+    } else if (exp === 'progressao aritmetica') {
+      ok = raw.includes('aritmetica') || raw.includes('aritmética') || raw.includes('pa') || raw.includes('impar') || raw.includes('ímpares') || raw.includes('impares');
+    } else {
+      ok = (raw === exp);
+    }
+
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  function checkAnswer(letter) {
+    const correct = 'B'; // força resultante constante -> aceleração constante -> s ∝ t² -> espaçamentos em PA
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

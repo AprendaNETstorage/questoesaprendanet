@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 3 — Leis de Newton</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Leis de Newton</a>
+    <span class="spacer"></span>
+    <a href="questao_006.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">7/25</span>
+    <a href="questao_008.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 3</h2>
+  <h3>Problema 3:</h3>
+
+<!-- ENUNCIADO IDÊNTICO -->
+<p><strong>(Enem 2013)</strong> Uma pessoa necessita da força de atrito em seus pés para se deslocar sobre uma superfície. Logo, uma pessoa que sobe uma rampa em linha reta será auxiliada pela força de atrito exercida pelo chão em seus pés.</p>
+
+<p>Em relação ao movimento dessa pessoa, quais são a direção e o sentido da força de atrito mencionada no texto?</p>
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Ação e reação no caminhar:</strong> ao tentar subir a rampa, a pessoa empurra o chão
+  <input onchange="checkWord(this,'para tras|para trás')">
+  e o chão empurra o pé (atrito estático) <input onchange="checkWord(this,'para frente|mesmo sentido do movimento|para cima ao longo da rampa')">.
+</p>
+
+<p><strong>2) Direção da força de atrito do chão no pé:</strong>
+  <input onchange="checkWord(this,'paralela ao plano|paralelo ao plano|ao longo do plano|ao longo da rampa')">.
+</p>
+
+<p><strong>3) Sentido dessa força:</strong>
+  <input onchange="checkWord(this,'mesmo sentido do movimento|para frente|para cima ao longo da rampa')">.
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')">
+  <span class="circulo">A</span>
+  Perpendicular ao plano e no mesmo sentido do movimento.
+</div>
+<div class="opcao" onclick="checkAnswer('B')">
+  <span class="circulo">B</span>
+  Paralelo ao plano e no sentido contrário ao movimento.
+</div>
+<div class="opcao" onclick="checkAnswer('C')">
+  <span class="circulo">C</span>
+  Paralelo ao plano e no mesmo sentido do movimento.
+</div>
+<div class="opcao" onclick="checkAnswer('D')">
+  <span class="circulo">D</span>
+  Horizontal e no mesmo sentido do movimento.
+</div>
+<div class="opcao" onclick="checkAnswer('E')">
+  <span class="circulo">E</span>
+  Vertical e sentido para cima.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // validação por palavras-chave (flexível, sem LaTeX)
+  function normalize(str){ return str.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  // gabarito somente aqui
+  function checkAnswer(letter) {
+    const correct = 'C';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 62 — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_051.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">52/71</span>
+    <a href="questao_053.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 62</h2>
+  <h3>Problema 62</h3>
+  <p><strong>95. (Enem 2<sup>a</sup> aplicação 2010)</strong></p>
+  <figure>
+  <img src="imagens/questao_98.png" alt="Enunciado/ilustração da questão 132">
+</figure>
+  <p>
+    Os quadrinhos mostram, por meio da projeção da sombra da árvore e do menino,
+    a sequência de períodos do dia: matutino, meio-dia e vespertino, que é determinada
+  </p>
+
+  <!-- Alternativas -->
+  <div class="opcao" onclick="checkAnswer('A')">
+    <span class="circulo">A</span>
+    pela posição vertical da árvore e do menino.
+  </div>
+  <div class="opcao" onclick="checkAnswer('B')">
+    <span class="circulo">B</span>
+    pela posição do menino em relação à árvore.
+  </div>
+  <div class="opcao" onclick="checkAnswer('C')">
+    <span class="circulo">C</span>
+    pelo movimento aparente do Sol em torno da Terra.
+  </div>
+  <div class="opcao" onclick="checkAnswer('D')">
+    <span class="circulo">D</span>
+    pelo fuso horário específico de cada ponto da superfície da Terra.
+  </div>
+  <div class="opcao" onclick="checkAnswer('E')">
+    <span class="circulo">E</span>
+    pela estação do ano, sendo que no inverno os dias são mais curtos que no verão.
+  </div>
+
+  <div id="message" class="feedback" aria-live="polite"></div>
+
+  <button class="hint" onclick="toggleHint()">Mostrar dica</button>
+  <p id="hint" class="hint" style="display:none;">
+    Repare como direção e comprimento das sombras mudam ao longo do dia. Isso acompanha a
+    <em>posição aparente do Sol</em> no céu para um observador na Terra.
+  </p>
+
+  <script>
+    function checkAnswer(letter){
+      const correct = 'C';
+      const msg = document.getElementById('message');
+      if(letter === correct){
+        msg.textContent = 'Correto! As sombras variam com a posição aparente do Sol ao longo do dia.';
+        msg.style.color = 'green';
+      }else{
+        msg.textContent = 'Não foi dessa vez. Pense no que faz a sombra mudar de direção e comprimento durante o dia.';
+        msg.style.color = 'crimson';
+      }
+    }
+    function toggleHint(){
+      const h = document.getElementById('hint');
+      h.style.display = (h.style.display === 'none' || h.style.display === '') ? 'block' : 'none';
+    }
+  </script>
+</div>
+</body>
+</html>

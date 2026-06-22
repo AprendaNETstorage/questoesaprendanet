@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 24 — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_015.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">16/71</span>
+    <a href="questao_017.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 24</h2>
+  <h3>Problema 24:</h3>
+
+<p><strong>17 – Enem 2023</strong></p>
+<p><strong>Questão 135</strong></p>
+
+<p>
+  O petróleo é uma matéria-prima muito valiosa e métodos geofísicos são úteis na sua prospecção. É possível identificar a composição de materiais estratificados medindo-se a velocidade de propagação do som (onda mecânica) através deles. Considere que uma camada de 450&nbsp;m de um líquido se encontra presa no subsolo entre duas camadas rochosas, conforme o esquema. Um pulso acústico (que gera uma vibração mecânica) é emitido a partir da superfície do solo, onde são posteriormente recebidas duas vibrações refletidas (ecos). A primeira corresponde à reflexão do pulso na interface superior do líquido com a camada rochosa. A segunda vibração deve-se à reflexão do pulso na interface inferior. O tempo entre a emissão do pulso e a chegada do primeiro eco é de 0,5&nbsp;s. O segundo eco chega 1,1&nbsp;s após a emissão do pulso.
+</p>
+
+<!-- Ilustração do enunciado (deixar comentado mesmo sem o arquivo) -->
+<!-- <div class="imgwrap"><img src="camadas_rocha_liquido_450m.png" alt="Rocha - Líquido (450 m) - Rocha; emissor/detector na superfície"></div> -->
+
+<p><strong>A velocidade do som na camada líquida, em m/s, é</strong></p>
+
+<!-- SOLUÇÃO (INTERATIVA) ANTES DAS ALTERNATIVAS -->
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Escreva os caminhos percorridos até cada eco.</strong><br>
+  <input onchange="checkWord(this,'primeiro eco 2d na rocha|1o eco 2d rocha|segundo eco 2d rocha e 2l liquido|2o eco 2d + 2l')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Considere <em>d</em> a profundidade do topo do líquido e <em>L=450 m</em> sua espessura.</span>
+  </span>
+</p>
+
+<p><strong>2) Monte as equações dos tempos (0,5 s e 1,1 s) usando velocidades na rocha e no líquido.</strong><br>
+  <input onchange="checkWord(this,'0,5 = 2d/vrocha|1,1 = 2d/vrocha + 2l/vliquido|0.5=2d/v_rocha|1.1=2d/v_rocha+2L/v_liq')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Tempo = distância / velocidade para cada trecho.</span>
+  </span>
+</p>
+
+<p><strong>3) Elimine a incógnita <em>d</em> subtraindo as equações. O que resulta?</strong><br>
+  <input onchange="checkWord(this,'2l/vliquido = 0,6 s|2l/v_liq = 0,6|2*450/v = 0,6')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Use t<sub>2</sub> − t<sub>1</sub> = 1,1 − 0,5.</span>
+  </span>
+</p>
+
+<p><strong>4) Resolva para <em>v</em> da camada líquida.</strong><br>
+  <input onchange="checkWord(this,'1500 m/s|1,5e3 m/s|1.5e3 m/s|aprox 1500')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>v = 2L / 0,6, com L = 450 m.</span>
+  </span>
+</p>
+
+<!-- ALTERNATIVAS -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')"><span class="circulo">A</span> 270.</div>
+<div class="opcao" onclick="checkAnswer('B')"><span class="circulo">B</span> 540.</div>
+<div class="opcao" onclick="checkAnswer('C')"><span class="circulo">C</span> 818.</div>
+<div class="opcao" onclick="checkAnswer('D')"><span class="circulo">D</span> 1&nbsp;500.</div>
+<div class="opcao" onclick="checkAnswer('E')"><span class="circulo">E</span> 1&nbsp;800.</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normaliza/remover acentos
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+  // checagem de palavras-chave (tolerante a variações)
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  // botão Mostrar dica
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = span.style.display === 'inline' ? 'none' : 'inline';
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'D';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

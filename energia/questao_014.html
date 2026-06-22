@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista 03 — Problema 5 — Energia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Energia</a>
+    <span class="spacer"></span>
+    <a href="questao_013.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">14/33</span>
+    <a href="questao_015.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista 03 — Problema 5</h2>
+  <h3>Problema 5:</h3>
+
+<p><strong>9 – Enem 2023</strong></p>
+<p><strong>Questão 117</strong></p>
+
+<p>
+  Os raios cósmicos são fontes de radiação ionizante potencialmente perigosas para o organismo humano. Para quantificar a dose de radiação recebida, utiliza-se o sievert (Sv), definido como a unidade de energia recebida por unidade de massa. A exposição à radiação proveniente de raios cósmicos aumenta com a altitude, o que pode representar um problema para as tripulações de aeronaves. Recentemente, foram realizadas medições acuradas das doses de radiação ionizante para voos entre Rio de Janeiro e Roma. Os resultados têm indicado que a dose média de radiação recebida na fase de cruzeiro (que geralmente representa 80% do tempo total de voo) desse trecho intercontinental é 2 μSv/h. As normas internacionais da aviação civil limitam em 1 000 horas por ano o tempo de trabalho para as tripulações que atuem em voos intercontinentais. Considere que a dose de radiação ionizante para uma radiografia torácica é estimada em 0,2 mSv.
+</p>
+
+<!-- Ilustração (deixar comentada mesmo sem o arquivo) -->
+<!-- <div class="imgwrap"><img src="raios_cosmicos_tripulacao.png" alt="Exposição a raios cósmicos em voos de longa distância"></div> -->
+
+<p>
+  A quantas radiografias torácicas corresponde a dose de radiação ionizante a qual um tripulante que atua no trecho Rio de Janeiro–Roma é exposto ao longo de um ano?
+</p>
+
+<!-- SOLUÇÃO (INTERATIVA) ANTES DAS ALTERNATIVAS -->
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Qual a taxa efetiva média na fase de cruzeiro (considerando que ela ocupa 80% do tempo)?</strong><br>
+  <input onchange="checkWord(this,'1,6 μsv/h|1.6 μsv/h|1,6usv/h|1.6usv/h|1,6 micro sv/h|1.6 micro sv/h|1,6e0 μsv/h')">
+  <span class="hint">
+    <button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Ajuste a taxa de 2 μSv/h pela fração de tempo utilizada.</span>
+  </span>
+</p>
+
+<p><strong>2) Estime a dose anual em μSv para 1 000 h de voo (use o valor acima).</strong><br>
+  <input onchange="checkWord(this,'1600 μsv|1,6e3 μsv|1600usv|1,6 msv|1.6 msv|0,0016 sv|0.0016 sv')">
+  <span class="hint">
+    <button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Taxa efetiva (μSv/h) × tempo (h).</span>
+  </span>
+</p>
+
+<p><strong>3) Converta a dose anual para mSv e compare com 0,2 mSv por radiografia. Quantas radiografias equivalem?</strong><br>
+  <input onchange="checkWord(this,'8|oito radiografias|8 radiografias')">
+  <span class="hint">
+    <button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Lembre: 1 000 μSv = 1 mSv.</span>
+  </span>
+</p>
+
+<!-- ALTERNATIVAS -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')"><span class="circulo">A</span> 8</div>
+<div class="opcao" onclick="checkAnswer('B')"><span class="circulo">B</span> 10</div>
+<div class="opcao" onclick="checkAnswer('C')"><span class="circulo">C</span> 80</div>
+<div class="opcao" onclick="checkAnswer('D')"><span class="circulo">D</span> 2</div>
+<div class="opcao" onclick="checkAnswer('E')"><span class="circulo">E</span> 1 000</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normaliza/remover acentos
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+  // checagem de palavras-chave
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  // botão Mostrar dica
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = span.style.display === 'inline' ? 'none' : 'inline';
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'A';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

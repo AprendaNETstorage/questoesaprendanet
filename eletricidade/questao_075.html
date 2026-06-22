@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista — Problema 39 (ENEM 2022) — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_074.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">75/81</span>
+    <a href="questao_076.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista — Problema 39 (ENEM 2022)</h2>
+  <h3>Problema 39:</h3>
+
+<p><strong>13 – Enem 2022</strong></p>
+
+<p>
+  Em um dia de calor intenso, dois colegas estão a brincar com a água da mangueira. Um deles quer saber até que altura o jato de água alcança, a partir da saída de água, quando a mangueira está posicionada totalmente na direção vertical. O outro colega propõe então o seguinte experimento: eles posicionaram a saída de água da mangueira na direção horizontal, a 1 m de altura em relação ao chão, e então mediram a distância horizontal entre a mangueira e o local onde a água atinge o chão. A medida dessa distância foi de 3 m, e a partir disso eles calcularam o alcance vertical do jato de água. Considere a aceleração da gravidade de 10 m/s².
+</p>
+
+<!-- (Opcional) diagrama do lançamento horizontal — deixe comentado -->
+<!-- <div class="imgwrap"><img src="mangueira_lancamento_horizontal.png" alt="Jato lançado horizontalmente de 1 m de altura atingindo o chão a 3 m"></div> -->
+
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Qual é o tempo de queda de 1 m no lançamento horizontal?</strong><br>
+  <input onchange="checkWord(this,'t=sqrt(2*1/10)|t=sqrt(0,2)|t=sqrt(0.2)|raiz de 0,2 s|≈0,45 s|0,45 s|0.447 s|√(2/10) s')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Use <span class="eq">y = (1/2) g t²</span> com <span class="eq">y=1 m</span> e <span class="eq">g=10</span>.</span>
+  </span>
+</p>
+
+<p><strong>2) Sabendo que o alcance horizontal foi 3 m, qual é a velocidade horizontal da água na saída?</strong><br>
+  <input onchange="checkWord(this,'v=3/t|≈6,7 m/s|6,7 m/s|6.7 m/s|aprox 6,7')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>No lançamento horizontal, <span class="eq">v_x</span> é constante: <span class="eq">v_x = Δx/t</span>.</span>
+  </span>
+</p>
+
+<p><strong>3) Se a mangueira for apontada para cima (vertical), essa é a velocidade inicial. Qual a altura máxima atingida?</strong><br>
+  <input onchange="checkWord(this,'h=v^2/(2g)|≈2,25 m|2,25 m|2.25 m')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Para subida vertical, <span class="eq">0 = v² - 2 g h_max ⇒ h_max = v²/(2g)</span>.</span>
+  </span>
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')"><span class="circulo">A</span> 1,5 m.</div>
+<div class="opcao" onclick="checkAnswer('B')"><span class="circulo">B</span> 2,25 m.</div>
+<div class="opcao" onclick="checkAnswer('C')"><span class="circulo">C</span> 4,0 m.</div>
+<div class="opcao" onclick="checkAnswer('D')"><span class="circulo">D</span> 4,5 m.</div>
+<div class="opcao" onclick="checkAnswer('E')"><span class="circulo">E</span> 5,0 m.</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = (span.style.display === 'inline') ? 'none' : 'inline';
+  }
+  function checkAnswer(letter) {
+    const correct = 'B';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

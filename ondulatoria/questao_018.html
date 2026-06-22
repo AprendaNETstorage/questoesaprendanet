@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Física — Lista 03 — Problema 30 (ENEM 2020 — Q93) — Ondulatória</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Ondulatória</a>
+    <span class="spacer"></span>
+    <a href="questao_017.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">18/71</span>
+    <a href="questao_019.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Física — Lista 03 — Problema 30 (ENEM 2020 — Q93)</h2>
+  <h3>Problema 30:</h3>
+<p><strong>2 – Enem 2020</strong></p>
+
+<p><strong>Questão 93 – Ciências da Natureza e suas Tecnologias</strong></p>
+
+<p>
+Para se deslocar e obter alimentos, alguns mamíferos, como morcegos e golfinhos, contam com a sofisticada capacidade biológica de detectar a posição de objetos e animais pela emissão e recepção de ondas ultrassônicas. O fenômeno ondulatório que permite o uso dessa capacidade biológica é a
+</p>
+
+<!-- Resolução apenas posicionada antes das alternativas -->
+<h4>Resolução (interativa):</h4>
+
+<p><strong>1) O fenômeno ondulatório que permite à ecolocalização "ver" objetos é a:</strong>
+  <input onchange="checkWord(this,'reflexao|reflexão')">
+</p>
+
+<p><strong>2) O tipo de onda usado pelos animais nesse processo é o:</strong>
+  <input onchange="checkWord(this,'ultrassom|ultrassonica|ultrassônica|onda ultrassonica|onda ultrassônica')">
+</p>
+
+<p><strong>3) Para estimar a distância, mede-se o:</strong>
+  <input onchange="checkWord(this,'tempo de ida e volta|tempo de voo|tempo|atraso do eco|eco')">
+</p>
+
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('A')" onkeydown="if(event.key==='Enter')checkAnswer('A')">
+  <span class="circulo">A</span> reflexão.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('B')" onkeydown="if(event.key==='Enter')checkAnswer('B')">
+  <span class="circulo">B</span> difração.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('C')" onkeydown="if(event.key==='Enter')checkAnswer('C')">
+  <span class="circulo">C</span> refração.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('D')" onkeydown="if(event.key==='Enter')checkAnswer('D')">
+  <span class="circulo">D</span> dispersão.
+</div>
+<div class="opcao" role="button" tabindex="0"
+     onclick="checkAnswer('E')" onkeydown="if(event.key==='Enter')checkAnswer('E')">
+  <span class="circulo">E</span> polarização.
+</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização e marcação ✅/❌ nos inputs
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+  function paint(input, ok){
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')){
+      input.nextElementSibling.remove();
+    }
+    input.style.backgroundColor = ok ? "#c6f6c6" : "#fdd";
+    input.insertAdjacentHTML("afterend", `<span class="feedback">${ok ? '✅' : '❌'}</span>`);
+  }
+  function checkWord(input, patterns){
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    paint(input, opts.some(p => text.includes(p)));
+  }
+
+  // gabarito simples (sem dica ao errar)
+  const CORRECT = 'A';
+  function checkAnswer(letter){
+    const message = document.getElementById('message');
+    if (letter === CORRECT){
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

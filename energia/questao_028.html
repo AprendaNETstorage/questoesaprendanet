@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista — Problema 9 (ENEM 2022) — Energia</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Energia</a>
+    <span class="spacer"></span>
+    <a href="questao_027.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">28/33</span>
+    <a href="questao_029.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista — Problema 9 (ENEM 2022)</h2>
+  <h3>Problema 9:</h3>
+
+<p><strong>9 – Enem 2022</strong></p>
+
+<p>
+  O eixo de rotação da Terra apresenta uma inclinação em relação ao plano de sua órbita em torno do Sol, interferindo na duração do dia e da noite ao longo do ano.
+</p>
+
+<!-- (Opcional) esquema com a Terra e incidência solar — deixe comentado -->
+<div class="imgwrap"><img src="terra_sol_estacoes.png" alt="Esquema de insolação e estações do ano"></div>
+
+<p>
+  Uma pessoa instala em sua residência uma placa fotovoltaica, que transforma energia solar em elétrica. Ela monitora a energia total produzida por essa placa em 4 dias do ano, ensolarados e sem nuvens, e lança os resultados no gráfico.
+</p>
+
+<!-- (Opcional) gráfico de barras — deixe comentado se o arquivo não estiver na pasta -->
+<div class="imgwrap"><img src="grafico_producao_energia_datas.png" alt="Barras em 10/01, 10/04, 10/07 e 10/10 mostrando tendência decrescente"></div>
+
+<p><strong>Próximo a que região se situa a residência onde as placas foram instaladas?</strong></p>
+
+<!-- =========================
+     SOLUÇÃO (INTERATIVA) ANTES DAS ALTERNATIVAS
+     ========================= -->
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) Pelo gráfico, em qual das datas há <u>maior</u> produção? E a tendência de janeiro para outubro é de aumento ou de queda?</strong><br>
+  <input onchange="checkWord(this,'janeiro|10/01|jan|maior em janeiro|cai ate outubro|queda|decresce')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Observe as barras: a primeira (jan) é a mais alta e as seguintes são menores.</span>
+  </span>
+</p>
+
+<p><strong>2) Se o pico ocorre em janeiro, isso indica que o local está em qual hemisfério?</strong><br>
+  <input onchange="checkWord(this,'hemisferio sul|hemisfério sul|sul')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Janeiro é verão no Sul (mais insolação) e inverno no Norte (menos insolação).</span>
+  </span>
+</p>
+
+<p><strong>3) Próximo de qual paralelo do hemisfério Sul a insolação de verão costuma ser máxima?</strong><br>
+  <input onchange="checkWord(this,'tropico de capricornio|trópico de capricórnio|23,5 s|23.5 s')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Pense nos trópicos: Câncer (N) e Capricórnio (S). Qual pertence ao hemisfério sul?</span>
+  </span>
+</p>
+
+<!-- =========================
+     ALTERNATIVAS
+     ========================= -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')"><span class="circulo">A</span> Trópico de Capricórnio</div>
+<div class="opcao" onclick="checkAnswer('B')"><span class="circulo">B</span> Trópico de Câncer</div>
+<div class="opcao" onclick="checkAnswer('C')"><span class="circulo">C</span> Polo Norte</div>
+<div class="opcao" onclick="checkAnswer('D')"><span class="circulo">D</span> Polo Sul</div>
+<div class="opcao" onclick="checkAnswer('E')"><span class="circulo">E</span> Equador</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para ignorar acentos
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+  // verificação por palavras-chave (sem entregar a resposta completa de cara)
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  // botão Mostrar dica
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = (span.style.display === 'inline') ? 'none' : 'inline';
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'A';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>

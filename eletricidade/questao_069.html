@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Numéricos - Lista — Problema 33 — Eletricidade</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="home" href="../index.html">Início</a>
+    <a class="home" href="index.html">Eletricidade</a>
+    <span class="spacer"></span>
+    <a href="questao_068.html">&laquo; Anterior</a>
+    <span style="font-size:13px;color:#666">69/81</span>
+    <a href="questao_070.html">Próxima &raquo;</a>
+  </nav>
+  <h2>Sistemas Numéricos - Lista — Problema 33</h2>
+  <h3>Problema 33:</h3>
+
+<p><strong>12 – ENEM 2024</strong></p>
+
+<p>
+  Placas solares comuns dependem de dias ensolarados. Já um arranjo com uma <strong>camada fina de grafeno</strong> pode gerar eletricidade com gotas de chuva: cátions da água (A<sup>m+</sup>) e ânions (B<sup>n−</sup>) interagem com os elétrons livres do grafeno, permitindo que cargas se movam ao longo da superfície.
+</p>
+
+<!-- Esquema ilustrativo (deixar comentado mesmo sem o arquivo) -->
+<!-- <div class="imgwrap"><img src="grafeno_chuva_geracao.png" alt="Gotas com íons interagindo com a camada de grafeno, criando diferença de potencial"></div> -->
+
+<p><strong>Ao produzir eletricidade em dias chuvosos, o grafeno</strong></p>
+
+<!-- SOLUÇÃO (INTERATIVA) ANTES DAS ALTERNATIVAS -->
+<h4>Solução (interativa):</h4>
+
+<p><strong>1) O grafeno possui muitos elétrons livres. Em contato com <u>cátions</u> da água, ocorre</strong><br>
+  <input onchange="checkWord(this,'interacao eletrostatica|atracao dos cations|transferencia de carga|adsorcao de ions|formacao de dupla camada eletrica')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Pense em cátions sendo atraídos por elétrons na superfície condutora.</span>
+  </span>
+</p>
+
+<p><strong>2) Essa interação cria entre regiões da superfície uma</strong><br>
+  <input onchange="checkWord(this,'diferenca de potencial|ddp|potencial eletrico diferente|tensao na superficie')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Quando há separação espacial de cargas, aparece uma tensão.</span>
+  </span>
+</p>
+
+<p><strong>3) Com a ddp estabelecida, os elétrons no grafeno</strong><br>
+  <input onchange="checkWord(this,'se movem/fluem gerando corrente|circulam pela superficie|produzem corrente eletrica')">
+  <span class="hint"><button onclick="toggleHint(this)">Mostrar dica</button>
+    <span>Corrente é movimento ordenado de cargas devido à ddp.</span>
+  </span>
+</p>
+
+<!-- ALTERNATIVAS -->
+<p><strong>Assinale a alternativa correta:</strong></p>
+
+<div class="opcao" onclick="checkAnswer('A')"><span class="circulo">A</span> Oxida os cátions dissolvidos na água.</div>
+<div class="opcao" onclick="checkAnswer('B')"><span class="circulo">B</span> Impede a difusão da água através das placas solares.</div>
+<div class="opcao" onclick="checkAnswer('C')"><span class="circulo">C</span> Diminui a energia de ativação da reação no pseudocapacitor.</div>
+<div class="opcao" onclick="checkAnswer('D')"><span class="circulo">D</span> Forma um composto não metálico com os íons na água.</div>
+<div class="opcao" onclick="checkAnswer('E')"><span class="circulo">E</span> Gera uma <u>diferença de potencial</u> pela interação dos elétrons com os <u>cátions</u>.</div>
+
+<div id="message" class="feedback" aria-live="polite"></div>
+
+<script>
+  // normalização para ignorar acentos
+  function normalize(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+  // verificação por palavras-chave
+  function checkWord(input, patterns) {
+    if (input.nextElementSibling && input.nextElementSibling.classList.contains('feedback')) {
+      input.nextElementSibling.remove();
+    }
+    const text = normalize(input.value.trim().toLowerCase());
+    const opts = patterns.split('|').map(s => normalize(s.trim().toLowerCase()));
+    const ok = opts.some(p => text.includes(p));
+    if (ok) {
+      input.style.backgroundColor = "#c6f6c6";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">✅</span>');
+    } else {
+      input.style.backgroundColor = "#fdd";
+      input.insertAdjacentHTML("afterend", '<span class="feedback">❌</span>');
+    }
+  }
+
+  // botão Mostrar dica
+  function toggleHint(btn){
+    const span = btn.nextElementSibling;
+    span.style.display = span.style.display === 'inline' ? 'none' : 'inline';
+  }
+
+  // gabarito
+  function checkAnswer(letter) {
+    const correct = 'E';
+    const message = document.getElementById('message');
+    if (letter === correct) {
+      message.textContent = 'Correto!';
+      message.style.color = 'green';
+    } else {
+      message.textContent = 'Errado. Tente novamente.';
+      message.style.color = 'red';
+    }
+  }
+</script>
+</div>
+</body>
+</html>
